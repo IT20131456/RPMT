@@ -28,5 +28,5 @@ mongoose.connection.once("open", () => {
 });
 
 app.listen(port, () => {
-  console.log(`serever is started in port ${port}`);
+  console.log(`server is started in port ${port}`);
 });
