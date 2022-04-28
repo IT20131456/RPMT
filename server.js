@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require("express");
 const mongoose = require("mongoose");
 const bodyparser = require("body-parser");
 const cors = require("cors");
@@ -9,15 +9,16 @@ const app = express();
 
 //import controllers
 //const controller = require("./controllers/controllers");
-//const router = require("./controllers/controllers");
+const sgrouter = require("./routes/studentGroupRoute");
+const sdrouter = require("./routes/supervisorDetailsRoute");
 
 //app middleware
 
 app.use(bodyparser.json());
 app.use(cors());
 
-
-//app.use(router);
+app.use(sgrouter);
+app.use(sdrouter);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;
