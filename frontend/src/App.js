@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { BrowserRouter,Route } from "react-router-dom";
-import StudentGroup from "./components/StudentGroup";
-import SupervisorDetails from "./components/SupervisorDetails"
+import StudentGroup from "./components/IT20131456/StudentGroup";
+import SupervisorDetails from "./components/It20131456/SupervisorDetails"
 
 
 
