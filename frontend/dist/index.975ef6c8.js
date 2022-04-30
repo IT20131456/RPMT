@@ -25080,9 +25080,9 @@ var _jsxDevRuntime = require("react/jsx-dev-runtime");
 var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _reactRouterDom = require("react-router-dom");
-var _studentGroup = require("./components/StudentGroup");
+var _studentGroup = require("./components/IT20131456/StudentGroup");
 var _studentGroupDefault = parcelHelpers.interopDefault(_studentGroup);
-var _supervisorDetails = require("./components/SupervisorDetails");
+var _supervisorDetails = require("./components/It20131456/SupervisorDetails");
 var _supervisorDetailsDefault = parcelHelpers.interopDefault(_supervisorDetails);
 class App extends _react.Component {
     render() {
@@ -25127,7 +25127,7 @@ exports.default = App;
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","./components/StudentGroup":"DDBbF","./components/SupervisorDetails":"6TCdp","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cHIiW":[function(require,module,exports) {
+},{"react/jsx-dev-runtime":"iTorj","react":"21dqq","react-router-dom":"cHIiW","./components/IT20131456/StudentGroup":"dMR8M","./components/It20131456/SupervisorDetails":"hqhoo","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"km3Ru"}],"cHIiW":[function(require,module,exports) {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
 parcelHelpers.defineInteropFlag(exports);
 parcelHelpers.export(exports, "MemoryRouter", ()=>_reactRouter.MemoryRouter
@@ -28196,11 +28196,11 @@ function hoistNonReactStatics(targetComponent, sourceComponent, blacklist) {
 }
 module.exports = hoistNonReactStatics;
 
-},{"react-is":"7EuwB"}],"DDBbF":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$f29f = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-is":"7EuwB"}],"dMR8M":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$daf9 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$f29f.prelude(module);
+$parcel$ReactRefreshHelpers$daf9.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -28225,24 +28225,24 @@ class StudentGroup extends _react.Component {
                                     /*#__PURE__*/ _jsxDevRuntime.jsxDEV("h2", {
                                         children: "Create Student Group"
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 12,
                                         columnNumber: 17
                                     }, this),
                                     "\xa0"
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 10,
                                 columnNumber: 15
                             }, this)
                         }, void 0, false, {
-                            fileName: "src/components/StudentGroup.js",
+                            fileName: "src/components/IT20131456/StudentGroup.js",
                             lineNumber: 9,
                             columnNumber: 13
                         }, this)
                     }, void 0, false, {
-                        fileName: "src/components/StudentGroup.js",
+                        fileName: "src/components/IT20131456/StudentGroup.js",
                         lineNumber: 8,
                         columnNumber: 11
                     }, this),
@@ -28259,7 +28259,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Group ID :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 22,
                                                     columnNumber: 19
                                                 }, this),
@@ -28272,18 +28272,18 @@ class StudentGroup extends _react.Component {
                                                     title: "Subject ID is Invalid",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 23,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 21,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 20,
                                         columnNumber: 15
                                     }, this),
@@ -28295,7 +28295,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Group Name :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 36,
                                                     columnNumber: 19
                                                 }, this),
@@ -28306,24 +28306,24 @@ class StudentGroup extends _react.Component {
                                                     name: "name",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 37,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 35,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 34,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 19,
                                 columnNumber: 13
                             }, this),
@@ -28339,7 +28339,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_1 ID :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 52,
                                                     columnNumber: 19
                                                 }, this),
@@ -28352,18 +28352,18 @@ class StudentGroup extends _react.Component {
                                                     title: "Subject ID is Invalid",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 53,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 51,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 50,
                                         columnNumber: 15
                                     }, this),
@@ -28375,7 +28375,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_1 Name :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 66,
                                                     columnNumber: 19
                                                 }, this),
@@ -28386,24 +28386,24 @@ class StudentGroup extends _react.Component {
                                                     name: "name",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 67,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 65,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 64,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 49,
                                 columnNumber: 13
                             }, this),
@@ -28419,7 +28419,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_2 ID :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 82,
                                                     columnNumber: 19
                                                 }, this),
@@ -28432,18 +28432,18 @@ class StudentGroup extends _react.Component {
                                                     title: "Subject ID is Invalid",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 83,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 81,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 80,
                                         columnNumber: 15
                                     }, this),
@@ -28455,7 +28455,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_2 Name :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 96,
                                                     columnNumber: 19
                                                 }, this),
@@ -28466,24 +28466,24 @@ class StudentGroup extends _react.Component {
                                                     name: "name",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 97,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 95,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 94,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 79,
                                 columnNumber: 13
                             }, this),
@@ -28499,7 +28499,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_3 ID :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 112,
                                                     columnNumber: 19
                                                 }, this),
@@ -28512,18 +28512,18 @@ class StudentGroup extends _react.Component {
                                                     title: "Subject ID is Invalid",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 113,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 111,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 110,
                                         columnNumber: 15
                                     }, this),
@@ -28535,7 +28535,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_3 Name :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 126,
                                                     columnNumber: 19
                                                 }, this),
@@ -28546,24 +28546,24 @@ class StudentGroup extends _react.Component {
                                                     name: "name",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 127,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 125,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 124,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 109,
                                 columnNumber: 13
                             }, this),
@@ -28579,7 +28579,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_4 ID :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 142,
                                                     columnNumber: 19
                                                 }, this),
@@ -28592,18 +28592,18 @@ class StudentGroup extends _react.Component {
                                                     title: "Subject ID is Invalid",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 143,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 141,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 140,
                                         columnNumber: 15
                                     }, this),
@@ -28615,7 +28615,7 @@ class StudentGroup extends _react.Component {
                                                 /*#__PURE__*/ _jsxDevRuntime.jsxDEV("strong", {
                                                     children: "Student_4 Name :"
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 156,
                                                     columnNumber: 19
                                                 }, this),
@@ -28626,24 +28626,24 @@ class StudentGroup extends _react.Component {
                                                     name: "name",
                                                     required: true
                                                 }, void 0, false, {
-                                                    fileName: "src/components/StudentGroup.js",
+                                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                                     lineNumber: 157,
                                                     columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
-                                            fileName: "src/components/StudentGroup.js",
+                                            fileName: "src/components/IT20131456/StudentGroup.js",
                                             lineNumber: 155,
                                             columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 154,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 139,
                                 columnNumber: 13
                             }, this),
@@ -28664,40 +28664,40 @@ class StudentGroup extends _react.Component {
                                                 className: "fa fa-save",
                                                 children: " Save "
                                             }, void 0, false, {
-                                                fileName: "src/components/StudentGroup.js",
+                                                fileName: "src/components/IT20131456/StudentGroup.js",
                                                 lineNumber: 175,
                                                 columnNumber: 25
                                             }, this)
                                         ]
                                     }, void 0, true, {
-                                        fileName: "src/components/StudentGroup.js",
+                                        fileName: "src/components/IT20131456/StudentGroup.js",
                                         lineNumber: 169,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
-                                    fileName: "src/components/StudentGroup.js",
+                                    fileName: "src/components/IT20131456/StudentGroup.js",
                                     lineNumber: 168,
                                     columnNumber: 15
                                 }, this)
                             }, void 0, false, {
-                                fileName: "src/components/StudentGroup.js",
+                                fileName: "src/components/IT20131456/StudentGroup.js",
                                 lineNumber: 167,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
-                        fileName: "src/components/StudentGroup.js",
+                        fileName: "src/components/IT20131456/StudentGroup.js",
                         lineNumber: 18,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
-                fileName: "src/components/StudentGroup.js",
+                fileName: "src/components/IT20131456/StudentGroup.js",
                 lineNumber: 7,
                 columnNumber: 9
             }, this)
         }, void 0, false, {
-            fileName: "src/components/StudentGroup.js",
+            fileName: "src/components/IT20131456/StudentGroup.js",
             lineNumber: 6,
             columnNumber: 7
         }, this);
@@ -28705,7 +28705,7 @@ class StudentGroup extends _react.Component {
 }
 exports.default = StudentGroup;
 
-  $parcel$ReactRefreshHelpers$f29f.postlude(module);
+  $parcel$ReactRefreshHelpers$daf9.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
@@ -28830,11 +28830,11 @@ function registerExportsForReactRefresh(module) {
     }
 }
 
-},{"react-refresh/runtime":"786KC"}],"6TCdp":[function(require,module,exports) {
-var $parcel$ReactRefreshHelpers$422a = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
+},{"react-refresh/runtime":"786KC"}],"hqhoo":[function(require,module,exports) {
+var $parcel$ReactRefreshHelpers$fece = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
-$parcel$ReactRefreshHelpers$422a.prelude(module);
+$parcel$ReactRefreshHelpers$fece.prelude(module);
 
 try {
 var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
@@ -28847,7 +28847,7 @@ class SupervisorDetails extends _react.Component {
         return /*#__PURE__*/ _jsxDevRuntime.jsxDEV("div", {
             children: "SupervisorDetails"
         }, void 0, false, {
-            fileName: "src/components/SupervisorDetails.js",
+            fileName: "src/components/It20131456/SupervisorDetails.js",
             lineNumber: 6,
             columnNumber: 7
         }, this);
@@ -28855,7 +28855,7 @@ class SupervisorDetails extends _react.Component {
 }
 exports.default = SupervisorDetails;
 
-  $parcel$ReactRefreshHelpers$422a.postlude(module);
+  $parcel$ReactRefreshHelpers$fece.postlude(module);
 } finally {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
