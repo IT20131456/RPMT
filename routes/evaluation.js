@@ -24,7 +24,8 @@ router.post('/evaluation/save',(req,res)=>{
     });
 });
 
-//get evaluation
+//get evaluations
+//get all
 
 router.get('/evaluations',(req,res) =>{
     Evaluations.find().exec((err,evaluations)=>{
