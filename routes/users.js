@@ -29,10 +29,10 @@ router.post('/user/registration', (req, res) => {
             if (!user) {
                 bcrypt.hash(req.body.password, 10, (err, hash) => {
                     userData.password = hash
-                    console.log("bcrypt")
+                    // console.log("bcrypt")
                     Users.create(userData)
                         .then(res => {
-                            console.log("then")
+                            // console.log("then")
                             
                             res.status(200).json({
                                 success: "Registered successfully"
@@ -40,7 +40,7 @@ router.post('/user/registration', (req, res) => {
                             
                         })
                         .catch(err => {
-                            console.log("catch")
+                            // console.log("catch")
                             res.status(400).send("error" + err).end();
                         });
                 })
