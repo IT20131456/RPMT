@@ -24,7 +24,7 @@ router.post('/evaluation/save',(req,res)=>{
     });
 });
 
-//get evaluations
+//get all evaluations
 //get all
 
 router.get('/evaluations',(req,res) =>{
