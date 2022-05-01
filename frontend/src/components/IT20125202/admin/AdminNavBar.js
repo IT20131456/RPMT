@@ -4,11 +4,6 @@ export default class AdminNavBar extends Component {
   onlogout = (e) => {
     e.preventDefault();
     window.history.forward();
-    // function noBack()
-    // {
-    //     window.history.forward();
-    // }
-    // noBack(); 
     window.location = "http://localhost:3000/admin/login";
 
   }
