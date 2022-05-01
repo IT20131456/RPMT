@@ -57,7 +57,7 @@ router.get("/evaluation/:id",(req,res) =>{
 });
 
 
-//update  evaluation
+//update evaluation
 router.put('/evaluation/update/:id',(req,res)=>{
     Evaluations.findByIdAndUpdate(
         req.params.id,
