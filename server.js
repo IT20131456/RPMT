@@ -12,8 +12,6 @@ const app = express();
 const sgrouter = require("./routes/studentGroupRoute");
 const sdrouter = require("./routes/supervisorDetailsRoute");
 const evrouter = require("./routes/evaluation");
-const adminRouter = require('./routes/admin');
-const userRouter = require('./routes/users');
 
 //app middleware
 
@@ -23,8 +21,6 @@ app.use(cors());
 app.use(sgrouter);
 app.use(sdrouter);
 app.use(evrouter);
-app.use(adminRouter);
-app.use(userRouter);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;
