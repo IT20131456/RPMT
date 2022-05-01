@@ -24,9 +24,6 @@ class NavBar extends Component {
 
   logOut(e) {
     e.preventDefault();
-
-    // localStorage.removeItem('userToken');
-    // this.props.history.push('/')
     localStorage.removeItem('userToken');
     this.props.history.push(`/user/login`)
     window.location.reload();
@@ -37,11 +34,9 @@ class NavBar extends Component {
     const loginRegLink = (
       <ul className='nav nav-tabs'>
         <li className='nav-item'>
-          {/* <a className="nav-link" aria-current="page" href="/user/login">Login</a> */}
           <a className="nav-link" aria-current="page" href="/user/login" style={{textDecoration: 'none', color: 'white'}}>Login</a>
         </li>
         <li className='nav-item'>
-          {/* <a className="nav-link" aria-current="page" href="/user/register">Register</a> */}
           <a className="nav-link" aria-current="page" href="/user/registration" style={{textDecoration: 'none', color: 'white'}}>Register</a>
         </li>
       </ul>
@@ -53,22 +48,13 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            {/* <a className="nav-link" aria-current="page" href="/student/topics">Topics</a> */}
             <a className="nav-link" aria-current="page" href="/student/topics" style={{textDecoration: 'none', color: 'white'}}>Topics</a>
-            {/* <Link to="/student/topics" className="nav-link">
-              <h4>Topics</h4>
-            </Link> */}
           </li>
           <li className='nav-item'>
-            {/* <a className="nav-link" aria-current="page" href="/user/profile">Profile</a> */}
             <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
-            {/* <Link to="/user/profile" className="nav-link">
-              <h4>Profile</h4>
-            </Link> */}
           </li>
 
           <li className='nav-item'>
-            {/* <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link"> */}
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
               Log out
             </a>
@@ -80,14 +66,9 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            {/* <a className="nav-link" aria-current="page" href="/user/profile">Profile</a> */}
             <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
           </li>
-          {/* <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/student/topics">Topics</a>
-          </li> */}
           <li className='nav-item'>
-            {/* <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" > */}
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
               Log out
             </a>
@@ -99,15 +80,12 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            {/* <a className="nav-link" aria-current="page" href="/user/profile">Profile</a> */}
             <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
           </li>
           <li className='nav-item'>
-            {/* <a className="nav-link" aria-current="page" href="/panel/topic/list">Topics</a> */}
             <a className="nav-link" aria-current="page" href="/panel/topic/list" style={{textDecoration: 'none', color: 'white'}}>Topics</a>
           </li>
           <li className='nav-item'>
-            {/* <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link"> */}
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
               Log out
             </a>
@@ -119,10 +97,8 @@ class NavBar extends Component {
 
     return (
       <div>
-        {/* <nav className="navbar navbar-expand-lg navbar-light bg-light"> */}
         <nav class="navbar navbar-expand-lg navbar-light" style={{background: '#000080'}}>
           <div className="container-fluid">
-            {/* <a className="navbar-brand" href="/">RPMS</a> */}
             <a className="navbar-brand" href="/" style={{color: 'white'}}>RPMS</a>
 
             <button
@@ -145,12 +121,6 @@ class NavBar extends Component {
             >
               {/* <div className='navbar-nav ms-auto mb-2 mb-lg-0'></div> */}
               <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
-                {/* <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/user/login">Login</a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" aria-current="page" href="/user/registration">Register</a>
-                </li> */}
               </ul>
               {localStorage.userToken ? userLink : loginRegLink}
 
