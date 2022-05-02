@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-//save evaluation
+//save evaluations
 
 router.post('/evaluation/save',(req,res)=>{
     let newEvaluation = new Evaluations(req.body);
