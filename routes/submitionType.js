@@ -1,34 +1,33 @@
 const express = require('express');
 const res = require('express/lib/response');
-const Evaluations = require('../models/evaluation');
+const submitionTypes = require('../models/submitionType');
 const router = express.Router();
 
 
 
 
 
-//save evaluations
+//save submition type
 
-router.post('/evaluation/save',(req,res)=>{
-    let newEvaluation = new Evaluations(req.body);
+router.post('/submitiontype/save',(req,res)=>{
+    let newsubmitionType = new submitionTypes(req.body);
 
-    newEvaluation.save((err)=>{
+    newsubmitionType.save((err)=>{
         if(err){
             return res.status(400).json({
                 error:err
             });
         }
         return res.status(200).json({
-            success:"Post saved Succefully"
+            success:"Data saved Succefully"
         });
     });
 });
 
-//get all evaluations
-//get all
+//get submition types
 
-router.get('/evaluations',(req,res) =>{
-    Evaluations.find().exec((err,evaluations)=>{
+router.get('/submitiontypes',(req,res) =>{
+    submitionTypes.find().exec((err,submitiomtypes)=>{
         if(err){
             return res.status(400).json({
                 error:err
@@ -36,36 +35,36 @@ router.get('/evaluations',(req,res) =>{
         }
         return res.status(200).json({
             success:true,
-            existingEvaluations:evaluations
+            existingsubmitonTypes:submitiomtypes
         });
     });
 });
 
 
-//get a specipic evaluation
-router.get("/evaluation/:id",(req,res) =>{
-    let evaluationId = req.params.id;
+//get a specipic submition
+router.get("/submitiontype/:id",(req,res) =>{
+    let submitiontypeId = req.params.id;
 
-    Evaluations.findById(evaluationId,(err,evaluation)=>{
+    submitionTypes.findById(submitiontypeId,(err,submitiontype)=>{
         if(err){
             return res.status(400).json({success:false, err});
         }
         return res.status(200).json({
             success:true,
-            evaluation
+            submitiontype
         });
     });
 });
 
 
-//update evaluation
-router.put('/evaluation/update/:id',(req,res)=>{
-    Evaluations.findByIdAndUpdate(
+//update submition type
+router.put('/submitiontype/update/:id',(req,res)=>{
+    submitionTypes.findByIdAndUpdate(
         req.params.id,
         {
             $set:req.body
         },
-        (err,evaluation)=>{
+        (err,submitiontype)=>{
             if(err){
                 return res.status(400).json({error:err});
             }
@@ -77,16 +76,16 @@ router.put('/evaluation/update/:id',(req,res)=>{
 });
 
 
-//delete evaluation
+//delete submitiontype
 
-router.delete('/evaluation/delete/:id',(req,res)=>{
-    Evaluations.findByIdAndRemove(req.params.id).exec((err,deletedEvaluation)=>{
+router.delete('/submitiontype/delete/:id',(req,res)=>{
+    submitionTypes.findByIdAndRemove(req.params.id).exec((err,deletedsubmitionType)=>{
         if(err) return res.status(400).json({
             message:"Deleted unsuccesful",err
         });
 
         return res.json({
-            message:"Deleted Succesfull",deletedEvaluation
+            message:"Deleted Succesfull",deletedsubmitionType
         });
 
     });
