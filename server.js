@@ -14,6 +14,7 @@ const sdrouter = require("./routes/supervisorDetailsRoute");
 const evrouter = require("./routes/evaluation");
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/users');
+const topicRoutes = require('./routes/topic');
 const subTypeRoute = require('./routes/submitionType');
 
 //app middleware
@@ -26,6 +27,7 @@ app.use(sdrouter);
 app.use(evrouter);
 app.use(adminRouter);
 app.use(userRouter);
+app.use(topicRoutes);
 app.use(subTypeRoute);
 
 const port = process.env.PORT || 5000;
