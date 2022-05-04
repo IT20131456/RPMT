@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage});
 
-router.post('/save', upload.single("file"), (req, res) => {
+router.post('/template/add', upload.single("file"), (req, res) => {
     const file = new DocumentTemplate({
         documentType: req.body.documentType,
         otherType: req.body.otherType,
@@ -29,7 +29,7 @@ router.post('/save', upload.single("file"), (req, res) => {
 });
 
 // Get all articles
-router.get('/article/all', (req,res)=>{
+router.get('/template/getAll', (req,res)=>{
     DocumentTemplate.find().exec((err,documentTemp)=>{
         if(err){
             return res.status(400).json({
