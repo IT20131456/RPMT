@@ -16,6 +16,7 @@ const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/users');
 const topicRoutes = require('./routes/topic');
 const subTypeRoute = require('./routes/submitionType');
+const adminDcoumentTempRoutes = require('./routes/adminDocumentTemp');
 
 //app middleware
 
@@ -29,6 +30,7 @@ app.use(adminRouter);
 app.use(userRouter);
 app.use(topicRoutes);
 app.use(subTypeRoute);
+app.use(adminDcoumentTempRoutes);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;

@@ -21,6 +21,9 @@ import SupervisorDetails from "./components/It20131456/SupervisorDetails"
 import AdminHome from './components/IT20125202/admin/AdminHome';
 // import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
 import AdminLogin from './components/IT20125202/admin/AdminLogin';
+import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
+import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
+import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
 
 //panel
 // import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
@@ -65,6 +68,9 @@ export default class App extends Component {
 
                 {/* IT20127046 */}
                 <Route path="/" exact component={Home}></Route>
+                <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
+                <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
+                <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
