@@ -29,6 +29,7 @@ import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
 // import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
 // import ViewTopic from './components/IT20125202/topic/ViewTopic';
 // import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
+import AddEvaluation from "./components/IT20128036/AddEvaluation";
 
 //supervisor
 
@@ -89,6 +90,9 @@ export default class App extends Component {
                 {/* <Route path='/panel/topic/list' exact component={ViewTopicList}></Route> */}
                 {/* <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route> */}
                 {/* <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route> */}
+
+                {/*IT20128036*/}
+                <Route path="/addEvaluation" component={AddEvaluation}/>
 
               </div>
             </div>
