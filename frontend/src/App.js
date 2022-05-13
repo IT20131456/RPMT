@@ -12,7 +12,8 @@ import NavBar from './components/IT20125202/NavBar';
 // import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
 // import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
-import SupervisorDetails from "./components/It20131456/SupervisorDetails"
+import SupervisorDetails from "./components/It20131456/SupervisorDetails";
+import GroupChatStudent from './components/IT20127046/GroupChat_Student';
 
 //admin
 import EditUser from './components/IT20125202/user/EditUser';
@@ -72,6 +73,7 @@ export default class App extends Component {
                 <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
                 <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
                 <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
+                <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
