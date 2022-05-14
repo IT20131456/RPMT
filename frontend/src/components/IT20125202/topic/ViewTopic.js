@@ -13,7 +13,7 @@ export default class ViewTopic extends Component {
   componentDidMount() {
     document.title = "Topic Registration Details"
     const id = this.props.match.params.id;
-    axios.get(`/topic/${id}`).then((res) => {
+    axios.get(`http://localhost:5000/topic/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
           topic: res.data.topic
