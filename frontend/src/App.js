@@ -9,7 +9,7 @@ import UserLogin from './components/IT20125202/user/UserLogin';
 import NavBar from './components/IT20125202/NavBar';
 
 //student
-// import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
+import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
 // import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails"
