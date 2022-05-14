@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 //user
 import CreateUser from './components/IT20125202/user/CreateUser';
-// import UserProfile from './components/IT20125202/user/UserProfile';
+import UserProfile from './components/IT20125202/user/UserProfile';
 import Home from './components/IT20127046/Home';
 import UserLogin from './components/IT20125202/user/UserLogin';
 import NavBar from './components/IT20125202/NavBar';
@@ -60,7 +60,7 @@ export default class App extends Component {
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
                 <Route path="/user/login" exact component={UserLogin}></Route>
-                {/* <Route path='/user/profile' exact component={UserProfile}></Route> */}
+                <Route path='/user/profile' exact component={UserProfile}></Route>
                 <Route path='/user/registration' exact component={CreateUser}></Route>
 
                 {/* IT20127046 */}
