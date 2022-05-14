@@ -1,7 +1,7 @@
 //panel members view the topic list  
 import React, { Component } from 'react';
 import axios from 'axios';
-import AdminNavBar from '../home/AdminNavBar';
+import AdminNavBar from '../admin/AdminNavBar';
 // import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -23,7 +23,7 @@ export default class ViewListAdmin extends Component {
 
   //method for get request
   retrieveTopics() {
-    axios.get('http://localhost:8000/topics').then(res => {
+    axios.get('http://localhost:5000/topics').then(res => {
       if (res.data.success) {
         this.setState({
           topics: res.data.existingTopics
