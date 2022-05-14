@@ -65,9 +65,9 @@ export default class App extends Component {
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: '900px' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: 'auto' }}>
 
-              <div className='container' style={{ background: 'white', height: '800px', padding: '0px 0px 10px 0px' }}>
+              <div className='container' style={{ background: 'white', height: 'auto', padding: '0px 0px 10px 0px' }}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
@@ -88,7 +88,7 @@ export default class App extends Component {
                 {/* <Route path='/student/topics' exact component={ViewSubmissions}></Route> */}
 
                 {/* IT20131456 */}
-                <Route path="/" exact component={StudentGroup}></Route>
+                <Route path="/s" exact component={StudentGroup}></Route>
                 <Route path="/add" component={CreateStudentGroup}></Route>
                 <Route path="/view/:id" component={ViewStudentGroup}></Route>
                 {/* ---------------Supervisor--------------- */}

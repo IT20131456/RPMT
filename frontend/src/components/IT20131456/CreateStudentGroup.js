@@ -99,8 +99,8 @@ export default class CreateStudentGroup extends Component {
 
   render() {
     return (
-      <div>
-        <div className="container border border-primary bg-light mt-5 ">
+      <div className="container ">
+        <div className="container border bg-light mt-5  ">
           <div className="form-group row">
             <div className="col-lg-12 margin-tb">
               <div className="float-left">

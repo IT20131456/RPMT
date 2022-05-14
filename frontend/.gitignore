@@ -1,13 +1,3 @@
 .env
 node_modules
-.parcel-cache
-<<<<<<< HEAD
-dist
-package-lock.json
-package.json
-src\index.html
-src\index.js
-src\App.js
-=======
-dist
->>>>>>> b14d0789367c5c23680f8f47d2795bedbde81f8a
+
