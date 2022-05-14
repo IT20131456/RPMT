@@ -21,6 +21,8 @@ import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails";
 import GroupChatStudent from './components/IT20127046/GroupChat_Student';
+import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
+import SviewSubmitionType from "./components/IT20128036/user/SviewSubmitionType";
 
 //admin
 import EditUser from './components/IT20125202/user/EditUser';
@@ -32,12 +34,16 @@ import AdminLogin from './components/IT20125202/admin/AdminLogin';
 import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
 import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
 import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import AddSubmitionType from "./components/IT20128036/admin/addSubmitionType";
+import SubmitionTypeList from "./components/IT20128036/admin/SubmitionTypeList";
 
 //panel
 import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
 import ViewTopic from './components/IT20125202/topic/ViewTopic';
 import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
-import AddEvaluation from "./components/IT20128036/AddEvaluation";
+//import AddEvaluation from "./components/IT20128036/AddEvaluation";
+import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
+import EvaluationList from "./components/IT20128036/admin/EvaluationList";
 
 
 //supervisor
@@ -92,6 +98,11 @@ export default class App extends Component {
                 <Route path="/sgroup/view" exact component={StudentGroup}></Route>
                 <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
                 <Route path="/view/:id" component={ViewStudentGroup}></Route>
+
+
+                {/*IT20128036*/}
+                <Route path="/sviewevaluation" component={SviewEvaluation}/>
+                <Route path="/sviewsubmitiontype" component={SviewSubmitionType}/>
                 {/* ---------------Supervisor--------------- */}
 
 
@@ -102,7 +113,10 @@ export default class App extends Component {
                 <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
 
                 {/*IT20128036*/}
-                <Route path="/addEvaluation" component={AddEvaluation}/>
+                 <Route path="/addEvaluation" component={AddEvaluation}/>
+                <Route path="/viewEvaluation" component={EvaluationList}/>
+                <Route path="/addSubmitiontype" component={AddSubmitionType}/>
+                <Route path="/Submitiontypelist" component={SubmitionTypeList}/>
 
               </div>
             </div>
