@@ -10,7 +10,7 @@ import NavBar from './components/IT20125202/NavBar';
 
 //student
 import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
-// import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
+import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails"
 
@@ -19,7 +19,7 @@ import EditUser from './components/IT20125202/user/EditUser';
 import UserDetails from './components/IT20125202/user/UserDetails';
 import UserRoles from './components/IT20125202/user/UserRoles';
 import AdminHome from './components/IT20125202/admin/AdminHome';
-// import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
+import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
 import AdminLogin from './components/IT20125202/admin/AdminLogin';
 
 //panel
@@ -48,7 +48,7 @@ export default class App extends Component {
             <Route path='/admin/edituser/:id' exact component={EditUser}></Route>
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
-            {/* <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route>  */}
+            <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
             <Route path='/admin/login' exact component={AdminLogin}></Route>
             {/* </div> */}
             {/* </div> */}
@@ -68,8 +68,8 @@ export default class App extends Component {
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
-                {/* <Route path='/student/topic/registration' exact component={RegisterTopic}></Route> */}
-                {/* <Route path='/student/topics' exact component={ViewSubmissions}></Route> */}
+                <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
+                <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
                 {/* IT20131456 */}
                 <Route path="/studentgroup" exact component={StudentGroup}></Route>
