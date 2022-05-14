@@ -23,9 +23,9 @@ import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
 import AdminLogin from './components/IT20125202/admin/AdminLogin';
 
 //panel
-// import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
-// import ViewTopic from './components/IT20125202/topic/ViewTopic';
-// import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
+import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
+import ViewTopic from './components/IT20125202/topic/ViewTopic';
+import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
 
 //supervisor
 
@@ -80,9 +80,9 @@ export default class App extends Component {
 
                 {/* ---------------Panel member--------------- */}
                 {/* IT20125202 */}
-                {/* <Route path='/panel/topic/list' exact component={ViewTopicList}></Route> */}
-                {/* <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route> */}
-                {/* <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route> */}
+                <Route path='/panel/topic/list' exact component={ViewTopicList}></Route>
+                <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route>
+                <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
 
               </div>
             </div>
