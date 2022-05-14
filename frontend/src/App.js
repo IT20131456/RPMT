@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
+//IT20131456
+
+import StudentGroup from "../src/components/IT20131456/StudentGroup";
+import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
+import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
+
+
 //user
 import CreateUser from './components/IT20125202/user/CreateUser';
 // import UserProfile from './components/IT20125202/user/UserProfile';
@@ -72,9 +79,9 @@ export default class App extends Component {
                 {/* <Route path='/student/topics' exact component={ViewSubmissions}></Route> */}
 
                 {/* IT20131456 */}
-                <Route path="/studentgroup" exact component={StudentGroup}></Route>
-                <Route path="/add" component={SupervisorDetails}></Route>
-
+                <Route path="/" exact component={StudentGroup}></Route>
+                <Route path="/add" component={CreateStudentGroup}></Route>
+                <Route path="/view/:id" component={ViewStudentGroup}></Route>
                 {/* ---------------Supervisor--------------- */}
 
 

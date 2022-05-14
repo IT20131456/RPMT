@@ -1,1 +1,9 @@
+.env
 node_modules
+.parcel-cache
+dist
+package-lock.json
+package.json
+src\index.html
+src\index.js
+src\App.js
