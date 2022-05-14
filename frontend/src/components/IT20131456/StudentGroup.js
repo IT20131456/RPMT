@@ -1,183 +1,108 @@
 import React, { Component } from "react";
+import axios from "axios";
 
 export default class StudentGroup extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      studentgroups: [],
+    };
+  }
+
+  componentDidMount() {
+    this.retrieveStudentGropus();
+  }
+
+  retrieveStudentGropus() {
+    axios.get("http://localhost:5000/sgroups").then((res) => {
+      if (res.data.success) {
+        this.setState({
+          studentgroups: res.data.existingstudentgroups,
+        });
+
+        console.log(this.state.studentgroups);
+      }
+    });
+  }
+
   render() {
     return (
-      <div>
-        <div className="container border border-primary bg-light mt-5 ">
-          <div className="form-group row">
-            <div className="col-lg-12 margin-tb">
-              <div className="float-left">
-                &nbsp;
-                <h2>Create Student Group</h2>
-                &nbsp;
-              </div>
-            </div>
-          </div>
-
-          <form>
-            <div className="row " >
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Group ID :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Group id"
-                    name=""
-                    pattern="[a-zA-Z]+[0-9]{4}"
-                    title="Subject ID is Invalid"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Group Name :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter Group name"
-                    name="name"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            &nbsp;
-
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_1 ID :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter id"
-                    name="subjectid"
-                    pattern="[a-zA-Z]+[0-9]{4}"
-                    title="Subject ID is Invalid"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_1 Name :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter name"
-                    name="name"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            &nbsp;
-
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_2 ID :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter id"
-                    name="subjectid"
-                    pattern="[a-zA-Z]+[0-9]{4}"
-                    title="Subject ID is Invalid"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_2 Name :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter name"
-                    name="name"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            &nbsp;
-
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_3 ID :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter id"
-                    name="subjectid"
-                    pattern="[a-zA-Z]+[0-9]{4}"
-                    title="Subject ID is Invalid"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_3 Name :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter name"
-                    name="name"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            &nbsp;
-
-            <div className="row">
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_4 ID :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter id"
-                    name="subjectid"
-                    pattern="[a-zA-Z]+[0-9]{4}"
-                    title="Subject ID is Invalid"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <strong>Student_4 Name :</strong>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Enter name"
-                    name="name"
-                    required
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="col-md-12">
-              <div className="form-group">
-                <button
-                  className="btn btn-primary"
-                  type="submit"
-                  style={{ marginTop: "15px" }}
-                  onClick={this.onSubmit}
-                >
-                  &nbsp;<i className="fa fa-save"> Save </i>
-                </button>
-              </div>
-            </div>
-          </form>
+      <div className="container">
+        <div className="float-left">
+          &nbsp;
+          <h2>Student Groups</h2>
+          &nbsp;
         </div>
+        <table className="table table-striped table-bordered">
+          <thead>
+            <tr className="text-light " style={{background:'rgb(0,0,128)'}}>          
+              <th scope="col">#</th>
+              <th scope="col">Group ID</th>
+              <th scope="col">Group Name</th>
+              <th scope="col">Student ID</th>
+              <th scope="col">Student Name</th>
+              <th scope="col">Status</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.studentgroups.map((studentgroups, index) => (
+              <tr>
+                <th>{index + 1}</th>
+                <td>{studentgroups.groupid} </td>
+                <td>{studentgroups.groupname} </td>
+                <td>
+                  <tr>{studentgroups.studentid1}</tr>
+
+                  <tr>
+                    <td>{studentgroups.studentid2} </td>
+                  </tr>
+
+                  <tr>
+                    <td>{studentgroups.studentid3} </td>
+                  </tr>
+
+                  <tr>
+                    <td>{studentgroups.studentid4} </td>
+                  </tr>
+                </td>
+
+                <td>
+                  <tr>{studentgroups.studentname1}</tr>
+
+                  <tr>
+                    <td>{studentgroups.studentname2} </td>
+                  </tr>
+
+                  <tr>
+                    <td>{studentgroups.studentname3} </td>
+                  </tr>
+
+                  <tr>
+                    <td>{studentgroups.studentname4} </td>
+                  </tr>
+                </td>
+
+                <td>{studentgroups.status} </td>
+
+                <td >
+                  <a className="btn btn-outline-primary" href={`/view/${studentgroups._id}`}>
+                    <i className="fa fa-edit"></i>&nbsp;View
+                  </a> &nbsp;
+                  <a className="btn btn-outline-success" href="#">
+                    <i className="fa fa-edit"></i>&nbsp;Edit
+                  </a>
+                  &nbsp;
+                  <a className="btn btn-outline-danger" href="#">
+                    <i className="fa fa-trash"></i>&nbsp;Delete
+                  </a>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
