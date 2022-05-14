@@ -88,8 +88,8 @@ export default class App extends Component {
                 {/* <Route path='/student/topics' exact component={ViewSubmissions}></Route> */}
 
                 {/* IT20131456 */}
-                <Route path="/s" exact component={StudentGroup}></Route>
-                <Route path="/add" component={CreateStudentGroup}></Route>
+                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
+                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
                 <Route path="/view/:id" component={ViewStudentGroup}></Route>
                 {/* ---------------Supervisor--------------- */}
 
