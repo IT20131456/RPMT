@@ -44,6 +44,7 @@ import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
 //import AddEvaluation from "./components/IT20128036/AddEvaluation";
 import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
 import EvaluationList from "./components/IT20128036/admin/EvaluationList";
+import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 
 //supervisor
@@ -72,9 +73,9 @@ export default class App extends Component {
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: 'auto' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: '1000px' }}>
 
-              <div className='container' style={{ background: 'white', height: 'auto', padding: '0px 0px 10px 0px' }}>
+              <div className='container' style={{ background: 'white', height: '1000px', padding: '0px 0px 10px 0px' }}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
@@ -88,6 +89,7 @@ export default class App extends Component {
                 <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
                 <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
+                <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
