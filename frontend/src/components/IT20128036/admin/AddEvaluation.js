@@ -66,7 +66,7 @@ export default class AddEvaluation extends Component {
               <div className="col-sm-12">
                 <div className="col-sm-12 mt-4">
                   <h1 className="h3 mb-3 font-weight-normal">
-                    Add Evaluation Session
+                    Add New Evaluation Session
                   </h1>
                   <form className="needs-validation" noValidate>
                     <div
