@@ -36,7 +36,7 @@ export default class StudentGroup extends Component {
         </div>
         <table className="table table-striped table-bordered">
           <thead>
-            <tr className="bg-primary text-light ">
+            <tr className="color:$yellow-300 text-light ">
               <th scope="col">#</th>
               <th scope="col">Group ID</th>
               <th scope="col">Group Name</th>
@@ -51,7 +51,9 @@ export default class StudentGroup extends Component {
             {this.state.studentgroups.map((studentgroups, index) => (
               <tr>
                 <th>{index + 1}</th>
-                <td>{studentgroups.groupid} - {studentgroups.groupname} </td>
+                <td>
+                  {studentgroups.groupid} - {studentgroups.groupname}{" "}
+                </td>
                 <td>{studentgroups.groupname} </td>
                 <td>
                   <tr>{studentgroups.studentid1}</tr>
@@ -87,10 +89,14 @@ export default class StudentGroup extends Component {
 
                 <td>{studentgroups.status} </td>
 
-                <td >
-                  <a className="btn btn-outline-primary" href={`/view/${studentgroups._id}`}>
+                <td>
+                  <a
+                    className="btn btn-outline-primary"
+                    href={`/student/group/view/${studentgroups._id}`}
+                  >
                     <i className="fa fa-edit"></i>&nbsp;View
-                  </a> &nbsp;
+                  </a>{" "}
+                  &nbsp;
                   <a className="btn btn-outline-success" href="#">
                     <i className="fa fa-edit"></i>&nbsp;Edit
                   </a>

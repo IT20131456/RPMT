@@ -1,11 +1,8 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-//IT20131456
 
-import StudentGroup from "../src/components/IT20131456/StudentGroup";
-import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
-import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
+
 
 
 //user
@@ -21,6 +18,7 @@ import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails";
 import GroupChatStudent from './components/IT20127046/GroupChat_Student';
+import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
 
 //admin
 import EditUser from './components/IT20125202/user/EditUser';
@@ -32,6 +30,8 @@ import AdminLogin from './components/IT20125202/admin/AdminLogin';
 import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
 import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
 import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import StudentGroup from "../src/components/IT20131456/StudentGroup";
+import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
 
 //panel
 import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
@@ -62,7 +62,7 @@ export default class App extends Component {
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
             <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
-            <Route path='/admin/login' exact component={AdminLogin}></Route>
+            <Route path='/admin/login' exact component={AdminLogin}></Route>                
             {/* </div> */}
             {/* </div> */}
 
@@ -88,10 +88,7 @@ export default class App extends Component {
                 <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
                 <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
-                {/* IT20131456 */}
-                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
-                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
-                <Route path="/view/:id" component={ViewStudentGroup}></Route>
+               
                 {/* ---------------Supervisor--------------- */}
 
 
@@ -103,6 +100,15 @@ export default class App extends Component {
 
                 {/*IT20128036*/}
                 <Route path="/addEvaluation" component={AddEvaluation}/>
+
+                 {/* IT20131456 */}
+                 
+                 {/* ---------------Student--------------- */}
+                <Route path="/student/group/add" component={CreateStudentGroup}></Route>
+               
+                {/* ---------------Admin--------------- */}
+                <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
+                <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
 
               </div>
             </div>

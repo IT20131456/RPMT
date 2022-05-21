@@ -76,12 +76,10 @@ export default class CreateStudentGroup extends Component {
 
     axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
       if (res.data.success) {
-
         this.props.history.push({
-          pathname: "/",
+          pathname: "/student/groups/view",
           state: this.groupid,
         });
-
 
         this.setState({
           groupid: "",
@@ -341,7 +339,10 @@ export default class CreateStudentGroup extends Component {
             </div>
             <div className="col-md-12">
               <div className="form-group">
-                <button className="btn btn-outline-primary col-md-12" type="submit">
+                <button
+                  className="btn btn-outline-primary col-md-12"
+                  type="submit"
+                >
                   <i className="fa fa-save"> Save </i>
                 </button>
               </div>
