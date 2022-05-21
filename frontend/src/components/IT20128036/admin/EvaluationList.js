@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AddEvaluation from "./AddEvaluation";
 
-export default class Home extends Component {
+
+export default class EvaluationList extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,7 @@ export default class Home extends Component {
   }
 
   retriveEvaluations() {
-    axios.get("http://localhost:8000/evaluations").then((res) => {
+    axios.get("http://localhost:5000/evaluations").then((res) => {
       if (res.data.success) {
         this.setState({
           evaluations: res.data.existingEvaluations,
@@ -29,7 +29,7 @@ export default class Home extends Component {
 
   onDelete = (id) => {
     axios
-      .delete(`http://localhost:8000/evaluation/delete/${id}`)
+      .delete(`http://localhost:5000/evaluation/delete/${id}`)
       .then((res) => {
         alert("Deleted Successfully");
         this.retriveEvaluations();
@@ -50,7 +50,7 @@ export default class Home extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:8000/evaluations").then((res) => {
+    axios.get("http://localhost:5000/evaluations").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingEvaluations, searchKey);
       }
@@ -59,12 +59,12 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div className="mt-4 mb-2">
+      <div className="container mt-4 mb-2">
         <div className="row">
-          <div className="col-lg-3 mt-2 mb-2">
+          <div className="col-sm-6 mt-2 mb-2">
             <h4>All Evaluations</h4>
           </div>
-          <div className="col-lg-5 mt-2 mb-2">
+          <div className="col-sm-6 mt-2 mb-2">
             <input
               className="form-control"
               type="search"
@@ -76,42 +76,8 @@ export default class Home extends Component {
         </div>
 
         {this.state.evaluations.map((evaluations, index) => (
-          //  <tr key={index}>
-          //    <th scope="row">{index+1}</th>
-
-          //    <td>
-          //        <a href={`/post/${evaluations._id}`} style={{textDecoration:'none'}}>
-          //        {evaluations.groupId}
-          //        </a>
-          //        </td>
-
-          //    <td>{evaluations.evaluationTopic}</td>
-
-          //    <td>{evaluations.dressCode}</td>
-          //    <td>{evaluations.date}</td>
-          //    <td>{evaluations.from}</td>
-          //    <td>{evaluations.to}</td>
-          //    <td>{evaluations.link}</td>
-
-          //    <td>
-          //      <a className="btn btn-warning" href={`/editEvaluation/${evaluations._id}`}>
-          //        <i className="fas fa-edit"></i>&nbsp;Edit
-          //      </a>
-
-          //      &nbsp;
-
-          //      <a className="btn btn-danger" href="#" onClick={()=>{
-          //        this.onDelete(evaluations._id)
-          //      }}>
-          //        <i className="far fa-trash-alt"></i>&nbsp;Delete
-          //      </a>
-
-          //    </td>
-
-          //  </tr>
-
           <div class="row">
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="card mt-2 mb-2">
                 <div class="card-body">
                   <div class="card-header">
@@ -119,16 +85,21 @@ export default class Home extends Component {
                   </div>
 
                   <p class="card-text">
-                    <strong>{evaluations.groupId} </strong>Students, you have
-                    your {evaluations.evaluationTopic} Session with{" "}
-                    {evaluations.dressCode}. It held on {evaluations.date} from{" "}
-                    {evaluations.date} to {evaluations.to}. You can join link in
-                    below.{" "}
+                    <strong>{evaluations.groupId} </strong>Students, your{" "}
+                    {evaluations.evaluationTopic} session wii be held on{" "}
+                    <strong>{evaluations.date}</strong> from{" "}
+                    <strong>{evaluations.from}</strong> to{" "}
+                    <strong>{evaluations.to}</strong> with the{" "}
+                    {evaluations.dressCode}. Your participation is mandatory.
+                    You can connect via the link below.{" "}
                   </p>
 
                   <div className="row">
                     <div className="col-lg-4">
-                      <a href="#" class="btn btn-outline-primary">
+                      <a
+                        href={evaluations.link}
+                        class="btn btn-outline-primary"
+                      >
                         <i class="fa-solid fa-link"></i>Join
                       </a>
                     </div>

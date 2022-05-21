@@ -20,6 +20,10 @@ import SupervisorDetails from "./components/It20131456/SupervisorDetails";
 import GroupChatStudent from './components/IT20127046/GroupChat_Student';
 import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
 
+import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
+import SviewSubmitionType from "./components/IT20128036/user/SviewSubmitionType";
+
+
 //admin
 import EditUser from './components/IT20125202/user/EditUser';
 import UserDetails from './components/IT20125202/user/UserDetails';
@@ -30,14 +34,22 @@ import AdminLogin from './components/IT20125202/admin/AdminLogin';
 import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
 import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
 import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+
 import StudentGroup from "../src/components/IT20131456/StudentGroup";
 import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
+
+import AddSubmitionType from "./components/IT20128036/admin/addSubmitionType";
+import SubmitionTypeList from "./components/IT20128036/admin/SubmitionTypeList";
+
 
 //panel
 import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
 import ViewTopic from './components/IT20125202/topic/ViewTopic';
 import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
-import AddEvaluation from "./components/IT20128036/AddEvaluation";
+//import AddEvaluation from "./components/IT20128036/AddEvaluation";
+import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
+import EvaluationList from "./components/IT20128036/admin/EvaluationList";
+import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 
 //supervisor
@@ -66,9 +78,9 @@ export default class App extends Component {
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: 'auto' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: '1000px' }}>
 
-              <div className='container' style={{ background: 'white', height: 'auto', padding: '0px 0px 10px 0px' }}>
+              <div className='container' style={{ background: 'white', height: '1000px', padding: '0px 0px 10px 0px' }}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
@@ -82,13 +94,24 @@ export default class App extends Component {
                 <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
                 <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
+                <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
                 <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
                 <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
-               
+
+                {/* IT20131456 */}
+                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
+                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
+                <Route path="/view/:id" component={ViewStudentGroup}></Route>
+
+
+                {/*IT20128036*/}
+                <Route path="/sviewevaluation" component={SviewEvaluation}/>
+                <Route path="/sviewsubmitiontype" component={SviewSubmitionType}/>
+
                 {/* ---------------Supervisor--------------- */}
 
 
@@ -99,7 +122,10 @@ export default class App extends Component {
                 <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
 
                 {/*IT20128036*/}
-                <Route path="/addEvaluation" component={AddEvaluation}/>
+                 <Route path="/addEvaluation" component={AddEvaluation}/>
+                <Route path="/viewEvaluation" component={EvaluationList}/>
+                <Route path="/addSubmitiontype" component={AddSubmitionType}/>
+                <Route path="/Submitiontypelist" component={SubmitionTypeList}/>
 
                  {/* IT20131456 */}
                  
