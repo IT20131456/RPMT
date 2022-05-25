@@ -21,6 +21,8 @@ const topicRoutes = require('./routes/topic');
 const subTypeRoute = require('./routes/submitionType');
 const adminDcoumentTempRoutes = require('./routes/adminDocumentTemp');
 const chatGroupRoutes = require('./routes/chatMsg');
+const markingSchemRoutes = require('./routes/markingSchem');
+const downloadFileRoutes = require('./routes/downloadFile');
 
 //app middleware
 
@@ -36,6 +38,8 @@ app.use(topicRoutes);
 app.use(subTypeRoute);
 app.use(adminDcoumentTempRoutes);
 app.use(chatGroupRoutes);
+app.use(markingSchemRoutes);
+app.use(downloadFileRoutes);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;
