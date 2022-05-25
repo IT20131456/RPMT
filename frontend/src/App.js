@@ -55,6 +55,7 @@ import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 //supervisor
 
 import image from './images/download.jpg'
+import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
 
 
 export default class App extends Component {
@@ -74,7 +75,11 @@ export default class App extends Component {
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
             <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
-            <Route path='/admin/login' exact component={AdminLogin}></Route>                
+            <Route path='/admin/login' exact component={AdminLogin}></Route>               
+
+            <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
+            
+             
             {/* </div> */}
             {/* </div> */}
 
@@ -95,6 +100,7 @@ export default class App extends Component {
                 <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
                 <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
+                
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}

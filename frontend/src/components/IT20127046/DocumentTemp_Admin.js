@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from "axios";
+import fileDownload from 'js-file-download';
 
 export default class DocumentTemp_Admin extends Component {
   constructor(props){
@@ -34,6 +35,23 @@ onDelete = (id) => {
     })
 }
 
+// Download File
+downloadFile = (fileName) => {
+      
+        const data = {
+        fileName: fileName
+        };
+
+    axios({
+    url: "http://localhost:5000/file/download", data,
+    method: "POST",
+    responseType: "blob",
+    }).then((res) => {
+    console.log(res);
+    fileDownload(res.data, fileName);
+    })
+}
+
 render() {
 return (
   <div className='container'>
@@ -59,7 +77,7 @@ return (
                     <td>{documentTemp.description}</td>
                     <td>{documentTemp.files}</td>
                     <td>
-                        <a className='btn btn-success' rel="noreferrer" target="_blank" href={process.env.PUBLIC_URL + `/uploads/${documentTemp.files}`}>View</a>
+                        <a className='btn btn-success' onClick={() => this.downloadFile(documentTemp.files)}>Download</a>
                     </td>
                     <td>
                         <a className='btn btn-success' href={`/edit/documentTemp/${documentTemp._id}`}>Update</a>
