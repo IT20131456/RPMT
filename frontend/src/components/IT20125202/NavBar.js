@@ -17,7 +17,9 @@ class NavBar extends Component {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
       this.setState({
-        type: decoded.type.toString(),
+        // type: decoded.type.toString(),
+        type: decoded.type,
+
       })
     }
   }
