@@ -5,7 +5,7 @@ const Submitions = require("../models/submition")
 
 const storage = multer.diskStorage({
     destination: (req, file, callback)=>{
-        callback(null, "./client/public/uploads");
+        callback(null, "./frontend/public/uploads");
     },
     filename: (req, file, callback)=> {
         callback(null, file.originalname);

@@ -13,6 +13,13 @@ export default class AddSubmitionType extends Component {
       deadLine: "",
       checkPanel: "",
       submition: "",
+      to: "kisharadilshan007@gmail.com",
+      subject:"About New Submission",
+      text:"On the website, added a new submission. please refer details, and informed students.  --Auto-Generated Email--",
+
+
+
+
     };
   }
 
@@ -34,6 +41,9 @@ export default class AddSubmitionType extends Component {
       deadLine,
       checkPanel,
       submition,
+      to,
+      subject,
+      text
     } = this.state;
 
     const data = {
@@ -48,6 +58,7 @@ export default class AddSubmitionType extends Component {
 
     axios.post("http://localhost:5000/submitiontype/save", data).then((res) => {
       if (res.data.success) {
+        alert("Added Successfully")
         this.setState({
           submitionType: "",
           description: "",
@@ -58,6 +69,36 @@ export default class AddSubmitionType extends Component {
         });
       }
     });
+
+
+
+
+     // Send data to Email Service
+        const emailData = {
+          
+            to: to,
+            subject: subject,
+            text: text,
+
+
+
+        };
+
+        axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
+        if (res.data.success) {
+          console.log("Sent Email Successfully")
+          
+          
+        }
+        });
+
+
+
+
+
+
+
+
   };
 
   render() {
@@ -65,12 +106,13 @@ export default class AddSubmitionType extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-6">
-            <div className="container">
+            <div className="ms-4">
             <div className="row">
               <div className="col-sm-12 mt-4 mx-auto">
                 <h1 className="h3 mb-3 font-weight-normal">
                   Add New Submition Type
                 </h1>
+                <hr/>
                 <form className="needs-validation" noValidate>
                   <div className="row">
                     <div className="col-sm-7">
@@ -114,14 +156,27 @@ export default class AddSubmitionType extends Component {
                         <label style={{ marginBottom: "5px" }}>
                           Allocated Marks{" "}
                         </label>
-                        <input
-                          type="text"
-                          className="form-control"
+                      
+
+
+                       <select
+                          className="form-select"
                           name="startDate"
-                          placeholder="Enter Alloacated Marks"
                           value={this.state.startDate}
                           onChange={this.handleInputChange}
-                        />
+                          
+                        >
+                          <option startDate="Select Marks">Select Marks</option>
+                          <option startDate="50">20</option>
+                          <option startDate="30">30</option>
+                          <option startDate="50">50</option>
+                      
+                        </select>
+
+
+
+
+
                       </div>
                     </div>
                   </div>
@@ -129,13 +184,33 @@ export default class AddSubmitionType extends Component {
                   <div className="form-group" style={{ marginBottom: "15px" }}>
                     <label style={{ marginBottom: "5px" }}>Description</label>
                     <textarea
+                      rows = "4" cols = "60"
                       className="form-control"
                       name="description"
-                      placeholder="Enter Description"
+                      placeholder="Enter Description...."
                       value={this.state.description}
                       onChange={this.handleInputChange}
                     />
                   </div>
+
+
+
+                  <div className="form-group" style={{ marginBottom: "15px" }}>
+                    <label style={{ marginBottom: "5px" }}>Guidelines</label>
+                    <textarea
+                      rows = "3" cols = "60"
+                      className="form-control"
+                      name="submition"
+                      placeholder="Enter Guidelines....."
+                      value={this.state.submition}
+                      onChange={this.handleInputChange}
+                    />
+                  </div>
+
+
+
+
+
 
                   <div className="row">
                     <div className="col-sm-6">
@@ -182,16 +257,7 @@ export default class AddSubmitionType extends Component {
                     </div>
                   </div>
 
-                  <div className="form-group" style={{ marginBottom: "15px" }}>
-                    <label style={{ marginBottom: "5px" }}>Guidelines</label>
-                    <textarea
-                      className="form-control"
-                      name="submition"
-                      placeholder="Enter Guideline"
-                      value={this.state.submition}
-                      onChange={this.handleInputChange}
-                    />
-                  </div>
+            
 
                   <button
                     className="btn btn-success"

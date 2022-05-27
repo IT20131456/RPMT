@@ -22,6 +22,11 @@ import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup"
 
 import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
 import SviewSubmitionType from "./components/IT20128036/user/SviewSubmitionType";
+import Submitions from './components/IT20128036/user/Submitions';
+import ViewSubmitionssp from './components/IT20128036/user/viewSubmitionsp';
+import sviewMarks from './components/IT20128036/user/sviewMarks';
+import EditSubmition from './components/IT20128036/user/editSubmition';
+import { exportPDF } from './components/IT20128036/user/exportPDF';
 
 
 //admin
@@ -40,6 +45,8 @@ import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
 
 import AddSubmitionType from "./components/IT20128036/admin/addSubmitionType";
 import SubmitionTypeList from "./components/IT20128036/admin/SubmitionTypeList";
+import EditSubmitonType from './components/IT20128036/admin/editSubmitionType';
+
 
 
 //panel
@@ -49,6 +56,7 @@ import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
 //import AddEvaluation from "./components/IT20128036/AddEvaluation";
 import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
 import EvaluationList from "./components/IT20128036/admin/EvaluationList";
+import EditEvaluation from './components/IT20128036/admin/editEvaluation';
 import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 
@@ -56,7 +64,14 @@ import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 import image from './images/download.jpg'
 import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
+
+import ViewSubmitions from './components/IT20128036/admin/viewSubmitions';
+import AddMarks from './components/IT20128036/admin/addMarks';
+import viewMarks from './components/IT20128036/admin/viewMarks';
+import EditMarks from './components/IT20128036/admin/editMarks';
+
 import ViewMarkingSchem_Admin from "./components/IT20127046/ViewMarkingSchem_Admin";
+
 
 
 export default class App extends Component {
@@ -79,10 +94,16 @@ export default class App extends Component {
             <Route path='/admin/login' exact component={AdminLogin}></Route>               
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
+
+
+
+         
+
             <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
             <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
             <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
             <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
+
             
              
             {/* </div> */}
@@ -119,10 +140,23 @@ export default class App extends Component {
 
 
                 {/*IT20128036*/}
-                <Route path="/sviewevaluation" component={SviewEvaluation}/>
-                <Route path="/sviewsubmitiontype" component={SviewSubmitionType}/>
+                <Route path="/evaluation/student/view" component={SviewEvaluation}/>
+                <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
+                <Route path="/ssubmition/add" component={Submitions}/>
+                <Route path="/submitionsp/view/:id" component={ViewSubmitionssp}/>
+                <Route path="/marks/student/view" component={sviewMarks}/>
+                <Route path="/ssubmition/edit/:id" component={EditSubmition}/>
+                <Route path="/student/pdf/export" component={exportPDF}/>
+          
+             
 
                 {/* ---------------Supervisor--------------- */}
+
+                  {/*IT20128036*/}
+                <Route path="/submitions/view" component={ViewSubmitions}/>
+                <Route path="/marks/add/:id" component={AddMarks}/>
+                <Route path="/marks/view" component={viewMarks}/>
+                <Route path="/marks/edit/:id" component={EditMarks}/>
 
 
                 {/* ---------------Panel member--------------- */}
@@ -132,10 +166,10 @@ export default class App extends Component {
                 <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
 
                 {/*IT20128036*/}
-                 <Route path="/addEvaluation" component={AddEvaluation}/>
-                <Route path="/viewEvaluation" component={EvaluationList}/>
-                <Route path="/addSubmitiontype" component={AddSubmitionType}/>
-                <Route path="/Submitiontypelist" component={SubmitionTypeList}/>
+                <Route path="/evaluation/add" component={AddEvaluation}/>
+                <Route path="/evaluation/view" component={EvaluationList}/>
+                <Route  path="/evaluation/edit/:id" component={EditEvaluation}/>
+            
 
                  {/* IT20131456 */}
                  
@@ -145,6 +179,15 @@ export default class App extends Component {
                 {/* ---------------Admin--------------- */}
                 <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
                 <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+
+
+                   {/*IT20128036*/}
+            <Route path="/submitiontype/add" component={AddSubmitionType}/>
+            <Route path="/submitiontypelist" component={SubmitionTypeList}/>
+            <Route path="/submitiontype/edit/:id" component={EditSubmitonType}/>
+
+
+              
 
               </div>
             </div>

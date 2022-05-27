@@ -14,6 +14,9 @@ export default class AddEvaluation extends Component {
       from: "",
       to: "",
       link: "",
+      lemail:"",
+      subject:"About Your Evaluation Session.",
+      text:"Your session has been added to the website. Please see the details and let your team members know. --Auto Generated Email--",
     };
   }
 
@@ -28,7 +31,7 @@ export default class AddEvaluation extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { groupId, evaluationTopic, dressCode, date, from, to, link } =
+    const { groupId, evaluationTopic, dressCode, date, from, to, link,lemail,subject,text } =
       this.state;
 
     const data = {
@@ -44,6 +47,7 @@ export default class AddEvaluation extends Component {
 
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
+        alert("Added Successfully !")
         this.setState({
           groupId: "",
           evaluationTopic: "",
@@ -52,9 +56,38 @@ export default class AddEvaluation extends Component {
           from: "",
           to: "",
           link: "",
+          lemail:"",
+
         });
       }
     });
+
+
+
+
+
+       // Send data to Email Service
+       const emailData = {
+          
+        to:lemail,
+        subject: subject,
+        text: text,
+
+
+
+    };
+
+    axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
+    if (res.data.success) {
+      console.log("Sent Email Successfully");
+      
+      
+    }
+    });
+
+
+
+
   };
 
   render() {
@@ -62,27 +95,58 @@ export default class AddEvaluation extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-7">
+            <div className="ms-4">
             <div className="row">
               <div className="col-sm-12">
                 <div className="col-sm-12 mt-4">
                   <h1 className="h3 mb-3 font-weight-normal">
                     Add New Evaluation Session
                   </h1>
+                  <hr/>
                   <form className="needs-validation" noValidate>
-                    <div
+                   
+                   <div className="row">
+                     <div className="col-sm-4">
+
+                     <div
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
+                      
                       <label style={{ marginBottom: "5px" }}>Group ID</label>
                       <input
                         type="text"
                         className="form-control"
                         name="groupId"
-                        placeholder="Enter Group ID"
+                        placeholder="Enter Group ID -RExxx"
                         value={this.state.groupId}
                         onChange={this.handleInputChange}
                       />
                     </div>
+
+                     </div>
+                     <div className="col-sm-8">
+
+                     <div
+                      className="form-group"
+                      style={{ marginBottom: "15px" }}
+                    >
+                      
+                      <label style={{ marginBottom: "5px" }}>Leader Email</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="lemail"
+                        placeholder="Leader Email -exmple@mail.com"
+                        value={this.state.lemail}
+                        onChange={this.handleInputChange}
+                      />
+                    </div>
+
+                     </div>
+                   </div>
+                   
+                 
 
                     <div
                       className="form-group"
@@ -212,6 +276,7 @@ export default class AddEvaluation extends Component {
                 </div>
               </div>
             </div>
+          </div>
           </div>
 
           <div className="col-sm-5">
