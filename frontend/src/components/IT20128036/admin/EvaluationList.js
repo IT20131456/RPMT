@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import AddEvaluation from "./AddEvaluation";
 
 export default class EvaluationList extends Component {
   constructor(props) {
@@ -59,7 +59,7 @@ export default class EvaluationList extends Component {
 
   render() {
     return (
-      <div className="container mt-4 mb-2">
+      <div className="me-4 mt-4 mb-2">
         <div className="row">
           <div className="col-sm-6 mt-2 mb-2">
             <h4>All Evaluations</h4>
@@ -86,7 +86,7 @@ export default class EvaluationList extends Component {
 
                   <p class="card-text">
                     <strong>{evaluations.groupId} </strong>Students, your{" "}
-                    {evaluations.evaluationTopic} session wii be held on{" "}
+                    {evaluations.evaluationTopic} session will be held on{" "}
                     <strong>{evaluations.date}</strong> from{" "}
                     <strong>{evaluations.from}</strong> to{" "}
                     <strong>{evaluations.to}</strong> with the{" "}
@@ -100,17 +100,17 @@ export default class EvaluationList extends Component {
                         href={evaluations.link}
                         class="btn btn-outline-primary"
                       >
-                        <i class="fa-solid fa-link"></i>Join
+                        <i class="fa fa-link" aria-hidden="true"></i>Join
                       </a>
                     </div>
 
                     <div className="col-lg-4">
                       <a
-                        href={`/editEvaluation/${evaluations._id}`}
+                        href={`/evaluation/edit/${evaluations._id}`}
                         class="btn btn-outline-warning"
                       >
                         {" "}
-                        <i class="fa-solid fa-pen-to-square"></i>Update
+                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update
                       </a>
                     </div>
 
@@ -123,7 +123,7 @@ export default class EvaluationList extends Component {
                         }}
                       >
                         {" "}
-                        <i class="fa-solid fa-folder-xmark"></i>Delete
+                        <i class="fa fa-trash" aria-hidden="true"></i>Delete
                       </a>
                     </div>
                   </div>
