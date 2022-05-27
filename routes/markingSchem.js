@@ -3,6 +3,8 @@ const router = express.Router();
 const MarkingSchem = require("../models/markingSchem");
 const MarkingSchemTitle = require("../models/markingSchemaTitle");
 
+// -- Marking Scheme Title --
+
 // Save Marking Schem Title
 
 router.post("/add/markingTitle", (req, res) => {
@@ -20,6 +22,60 @@ router.post("/add/markingTitle", (req, res) => {
       });
     });
   });
+
+// Get all Marking Scheme Title
+
+router.get("/getAll/markingTitles", (req, res) => {
+  MarkingSchemTitle.find().exec((err, markingTitles) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+    return res.status(200).json({
+      success: true,
+      existingMarkingTitles: markingTitles,
+    });
+  });
+});
+
+// Get Marking Scheme Title by ID
+
+router.get("/markingTitle/get/:id", (req, res) => {
+  let titleID = req.params.id;
+
+  MarkingSchemTitle.findById(titleID, (err, schemeTitle) => {
+    if (err) {
+      return res.status(400).json({ success: false, err });
+    }
+    return res.status(200).json({
+      success: true,
+      schemeTitle,
+    });
+  });
+});
+
+// Update Marking Scheme Title
+
+router.put("/markingTitle/update/:id", (req, res) => {
+  MarkingSchemTitle.findByIdAndUpdate(
+    req.params.id,
+    {
+      $set: req.body,
+    },
+    (err, document) => {
+      if (err) {
+        return res.status(400).json({ error: err });
+      }
+      return res.status(200).json({
+        success: "Update Successfully",
+      });
+    }
+  );
+});
+
+
+// -- Marking Scheme Detail --
 
 //save Marking Schem Details
 
