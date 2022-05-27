@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import swal from 'sweetalert';
 
 export default class CreateMarkingSchem extends Component {
   constructor(props) {
@@ -98,9 +99,25 @@ export default class CreateMarkingSchem extends Component {
   }
 
   onDelete = (id) => {
-    axios.delete(`http://localhost:5000/criteria/delete/${id}`).then((res) => {
-      alert("Hotel Deleted sucessfull");
-      //this.retriveCriteria();
+    swal({
+      title: "Are you sure?",
+      text: "Delete this Marking Scheme Criteria",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+
+        axios.delete(`http://localhost:5000/makingCriteria/delete/${id}`).then((res) => {
+            swal("Deleted Successfull!", {
+                icon: "success",
+            });
+
+            setTimeout(() => {
+                this.retrieveTitles();
+            }, 1000);
+        }); 
+      } else {}
     });
   };
 
@@ -163,7 +180,7 @@ export default class CreateMarkingSchem extends Component {
             <div className="col">
               <div className="border border-secondary m-2 p-4 rounded">
                 <form onSubmit={this.onSubmit}>
-                  <h4>Set Marking Schem Criteria</h4>
+                  <h4>Set Marking Scheme Criteria</h4>
 
                   <label htmlFor="criteria">Criteria</label>
                   <input
@@ -195,6 +212,10 @@ export default class CreateMarkingSchem extends Component {
             </div>
           </div>
         </div>
+
+        <center>
+          <a className="btn btn-outline-success m-2" href="/view/marking">Submit Marking Scheme</a>
+        </center>
 
         <br />
         <div className="container border border-secondary">
