@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 export default class MarkingSchemUpdate extends Component {
   constructor(props) {
@@ -29,6 +30,7 @@ export default class MarkingSchemUpdate extends Component {
     });
   };
 
+  // Get id send from ViewMarkingScheme_Admin parent components and get marking title details using id
   componentDidMount() {
     const updateid = this.props.data.updateID;
     
@@ -47,6 +49,7 @@ export default class MarkingSchemUpdate extends Component {
     });
   }
 
+  // After click update button -> update details and callback parent componenet
   onSubmitUpdate = (e) => {
     e.preventDefault();
 
@@ -61,20 +64,26 @@ export default class MarkingSchemUpdate extends Component {
 
         axios.put(`http://localhost:5000/markingTitle/update/${id}`,data).then((res)=>{
             if(res.data.success){
-                alert('Succesfull');
-                
+                swal({
+                    title: "Update Successfull!",
+                    icon: "success"
+                  });  
             }
         })
 
-    this.props.data.chnageSection("New");
+    this.props.data.chnageSection(true);
 
   };
 
   render() {
     return (
       <div className="container">
-        <div className="container p-3 mb-2 bg-light text-dark">
+        <div className="container p-3 mb-2 text-dark" style={{ backgroundColor: "#F0FFFF" }}>
 
+        <a className="btn btn-outline-danger mb-2" onClick={() => {this.props.data.chnageSection(false);}}>
+            <i class="fa fa-times" aria-hidden="true"></i>
+        </a>
+        
           <h6>Update Marking Scheme</h6>
           
           <form onSubmit={this.onSubmitUpdate}>

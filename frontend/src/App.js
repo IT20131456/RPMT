@@ -80,6 +80,9 @@ export default class App extends Component {
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
             <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
+            <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
+            <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
+            <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
             
              
             {/* </div> */}
@@ -97,9 +100,8 @@ export default class App extends Component {
 
                 {/* IT20127046 */}
                 <Route path="/" exact component={Home}></Route>
-                <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
-                <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
-                <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
+                
+                
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
                 <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
                 

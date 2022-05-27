@@ -74,6 +74,27 @@ router.put("/markingTitle/update/:id", (req, res) => {
   );
 });
 
+// Delete Marking Scheme Title
+
+router.delete("/markingTitle/delete/:id", (req, res) => {
+  MarkingSchemTitle.findByIdAndRemove(req.params.id).exec(
+    (err, deletedTitle) => {
+      if (err)
+        return res.status(400).json({
+          message: "Deleted unsuccesful",
+          err,
+        });
+
+      return res.json({
+        message: "Deleted Succesfull",
+        deletedTitle,
+      });
+    }
+  );
+});
+
+
+
 
 // -- Marking Scheme Detail --
 
@@ -128,7 +149,7 @@ router.get("/get/markings", (req, res) => {
 
   //delete Marking Criteria Details
 
-router.delete("/criteria/delete/:id", (req, res) => {
+router.delete("/makingCriteria/delete/:id", (req, res) => {
     MarkingSchem
       .findByIdAndRemove(req.params.id)
       .exec((err, deletedCriteria) => {

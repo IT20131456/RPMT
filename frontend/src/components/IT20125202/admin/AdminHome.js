@@ -62,7 +62,7 @@ export default class AdminHome extends Component {
                 <i class="fa fa-table" aria-hidden="true"></i>
                 <h6>Marking Scheme Management</h6>
                 <br/>
-                <a type="button" className="btn btn-outline-dark"> href={''}<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+                <a type="button" className="btn btn-outline-dark" href={'/view/marking'}><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
               </center>
             </div>
           </div>
