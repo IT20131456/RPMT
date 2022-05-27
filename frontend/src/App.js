@@ -56,6 +56,7 @@ import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 import image from './images/download.jpg'
 import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
+import ViewMarkingSchem_Admin from "./components/IT20127046/ViewMarkingSchem_Admin";
 
 
 export default class App extends Component {
@@ -78,6 +79,7 @@ export default class App extends Component {
             <Route path='/admin/login' exact component={AdminLogin}></Route>               
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
+            <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
             
              
             {/* </div> */}
