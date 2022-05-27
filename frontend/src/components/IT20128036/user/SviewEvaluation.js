@@ -59,7 +59,7 @@ export default class SviewEvaluation extends Component {
 
   render() {
     return (
-      <div className="container mt-4 mb-2">
+      <div className="me-4 mt-4 mb-2">
         <div className="row">
           <div className="col-lg-5 mt-2 mb-2">
             <h4>All Evaluations</h4>
@@ -86,7 +86,7 @@ export default class SviewEvaluation extends Component {
 
                   <p class="card-text">
                     <strong>{evaluations.groupId} </strong>Students, your{" "}
-                    {evaluations.evaluationTopic} session wii be held on{" "}
+                    {evaluations.evaluationTopic} session will be held on{" "}
                     <strong>{evaluations.date}</strong> from{" "}
                     <strong>{evaluations.from}</strong> to{" "}
                     <strong>{evaluations.to}</strong> with the{" "}
@@ -94,14 +94,18 @@ export default class SviewEvaluation extends Component {
                     You can connect via the link below.{" "}
                   </p>
 
+
                   <div className="row">
                     <div className="col-lg-4">
                       <a
                         href={evaluations.link}
+                        target="_blank"
                         class="btn btn-outline-primary"
                       >
-                        <i class="fa-solid fa-link"></i>Join
+                        <i class="fa fa-link" aria-hidden="true"></i>Join
                       </a>
+
+
                     </div>
                   </div>
                 </div>
