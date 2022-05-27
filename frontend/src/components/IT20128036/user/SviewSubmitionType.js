@@ -62,7 +62,8 @@ export default class SviewSubmitionType extends Component {
       <div className="container">
         <div className="row">
           <div className="col-sm-8">
-            <div className="mt-4 mb-2">
+            <div className="ms-4">
+            <div className="mt-4">
               <div className="row">
                 <div className="col-lg-7 mt-2 mb-2">
                   <h4>Submitions List</h4>
@@ -96,29 +97,30 @@ export default class SviewSubmitionType extends Component {
                         </p>
                         <p> {submitiontypes.description}</p>
                         <p>
-                          <strong>Deadline</strong>
+                          <strong>Guideline</strong>
                         </p>
-                        <p>{submitiontypes.deadLine}</p>
+                        <p>{submitiontypes.submition}</p>
+
 
                         <p>
                           {" "}
                           <strong>Allocated Marks</strong>
                         </p>
                         <p>{submitiontypes.startDate}%</p>
+
                         <p>
-                          <strong>Guideline</strong>
+                          <strong>Deadline</strong>
                         </p>
-                        <p>{submitiontypes.submition}</p>
-                        <p>
-                          <strong> {submitiontypes.checkPanel}</strong>
-                        </p>
+                        <p>{submitiontypes.deadLine} &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.checkPanel}-</p>
+                       
+                     
 
                         <div className="row">
                           <div className="col-lg-4"></div>
 
                           <div className="col-lg-4">
-                            <a href="/addSubmition" class="btn btn-warning">
-                              <i class="fa-solid fa-link">
+                            <a href="/ssubmition/add" class="btn btn-warning">
+                              <i class="fa fa-plus" aria-hidden="true">
                                 <strong>Submit Here</strong>
                               </i>
                             </a>
@@ -132,6 +134,7 @@ export default class SviewSubmitionType extends Component {
                 </div>
               ))}
             </div>
+          </div>
           </div>
 
           <div className="col-sm-4">

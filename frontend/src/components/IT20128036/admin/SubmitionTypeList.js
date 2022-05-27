@@ -58,7 +58,7 @@ export default class SubmitionTypeList extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="me-4">
         <div className="mt-4 mb-4">
           <div className="row">
             <div className="col-lg-5 mt-2 mb-2">
@@ -93,9 +93,10 @@ export default class SubmitionTypeList extends Component {
                     </p>
                     <p> {submitiontypes.description}</p>
                     <p>
-                      <strong>Deadline</strong>
+                      <strong>Guidelines</strong>
                     </p>
-                    <p>{submitiontypes.deadLine}</p>
+                    <p>{submitiontypes.submition}</p>
+                  
 
                     <p>
                       {" "}
@@ -103,27 +104,28 @@ export default class SubmitionTypeList extends Component {
                     </p>
                     <p>{submitiontypes.startDate}%</p>
                     <p>
-                      <strong>Guideline</strong>
+                      <strong>Deadline</strong>
                     </p>
-                    <p>{submitiontypes.submition}</p>
+                    <p>{submitiontypes.deadLine}  &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.checkPanel}-</p>
+                   
                     <p>
-                      <strong> {submitiontypes.checkPanel}</strong>
+                      <strong></strong>
                     </p>
 
                     <div className="row">
                       <div className="col-lg-4">
                         <a href="/addSubmition" class="btn btn-outline-primary">
-                          <i class="fa-solid fa-link"></i>Submit
+                          <i class="fa fa-plus" aria-hidden="true"></i>Submit
                         </a>
                       </div>
 
                       <div className="col-lg-4">
                         <a
-                          href={`/editsubmitiontype/${submitiontypes._id}`}
+                          href={`/submitiontype/edit/${submitiontypes._id}`}
                           class="btn btn-outline-warning"
                         >
                           {" "}
-                          <i class="fa-solid fa-pen-to-square"></i>Update
+                          <i  class="fa fa-pencil-square-o" aria-hidden="true"></i>Update
                         </a>
                       </div>
 
@@ -136,7 +138,7 @@ export default class SubmitionTypeList extends Component {
                           }}
                         >
                           {" "}
-                          <i class="fa-solid fa-folder-xmark"></i>Delete
+                          <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
                         </a>
                       </div>
                     </div>
