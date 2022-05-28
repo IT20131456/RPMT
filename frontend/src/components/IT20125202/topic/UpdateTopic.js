@@ -1,6 +1,7 @@
 //Staff update status and add comments
 import React, { Component } from 'react'
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class UpdateTopic extends Component {
 
@@ -44,9 +45,14 @@ export default class UpdateTopic extends Component {
 
     axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
       if (res.data.success) {
-        alert("Topic updated successfully");
-        this.props.history.push(`/panel/topic/list`)
-        window.location.reload();
+        swal("Topic updated successfully!", "", "success")
+          .then((value) => {
+            if (value) {
+              this.props.history.push(`/panel/topic/list`)
+              window.location.reload();
+            }
+
+          });
       }
     })
   }

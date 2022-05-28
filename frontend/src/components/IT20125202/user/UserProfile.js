@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class UserProfile extends Component {
 
@@ -89,16 +90,21 @@ export default class UserProfile extends Component {
 
         axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
             if (res.data.success) {
-                alert("Profile updated successfully");
-                this.props.history.push(`/user/profile`)
-                window.location.reload();
+                swal("Profile updated successfully!", "", "success")
+                    .then((value) => {
+                        if (value) {
+                            this.props.history.push(`/user/profile`)
+                            window.location.reload();
+                        }
+
+                    });
             }
         })
     }
 
     render() {
         return (
-            <div>
+            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Profile</h1>
                 </div>

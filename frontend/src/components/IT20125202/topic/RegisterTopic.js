@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
 
 export default class RegisterTopic extends Component {
 
@@ -54,16 +55,14 @@ export default class RegisterTopic extends Component {
 
         axios.post('http://localhost:5000/topic/save', data).then((res) => {
             if (res.data.success) {
-                alert('Registered successfully!');
-                this.setState(
-                    {
-                        groupId: "",
-                        topicR: "",
-                        description: "",
-                        status: "Pending",
-                        comments: ""
-                    }
-                )
+                swal("Registered successfully!", "", "success")
+                    .then((value) => {
+                        if (value) {
+                            this.props.history.push(`/student/topics`)
+                            window.location.reload();
+                        }
+
+                    });
             }
         })
     }
