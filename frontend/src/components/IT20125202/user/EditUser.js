@@ -12,7 +12,10 @@ export default class EditUser extends Component {
       idNumber: "",
       name: "",
       email: "",
+      mobile: "",
       groupId: "",
+      researchfield: "",
+      panel: "",
       type: "",
       password: ""
     }
@@ -33,13 +36,16 @@ export default class EditUser extends Component {
 
     const id = this.props.match.params.id;
 
-    const { idNumber, name, email, groupId, type, password } = this.state;
+    const { idNumber, name, email, mobile, groupId, researchfield, panel, type, password } = this.state;
 
     const data = {
       idNumber: idNumber,
       name: name,
       email: email,
+      mobile: mobile,
       groupId: groupId,
+      researchfield: researchfield,
+      panel: panel,
       type: type,
       password: password
     }
@@ -49,16 +55,18 @@ export default class EditUser extends Component {
     axios.put(`http://localhost:5000/user/update/${id}`, data).then((res) => {
       if (res.data.success) {
         alert("User details updated successfully");
-        this.setState(
-          {
-            idNumber: "",
-            name: "",
-            email: "",
-            groupId: "",
-            type: "",
-            // password: ""
-          }
-        )
+        this.props.history.push(`/admin/users`)
+        window.location.reload();
+        // this.setState(
+        //   {
+        //     idNumber: "",
+        //     name: "",
+        //     email: "",
+        //     groupId: "",
+        //     type: "",
+        //     // password: ""
+        //   }
+        // )
       }
     })
   }
@@ -75,7 +83,10 @@ export default class EditUser extends Component {
           idNumber: res.data.user.idNumber,
           name: res.data.user.name,
           email: res.data.user.email,
+          mobile: res.data.user.mobile,
           groupId: res.data.user.groupId,
+          researchfield: res.data.user.researchfield,
+          panel: res.data.user.panel,
           type: res.data.user.type,
           password: res.data.user.password
         })
@@ -132,28 +143,73 @@ export default class EditUser extends Component {
             </div>
 
             <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Grpup ID</label>
+              <label style={{ marginBottom: '5px' }}>Mobile</label>
               <input
-                type="text"
+                type="email"
                 className='form-control'
-                name="groupId"
+                name="mobile"
                 placeholder=""
-                value={this.state.groupId}
+                value={this.state.mobile}
                 onChange={this.handleInputChange}
               />
             </div>
 
-            <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Type</label>
-              <select name="type" value={this.state.type} onChange={this.handleInputChange} className="form-select" required>
-                <option value="" >Select...</option>
-                <option value="Panel Member" >Panel Member</option>
-                <option value="Student">Student</option>
-                <option value="Supervisor">Supervisor</option>
-              </select>
-            </div>
+            {this.state.type === 'Student' && 
+              <span>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Group ID</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="groupId"
+                    value={this.state.groupId}
+                    onChange={this.handleInputChange}
+                    />
+                </div>
+              </span>}
+
+              {this.state.type === 'Supervisor' && 
+              <span>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Research Field</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="researchfield"
+                    value={this.state.researchfield}
+                    onChange={this.handleInputChange}
+                    />
+                </div>
+              </span>}
+
+              {this.state.type === 'Panel Member' && 
+              <span>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Panel</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="panel"
+                    value={this.state.panel}
+                    onChange={this.handleInputChange}
+                    />
+                </div>
+              </span>}
+            
 
             <div className='form-group' style={{ marginBottom: '15px' }}>
+              <label style={{ marginBottom: '5px' }}>Type</label>
+              <input
+                    type="text"
+                    className='form-control'
+                    name="type"
+                    value={this.state.type}
+                    onChange={this.handleInputChange}
+                    readOnly
+                    />
+            </div>
+
+            {/* <div className='form-group' style={{ marginBottom: '15px' }}>
               <label style={{ marginBottom: '5px' }}>Password</label>
               <input
                 type="password"
@@ -164,7 +220,7 @@ export default class EditUser extends Component {
                 onChange={this.handleInputChange}
                 readOnly
               />
-            </div>
+            </div> */}
 
             <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
               <i className='far fa-check-square'></i>

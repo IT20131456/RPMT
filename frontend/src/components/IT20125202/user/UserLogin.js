@@ -32,15 +32,24 @@ export default class UserLogin extends Component {
             idNumber: this.state.idNumber,
             password: this.state.password
         }
-        userLogin(user).then((res, err) => {
+        // userLogin(user).then((res, err) => {
 
-            if (res) {
-                this.props.history.push(`/`)
-                window.location.reload();
-            }
-            else {
-                alert('Please check your username and password')
-            }
+        //     if (res) {
+        //         alert("Login successful!")
+        //         this.props.history.push(`/`)
+        //         window.location.reload();
+        //     }
+        //     else {
+        //         alert('Please check your username and password')
+        //     }
+        // })
+        userLogin(user).then(res => {
+            alert("Login successful!")
+            this.props.history.push(`/`)
+            window.location.reload();
+        }).catch(err => {
+            console.log(err);
+            alert('Please check your username and password')
         })
     }
 
@@ -48,7 +57,7 @@ export default class UserLogin extends Component {
     render() {
         return (
             <div>
-                <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px' }}>
+                <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px'}}>
                     <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Research Project Management System</h1>
                     <hr />
                     <div className="col-md-8 mt-4 mx-auto">

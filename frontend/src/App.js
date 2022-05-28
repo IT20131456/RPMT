@@ -14,6 +14,7 @@ import UserProfile from './components/IT20125202/user/UserProfile';
 import Home from './components/IT20127046/Home';
 import UserLogin from './components/IT20125202/user/UserLogin';
 import NavBar from './components/IT20125202/NavBar';
+import LandingPage from './components/IT20125202/LandingPage';
 
 //student
 import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
@@ -32,6 +33,9 @@ import AdminLogin from './components/IT20125202/admin/AdminLogin';
 import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
 import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
 import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import UserRoles_Panel from "./components/IT20125202/user/UserRoles_Panel";
+import UserRoles_Students from "./components/IT20125202/user/UserRoles_Students";
+import UserRoles_Supervisors from "./components/IT20125202/user/UserRoles_Supervisor";
 
 //panel
 import ViewTopicList from './components/IT20125202/topic/ViewTopicList';
@@ -42,8 +46,7 @@ import AddEvaluation from "./components/IT20128036/AddEvaluation";
 
 //supervisor
 
-import image from './images/download.jpg'
-
+import image from './images/cover.jpg'
 
 export default class App extends Component {
 
@@ -63,25 +66,28 @@ export default class App extends Component {
             <Route path='/admin/users' exact component={UserRoles}></Route>
             <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
             <Route path='/admin/login' exact component={AdminLogin}></Route>
+            <Route path='/admin/panelmembers' exact component={UserRoles_Panel}></Route> 
+            <Route path='/admin/students' exact component={UserRoles_Students}></Route> 
+            <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route> 
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: 'auto' }}>
-
-              <div className='container' style={{ background: 'white', height: 'auto', padding: '0px 0px 10px 0px' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh'}}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', backgroundColor: 'rgba(0,0,0,.1)', overflowY: 'scroll', msOverflowStyle: 'none'}}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
+                <Route path="/" exact component={LandingPage}></Route>
                 <Route path="/user/login" exact component={UserLogin}></Route>
                 <Route path='/user/profile' exact component={UserProfile}></Route>
                 <Route path='/user/registration' exact component={CreateUser}></Route>
 
                 {/* IT20127046 */}
-                <Route path="/" exact component={Home}></Route>
                 <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
                 <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
                 <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
+                <Route path="/home" exact component={Home}></Route>
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
