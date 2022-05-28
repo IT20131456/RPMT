@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 import SubmitionTypeList from "./SubmitionTypeList";
 
 export default class AddSubmitionType extends Component {
@@ -13,9 +14,8 @@ export default class AddSubmitionType extends Component {
       deadLine: "",
       checkPanel: "",
       submition: "",
-      to: "kisharadilshan007@gmail.com",
       subject:"About New Submission",
-      text:"On the website, added a new submission. please refer details, and informed students.  --Auto-Generated Email--",
+      text:"Added a new submition. Please visit the website and do it before the due date.  --Auto-Generated Email--",
 
 
 
@@ -41,7 +41,6 @@ export default class AddSubmitionType extends Component {
       deadLine,
       checkPanel,
       submition,
-      to,
       subject,
       text
     } = this.state;
@@ -58,7 +57,7 @@ export default class AddSubmitionType extends Component {
 
     axios.post("http://localhost:5000/submitiontype/save", data).then((res) => {
       if (res.data.success) {
-        alert("Added Successfully")
+        swal("Good job!", "Added Successfully !", "success");
         this.setState({
           submitionType: "",
           description: "",
@@ -76,7 +75,7 @@ export default class AddSubmitionType extends Component {
      // Send data to Email Service
         const emailData = {
           
-            to: to,
+            
             subject: subject,
             text: text,
 
@@ -84,7 +83,7 @@ export default class AddSubmitionType extends Component {
 
         };
 
-        axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
+        axios.post("http://localhost:5000/submitiontype/email", emailData).then((res) => {
         if (res.data.success) {
           console.log("Sent Email Successfully")
           

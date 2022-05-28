@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class AddMarks extends Component{
 
@@ -51,9 +52,10 @@ onSubmit=(e)=>{
 
   let totmarks = (marks - (rmarks));
   console.log(totmarks);
+  let orgmarks = totmarks.toFixed(2);
 
-  if (totmarks<0){
-    totmarks = 0;
+  if (orgmarks<0){
+    orgmarks = 0;
   }
   
 
@@ -70,19 +72,25 @@ onSubmit=(e)=>{
   const data={
     groupId:groupId,
     type:type,
-    marks:totmarks,
+    marks:orgmarks,
     gradingStatus:gradingStatus,
   }
   console.log(data);
 
   axios.post(`http://localhost:5000/mark/save`,data).then((res)=>{
     if(res.data.success){
-      alert("Marks Added Successfully")
+
+      swal("Good job!", "Marks Added Successfully !", "success")
+      .then((value)=>{
+        window.location = "/submitions/view"
+
+      })
+      
 
 
 
 
-      window.location = "/submitions/view"
+   
       this.setState({
         groupId:"",
         type:"",

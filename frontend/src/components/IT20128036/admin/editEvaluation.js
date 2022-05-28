@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class EditEvaluation extends Component{
 
@@ -52,8 +53,13 @@ onSubmit=(e)=>{
 
   axios.put(`http://localhost:5000/evaluation/update/${id}`,data).then((res)=>{
     if(res.data.success){
-      alert("Evaluation Updated Successfully")
-      window.location = "/evaluation/add"
+      swal("Evaluation Updated Successfully !")
+      .then((value)=>{
+        window.location = "/evaluation/add"
+
+      })
+
+      // window.location = "/evaluation/add"
       this.setState({
         groupId:"",
         evaluationTopic:"",
