@@ -11,6 +11,7 @@ import UserProfile from './components/IT20125202/user/UserProfile';
 import Home from './components/IT20127046/Home';
 import UserLogin from './components/IT20125202/user/UserLogin';
 import NavBar from './components/IT20125202/NavBar';
+import LandingPage from './components/IT20125202/LandingPage';
 
 //student
 import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
@@ -39,6 +40,9 @@ import AdminLogin from './components/IT20125202/admin/AdminLogin';
 import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
 import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
 import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import UserRoles_Panel from "./components/IT20125202/user/UserRoles_Panel";
+import UserRoles_Students from "./components/IT20125202/user/UserRoles_Students";
+import UserRoles_Supervisors from "./components/IT20125202/user/UserRoles_Supervisor";
 
 import StudentGroup from "../src/components/IT20131456/StudentGroup";
 import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
@@ -62,7 +66,8 @@ import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
 
 //supervisor
 
-import image from './images/download.jpg'
+import image from './images/cover.jpg'
+
 import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
 
 import ViewSubmitions from './components/IT20128036/admin/viewSubmitions';
@@ -91,7 +96,10 @@ export default class App extends Component {
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
             <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
-            <Route path='/admin/login' exact component={AdminLogin}></Route>               
+            <Route path='/admin/login' exact component={AdminLogin}></Route>
+            <Route path='/admin/panelmembers' exact component={UserRoles_Panel}></Route> 
+            <Route path='/admin/students' exact component={UserRoles_Students}></Route> 
+            <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route>             
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
 
@@ -109,18 +117,18 @@ export default class App extends Component {
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: '1000px' }}>
-
-              <div className='container' style={{ background: 'white', height: '1000px', padding: '0px 0px 10px 0px' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh'}}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', backgroundColor: 'rgba(0,0,0,.1)', overflowY: 'scroll', msOverflowStyle: 'none'}}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
+                <Route path="/" exact component={LandingPage}></Route>
                 <Route path="/user/login" exact component={UserLogin}></Route>
                 <Route path='/user/profile' exact component={UserProfile}></Route>
                 <Route path='/user/registration' exact component={CreateUser}></Route>
 
                 {/* IT20127046 */}
-                <Route path="/" exact component={Home}></Route>
+                <Route path="/home" exact component={Home}></Route>
                 
                 
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>

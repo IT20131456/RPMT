@@ -10,7 +10,7 @@ export const userRegister = newUser => {
         })
         .then(res => {
             if (res.data.success) {
-                window.alert('Registered successfully!');
+                // window.alert('Registered successfully!');
             }
         })
         .catch(err => {
@@ -24,8 +24,9 @@ export const userLogin = user => {
         password: user.password
     })
     .then(res => {
-        localStorage.setItem('userToken', res.data)
-        return res.data
+            localStorage.setItem('userToken', res.data)
+            // window.alert('Login successful!');
+            return res.data
     })
     .catch(err => {
         console.log(err);

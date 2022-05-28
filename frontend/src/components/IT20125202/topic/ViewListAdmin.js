@@ -99,8 +99,9 @@ export default class ViewListAdmin extends Component {
 
   render() {
     return (
-      <div>
+      <div className='container'>
         <AdminNavBar />
+        <br />
 
         <div className="container">
           <div className='row'>
@@ -111,7 +112,7 @@ export default class ViewListAdmin extends Component {
               <input
                 className='form-control'
                 type="search"
-                placeholder="Search User"
+                placeholder="Search"
                 name="searchQuery"
                 onChange={this.handleSearchArea}>
               </input>

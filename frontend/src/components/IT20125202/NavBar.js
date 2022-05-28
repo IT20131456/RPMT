@@ -50,6 +50,9 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+          </li>
+          <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/student/topics" style={{textDecoration: 'none', color: 'white'}}>Topics</a>
           </li>
           <li className='nav-item'>
@@ -68,6 +71,9 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+          </li>
+          <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
           </li>
           <li className='nav-item'>
@@ -81,6 +87,9 @@ class NavBar extends Component {
     else if (this.state.type === 'Panel Member') {
       userLink = (
         <ul className='nav nav-tabs'>
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+          </li>
           <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
           </li>
@@ -99,7 +108,7 @@ class NavBar extends Component {
 
     return (
       <div>
-        <nav class="navbar navbar-expand-lg navbar-light" style={{background: '#000080'}}>
+        <nav className="navbar navbar-expand-lg navbar-light" style={{background: '#212F3C'}}>
           <div className="container-fluid">
             <a className="navbar-brand" href="/" style={{color: 'white'}}>RPMS</a>
 

@@ -50,7 +50,7 @@ export default class AdminNavBar extends Component {
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form> */}
 
-              <div class="btn-group dropstart">
+              <div className="btn-group dropstart">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
                     <a className="btn btn-outline-dark btn-sm" aria-current="page" onClick={this.onlogout}>Logout</a>

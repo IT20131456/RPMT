@@ -7,6 +7,7 @@ export default class ViewSubmissions extends Component {
   constructor() {
     super();
     this.state = {
+      groupId: '',
       topics: []
     }
   }
@@ -18,6 +19,9 @@ export default class ViewSubmissions extends Component {
     const decoded = jwt_decode(usertoken);
 
     const id = decoded.groupId
+    this.setState({
+      groupId: id
+    })
 
     axios.get(`http://localhost:5000/topic/submissions/${id}`).then(res => {
 
@@ -36,11 +40,14 @@ export default class ViewSubmissions extends Component {
     return (
       <div>
 
-        <div className="container" style={{padding: '50px 50px 50px 50px'}}>
+        <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
           <div className='row'>
             <div className='col-lg-9 mt-2 mb-2'>
               <h1>Topics</h1>
             </div>
+            <hr/>
+            <h5 style={{textAlign: 'right', color: '#4682B4'}}><b>Group ID: {this.state.groupId}</b></h5>
+
             {/* <div className='col-lg-3 mt-2 mb-2'>
               <input
                 className='form-control'

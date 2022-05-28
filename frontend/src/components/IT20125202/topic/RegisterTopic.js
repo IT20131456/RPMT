@@ -1,11 +1,9 @@
 //topic registration
 import React, { Component } from 'react';
 import axios from 'axios';
-export default class RegisterTopic extends Component {
+import jwt_decode from 'jwt-decode';
 
-    componentDidMount() {
-        document.title = "Topic Registration"
-    }
+export default class RegisterTopic extends Component {
 
     constructor(props) {
         super(props);
@@ -17,6 +15,17 @@ export default class RegisterTopic extends Component {
             status: "Pending",
             comments: ""
         }
+    }
+
+    componentDidMount() {
+        document.title = "Topic Registration"
+        const usertoken = localStorage.userToken;
+        const decoded = jwt_decode(usertoken);
+
+        const id = decoded.groupId
+        this.setState({
+            groupId: id
+        })
     }
 
     handleInputChange = (e) => {
@@ -62,10 +71,14 @@ export default class RegisterTopic extends Component {
 
     render() {
         return (
-            <div className="container" style={{padding: '50px 50px 50px 50px'}}>
+            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+                <div className='col-lg-9 mt-2 mb-2'>
+                    <h1>Research Topic Registration</h1>
+                </div>
+                <hr/>
                 <div className='col-md-8 mt-4 mx-auto'>
-                    <h1 className='h3 mb-3 font-weight-normal'>Research Topic Registration</h1>
-
+                    {/* <h1 className='h3 mb-3 font-weight-normal'>Research Topic Registration</h1> */}
+                    <br/>
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Group ID</label>
@@ -77,6 +90,7 @@ export default class RegisterTopic extends Component {
                                 value={this.state.groupId}
                                 onChange={this.handleInputChange}
                                 required
+                                readOnly
                             />
                         </div>
 

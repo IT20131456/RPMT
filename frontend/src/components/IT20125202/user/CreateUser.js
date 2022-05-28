@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 // import NavBar from '../home/NavBar';
 import { userRegister } from './UserFunctions';
 
+// email pattern ->  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+// mobile pattern ->  /^(\+\d{1,3}[- ]?)?\d{10}$/
+
 export default class CreateUser extends Component {
 
   componentDidMount() {
@@ -14,12 +17,13 @@ export default class CreateUser extends Component {
     super();
 
     this.state = {
-      idNumber: "",
-      name: "",
+      idNumber: '',
+      name: '',
       email: '',
-      groupId: "",
-      type: "",
-      password: ""
+      mobile: '',
+      groupId: '',
+      type: '',
+      password: ''
     }
 
     //to handle the state changes
@@ -38,18 +42,48 @@ export default class CreateUser extends Component {
       idNumber: this.state.idNumber,
       name: this.state.name,
       email: this.state.email,
+      mobile: this.state.mobile,
       groupId: this.state.groupId,
       type: this.state.type,
       password: this.state.password
     }
 
-    userRegister(user).then(res => {
+    let validated = true;
+    if(user.idNumber === ''){
+      validated = false;
+      alert('Please enter a valid ID number');
+    }
+    else if(user.name === '' || user.name.length < 5){
+      validated = false;
+      alert('Please enter a valid name');
+    }
+    else if(!user.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
+      validated = false;
+      alert('Please enter a valid email');
+    }
+    else if(!user.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)){
+      validated = false;
+      alert('Please enter a valid mobile number');
+    }
+    else if(user.type === ''){
+      validated = false;
+      alert('Please select user type');
+    }
+    else if(user.password === '' || user.password.length < 8){
+      validated = false;
+      alert('Password should contain at least 8 characters');
+    }
 
-      if (res) {
-        this.props.history.push(`/user/login`)
-        window.location.reload();
-      }
-    })
+    if(validated === true){
+      userRegister(user).then(res => {
+
+        if (res) {
+          alert('Registered successfully!');
+          this.props.history.push(`/user/login`)
+          window.location.reload();
+        }
+      })
+    }
   }
 
   render() {
@@ -57,7 +91,7 @@ export default class CreateUser extends Component {
       <div>
         {/* <NavBar /> */}
 
-        <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px' }}>
+        <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px'}}>
           <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Research Project Management System</h1>
           <hr />
           <div className="col-md-8 mt-4 mx-auto">
@@ -98,6 +132,19 @@ export default class CreateUser extends Component {
                   name="email"
                   placeholder="Enter a email address that you are currently using"
                   value={this.state.email}
+                  onChange={this.onChange}
+                  required
+                />
+              </div>
+
+              <div className='form-group' style={{ marginBottom: '15px' }}>
+                <label style={{ marginBottom: '5px' }}>Mobile Number</label>
+                <input
+                  type="text"
+                  className='form-control'
+                  name="mobile"
+                  placeholder="Enter your mobile number"
+                  value={this.state.mobile}
                   onChange={this.onChange}
                   required
                 />

@@ -102,7 +102,7 @@ export default class viewTopicList extends Component {
       <div>
         {/* <NavBar /> */}
 
-        <div className="container" style={{padding: '50px 50px 50px 50px'}}>
+        <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
           <div className='row'>
             <div className='col-lg-9 mt-2 mb-2'>
               <h1>Topics</h1>
@@ -111,12 +111,14 @@ export default class viewTopicList extends Component {
               <input
                 className='form-control'
                 type="search"
-                placeholder="Search User"
+                placeholder="Search"
                 name="searchQuery"
                 onChange={this.handleSearchArea}>
               </input>
             </div>
+            <hr/><br/>
           </div>
+          
 
           <table className="table">
             <thead>
@@ -127,7 +129,7 @@ export default class viewTopicList extends Component {
                 <th scope='col'> Description </th>
                 <th scope='col'> Status </th>
                 <th scope='col'> Comments </th>
-                <th>Action</th>
+                <th scope='col'></th>
               </tr>
             </thead>
 

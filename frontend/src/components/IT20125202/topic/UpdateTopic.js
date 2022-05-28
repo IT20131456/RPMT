@@ -46,15 +46,17 @@ export default class UpdateTopic extends Component {
     axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
       if (res.data.success) {
         alert("Topic updated successfully");
-        this.setState(
-          {
-            groupId: "",
-            topicR: "",
-            description: "",
-            status: "",
-            comments: ""
-          }
-        )
+        this.props.history.push(`/panel/topic/list`)
+        window.location.reload();
+        // this.setState(
+        //   {
+        //     groupId: "",
+        //     topicR: "",
+        //     description: "",
+        //     status: "",
+        //     comments: ""
+        //   }
+        // )
       }
     })
   }
@@ -83,12 +85,12 @@ export default class UpdateTopic extends Component {
   render() {
 
     return (
-      <div>
-        {/* <NavBar /> */}
-
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+        <div className='col-lg-9 mt-2 mb-2'>
+          <h1>Update Topic</h1>
+        </div>
+        <hr/><br/>
         <div className='col-md-8 mt-4 mx-auto'>
-          <h1 className='h3 mb-3 font-weight-normal'>Update Topic</h1>
-
           <form className='needs-validation' noValidate>
             <div className='form-group' style={{ marginBottom: '15px' }}>
               <label style={{ marginBottom: '5px' }}>Group ID</label>
