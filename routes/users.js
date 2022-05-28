@@ -10,7 +10,7 @@ const router = express.Router();
 
 process.env.SECRET_KEY = "secret2022";
 
-//user registration with password encryption
+//user registration with password encryption - user
 router.post('/user/registration', (req, res) => {
     const current = new Date();
     let userData = {
@@ -75,7 +75,7 @@ router.post('/user/registration', (req, res) => {
         })
 })
 
-//user login with jsonwebtoken
+//user login with jsonwebtoken - user
 router.post("/user/login", (req, res) => {
   Users.findOne({
     idNumber: req.body.idNumber,
@@ -126,7 +126,6 @@ router.post("/user/login", (req, res) => {
         })
 });
 
-// --------------------------------for admin-------------------------------------------------
 //get a specific user
 router.get("/user/:id", (req, res) => {
   let userId = req.params.id;
@@ -146,7 +145,7 @@ router.get("/user/:id", (req, res) => {
   });
 });
 
-//get users
+//get users - admin
 router.get("/users", (req, res) => {
   Users.find().exec((err, users) => {
     if (err) {
@@ -161,7 +160,7 @@ router.get("/users", (req, res) => {
   });
 });
 
-//get users by type
+//get users by type - admin
 router.get('/users/:type', (req, res) => {
     let usertype = req.params.type;
     Users.find({type: usertype}).exec((err, users) => {
