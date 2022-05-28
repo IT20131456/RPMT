@@ -14,13 +14,18 @@ const app = express();
 //const controller = require("./controllers/controllers");
 const sgrouter = require("./routes/studentGroupRoute");
 const sdrouter = require("./routes/supervisorDetailsRoute");
-const evrouter = require("./routes/evaluation");
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/users');
 const topicRoutes = require('./routes/topic');
+const evrouter = require("./routes/evaluation");
 const subTypeRoute = require('./routes/submitionType');
+const marks = require('./routes/marks');
+const submitions = require('./routes/submition');
+const subnotify = require('./routes/submitionNotification');
 const adminDcoumentTempRoutes = require('./routes/adminDocumentTemp');
 const chatGroupRoutes = require('./routes/chatMsg');
+const markingSchemRoutes = require('./routes/markingSchem');
+const downloadFileRoutes = require('./routes/downloadFile');
 
 //app middleware
 
@@ -29,13 +34,18 @@ app.use(cors());
 
 app.use(sgrouter);
 app.use(sdrouter);
-app.use(evrouter);
 app.use(adminRouter);
 app.use(userRouter);
 app.use(topicRoutes);
 app.use(subTypeRoute);
+app.use(evrouter);
+app.use(marks);
+app.use(submitions);
+app.use(subnotify);
 app.use(adminDcoumentTempRoutes);
 app.use(chatGroupRoutes);
+app.use(markingSchemRoutes);
+app.use(downloadFileRoutes);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;
