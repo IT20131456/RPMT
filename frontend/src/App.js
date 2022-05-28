@@ -18,7 +18,7 @@ import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
 import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails";
-import GroupChatStudent from './components/IT20127046/GroupChat_Student';
+import GroupChatStudent from './components/IT20127046/user/GroupChat_Student';
 import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
 
 import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
@@ -37,9 +37,9 @@ import UserRoles from './components/IT20125202/user/UserRoles';
 import AdminHome from './components/IT20125202/admin/AdminHome';
 import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
 import AdminLogin from './components/IT20125202/admin/AdminLogin';
-import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
-import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
-import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import DocumentTemp_Admin from './components/IT20127046/admin/DocumentTemp_Admin';
+import DocumentTempCreate from './components/IT20127046/admin/DocumentTempCreate';
+import DocumentTempUpdate from './components/IT20127046/admin/DocumentTempUpdate';
 import UserRoles_Panel from "./components/IT20125202/user/UserRoles_Panel";
 import UserRoles_Students from "./components/IT20125202/user/UserRoles_Students";
 import UserRoles_Supervisors from "./components/IT20125202/user/UserRoles_Supervisor";
@@ -61,21 +61,21 @@ import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
 import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
 import EvaluationList from "./components/IT20128036/admin/EvaluationList";
 import EditEvaluation from './components/IT20128036/admin/editEvaluation';
-import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
+import GroupChatAdmin from './components/IT20127046/user/GroupChat_Admin';
 
 
 //supervisor
 
 import image from './images/cover.jpg'
 
-import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
+import CreateMarkingSchem from "./components/IT20127046/admin/CreateMarkingSchem";
 
 import ViewSubmitions from './components/IT20128036/admin/viewSubmitions';
 import AddMarks from './components/IT20128036/admin/addMarks';
 import viewMarks from './components/IT20128036/admin/viewMarks';
 import EditMarks from './components/IT20128036/admin/editMarks';
 
-import ViewMarkingSchem_Admin from "./components/IT20127046/ViewMarkingSchem_Admin";
+import ViewMarkingSchem_Admin from "./components/IT20127046/admin/ViewMarkingSchem_Admin";
 
 
 
@@ -102,11 +102,6 @@ export default class App extends Component {
             <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route>             
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
-
-
-
-         
-
             <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
             <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
             <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
