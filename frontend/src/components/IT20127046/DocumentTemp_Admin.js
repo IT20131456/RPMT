@@ -31,10 +31,31 @@ export default class DocumentTemp_Admin extends Component {
 
   // To delete data
   onDelete = (id) => {
-    axios.delete(`http://localhost:5000/document/delete/${id}`).then((res) => {
-      alert("Delete Successful");
-      this.retrieveDocumentTemp();
-    });
+    swal({
+        title: "Are you sure?",
+        text: "Delete this Document",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      }).then((willDelete) => {
+        if (willDelete) {
+  
+          axios.delete(`http://localhost:5000/document/delete/${id}`).then((res) => {
+              swal("Deleted Successfull!", {
+                  icon: "success",
+              });
+  
+              setTimeout(() => {
+                this.retrieveDocumentTemp();
+              }, 1000);
+          }); 
+        } else {}
+      });
+
+    // axios.delete(`http://localhost:5000/document/delete/${id}`).then((res) => {
+    //   alert("Delete Successful");
+    //   this.retrieveDocumentTemp();
+    // });
   };
 
   // Download File
@@ -72,7 +93,7 @@ export default class DocumentTemp_Admin extends Component {
                     className="btn btn-outline-success m-2"
                     href="/add/documentTemp"
                   >
-                    Create Marking Scheme
+                    Add Template
                   </a>
                 </center>
               </div>
