@@ -51,20 +51,56 @@ export default class EditUser extends Component {
       password: password
     }
 
+    let validated = true;
+    if (data.idNumber === '') {
+      validated = false;
+      swal({
+        title: "",
+        text: "ID number cannot be empty",
+        icon: "warning",
+      });
+    }
+    else if (data.name === '' || data.name.length < 5) {
+      validated = false;
+      swal({
+        title: "",
+        text: "Name cannot be empty",
+        icon: "warning",
+      });
+    }
+    else if (!data.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)) {
+      validated = false;
+      swal({
+        title: "",
+        text: "Please enter a valid email",
+        icon: "warning",
+      });
+    }
+    else if (!data.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+      validated = false;
+      swal({
+        title: "",
+        text: "Please enter a valid mobile number",
+        icon: "warning",
+      });
+    }
+
     // console.log(data)
 
-    axios.put(`http://localhost:5000/user/update/${id}`, data).then((res) => {
-      if (res.data.success) {
-        swal("User details updated successfully!", "", "success")
-          .then((value) => {
-            if (value) {
-              this.props.history.push(`/admin/users`)
-              window.location.reload();
-            }
+    if (validated) {
+      axios.put(`http://localhost:5000/user/update/${id}`, data).then((res) => {
+        if (res.data.success) {
+          swal("User details updated successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                this.props.history.push(`/admin/users`)
+                window.location.reload();
+              }
 
-          });
-      }
-    })
+            });
+        }
+      })
+    }
   }
 
   componentDidMount() {

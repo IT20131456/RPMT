@@ -90,4 +90,20 @@ router.put("/topic/update/:id", (req, res) => {
   );
 });
 
+//delete topic
+router.delete("/topic/delete/:id", (req, res) => {
+  Topics.findByIdAndDelete(req.params.id).exec((err, deletedTopic) => {
+    if (err) {
+      return res.status(400).json({
+        error: err,
+      });
+    }
+
+    return res.json({
+      message: "Deleted succesfully",
+      deletedTopic,
+    });
+  });
+});
+
 module.exports = router;

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
 
 export default class UpdateTopic extends Component {
 
@@ -9,6 +10,7 @@ export default class UpdateTopic extends Component {
     super(props);
 
     this.state = {
+      userType: "",
       groupId: "",
       topicR: "",
       description: "",
@@ -42,24 +44,67 @@ export default class UpdateTopic extends Component {
       comments: comments
     }
     // console.log(data)
-
-    axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
-      if (res.data.success) {
-        swal("Topic updated successfully!", "", "success")
-          .then((value) => {
-            if (value) {
-              this.props.history.push(`/panel/topic/list`)
-              window.location.reload();
-            }
-
-          });
+    let validated = true;
+    if (this.state.userType === 'Student') {
+      if (this.state.status === 'Rejected') {
+        validated = false;
+        swal({
+          title: "You cannot edit this",
+          text: "Please create a new topic request",
+          icon: "warning",
+        });
       }
-    })
+      else if (this.state.topicR === '' || this.state.description === '') {
+        validated = false;
+        swal({
+          title: "",
+          text: "Topic and Description cannot be empty",
+          icon: "warning",
+        });
+      }
+    }
+    else {
+      if ((this.state.status === 'Accepted' || this.state.status === 'Rejected') && this.state.comments === '') {
+        validated = false;
+        swal({
+          title: "",
+          text: "Please give your comments",
+          icon: "warning",
+        });
+      }
+    }
+
+    if (validated) {
+      axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
+        if (res.data.success) {
+          swal("Topic updated successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                if (this.state.userType === 'Panel Member') {
+                  this.props.history.push(`/panel/topic/list`);
+                  window.location.reload();
+                }
+                else{
+                  this.props.history.push(`/student/topics`);
+                  window.location.reload();
+                }
+              }
+
+            });
+        }
+      })
+    }
   }
 
   componentDidMount() {
 
     document.title = "Update Topic"
+
+    const usertoken = localStorage.userToken;
+    const decoded = jwt_decode(usertoken);
+    this.setState({
+      userType: decoded.type,
+    })
 
     const id = this.props.match.params.id;
 
@@ -80,7 +125,7 @@ export default class UpdateTopic extends Component {
   render() {
 
     return (
-      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+      <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
         <div className='col-lg-9 mt-2 mb-2'>
           <h1>Update Topic</h1>
         </div>
@@ -93,69 +138,114 @@ export default class UpdateTopic extends Component {
                 type="text"
                 className='form-control'
                 name="groupId"
-                placeholder="Enter your Group ID"
                 value={this.state.groupId}
                 onChange={this.handleInputChange}
                 required
+                readOnly
               />
             </div>
+            {this.state.userType === 'Student' &&
+              <span>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Topic</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="topicR"
+                    value={this.state.topicR}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </div>
 
-            <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Topic</label>
-              <input
-                type="text"
-                className='form-control'
-                name="topicR"
-                placeholder="Enter research topic"
-                value={this.state.topicR}
-                onChange={this.handleInputChange}
-                required
-              />
-            </div>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Description</label>
+                  <textarea
+                    type="text"
+                    className='form-control'
+                    name="description"
+                    value={this.state.description}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </div>
 
-            <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Description</label>
-              <textarea
-                type="text"
-                className='form-control'
-                name="description"
-                placeholder="Enter a description about the topic"
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                required
-              />
-              {/* <input
-                type="text"
-                className='form-control'
-                name="description"
-                placeholder="Enter a description about the topic"
-                value={this.state.description}
-                onChange={this.handleInputChange}
-                required
-              /> */}
-            </div>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Status</label>
+                  <textarea
+                    type="text"
+                    className='form-control'
+                    name="status"
+                    value={this.state.status}
+                    onChange={this.handleInputChange}
+                    readOnly
+                  />
+                </div>
 
-            <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Status</label>
-              <select name="status" value={this.state.status} onChange={this.handleInputChange} className="form-select">
-                <option value="Pending" >Pending</option>
-                <option value="Accepted" >Accepted</option>
-                <option value="Rejected">Rejected</option>
-              </select>
-            </div>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Comments</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="comments"
+                    placeholder=""
+                    value={this.state.comments}
+                    onChange={this.handleInputChange}
+                    readOnly
+                  />
+                </div>
+              </span>}
 
-            <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Comments</label>
-              <input
-                type="text"
-                className='form-control'
-                name="comments"
-                placeholder=""
-                value={this.state.comments}
-                onChange={this.handleInputChange}
-                required
-              />
-            </div>
+            {this.state.userType === 'Panel Member' &&
+              <span>
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Topic</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="topicR"
+                    placeholder="Enter research topic"
+                    value={this.state.topicR}
+                    onChange={this.handleInputChange}
+                    readOnly
+                  />
+                </div>
+
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Description</label>
+                  <textarea
+                    type="text"
+                    className='form-control'
+                    name="description"
+                    placeholder="Enter a description about the topic"
+                    value={this.state.description}
+                    onChange={this.handleInputChange}
+                    readOnly
+                  />
+                </div>
+
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Status</label>
+                  <select name="status" value={this.state.status} onChange={this.handleInputChange} className="form-select">
+                    <option value="Pending" >Pending</option>
+                    <option value="Accepted" >Accepted</option>
+                    <option value="Rejected">Rejected</option>
+                  </select>
+                </div>
+
+                <div className='form-group' style={{ marginBottom: '15px' }}>
+                  <label style={{ marginBottom: '5px' }}>Comments</label>
+                  <input
+                    type="text"
+                    className='form-control'
+                    name="comments"
+                    placeholder=""
+                    value={this.state.comments}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </div>
+              </span>}
 
             <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
               <i className='far fa-check-square'></i>
@@ -163,7 +253,20 @@ export default class UpdateTopic extends Component {
             </button>
 
             &nbsp;&nbsp;
-            <a
+            {this.state.userType === 'Student' &&
+              <span>
+                <a
+              href="/student/topics"
+              class="btn btn-outline-success"
+              tabindex="-1"
+              role="button"
+              aria-disabled="true">
+              Back
+            </a>
+                </span>}
+                {this.state.userType === 'Panel Member' &&
+              <span>
+                <a
               href="/panel/topic/list"
               class="btn btn-outline-success"
               tabindex="-1"
@@ -171,6 +274,8 @@ export default class UpdateTopic extends Component {
               aria-disabled="true">
               Back
             </a>
+                </span>}
+            
           </form>
 
         </div>

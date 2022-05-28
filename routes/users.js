@@ -126,28 +126,6 @@ router.post("/user/login", (req, res) => {
         })
 });
 
-//user profile
-router.get("/user/profile", (req, res) => {
-  var decodedToken = jwt.verify(
-    req.headers["authorization"],
-    process.env.SECRET_KEY
-  );
-
-  Users.findOne({
-    _id: decodedToken._id,
-  })
-    .then((user) => {
-      if (user) {
-        res.json(user);
-      } else {
-        res.send("User does not exist");
-      }
-    })
-    .catch((err) => {
-      res.send("Error" + err);
-    });
-});
-
 // --------------------------------for admin-------------------------------------------------
 //get a specific user
 router.get("/user/:id", (req, res) => {

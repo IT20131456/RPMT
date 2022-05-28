@@ -8,34 +8,43 @@ function AdminLogin() {
     async function loginAdmin(e) {
         e.preventDefault()
 
-        const res = await fetch('http://localhost:5000/admin', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                username,
-                password,
-            }),
-        })
-
-        const data = await res.json()
-
-        if (data.admin) {
-            swal("Login successful!", "", "success")
-                .then((value) => {
-                    if (value) {
-                        localStorage.setItem('token', data.admin)
-                        window.location.href = '/admin/home'
-                    }
-
-                });
-        } else {
+        if (username === '' || password === '') {
             swal({
                 title: "",
-                text: "Please check your ID number and password",
+                text: "Please fill ID number and password",
                 icon: "warning",
             });
+        }
+        else {
+            const res = await fetch('http://localhost:5000/admin', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username,
+                    password,
+                }),
+            })
+
+            const data = await res.json()
+
+            if (data.admin) {
+                swal("Login successful!", "", "success")
+                    .then((value) => {
+                        if (value) {
+                            localStorage.setItem('token', data.admin)
+                            window.location.href = '/admin/home'
+                        }
+
+                    });
+            } else {
+                swal({
+                    title: "",
+                    text: "Please check your ID number and password",
+                    icon: "warning",
+                });
+            }
         }
     }
 
