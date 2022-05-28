@@ -1,4 +1,4 @@
-import "./css/GroupChat.css";
+import "../css/GroupChat.css";
 import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "./GroupChat";

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import fileDownload from "js-file-download";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 import swal from "sweetalert";
 
 export default class DocumentTemp_Admin extends Component {
