@@ -1,5 +1,6 @@
 import React, { useState, set } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
  function AddSubmition() {
   const [groupId, setgroupId] = useState("");
@@ -29,15 +30,30 @@ import axios from "axios";
     axios 
       .post("http://localhost:5000/submition", formdata)
       .then(() => {
-          alert('Document Upload Successful');
-          window.location = `/submitionsp/view/${groupId}`
+          
+          swal("Good job!", "Submitted Successfully !", "success")
+
+          .then((value)=>{
+            window.location = `/submitionsp/student/view/${groupId}`
+    
+          })
+
+
+          
+
+
+
+
+
+          
 
         
 
         
     })
     .catch((err) => {
-        alert(err);
+        
+        swal("Error","Something Wrong !","warning"); 
     });
 
     

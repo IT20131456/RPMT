@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import swal from 'sweetalert';
 import fileDownload from 'js-file-download';
 
 export default class ViewSubmitions extends Component {
@@ -78,11 +79,54 @@ fileDownload(res.data, fileName);
 
          
 onDelete=(id)=>{
+
+
+
+
+  
+
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+
+
+
+
+      
+
     axios.delete(`http://localhost:5000/submition/delete/${id}`).then((res)=>{
-      alert("Deleted Successfully");
+      
       this.retrieveSubmitions();
   
     })
+
+
+
+
+
+      swal("Poof! Your file has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your file is safe!");
+    }
+  });
+
+
+
+
+
+
+
+
+
+
   }
 
 
