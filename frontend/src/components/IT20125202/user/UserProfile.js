@@ -213,7 +213,7 @@ export default class UserProfile extends Component {
                     <br />
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Registration Number</label>
+                            <label style={{ marginBottom: '5px' }}><b>Registration Number</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -225,7 +225,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Name</label>
+                            <label style={{ marginBottom: '5px' }}><b>Name</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -237,7 +237,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Email</label>
+                            <label style={{ marginBottom: '5px' }}><b>Email</b></label>
                             <input
                                 type="email"
                                 className='form-control'
@@ -249,7 +249,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Mobile Number</label>
+                            <label style={{ marginBottom: '5px' }}><b>Mobile Number</b></label>
                             <input
                                 type="phone"
                                 className='form-control'
@@ -261,7 +261,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Registered Date</label>
+                            <label style={{ marginBottom: '5px' }}><b>Registered Date</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -274,7 +274,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Student' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Group ID</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Group ID</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -289,7 +289,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Supervisor' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Research Field</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Research Field</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -304,7 +304,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Panel Member' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Panel</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Panel</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -317,9 +317,9 @@ export default class UserProfile extends Component {
                             </span>}
 
                         <br /><br />
-                        <h6>Change Password</h6>
+                        <h5><b>Change Password</b></h5>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Existing password</label>
+                            <label style={{ marginBottom: '5px' }}><b>Existing password</b></label>
                             <input
                                 type="password"
                                 className='form-control'
@@ -331,7 +331,7 @@ export default class UserProfile extends Component {
                             />
                         </div>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>New password</label>
+                            <label style={{ marginBottom: '5px' }}><b>New password</b></label>
                             <input
                                 type="password"
                                 className='form-control'
@@ -343,7 +343,7 @@ export default class UserProfile extends Component {
                             />
                         </div>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Confirm New password</label>
+                            <label style={{ marginBottom: '5px' }}><b>Confirm New password</b></label>
                             <input
                                 type="password"
                                 className='form-control'
@@ -357,7 +357,7 @@ export default class UserProfile extends Component {
 
                         <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
                             <i className='far fa-check-square'></i>
-                            &nbsp; Update
+                            &nbsp; <b>Update</b>
                         </button>
 
                     </form>

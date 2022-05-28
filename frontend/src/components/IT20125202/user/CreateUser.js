@@ -130,10 +130,10 @@ export default class CreateUser extends Component {
           <hr />
           <div className="col-md-8 mt-4 mx-auto">
             <h1 className='h3 mb-3 font-weight-normal' style={{ textAlign: 'center' }}>User Registration</h1>
-
+            <br />
             <form className='needs-validation' noValidate>
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>ID number</label>
+                <label style={{ marginBottom: '5px' }}><b>ID number</b></label>
                 <input
                   type="text"
                   className='form-control'
@@ -146,7 +146,7 @@ export default class CreateUser extends Component {
               </div>
 
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>Name with Initials</label>
+                <label style={{ marginBottom: '5px' }}><b>Name with Initials</b></label>
                 <input
                   type="text"
                   className='form-control'
@@ -159,7 +159,7 @@ export default class CreateUser extends Component {
               </div>
 
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>Email</label>
+                <label style={{ marginBottom: '5px' }}><b>Email</b></label>
                 <input
                   type="email"
                   className='form-control'
@@ -172,7 +172,7 @@ export default class CreateUser extends Component {
               </div>
 
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>Mobile Number</label>
+                <label style={{ marginBottom: '5px' }}><b>Mobile Number</b></label>
                 <input
                   type="text"
                   className='form-control'
@@ -185,7 +185,7 @@ export default class CreateUser extends Component {
               </div>
 
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>Type</label>
+                <label style={{ marginBottom: '5px' }}><b>Type</b></label>
                 <select name="type" value={this.state.type} onChange={this.onChange} className="form-select" required>
                   <option value="" >Select...</option>
                   <option value="Panel Member" >Panel Member</option>
@@ -195,7 +195,7 @@ export default class CreateUser extends Component {
               </div>
 
               <div className='form-group' style={{ marginBottom: '15px' }}>
-                <label style={{ marginBottom: '5px' }}>Password</label>
+                <label style={{ marginBottom: '5px' }}><b>Password</b></label>
                 <input
                   type="password"
                   className='form-control'
@@ -208,9 +208,9 @@ export default class CreateUser extends Component {
               </div>
 
               <div className="d-grid gap-2">
-                <button className="btn btn-outline-primary" type="submit" style={{ marginTop: '15px', width: 'cover' }} onClick={this.onSubmit}>
-                  <i className='far fa-check-square'></i>
-                  &nbsp; Register
+                <button className="btn btn-outline-dark" type="submit" style={{ marginTop: '15px', width: 'cover' }} onClick={this.onSubmit}>
+                  <b><i className='far fa-check-square'></i>
+                  &nbsp; Register</b>
                 </button>
               </div>
 

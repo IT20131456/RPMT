@@ -84,7 +84,7 @@ export default class UpdateTopic extends Component {
                   this.props.history.push(`/panel/topic/list`);
                   window.location.reload();
                 }
-                else{
+                else {
                   this.props.history.push(`/student/topics`);
                   window.location.reload();
                 }
@@ -133,7 +133,7 @@ export default class UpdateTopic extends Component {
         <div className='col-md-8 mt-4 mx-auto'>
           <form className='needs-validation' noValidate>
             <div className='form-group' style={{ marginBottom: '15px' }}>
-              <label style={{ marginBottom: '5px' }}>Group ID</label>
+              <label style={{ marginBottom: '5px' }}><b>Group ID</b></label>
               <input
                 type="text"
                 className='form-control'
@@ -147,7 +147,7 @@ export default class UpdateTopic extends Component {
             {this.state.userType === 'Student' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Topic</label>
+                  <label style={{ marginBottom: '5px' }}><b>Topic</b></label>
                   <input
                     type="text"
                     className='form-control'
@@ -159,7 +159,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Description</label>
+                  <label style={{ marginBottom: '5px' }}><b>Description</b></label>
                   <textarea
                     type="text"
                     className='form-control'
@@ -171,7 +171,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Status</label>
+                  <label style={{ marginBottom: '5px' }}><b>Status</b></label>
                   <textarea
                     type="text"
                     className='form-control'
@@ -183,7 +183,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Comments</label>
+                  <label style={{ marginBottom: '5px' }}><b>Comments</b></label>
                   <input
                     type="text"
                     className='form-control'
@@ -199,7 +199,7 @@ export default class UpdateTopic extends Component {
             {this.state.userType === 'Panel Member' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Topic</label>
+                  <label style={{ marginBottom: '5px' }}><b>Topic</b></label>
                   <input
                     type="text"
                     className='form-control'
@@ -212,7 +212,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Description</label>
+                  <label style={{ marginBottom: '5px' }}><b>Description</b></label>
                   <textarea
                     type="text"
                     className='form-control'
@@ -225,7 +225,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Status</label>
+                  <label style={{ marginBottom: '5px' }}><b>Status</b></label>
                   <select name="status" value={this.state.status} onChange={this.handleInputChange} className="form-select">
                     <option value="Pending" >Pending</option>
                     <option value="Accepted" >Accepted</option>
@@ -234,7 +234,7 @@ export default class UpdateTopic extends Component {
                 </div>
 
                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                  <label style={{ marginBottom: '5px' }}>Comments</label>
+                  <label style={{ marginBottom: '5px' }}><b>Comments</b></label>
                   <input
                     type="text"
                     className='form-control'
@@ -248,34 +248,34 @@ export default class UpdateTopic extends Component {
               </span>}
 
             <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
-              <i className='far fa-check-square'></i>
-              &nbsp; Update
+              <b><i className='far fa-check-square'></i>
+                &nbsp; Update</b>
             </button>
 
             &nbsp;&nbsp;
             {this.state.userType === 'Student' &&
               <span>
                 <a
-              href="/student/topics"
-              class="btn btn-outline-success"
-              tabindex="-1"
-              role="button"
-              aria-disabled="true">
-              Back
-            </a>
-                </span>}
-                {this.state.userType === 'Panel Member' &&
+                  href="/student/topics"
+                  class="btn btn-outline-success"
+                  tabindex="-1"
+                  role="button"
+                  aria-disabled="true">
+                    <b>Back</b>
+                </a>
+              </span>}
+            {this.state.userType === 'Panel Member' &&
               <span>
                 <a
-              href="/panel/topic/list"
-              class="btn btn-outline-success"
-              tabindex="-1"
-              role="button"
-              aria-disabled="true">
-              Back
-            </a>
-                </span>}
-            
+                  href="/panel/topic/list"
+                  class="btn btn-outline-success"
+                  tabindex="-1"
+                  role="button"
+                  aria-disabled="true">
+                  <b>Back</b>
+                </a>
+              </span>}
+
           </form>
 
         </div>
