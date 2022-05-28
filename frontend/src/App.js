@@ -121,82 +121,82 @@ export default class App extends Component {
               <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', backgroundColor: 'rgba(0,0,0,.1)', overflowY: 'scroll', msOverflowStyle: 'none'}}>
                 <NavBar />
                 {/* ---------------User--------------- */}
-                {/* IT20125202 */}
                 <Route path="/" exact component={LandingPage}></Route>
-                <Route path="/user/login" exact component={UserLogin}></Route>
-                <Route path='/user/profile' exact component={UserProfile}></Route>
-                <Route path='/user/registration' exact component={CreateUser}></Route>
-
-                {/* IT20127046 */}
-                <Route path="/home" exact component={Home}></Route>
                 
-                
-                <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
-                <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
-                
-
-                {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
-                <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
-                <Route path='/student/topics' exact component={ViewSubmissions}></Route>
+                <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+                  <Route path="/user/login" exact component={UserLogin}></Route>
+                  <Route path='/user/profile' exact component={UserProfile}></Route>
+                  <Route path='/user/registration' exact component={CreateUser}></Route>
+
+                  {/* IT20127046 */}
+                  <Route path="/home" exact component={Home}></Route>
+                  
+                  
+                  <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
+                  <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
+                  
+
+                  {/* ---------------Student--------------- */}
+                  {/* IT20125202 */}
+                  <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
+                  <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
 
-                {/* IT20131456 */}
-                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
-                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
-                <Route path="/view/:id" component={ViewStudentGroup}></Route>
+                  {/* IT20131456 */}
+                  <Route path="/sgroup/view" exact component={StudentGroup}></Route>
+                  <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
+                  <Route path="/view/:id" component={ViewStudentGroup}></Route>
 
-
-                {/*IT20128036*/}
-                <Route path="/evaluation/student/view" component={SviewEvaluation}/>
-                <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
-                <Route path="/ssubmition/add" component={Submitions}/>
-                <Route path="/submitionsp/view/:id" component={ViewSubmitionssp}/>
-                <Route path="/marks/student/view" component={sviewMarks}/>
-                <Route path="/ssubmition/edit/:id" component={EditSubmition}/>
-                <Route path="/student/pdf/export" component={exportPDF}/>
-          
-             
-
-                {/* ---------------Supervisor--------------- */}
 
                   {/*IT20128036*/}
-                <Route path="/submitions/view" component={ViewSubmitions}/>
-                <Route path="/marks/add/:id" component={AddMarks}/>
-                <Route path="/marks/view" component={viewMarks}/>
-                <Route path="/marks/edit/:id" component={EditMarks}/>
-
-
-                {/* ---------------Panel member--------------- */}
-                {/* IT20125202 */}
-                <Route path='/panel/topic/list' exact component={ViewTopicList}></Route>
-                <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route>
-                <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
-
-                {/*IT20128036*/}
-                <Route path="/evaluation/add" component={AddEvaluation}/>
-                <Route path="/evaluation/view" component={EvaluationList}/>
-                <Route  path="/evaluation/edit/:id" component={EditEvaluation}/>
+                  <Route path="/evaluation/student/view" component={SviewEvaluation}/>
+                  <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
+                  <Route path="/ssubmition/add" component={Submitions}/>
+                  <Route path="/submitionsp/view/:id" component={ViewSubmitionssp}/>
+                  <Route path="/marks/student/view" component={sviewMarks}/>
+                  <Route path="/ssubmition/edit/:id" component={EditSubmition}/>
+                  <Route path="/student/pdf/export" component={exportPDF}/>
             
-
-                 {/* IT20131456 */}
-                 
-                 {/* ---------------Student--------------- */}
-                <Route path="/student/group/add" component={CreateStudentGroup}></Route>
-               
-                {/* ---------------Admin--------------- */}
-                <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
-                <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
-
-
-                   {/*IT20128036*/}
-            <Route path="/submitiontype/add" component={AddSubmitionType}/>
-            <Route path="/submitiontypelist" component={SubmitionTypeList}/>
-            <Route path="/submitiontype/edit/:id" component={EditSubmitonType}/>
-
-
               
 
+                  {/* ---------------Supervisor--------------- */}
+
+                    {/*IT20128036*/}
+                  <Route path="/submitions/view" component={ViewSubmitions}/>
+                  <Route path="/marks/add/:id" component={AddMarks}/>
+                  <Route path="/marks/view" component={viewMarks}/>
+                  <Route path="/marks/edit/:id" component={EditMarks}/>
+
+
+                  {/* ---------------Panel member--------------- */}
+                  {/* IT20125202 */}
+                  <Route path='/panel/topic/list' exact component={ViewTopicList}></Route>
+                  <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route>
+                  <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
+
+                  {/*IT20128036*/}
+                  <Route path="/evaluation/add" component={AddEvaluation}/>
+                  <Route path="/evaluation/view" component={EvaluationList}/>
+                  <Route  path="/evaluation/edit/:id" component={EditEvaluation}/>
+              
+
+                  {/* IT20131456 */}
+                  
+                  {/* ---------------Student--------------- */}
+                  <Route path="/student/group/add" component={CreateStudentGroup}></Route>
+                
+                  {/* ---------------Admin--------------- */}
+                  <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
+                  <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+
+
+                    {/*IT20128036*/}
+                  <Route path="/submitiontype/add" component={AddSubmitionType}/>
+                  <Route path="/submitiontypelist" component={SubmitionTypeList}/>
+                  <Route path="/submitiontype/edit/:id" component={EditSubmitonType}/>
+
+                </div>
               </div>
             </div>
           </Switch>
