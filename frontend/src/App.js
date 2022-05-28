@@ -95,11 +95,11 @@ export default class App extends Component {
             <Route path='/admin/edituser/:id' exact component={EditUser}></Route>
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
-            <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
+            <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route>
             <Route path='/admin/login' exact component={AdminLogin}></Route>
-            <Route path='/admin/panelmembers' exact component={UserRoles_Panel}></Route> 
-            <Route path='/admin/students' exact component={UserRoles_Students}></Route> 
-            <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route>             
+            <Route path='/admin/panelmembers' exact component={UserRoles_Panel}></Route>
+            <Route path='/admin/students' exact component={UserRoles_Students}></Route>
+            <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route>
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
             <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
@@ -107,96 +107,93 @@ export default class App extends Component {
             <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
             <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
 
-            
-             
+
+
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh'}}>
-              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', backgroundColor: 'rgba(0,0,0,.1)', overflowY: 'scroll', msOverflowStyle: 'none'}}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh' }}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', overflowY: 'scroll', msOverflowStyle: 'none' }}>
                 <NavBar />
                 {/* ---------------User--------------- */}
-                <Route path="/" exact component={LandingPage}></Route>
-                
                 {/* IT20125202 */}
-                <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
-                  <Route path="/user/login" exact component={UserLogin}></Route>
-                  <Route path='/user/profile' exact component={UserProfile}></Route>
-                  <Route path='/user/registration' exact component={CreateUser}></Route>
+                <Route path="/" exact component={LandingPage}></Route>
+                <Route path="/user/login" exact component={UserLogin}></Route>
+                <Route path='/user/profile' exact component={UserProfile}></Route>
+                <Route path='/user/registration' exact component={CreateUser}></Route>
 
-                  {/* IT20127046 */}
-                  <Route path="/home" exact component={Home}></Route>
-                  
-                  
-                  <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
-                  <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
-                  
-
-                  {/* ---------------Student--------------- */}
-                  {/* IT20125202 */}
-                  <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
-                  <Route path='/student/topics' exact component={ViewSubmissions}></Route>
+                {/* IT20127046 */}
+                <Route path="/home" exact component={Home}></Route>
 
 
-                  {/* IT20131456 */}
-                  <Route path="/sgroup/view" exact component={StudentGroup}></Route>
-                  <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
-                  <Route path="/view/:id" component={ViewStudentGroup}></Route>
+                <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
+                <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
 
 
-                  {/*IT20128036*/}
-                  <Route path="/evaluation/student/view" component={SviewEvaluation}/>
-                  <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
-                  <Route path="/ssubmition/add" component={Submitions}/>
-                  <Route path="/submitionsp/view/:id" component={ViewSubmitionssp}/>
-                  <Route path="/marks/student/view" component={sviewMarks}/>
-                  <Route path="/ssubmition/edit/:id" component={EditSubmition}/>
-                  <Route path="/student/pdf/export" component={exportPDF}/>
-            
-              
-
-                  {/* ---------------Supervisor--------------- */}
-
-                    {/*IT20128036*/}
-                  <Route path="/submitions/view" component={ViewSubmitions}/>
-                  <Route path="/marks/add/:id" component={AddMarks}/>
-                  <Route path="/marks/view" component={viewMarks}/>
-                  <Route path="/marks/edit/:id" component={EditMarks}/>
+                {/* ---------------Student--------------- */}
+                {/* IT20125202 */}
+                <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
+                <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
 
-                  {/* ---------------Panel member--------------- */}
-                  {/* IT20125202 */}
-                  <Route path='/panel/topic/list' exact component={ViewTopicList}></Route>
-                  <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route>
-                  <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
-
-                  {/*IT20128036*/}
-                  <Route path="/evaluation/add" component={AddEvaluation}/>
-                  <Route path="/evaluation/view" component={EvaluationList}/>
-                  <Route  path="/evaluation/edit/:id" component={EditEvaluation}/>
-              
-
-                  {/* IT20131456 */}
-                  
-                  {/* ---------------Student--------------- */}
-                  <Route path="/student/group/add" component={CreateStudentGroup}></Route>
-                
-                  {/* ---------------Admin--------------- */}
-                  <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
-                  <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+                {/* IT20131456 */}
+                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
+                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
+                <Route path="/view/:id" component={ViewStudentGroup}></Route>
 
 
-                    {/*IT20128036*/}
-                  <Route path="/submitiontype/add" component={AddSubmitionType}/>
-                  <Route path="/submitiontypelist" component={SubmitionTypeList}/>
-                  <Route path="/submitiontype/edit/:id" component={EditSubmitonType}/>
+                {/*IT20128036*/}
+                <Route path="/evaluation/student/view" component={SviewEvaluation} />
+                <Route path="/submitiontype/student/view" component={SviewSubmitionType} />
+                <Route path="/ssubmition/add" component={Submitions} />
+                <Route path="/submitionsp/view/:id" component={ViewSubmitionssp} />
+                <Route path="/marks/student/view" component={sviewMarks} />
+                <Route path="/ssubmition/edit/:id" component={EditSubmition} />
+                <Route path="/student/pdf/export" component={exportPDF} />
 
-                </div>
+
+
+                {/* ---------------Supervisor--------------- */}
+
+                {/*IT20128036*/}
+                <Route path="/submitions/view" component={ViewSubmitions} />
+                <Route path="/marks/add/:id" component={AddMarks} />
+                <Route path="/marks/view" component={viewMarks} />
+                <Route path="/marks/edit/:id" component={EditMarks} />
+
+
+                {/* ---------------Panel member--------------- */}
+                {/* IT20125202 */}
+                <Route path='/panel/topic/list' exact component={ViewTopicList}></Route>
+                <Route path='/panel/topic/details/:id' exact component={ViewTopic}></Route>
+                <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
+
+                {/*IT20128036*/}
+                <Route path="/evaluation/add" component={AddEvaluation} />
+                <Route path="/evaluation/view" component={EvaluationList} />
+                <Route path="/evaluation/edit/:id" component={EditEvaluation} />
+
+
+                {/* IT20131456 */}
+
+                {/* ---------------Student--------------- */}
+                <Route path="/student/group/add" component={CreateStudentGroup}></Route>
+
+                {/* ---------------Admin--------------- */}
+                <Route path="/student/groups/view" exact component={StudentGroup}></Route>
+                <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+
+
+                {/*IT20128036*/}
+                <Route path="/submitiontype/add" component={AddSubmitionType} />
+                <Route path="/submitiontypelist" component={SubmitionTypeList} />
+                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />
+
               </div>
             </div>
           </Switch>
-        </div>
-      </BrowserRouter>
+        </div >
+      </BrowserRouter >
 
     )
   }
