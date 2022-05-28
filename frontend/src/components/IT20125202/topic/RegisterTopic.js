@@ -50,7 +50,6 @@ export default class RegisterTopic extends Component {
             status: status,
             comments: comments
         }
-
         // console.log(data)
 
         axios.post('http://localhost:5000/topic/save', data).then((res) => {
@@ -71,14 +70,14 @@ export default class RegisterTopic extends Component {
 
     render() {
         return (
-            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+            <div>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Research Topic Registration</h1>
                 </div>
-                <hr/>
+                <hr />
                 <div className='col-md-8 mt-4 mx-auto'>
                     {/* <h1 className='h3 mb-3 font-weight-normal'>Research Topic Registration</h1> */}
-                    <br/>
+                    <br />
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Group ID</label>
