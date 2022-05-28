@@ -20,6 +20,9 @@ export default class UserProfile extends Component {
             dateRegistered: '',
             type: '',
             password: '',
+            enteredPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
         }
     }
 
@@ -75,7 +78,7 @@ export default class UserProfile extends Component {
 
         const { _id, idNumber, name, email, mobile, groupId, researchfield, panel, type, password } = this.state;
 
-        const data = {
+        let data = {
             idNumber: idNumber,
             name: name,
             email: email,
@@ -84,7 +87,7 @@ export default class UserProfile extends Component {
             researchfield: researchfield,
             panel: panel,
             type: type,
-            password: password
+            password: password,
         }
         // console.log(data)
         let validated = true;
@@ -112,7 +115,7 @@ export default class UserProfile extends Component {
                 icon: "warning",
             });
         }
-        else if(this.state.type === 'Supervisor' && data.researchfield === ''){
+        else if (this.state.type === 'Supervisor' && data.researchfield === '') {
             validated = false;
             swal({
                 title: "",
@@ -120,22 +123,81 @@ export default class UserProfile extends Component {
                 icon: "warning",
             });
         }
+        else if(this.state.confirmNewPassword != this.state.newPassword){
+            validated = false;
+            swal({
+                title: "",
+                text: "Please check the new password and repeated new password",
+                icon: "warning",
+            });
+        }
+        else if (this.state.enteredPassword != '' && this.state.newPassword === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a new password",
+                icon: "warning",
+            });
+        }
+        else if (this.state.enteredPassword === '' && this.state.newPassword != '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter your existing password",
+                icon: "warning",
+            });
+        }
 
         // console.log(data)
 
         if (validated) {
-            axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
-                if (res.data.success) {
-                    swal("Profile updated successfully!", "", "success")
-                        .then((value) => {
-                            if (value) {
-                                this.props.history.push(`/user/profile`)
-                                window.location.reload();
-                            }
+            if (this.state.enteredPassword == '' || this.state.newPassword === '') {
+                axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
+                    if (res.data.success) {
+                        swal("Profile updated successfully!", "", "success")
+                            .then((value) => {
+                                if (value) {
+                                    this.props.history.push(`/user/profile`)
+                                    window.location.reload();
+                                }
 
+                            });
+                    }
+                })
+                    .catch(err => {
+                        console.log(err);
+                        swal({
+                            title: "",
+                            text: "Something went wrong! Please check the entered passwords",
+                            icon: "warning",
                         });
-                }
-            })
+                    })
+            }
+            else {
+                data.enteredPassword = this.state.enteredPassword;
+                data.newPassword = this.state.newPassword;
+
+                axios.put(`http://localhost:5000/user/updateprofile/${_id}`, data).then((res) => {
+                    if (res.data.success) {
+                        swal("Profile updated successfully!", "", "success")
+                            .then((value) => {
+                                if (value) {
+                                    this.props.history.push(`/user/profile`)
+                                    window.location.reload();
+                                }
+
+                            });
+                    }
+                })
+                    .catch(err => {
+                        console.log(err);
+                        swal({
+                            title: "",
+                            text: "Something went wrong! Please check the entered passwords",
+                            icon: "warning",
+                        });
+                    })
+            }
         }
     }
 
@@ -254,6 +316,44 @@ export default class UserProfile extends Component {
                                 </div>
                             </span>}
 
+                        <br /><br />
+                        <h6>Change Password</h6>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>Existing password</label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="enteredPassword"
+                                value={this.state.enteredPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>New password</label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="newPassword"
+                                value={this.state.newPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}>Confirm New password</label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="confirmNewPassword"
+                                value={this.state.confirmNewPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
 
                         <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
                             <i className='far fa-check-square'></i>
