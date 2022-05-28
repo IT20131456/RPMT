@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { userLogin } from './UserFunctions';
 // import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
 
 export default class UserLogin extends Component {
     componentDidMount() {
@@ -43,21 +44,50 @@ export default class UserLogin extends Component {
         //         alert('Please check your username and password')
         //     }
         // })
-        userLogin(user).then(res => {
-            alert("Login successful!")
-            this.props.history.push(`/`)
-            window.location.reload();
-        }).catch(err => {
-            console.log(err);
-            alert('Please check your username and password')
-        })
+        let validated = true;
+        if (user.idNumber === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter your ID number",
+                icon: "warning",
+            });
+        }
+        else if (user.password === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter your password",
+                icon: "warning",
+            });
+        }
+
+        if (validated) {
+            userLogin(user).then(res => {
+                swal("Login successful!", "", "success")
+                    .then((value) => {
+                        if (value) {
+                            this.props.history.push(`/`)
+                            window.location.reload();
+                        }
+
+                    });
+            }).catch(err => {
+                console.log(err);
+                swal({
+                    title: "",
+                    text: "Please check your ID number and password",
+                    icon: "warning",
+                });
+            })
+        }
     }
 
 
     render() {
         return (
             <div>
-                <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px'}}>
+                <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px' }}>
                     <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Research Project Management System</h1>
                     <hr />
                     <div className="col-md-8 mt-4 mx-auto">

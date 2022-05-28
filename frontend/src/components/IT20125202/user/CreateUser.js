@@ -1,10 +1,11 @@
 //user registration
 import React, { Component } from 'react';
-// import NavBar from '../home/NavBar';
 import { userRegister } from './UserFunctions';
+import swal from 'sweetalert';
 
 // email pattern ->  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
 // mobile pattern ->  /^(\+\d{1,3}[- ]?)?\d{10}$/
+//                ->  /^(?:0|94|\+94)?(?:(11|21|23|24|25|26|27|31|32|33|34|35|36|37|38|41|45|47|51|52|54|55|57|63|65|66|67|81|912)(0|2|3|4|5|7|9)|7(0|1|2|4|5|6|7|8)\d)\d{6}$/
 
 export default class CreateUser extends Component {
 
@@ -22,6 +23,8 @@ export default class CreateUser extends Component {
       email: '',
       mobile: '',
       groupId: '',
+      researchfield: '',
+      panel: '',
       type: '',
       password: ''
     }
@@ -44,43 +47,74 @@ export default class CreateUser extends Component {
       email: this.state.email,
       mobile: this.state.mobile,
       groupId: this.state.groupId,
+      researchfield: this.state.researchfield,
+      panel: this.state.panel,
       type: this.state.type,
       password: this.state.password
     }
 
     let validated = true;
-    if(user.idNumber === ''){
+    if (user.idNumber === '') {
       validated = false;
-      alert('Please enter a valid ID number');
+      swal({
+        title: "",
+        text: "Please enter a valid ID number",
+        icon: "warning",
+      });
     }
-    else if(user.name === '' || user.name.length < 5){
+    else if (user.name === '' || user.name.length < 5) {
       validated = false;
-      alert('Please enter a valid name');
+      swal({
+        title: "",
+        text: "Please enter a valid name",
+        icon: "warning",
+      });
     }
-    else if(!user.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)){
+    else if (!user.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)) {
       validated = false;
-      alert('Please enter a valid email');
+      swal({
+        title: "",
+        text: "Please enter a valid email",
+        icon: "warning",
+      });
     }
-    else if(!user.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)){
+    else if (!user.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
       validated = false;
-      alert('Please enter a valid mobile number');
+      swal({
+        title: "",
+        text: "Please enter a valid mobile number",
+        icon: "warning",
+      });
     }
-    else if(user.type === ''){
+    else if (user.type === '') {
       validated = false;
-      alert('Please select user type');
+      swal({
+        title: "",
+        text: "Please select a user type",
+        icon: "warning",
+      });
     }
-    else if(user.password === '' || user.password.length < 8){
+    else if (user.password === '' || user.password.length < 8) {
       validated = false;
-      alert('Password should contain at least 8 characters');
+      swal({
+        title: "",
+        text: "Password should contain at least 8 characters",
+        icon: "warning",
+      });
     }
 
-    if(validated === true){
+    if (validated === true) {
       userRegister(user).then(res => {
 
         if (res) {
-          alert('Registered successfully!');
-          this.props.history.push(`/user/login`)
-          window.location.reload();
+          swal("Registered successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                this.props.history.push(`/user/login`)
+                window.location.reload();
+              }
+
+            });
         }
       })
     }
@@ -91,7 +125,7 @@ export default class CreateUser extends Component {
       <div>
         {/* <NavBar /> */}
 
-        <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px'}}>
+        <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px' }}>
           <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Research Project Management System</h1>
           <hr />
           <div className="col-md-8 mt-4 mx-auto">

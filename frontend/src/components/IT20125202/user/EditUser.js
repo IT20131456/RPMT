@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import AdminNavBar from '../admin/AdminNavBar';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class EditUser extends Component {
 
@@ -54,19 +55,14 @@ export default class EditUser extends Component {
 
     axios.put(`http://localhost:5000/user/update/${id}`, data).then((res) => {
       if (res.data.success) {
-        alert("User details updated successfully");
-        this.props.history.push(`/admin/users`)
-        window.location.reload();
-        // this.setState(
-        //   {
-        //     idNumber: "",
-        //     name: "",
-        //     email: "",
-        //     groupId: "",
-        //     type: "",
-        //     // password: ""
-        //   }
-        // )
+        swal("User details updated successfully!", "", "success")
+          .then((value) => {
+            if (value) {
+              this.props.history.push(`/admin/users`)
+              window.location.reload();
+            }
+
+          });
       }
     })
   }
@@ -154,7 +150,7 @@ export default class EditUser extends Component {
               />
             </div>
 
-            {this.state.type === 'Student' && 
+            {this.state.type === 'Student' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
                   <label style={{ marginBottom: '5px' }}>Group ID</label>
@@ -164,11 +160,11 @@ export default class EditUser extends Component {
                     name="groupId"
                     value={this.state.groupId}
                     onChange={this.handleInputChange}
-                    />
+                  />
                 </div>
               </span>}
 
-              {this.state.type === 'Supervisor' && 
+            {this.state.type === 'Supervisor' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
                   <label style={{ marginBottom: '5px' }}>Research Field</label>
@@ -178,11 +174,11 @@ export default class EditUser extends Component {
                     name="researchfield"
                     value={this.state.researchfield}
                     onChange={this.handleInputChange}
-                    />
+                  />
                 </div>
               </span>}
 
-              {this.state.type === 'Panel Member' && 
+            {this.state.type === 'Panel Member' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
                   <label style={{ marginBottom: '5px' }}>Panel</label>
@@ -192,21 +188,21 @@ export default class EditUser extends Component {
                     name="panel"
                     value={this.state.panel}
                     onChange={this.handleInputChange}
-                    />
+                  />
                 </div>
               </span>}
-            
+
 
             <div className='form-group' style={{ marginBottom: '15px' }}>
               <label style={{ marginBottom: '5px' }}>Type</label>
               <input
-                    type="text"
-                    className='form-control'
-                    name="type"
-                    value={this.state.type}
-                    onChange={this.handleInputChange}
-                    readOnly
-                    />
+                type="text"
+                className='form-control'
+                name="type"
+                value={this.state.type}
+                onChange={this.handleInputChange}
+                readOnly
+              />
             </div>
 
             {/* <div className='form-group' style={{ marginBottom: '15px' }}>

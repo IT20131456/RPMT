@@ -5,6 +5,7 @@ export const userRegister = newUser => {
             idNumber: newUser.idNumber,
             name: newUser.name,
             email: newUser.email,
+            mobile: newUser.mobile,
             type: newUser.type,
             password: newUser.password,
         })
