@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 
 export default class AdminNavBar extends Component {
   onlogout = (e) => {
+    swal({
+      title: "Are you sure you want to log out?",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willLogout) => {
+        if (willLogout) {
+          swal("Logout successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                window.history.forward();
+                window.location = "http://localhost:3000/admin/login";
+              }
+            });
+        } else {
+          swal("Redirecting...");
+        }
+      });
     e.preventDefault();
-    window.history.forward();
-    window.location = "http://localhost:3000/admin/login";
+    
 
   }
   render() {

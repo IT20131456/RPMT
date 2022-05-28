@@ -69,7 +69,7 @@ export default class RegisterTopic extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Research Topic Registration</h1>
                 </div>
