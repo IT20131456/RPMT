@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Users = require('../models/users');
-const bcrypt = require('bcryptjs')
-const jwt = require('jsonwebtoken')
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { type } = require('express/lib/response');
 
 const router = express.Router();
 
@@ -11,12 +12,14 @@ process.env.SECRET_KEY = 'secret2022';
 //user registration with password encryption
 router.post('/user/registration', (req, res) => {
     const current = new Date();
-    const grpId = '';
     let userData = {
         idNumber: req.body.idNumber,
         name: req.body.name,
         email: req.body.email,
-        groupId: grpId,
+        mobile: req.body.mobile,
+        groupId: '',
+        researchfield: '',
+        panel: '',
         type: req.body.type,
         password: req.body.password,
         dateRegistered: current
@@ -41,19 +44,33 @@ router.post('/user/registration', (req, res) => {
                         })
                         .catch(err => {
                             // console.log("catch")
-                            res.status(400).send("error" + err).end();
+                            // res.status(400).send("error" + err).end();
+                            res.status(400).json({
+                                errorMessage: 'Something went wrong!',
+                                status: false
+                            });
+                            console.log("error: " + err);
                         });
                 })
 
             }
             else {
-                res.status(400).json({
-                    error: "Your ID number is already registered"
-                }).end()
+                // res.status(400).json({
+                //     error: "Your ID number is already registered"
+                // }).end()
+                return res.status(401).json({
+                    errorMessage: "Your ID number is already registered",
+                    status: false
+                }); 
             }
         })
         .catch(err => {
-            res.send("error" + err)
+            // res.send("error" + err)
+            res.status(400).json({
+                errorMessage: 'Something went wrong!',
+                status: false
+            });
+            console.log("error: " + err)
         })
 })
 
@@ -70,7 +87,10 @@ router.post('/user/login', (req, res) => {
                         idNumber: user.idNumber,
                         name: user.name,
                         email: user.email,
+                        mobile: user.mobile,
                         groupId: user.groupId,
+                        researchfield: user.researchfield,
+                        panel: user.panel,
                         type: user.type,
                         dateRegistered: user.dateRegistered
                     }
@@ -80,15 +100,28 @@ router.post('/user/login', (req, res) => {
                     res.send(userToken)
                 }
                 else {
-                    res.json({ error: "Please check your password and try again" })
+                    // res.json({ error: "Please check your password and try again" })
+                    return res.status(401).json({
+                        errorMessage: 'User unauthorized!',
+                        status: false
+                    });  
                 }
             }
             else {
-                res.json({ error: "ID number is not registered in the system" })
+                // res.json({ error: "ID number is not registered in the system" })
+                return res.status(401).json({
+                    errorMessage: "Your ID number cannot be recognized",
+                    status: false
+                }); 
             }
         })
         .catch(err => {
-            res.send("error" + err);
+            // res.send("error" + err);
+            res.status(400).json({
+                errorMessage: 'Something went wrong!',
+                status: false
+            });
+            console.log("error: " + err);
         })
 })
 
@@ -137,6 +170,22 @@ router.get('/user/:id', (req, res) => {
 //get users
 router.get('/users', (req, res) => {
     Users.find().exec((err, users) => {
+        if (err) {
+            return res.status(400).json({
+                error: err
+            })
+        }
+        return res.status(200).json({
+            success: true,
+            existingUsers: users
+        })
+    })
+});
+
+//get users by type
+router.get('/users/:type', (req, res) => {
+    let usertype = req.params.type;
+    Users.find({type: usertype}).exec((err, users) => {
         if (err) {
             return res.status(400).json({
                 error: err
