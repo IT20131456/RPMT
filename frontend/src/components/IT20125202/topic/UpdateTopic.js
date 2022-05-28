@@ -80,7 +80,7 @@ export default class UpdateTopic extends Component {
   render() {
 
     return (
-      <div>
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
         <div className='col-lg-9 mt-2 mb-2'>
           <h1>Update Topic</h1>
         </div>

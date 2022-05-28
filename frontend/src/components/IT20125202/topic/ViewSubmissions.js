@@ -38,7 +38,7 @@ export default class ViewSubmissions extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
         <div className='row'>
           <div className='col-lg-9 mt-2 mb-2'>
             <h1>Topics</h1>

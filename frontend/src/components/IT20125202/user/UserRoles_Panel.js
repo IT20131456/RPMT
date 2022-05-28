@@ -112,14 +112,15 @@ export default class UserRoles_Panel extends Component {
                 onChange={this.handleSearchArea}>
               </input>
             </div>
+            <hr /><br />
           </div>
-          <br />
           <div className="btn-group">
             <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
             <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
             <a href="/admin/students" className="btn btn-outline-dark">Students</a>
             <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
           </div>
+          <br />
           <table className="table">
             <thead>
               <tr>

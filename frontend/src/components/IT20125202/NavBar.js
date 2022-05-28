@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom/cjs/react-router-dom.min';
 import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
 
 class NavBar extends Component {
 
@@ -12,7 +13,7 @@ class NavBar extends Component {
   }
 
   componentDidMount() {
-    document.title = "User Profile"
+    document.title = "NavBar"
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
@@ -26,9 +27,29 @@ class NavBar extends Component {
 
   logOut(e) {
     e.preventDefault();
-    localStorage.removeItem('userToken');
-    this.props.history.push(`/user/login`)
-    window.location.reload();
+    swal({
+      title: "Are you sure you want to log out?",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willLogout) => {
+        if (willLogout) {
+          swal("Logout successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                localStorage.removeItem('userToken');
+                this.props.history.push(`/user/login`)
+                window.location.reload();
+              }
+            });
+        } else {
+          swal("Redirecting...");
+        }
+      });
+
+
   }
 
   render() {
@@ -36,10 +57,10 @@ class NavBar extends Component {
     const loginRegLink = (
       <ul className='nav nav-tabs'>
         <li className='nav-item'>
-          <a className="nav-link" aria-current="page" href="/user/login" style={{textDecoration: 'none', color: 'white'}}>Login</a>
+          <a className="nav-link" aria-current="page" href="/user/login" style={{ textDecoration: 'none', color: 'white' }}>Login</a>
         </li>
         <li className='nav-item'>
-          <a className="nav-link" aria-current="page" href="/user/registration" style={{textDecoration: 'none', color: 'white'}}>Register</a>
+          <a className="nav-link" aria-current="page" href="/user/registration" style={{ textDecoration: 'none', color: 'white' }}>Register</a>
         </li>
       </ul>
     )
@@ -50,17 +71,17 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+            <a className="nav-link" aria-current="page" href="/home" style={{ textDecoration: 'none', color: 'white' }}>Home</a>
           </li>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/student/topics" style={{textDecoration: 'none', color: 'white'}}>Topics</a>
+            <a className="nav-link" aria-current="page" href="/student/topics" style={{ textDecoration: 'none', color: 'white' }}>Topics</a>
           </li>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
+            <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
 
           <li className='nav-item'>
-            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
+            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>
               Log out
             </a>
           </li>
@@ -71,13 +92,13 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+            <a className="nav-link" aria-current="page" href="/home" style={{ textDecoration: 'none', color: 'white' }}>Home</a>
           </li>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
+            <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
           <li className='nav-item'>
-            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
+            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>
               Log out
             </a>
           </li>
@@ -88,16 +109,16 @@ class NavBar extends Component {
       userLink = (
         <ul className='nav nav-tabs'>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/home" style={{textDecoration: 'none', color: 'white'}}>Home</a>
+            <a className="nav-link" aria-current="page" href="/home" style={{ textDecoration: 'none', color: 'white' }}>Home</a>
           </li>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/user/profile" style={{textDecoration: 'none', color: 'white'}}>Profile</a>
+            <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
           <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/panel/topic/list" style={{textDecoration: 'none', color: 'white'}}>Topics</a>
+            <a className="nav-link" aria-current="page" href="/panel/topic/list" style={{ textDecoration: 'none', color: 'white' }}>Topics</a>
           </li>
           <li className='nav-item'>
-            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{textDecoration: 'none', color: 'white'}}>
+            <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>
               Log out
             </a>
           </li>
@@ -108,9 +129,9 @@ class NavBar extends Component {
 
     return (
       <div>
-        <nav className="navbar navbar-expand-lg navbar-light" style={{background: '#212F3C'}}>
+        <nav className="navbar navbar-expand-lg navbar-light" style={{ background: '#212F3C' }}>
           <div className="container-fluid">
-            <a className="navbar-brand" href="/" style={{color: 'white'}}>RPMS</a>
+            <a className="navbar-brand" href="/" style={{ color: 'white' }}>RPMS</a>
 
             <button
               className="navbar-toggler"
