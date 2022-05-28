@@ -87,24 +87,61 @@ export default class UserProfile extends Component {
             password: password
         }
         // console.log(data)
+        let validated = true;
+        if (data.name === '' || data.name.length < 5) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Name cannot be empty",
+                icon: "warning",
+            });
+        }
+        else if (!data.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a valid email",
+                icon: "warning",
+            });
+        }
+        else if (!data.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a valid mobile number",
+                icon: "warning",
+            });
+        }
+        else if(this.state.type === 'Supervisor' && data.researchfield === ''){
+            validated = false;
+            swal({
+                title: "",
+                text: "Please add your research field",
+                icon: "warning",
+            });
+        }
 
-        axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
-            if (res.data.success) {
-                swal("Profile updated successfully!", "", "success")
-                    .then((value) => {
-                        if (value) {
-                            this.props.history.push(`/user/profile`)
-                            window.location.reload();
-                        }
+        // console.log(data)
 
-                    });
-            }
-        })
+        if (validated) {
+            axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
+                if (res.data.success) {
+                    swal("Profile updated successfully!", "", "success")
+                        .then((value) => {
+                            if (value) {
+                                this.props.history.push(`/user/profile`)
+                                window.location.reload();
+                            }
+
+                        });
+                }
+            })
+        }
     }
 
     render() {
         return (
-            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+            <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Profile</h1>
                 </div>

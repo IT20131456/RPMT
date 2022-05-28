@@ -53,23 +53,53 @@ export default class RegisterTopic extends Component {
         }
         // console.log(data)
 
-        axios.post('http://localhost:5000/topic/save', data).then((res) => {
-            if (res.data.success) {
-                swal("Registered successfully!", "", "success")
-                    .then((value) => {
-                        if (value) {
-                            this.props.history.push(`/student/topics`)
-                            window.location.reload();
-                        }
+        let validated = true;
 
-                    });
-            }
-        })
+        if (groupId === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "You still do not have a group",
+                icon: "warning",
+            });
+        }
+        else if (topicR === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter the topic",
+                icon: "warning",
+            });
+        }
+        else if (description === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a description about your project",
+                icon: "warning",
+            });
+        }
+
+        if(validated){
+            axios.post('http://localhost:5000/topic/save', data).then((res) => {
+                if (res.data.success) {
+                    swal("Registered successfully!", "", "success")
+                        .then((value) => {
+                            if (value) {
+                                this.props.history.push(`/student/topics`)
+                                window.location.reload();
+                            }
+    
+                        });
+                }
+            })
+        }
+        
     }
 
     render() {
         return (
-            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+            <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Research Topic Registration</h1>
                 </div>
