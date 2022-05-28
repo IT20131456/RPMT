@@ -1,10 +1,6 @@
 //panel members view the topic list  
 import React, { Component } from 'react';
 import axios from 'axios';
-// import NavBar from '../home/NavBar'
-// import { confirmAlert } from 'react-confirm-alert';
-// import 'react-confirm-alert/src/react-confirm-alert.css';
-
 
 export default class viewTopicList extends Component {
 
@@ -33,35 +29,6 @@ export default class viewTopicList extends Component {
       }
     });
   }
-
-  // onDelete = (id) => {
-  //   //with a confirmation msg
-  //   confirmAlert({
-  //     title: 'Delete Topic',
-  //     message: 'Are you sure you want to delete the topic?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: () =>
-  //           axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
-  //             alert("Deleted Successfully!");
-  //             this.retrieveTopics();
-  //           })
-  //       },
-  //       {
-  //         label: 'No',
-  //         onClick: () => alert('Cancelled. The topic is not deleted')
-  //       }
-  //     ]
-  //   });
-
-  //   //without confirmation
-  //   // axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
-  //   //   alert('Deleted successfully!');
-
-  //   //   this.retrieveTopics();
-  //   // })
-  // }
 
   handleSearchArea = (e) => {
     // console.log(e.currentTarget.value)
@@ -99,67 +66,60 @@ export default class viewTopicList extends Component {
 
   render() {
     return (
-      <div>
-        {/* <NavBar /> */}
-
-        <div className="container" style={{padding: '50px 50px 50px 50px'}}>
-          <div className='row'>
-            <div className='col-lg-9 mt-2 mb-2'>
-              <h1>Topics</h1>
-            </div>
-            <div className='col-lg-3 mt-2 mb-2'>
-              <input
-                className='form-control'
-                type="search"
-                placeholder="Search User"
-                name="searchQuery"
-                onChange={this.handleSearchArea}>
-              </input>
-            </div>
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+        <div className='row'>
+          <div className='col-lg-9 mt-2 mb-2'>
+            <h1>Topics</h1>
           </div>
-
-          <table className="table">
-            <thead>
-              <tr>
-                <th scope='col'> # </th>
-                <th scope='col'> Group ID </th>
-                <th scope='col'> Topic </th>
-                <th scope='col'> Description </th>
-                <th scope='col'> Status </th>
-                <th scope='col'> Comments </th>
-                <th>Action</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              {this.state.topics.map((topics, index) => (
-                <tr key={index}>
-                  <th scope='row'>{index + 1}</th>
-                  <td>
-                    <a href={`/panel/topic/details/${topics._id}`} style={{ textDecoration: 'none' }}>
-                      {topics.groupId}
-                    </a>
-                  </td>
-                  <td>{topics.topicR}</td>
-                  <td>{topics.description}</td>
-                  <td>{topics.status}</td>
-                  <td>{topics.comments}</td>
-                  <td>
-                    <a className='btn btn-outline-success' href={`/panel/topic/update/${topics._id}`}>
-                      <i className='fas fa-edit'></i> &nbsp;Update
-                    </a>
-                    {/* &nbsp;
-                    <a className='btn btn-outline-danger' href="#" onClick={() => this.onDelete(users._id)}>
-                      <i className='fas fa-trash'></i> &nbsp;Delete
-                    </a> */}
-                  </td>
-                </tr>
-
-              ))}
-            </tbody>
-          </table>
-          {/* <button className='btn btn-success'> <a href='/add' style={{ textDecoration: 'none', color: 'white' }}> Create New Post  </a></button> */}
+          <div className='col-lg-3 mt-2 mb-2'>
+            <input
+              className='form-control'
+              type="search"
+              placeholder="Search"
+              name="searchQuery"
+              onChange={this.handleSearchArea}>
+            </input>
+          </div>
+          <hr /><br />
         </div>
+
+
+        <table className="table">
+          <thead>
+            <tr>
+              <th scope='col'> # </th>
+              <th scope='col'> Group ID </th>
+              <th scope='col'> Topic </th>
+              <th scope='col'> Description </th>
+              <th scope='col'> Status </th>
+              <th scope='col'> Comments </th>
+              <th scope='col'></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {this.state.topics.map((topics, index) => (
+              <tr key={index}>
+                <th scope='row'>{index + 1}</th>
+                <td>
+                  <a href={`/panel/topic/details/${topics._id}`} style={{ textDecoration: 'none' }}>
+                    {topics.groupId}
+                  </a>
+                </td>
+                <td>{topics.topicR}</td>
+                <td>{topics.description}</td>
+                <td>{topics.status}</td>
+                <td>{topics.comments}</td>
+                <td>
+                  <a className='btn btn-outline-success' href={`/panel/topic/update/${topics._id}`}>
+                    <i className='fas fa-edit'></i> &nbsp;Update
+                  </a>
+                </td>
+              </tr>
+
+            ))}
+          </tbody>
+        </table>
       </div>
     )
   }

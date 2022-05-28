@@ -11,13 +11,14 @@ import UserProfile from './components/IT20125202/user/UserProfile';
 import Home from './components/IT20127046/Home';
 import UserLogin from './components/IT20125202/user/UserLogin';
 import NavBar from './components/IT20125202/NavBar';
+import LandingPage from './components/IT20125202/LandingPage';
 
 //student
 import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
 import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
 import StudentGroup from "./components/IT20131456/StudentGroup";
 import SupervisorDetails from "./components/It20131456/SupervisorDetails";
-import GroupChatStudent from './components/IT20127046/GroupChat_Student';
+import GroupChatStudent from './components/IT20127046/user/GroupChat_Student';
 import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
 
 import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
@@ -36,9 +37,12 @@ import UserRoles from './components/IT20125202/user/UserRoles';
 import AdminHome from './components/IT20125202/admin/AdminHome';
 import ViewListAdmin from './components/IT20125202/topic/ViewListAdmin';
 import AdminLogin from './components/IT20125202/admin/AdminLogin';
-import DocumentTemp_Admin from './components/IT20127046/DocumentTemp_Admin';
-import DocumentTempCreate from './components/IT20127046/DocumentTempCreate';
-import DocumentTempUpdate from './components/IT20127046/DocumentTempUpdate';
+import DocumentTemp_Admin from './components/IT20127046/admin/DocumentTemp_Admin';
+import DocumentTempCreate from './components/IT20127046/admin/DocumentTempCreate';
+import DocumentTempUpdate from './components/IT20127046/admin/DocumentTempUpdate';
+import UserRoles_Panel from "./components/IT20125202/user/UserRoles_Panel";
+import UserRoles_Students from "./components/IT20125202/user/UserRoles_Students";
+import UserRoles_Supervisors from "./components/IT20125202/user/UserRoles_Supervisor";
 
 import StudentGroup from "../src/components/IT20131456/StudentGroup";
 import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
@@ -57,20 +61,21 @@ import UpdateTopic from './components/IT20125202/topic/UpdateTopic';
 import AddEvaluation from "./components/IT20128036/admin/AddEvaluation";
 import EvaluationList from "./components/IT20128036/admin/EvaluationList";
 import EditEvaluation from './components/IT20128036/admin/editEvaluation';
-import GroupChatAdmin from './components/IT20127046/GroupChat_Admin';
+import GroupChatAdmin from './components/IT20127046/user/GroupChat_Admin';
 
 
 //supervisor
 
-import image from './images/download.jpg'
-import CreateMarkingSchem from "./components/IT20127046/CreateMarkingSchem";
+import image from './images/cover.jpg'
+
+import CreateMarkingSchem from "./components/IT20127046/admin/CreateMarkingSchem";
 
 import ViewSubmitions from './components/IT20128036/admin/viewSubmitions';
 import AddMarks from './components/IT20128036/admin/addMarks';
 import viewMarks from './components/IT20128036/admin/viewMarks';
 import EditMarks from './components/IT20128036/admin/editMarks';
 
-import ViewMarkingSchem_Admin from "./components/IT20127046/ViewMarkingSchem_Admin";
+import ViewMarkingSchem_Admin from "./components/IT20127046/admin/ViewMarkingSchem_Admin";
 
 
 
@@ -90,42 +95,40 @@ export default class App extends Component {
             <Route path='/admin/edituser/:id' exact component={EditUser}></Route>
             <Route path='/admin/user/:id' exact component={UserDetails}></Route>
             <Route path='/admin/users' exact component={UserRoles}></Route>
-            <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route> 
-            <Route path='/admin/login' exact component={AdminLogin}></Route>               
+            <Route path='/admin/topiclist' exact component={ViewListAdmin}></Route>
+            <Route path='/admin/login' exact component={AdminLogin}></Route>
+            <Route path='/admin/panelmembers' exact component={UserRoles_Panel}></Route>
+            <Route path='/admin/students' exact component={UserRoles_Students}></Route>
+            <Route path='/admin/supervisors' exact component={UserRoles_Supervisors}></Route>
 
             <Route path="/add/marking" exact component={CreateMarkingSchem}></Route>
-
-
-
-         
-
             <Route path="/view/marking" exact component={ViewMarkingSchem_Admin}></Route>
             <Route path="/documentTemp" exact component={DocumentTemp_Admin}></Route>
             <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
             <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
 
-            
-             
+
+
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', height: '1000px' }}>
-
-              <div className='container' style={{ background: 'white', height: '1000px', padding: '0px 0px 10px 0px' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh' }}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', overflowY: 'scroll', msOverflowStyle: 'none' }}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
+                <Route path="/" exact component={LandingPage}></Route>
                 <Route path="/user/login" exact component={UserLogin}></Route>
                 <Route path='/user/profile' exact component={UserProfile}></Route>
                 <Route path='/user/registration' exact component={CreateUser}></Route>
 
                 {/* IT20127046 */}
-                <Route path="/" exact component={Home}></Route>
-                
-                
+                <Route path="/home" exact component={Home}></Route>
+
+
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
                 <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
-                
+
 
                 {/* ---------------Student--------------- */}
                 {/* IT20125202 */}
@@ -140,6 +143,7 @@ export default class App extends Component {
 
 
                 {/*IT20128036*/}
+
                 <Route path="/evaluation/student/view" component={SviewEvaluation}/>
                 <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
                 <Route path="/submition/student/add" component={Submitions}/>
@@ -150,13 +154,18 @@ export default class App extends Component {
           
              
 
+               
+
+
+
+
                 {/* ---------------Supervisor--------------- */}
 
-                  {/*IT20128036*/}
-                <Route path="/submitions/view" component={ViewSubmitions}/>
-                <Route path="/marks/add/:id" component={AddMarks}/>
-                <Route path="/marks/view" component={viewMarks}/>
-                <Route path="/marks/edit/:id" component={EditMarks}/>
+                {/*IT20128036*/}
+                <Route path="/submitions/view" component={ViewSubmitions} />
+                <Route path="/marks/add/:id" component={AddMarks} />
+                <Route path="/marks/view" component={viewMarks} />
+                <Route path="/marks/edit/:id" component={EditMarks} />
 
 
                 {/* ---------------Panel member--------------- */}
@@ -166,34 +175,31 @@ export default class App extends Component {
                 <Route path='/panel/topic/update/:id' exact component={UpdateTopic}></Route>
 
                 {/*IT20128036*/}
-                <Route path="/evaluation/add" component={AddEvaluation}/>
-                <Route path="/evaluation/view" component={EvaluationList}/>
-                <Route  path="/evaluation/edit/:id" component={EditEvaluation}/>
-            
+                <Route path="/evaluation/add" component={AddEvaluation} />
+                <Route path="/evaluation/view" component={EvaluationList} />
+                <Route path="/evaluation/edit/:id" component={EditEvaluation} />
 
-                 {/* IT20131456 */}
-                 
-                 {/* ---------------Student--------------- */}
+
+                {/* IT20131456 */}
+
+                {/* ---------------Student--------------- */}
                 <Route path="/student/group/add" component={CreateStudentGroup}></Route>
-               
+
                 {/* ---------------Admin--------------- */}
-                <Route path="/student/groups/view" exact component={StudentGroup}></Route>                
+                <Route path="/student/groups/view" exact component={StudentGroup}></Route>
                 <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
 
 
-                   {/*IT20128036*/}
-            <Route path="/submitiontype/add" component={AddSubmitionType}/>
-            <Route path="/submitiontypelist" component={SubmitionTypeList}/>
-            <Route path="/submitiontype/edit/:id" component={EditSubmitonType}/>
-
-
-              
+                {/*IT20128036*/}
+                <Route path="/submitiontype/add" component={AddSubmitionType} />
+                <Route path="/submitiontypelist" component={SubmitionTypeList} />
+                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />
 
               </div>
             </div>
           </Switch>
-        </div>
-      </BrowserRouter>
+        </div >
+      </BrowserRouter >
 
     )
   }

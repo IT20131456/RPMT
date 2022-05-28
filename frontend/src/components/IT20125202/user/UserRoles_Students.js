@@ -4,7 +4,8 @@ import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
 import swal from 'sweetalert';
 
-export default class UserRoles extends Component {
+
+export default class UserRoles_Students extends Component {
 
   constructor(props) {
     super(props);
@@ -20,7 +21,9 @@ export default class UserRoles extends Component {
   }
 
   retrieveUsers() {
-    axios.get('http://localhost:5000/users').then(res => {
+
+    const type = 'Student'
+    axios.get(`http://localhost:5000/users/${type}`).then(res => {
       if (res.data.success) {
         this.setState({
           users: res.data.existingUsers
@@ -76,15 +79,15 @@ export default class UserRoles extends Component {
     const searchResult = users.filter((user) =>
       user.idNumber.toLowerCase().includes(searchKey) ||
       user.name.toLowerCase().includes(searchKey) ||
-      user.type.toLowerCase().includes(searchKey) ||
+      user.groupId.toLowerCase().includes(searchKey) ||
 
       user.idNumber.toUpperCase().includes(searchKey) ||
       user.name.toUpperCase().includes(searchKey) ||
-      user.type.toUpperCase().includes(searchKey) ||
+      user.groupId.toUpperCase().includes(searchKey) ||
 
       user.idNumber.includes(searchKey) ||
       user.name.includes(searchKey) ||
-      user.type.includes(searchKey)
+      user.groupId.includes(searchKey)
     )
 
     this.setState({
@@ -130,10 +133,10 @@ export default class UserRoles extends Component {
                 <th scope='col'> Name </th>
                 <th scope='col'> Email </th>
                 <th scope='col'> Mobile </th>
-                <th scope='col'> Type </th>
+                <th scope='col'> Group ID </th>
                 {/* <th scope='col'> Registered Date </th> */}
-                <th scope='col'> </th>
                 {/* <th scope='col'> Password </th> */}
+                <th scope='col'> </th>
               </tr>
             </thead>
 
@@ -149,7 +152,7 @@ export default class UserRoles extends Component {
                   <td>{users.name}</td>
                   <td>{users.email}</td>
                   <td>{users.mobile}</td>
-                  <td>{users.type}</td>
+                  <td>{users.groupId}</td>
                   {/* <td>{users.dateRegistered}</td> */}
                   {/* <td>{users.password}</td> */}
                   <td>
