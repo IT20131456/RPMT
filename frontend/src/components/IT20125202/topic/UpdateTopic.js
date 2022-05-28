@@ -40,7 +40,6 @@ export default class UpdateTopic extends Component {
       status: status,
       comments: comments
     }
-
     // console.log(data)
 
     axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
@@ -48,15 +47,6 @@ export default class UpdateTopic extends Component {
         alert("Topic updated successfully");
         this.props.history.push(`/panel/topic/list`)
         window.location.reload();
-        // this.setState(
-        //   {
-        //     groupId: "",
-        //     topicR: "",
-        //     description: "",
-        //     status: "",
-        //     comments: ""
-        //   }
-        // )
       }
     })
   }
@@ -76,7 +66,6 @@ export default class UpdateTopic extends Component {
           status: res.data.topic.status,
           comments: res.data.topic.comments
         })
-
         // console.log(this.state.topic);
       }
     })
@@ -85,11 +74,11 @@ export default class UpdateTopic extends Component {
   render() {
 
     return (
-      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+      <div>
         <div className='col-lg-9 mt-2 mb-2'>
           <h1>Update Topic</h1>
         </div>
-        <hr/><br/>
+        <hr /><br />
         <div className='col-md-8 mt-4 mx-auto'>
           <form className='needs-validation' noValidate>
             <div className='form-group' style={{ marginBottom: '15px' }}>

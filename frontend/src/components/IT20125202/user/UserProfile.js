@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default class UserProfile extends Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
             _id: '',
@@ -22,7 +22,7 @@ export default class UserProfile extends Component {
         }
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.title = "User Profile"
 
         const usertoken = localStorage.userToken;
@@ -39,7 +39,7 @@ export default class UserProfile extends Component {
         // }
     }
 
-    retrieveProfile(id){
+    retrieveProfile(id) {
         axios.get(`http://localhost:5000/user/${id}`).then((res) => {
             if (res.data.success) {
                 this.setState({
@@ -54,7 +54,6 @@ export default class UserProfile extends Component {
                     type: res.data.user.type,
                     password: res.data.user.password
                 })
-
                 // console.log(this.state.user);
             }
         })
@@ -63,54 +62,50 @@ export default class UserProfile extends Component {
     handleInputChange = (e) => {
 
         const { name, value } = e.target;
-    
+
         this.setState({
-          ...this.state,
-          [name]: value
+            ...this.state,
+            [name]: value
         })
     }
 
     onSubmit = (e) => {
         e.preventDefault();
-    
-        const {_id, idNumber, name, email, mobile, groupId, researchfield, panel, type, password } = this.state;
-    
+
+        const { _id, idNumber, name, email, mobile, groupId, researchfield, panel, type, password } = this.state;
+
         const data = {
-          idNumber: idNumber,
-          name: name,
-          email: email,
-          mobile: mobile,
-          groupId: groupId,
-          researchfield: researchfield,
-          panel: panel,
-          type: type,
-          password: password
+            idNumber: idNumber,
+            name: name,
+            email: email,
+            mobile: mobile,
+            groupId: groupId,
+            researchfield: researchfield,
+            panel: panel,
+            type: type,
+            password: password
         }
-    
         // console.log(data)
-    
+
         axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
-          if (res.data.success) {
-            alert("Profile updated successfully");
-            this.props.history.push(`/user/profile`)
-            window.location.reload();
-          }
+            if (res.data.success) {
+                alert("Profile updated successfully");
+                this.props.history.push(`/user/profile`)
+                window.location.reload();
+            }
         })
-      }
+    }
 
     render() {
         return (
-        <div>
-            <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
-            {/* <div className="container" style={{padding: '0px 200px 50px 200px', height: 'auto', width: 'auto', background: 'white'}}> */}
-                {/* <div className='jumbotron mt-5' style={{height: 'auto', padding: '10px 10px 10px 10px', width: 'auto'}}> */}
-                    <div className='col-lg-9 mt-2 mb-2'>
-                        <h1>Profile</h1>
-                    </div>
-                    <hr />
-                    <div className='col-md-8 mt-4 mx-auto'>
+            <div>
+                <div className='col-lg-9 mt-2 mb-2'>
+                    <h1>Profile</h1>
+                </div>
+                <hr />
+                <div className='col-md-8 mt-4 mx-auto'>
                     {/* <h1 className='h3 mb-3 font-weight-normal'>Research Topic Registration</h1> */}
-                    <br/>
+                    <br />
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
                             <label style={{ marginBottom: '5px' }}>Registration Number</label>
@@ -132,7 +127,7 @@ export default class UserProfile extends Component {
                                 name="name"
                                 value={this.state.name}
                                 onChange={this.handleInputChange}
-                                
+
                             />
                         </div>
 
@@ -144,7 +139,7 @@ export default class UserProfile extends Component {
                                 name="email"
                                 value={this.state.email}
                                 onChange={this.handleInputChange}
-                                
+
                             />
                         </div>
 
@@ -156,7 +151,7 @@ export default class UserProfile extends Component {
                                 name="mobile"
                                 value={this.state.mobile}
                                 onChange={this.handleInputChange}
-                                
+
                             />
                         </div>
 
@@ -171,7 +166,7 @@ export default class UserProfile extends Component {
                                 readOnly
                             />
                         </div>
-                        {this.state.type === 'Student' && 
+                        {this.state.type === 'Student' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
                                     <label style={{ marginBottom: '5px' }}>Group ID</label>
@@ -186,7 +181,7 @@ export default class UserProfile extends Component {
                                 </div>
                             </span>}
 
-                        {this.state.type === 'Supervisor' && 
+                        {this.state.type === 'Supervisor' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
                                     <label style={{ marginBottom: '5px' }}>Research Field</label>
@@ -196,12 +191,12 @@ export default class UserProfile extends Component {
                                         name="researchfield"
                                         value={this.state.researchfield}
                                         onChange={this.handleInputChange}
-                                        
+
                                     />
                                 </div>
                             </span>}
 
-                        {this.state.type === 'Panel Member' && 
+                        {this.state.type === 'Panel Member' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
                                     <label style={{ marginBottom: '5px' }}>Panel</label>
@@ -226,7 +221,6 @@ export default class UserProfile extends Component {
 
                 </div>
             </div>
-        </div>
         )
     }
 }

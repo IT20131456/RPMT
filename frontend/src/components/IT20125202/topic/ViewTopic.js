@@ -18,7 +18,6 @@ export default class ViewTopic extends Component {
         this.setState({
           topic: res.data.topic
         })
-
         // console.log(this.state.topic);
       }
     })
@@ -28,40 +27,38 @@ export default class ViewTopic extends Component {
 
     const { groupId, topicR, description, status, comments } = this.state.topic;
     return (
-      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+      <div>
+        <div className='col-lg-9 mt-2 mb-2'>
+          <h1>Topic Request Details</h1>
+        </div>
+        <hr /><br />
+
         <div>
-          <div className='col-lg-9 mt-2 mb-2'>
-            <h1>Topic Request Details</h1>
-          </div>
-          <hr/><br/>
+          <dl className='row'>
+            <dt className='col-sm-3'>Group ID</dt>
+            <dd className='col-sm-9'>{groupId}</dd>
 
-          <div>
-            <dl className='row'>
-              <dt className='col-sm-3'>Group ID</dt>
-              <dd className='col-sm-9'>{groupId}</dd>
+            <dt className='col-sm-3'>Topic</dt>
+            <dd className='col-sm-9'>{topicR}</dd>
 
-              <dt className='col-sm-3'>Topic</dt>
-              <dd className='col-sm-9'>{topicR}</dd>
+            <dt className='col-sm-3'>Description</dt>
+            <dd className='col-sm-9'>{description}</dd>
 
-              <dt className='col-sm-3'>Description</dt>
-              <dd className='col-sm-9'>{description}</dd>
+            <dt className='col-sm-3'>Status</dt>
+            <dd className='col-sm-9'>{status}</dd>
 
-              <dt className='col-sm-3'>Status</dt>
-              <dd className='col-sm-9'>{status}</dd>
+            <dt className='col-sm-3'>Comments</dt>
+            <dd className='col-sm-9'>{comments}</dd>
+          </dl>
 
-              <dt className='col-sm-3'>Comments</dt>
-              <dd className='col-sm-9'>{comments}</dd>
-            </dl>
-            
-            <a
-              href="/panel/topic/list"
-              class="btn btn-outline-dark"
-              tabindex="-1"
-              role="button"
-              aria-disabled="true">
-              Back
-            </a>
-          </div>
+          <a
+            href="/panel/topic/list"
+            class="btn btn-outline-dark"
+            tabindex="-1"
+            role="button"
+            aria-disabled="true">
+            Back
+          </a>
         </div>
       </div>
     )
