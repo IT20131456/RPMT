@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { userLogin } from './UserFunctions';
-// import jwt_decode from 'jwt-decode';
+import axios from 'axios';
 import swal from 'sweetalert';
 
 export default class UserLogin extends Component {
@@ -33,17 +32,7 @@ export default class UserLogin extends Component {
             idNumber: this.state.idNumber,
             password: this.state.password
         }
-        // userLogin(user).then((res, err) => {
 
-        //     if (res) {
-        //         alert("Login successful!")
-        //         this.props.history.push(`/`)
-        //         window.location.reload();
-        //     }
-        //     else {
-        //         alert('Please check your username and password')
-        //     }
-        // })
         let validated = true;
         if (user.idNumber === '') {
             validated = false;
@@ -63,10 +52,14 @@ export default class UserLogin extends Component {
         }
 
         if (validated) {
-            userLogin(user).then(res => {
+            axios.post('http://localhost:5000/user/login', {
+                idNumber: user.idNumber,
+                password: user.password
+            }).then(res => {
                 swal("Login successful!", "", "success")
                     .then((value) => {
                         if (value) {
+                            localStorage.setItem('userToken', res.data)
                             this.props.history.push(`/`)
                             window.location.reload();
                         }
