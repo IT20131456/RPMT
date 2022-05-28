@@ -6,6 +6,11 @@ const studentmodelSchema = new mongoose.Schema({
     required: true,
   },
 
+  groupname: {
+    type: String,
+    required: true,
+  },
+
   studentid1: {
     type: String,
     required: true,
@@ -62,6 +67,11 @@ const studentmodelSchema = new mongoose.Schema({
   },
 
   panelmembername: {
+    type: String,
+    required: true,
+  },
+
+  status: {
     type: String,
     required: true,
   },

@@ -51,7 +51,7 @@ export default class ViewStudentGroup extends Component {
 
         <table className="table table-striped table-bordered">
           <thead>
-          <tr className="text-light " style={{background:'rgb(0,0,128)'}}>  
+            <tr className="bg-primary text-light ">
               <th scope="col">Group ID</th>
               <th scope="col">Group Name</th>
               <th scope="col">Student ID</th>

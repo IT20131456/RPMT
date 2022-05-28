@@ -76,6 +76,11 @@ export default class CreateStudentGroup extends Component {
 
     axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
       if (res.data.success) {
+        this.props.history.push({
+          pathname: "/student/groups/view",
+          state: this.groupid,
+        });
+
         this.setState({
           groupid: "",
           groupname: "",
@@ -99,8 +104,8 @@ export default class CreateStudentGroup extends Component {
 
   render() {
     return (
-      <div className="container ">
-        <div className="container border bg-light mt-5  ">
+      <div className="container px-5 my-5">
+        <div className="container border border-dark bg-light mt-5 ">
           <div className="form-group row">
             <div className="col-lg-12 margin-tb">
               <div className="float-left">
@@ -121,7 +126,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter Group id -RExxx"
                     name="groupid"
-                    pattern="[RE]+[0-9]{3}"
+                    pattern="RE[0-9]{3}"
                     title="Group ID is Invalid"
                     value={this.state.groupid}
                     onChange={this.handleInputChange}
@@ -154,7 +159,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id -ITxxxxxxxx"
                     name="studentid1"
-                    pattern="[IT]+[0-9]{8}"
+                    pattern="IT[0-9]{8}"
                     title="Student ID is Invalid"
                     value={this.state.studentid1}
                     onChange={this.handleInputChange}
@@ -187,7 +192,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid2"
-                    pattern="[IT]+[0-9]{8}"
+                    pattern="IT[0-9]{8}"
                     title="Student ID is Invalid"
                     value={this.state.studentid2}
                     onChange={this.handleInputChange}
@@ -220,7 +225,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid3"
-                    pattern="[IT]+[0-9]{8}"
+                    pattern="IT[0-9]{8}"
                     title="Student ID is Invalid"
                     value={this.state.studentid3}
                     onChange={this.handleInputChange}
@@ -253,7 +258,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid4"
-                    pattern="[IT]+[0-9]{8}"
+                    pattern="IT[0-9]{8}"
                     title="Student ID is Invalid"
                     value={this.state.studentid4}
                     onChange={this.handleInputChange}
@@ -334,7 +339,10 @@ export default class CreateStudentGroup extends Component {
             </div>
             <div className="col-md-12">
               <div className="form-group">
-                <button className="btn btn-primary" type="submit">
+                <button
+                  className="btn btn-outline-primary col-md-12"
+                  type="submit"
+                >
                   <i className="fa fa-save"> Save </i>
                 </button>
               </div>

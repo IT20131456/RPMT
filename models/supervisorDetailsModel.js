@@ -20,7 +20,6 @@ const supervisormodelSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-
 });
 
 module.exports = mongoose.model("supervisordetails", supervisormodelSchema);
