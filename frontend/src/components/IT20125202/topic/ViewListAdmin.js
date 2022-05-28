@@ -100,6 +100,7 @@ export default class ViewListAdmin extends Component {
   render() {
     return (
       <div className='container'>
+        <br/>
         <AdminNavBar />
         <br />
 
