@@ -78,6 +78,7 @@ import EditMarks from './components/IT20128036/admin/editMarks';
 import ViewMarkingSchem_Admin from "./components/IT20127046/admin/ViewMarkingSchem_Admin";
 import ViewMarkingScheme from "./components/IT20127046/user/ViewMarkingScheme";
 import ViewDocumentTemplate from "./components/IT20127046/user/ViewDocumentTemplate";
+import DisplayMarkingScheme from "./components/IT20127046/user/DisplayMarkingScheme";
 
 
 
@@ -127,11 +128,11 @@ export default class App extends Component {
                 {/* IT20127046 */}
                 <Route path="/home" exact component={Home}></Route>
 
-
                 <Route path="/chatAppStudent" exact component={GroupChatStudent}></Route>
                 <Route path="/chatAppAdmin" exact component={GroupChatAdmin}></Route>
                 <Route path="/user/view/marking" exact component={ViewMarkingScheme}></Route>
                 <Route path="/user/view/documentTemplate" exact component={ViewDocumentTemplate}></Route>
+                <Route path="/user/display/marking/:id" exact component={DisplayMarkingScheme}></Route>
 
 
                 {/* ---------------Student--------------- */}

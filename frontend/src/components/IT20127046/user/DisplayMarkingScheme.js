@@ -3,12 +3,15 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import fileDownload from "js-file-download";
 
-export default class ViewMarkingScheme extends Component {
+export default class DisplayMarkingScheme extends Component {
   constructor() {
     super();
     this.state = {
       userType: "",
       markingSchemTitle: [],
+      markingCriteria: [],
+      moduleName: "",
+      assignment: "",
     };
   }
 
@@ -22,18 +25,36 @@ export default class ViewMarkingScheme extends Component {
       });
     }
 
-    this.retrieveTitles();
+    console.log("Hello");
+
+    this.getMarkingCriteria();
   }
 
-  // Get marking titles from db
-  retrieveTitles() {
-    axios.get("http://localhost:5000/getAll/markingTitles").then((res) => {
+  getMarkingCriteria() {
+    const titleID = this.props.match.params.id;
+
+    // Get marking scheme title details
+    axios
+      .get(`http://localhost:5000/markingTitle/get/${titleID}`)
+      .then((res) => {
+        if (res.data.success) {
+          this.setState({
+            markingSchemTitle: res.data.schemeTitle,
+            moduleName: res.data.schemeTitle.moduleName,
+            assignment: res.data.schemeTitle.assignment,
+          });
+          //console.log(this.state.markingSchemTitle);
+        }
+      });
+
+    // Get marking scheme criterias
+    axios.get(`http://localhost:5000/markings/get/${titleID}`).then((res) => {
       if (res.data.success) {
         this.setState({
-          markingSchemTitle: res.data.existingMarkingTitles,
+          markingCriteria: res.data.existingMarkingCriteria,
         });
-        console.log(this.state.markingSchemTitle);
       }
+      //console.log(this.state.markingCriteria);
     });
   }
 
@@ -70,14 +91,6 @@ export default class ViewMarkingScheme extends Component {
       marginBottom: "5px",
     };
 
-    let userContent;
-
-    if (this.state.userType === "Student") {
-      userContent = <p>Hello Student</p>;
-    } else if (this.state.userType === "Supervisor" || "Panel Member") {
-      userContent = <p>Hello Supervisor</p>;
-    }
-
     return (
       <div className="container">
         {localStorage.userToken ? (
@@ -99,29 +112,40 @@ export default class ViewMarkingScheme extends Component {
                   <div style={headlineBar}>
                     <h6>Marking Schemes</h6>
                   </div>
+                  <br/>
 
                   <div className="container">
-                    <hr />
-                    {this.state.markingSchemTitle.map((data, index) => (
-                      <div key={index}>
-                        <p>{data.moduleName}</p>
-                        <p>{data.assignment}</p>
+                    <div className="container border border-secondary">
+                      <div className="container p-4">
+                        <center>
+                          <h5>Marking Schem</h5>
+                          <h5>{this.state.moduleName}</h5>
+                          <h6>{this.state.assignment}</h6>
+                        </center>
 
-                        <a
-                          className="btn btn-outline-success m-2"
-                          href={`/user/display/marking/${data._id}`}
-                        >
-                          View
-                        </a>
-                        <a
-                          className="btn btn-outline-primary m-2"
-                          onClick={() => this.onDownload(data._id)}
-                        >
-                          Download
-                        </a>
-                        <hr />
+                        <table className="table">
+                          <thead>
+                            <tr className="b ">
+                              <th scope="col">No</th>
+                              <th scope="col">Criteria</th>
+                              <th scope="col">Allocate Mark</th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {this.state.markingCriteria.map((data, index) => (
+                              <tr key={index}>
+                                <th>{index + 1}</th>
+                                <td>{data.criteria}</td>
+                                <td>{data.allocateMark} </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                        <br />
+                        <br />
                       </div>
-                    ))}
+                    </div>
                   </div>
                 </div>
                 <div className="col-3"></div>

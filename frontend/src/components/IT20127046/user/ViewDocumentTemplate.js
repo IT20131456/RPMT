@@ -88,16 +88,6 @@ export default class ViewDocumentTemplate extends Component {
       marginBottom: "5px",
     };
 
-    // Get document template based on type
-    let documentTypeData;
-
-    {
-      this.state.documentTemplate.map((template, index) => {
-        if (template.documentType === "Proposal") {
-          return <p key={index}>{template.documentType}</p>;
-        }
-      });
-    }
 
     return (
       <div className="container">
