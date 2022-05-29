@@ -179,9 +179,9 @@ import swal from 'sweetalert';
                     />
                   </div>
                   <center>
-                    <button type="submit" class="btn btn-warning ">
+                    <button type="submit" class="btn btn-warning">
                       {" "}
-                      <i class="fa fa-plus" aria-hidden="true">Submit</i>
+                      <i class="fa fa-plus" aria-hidden="true"> &nbsp;<strong>Submit</strong></i>
                     </button>
                   </center>
                 </form>

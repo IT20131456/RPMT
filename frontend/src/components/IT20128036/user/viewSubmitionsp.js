@@ -127,10 +127,11 @@ filterData(submitions,searchKey){
 
 
 handleSearchArea=(e)=>{
+  
   const searchKey=e.currentTarget.value;
 
-
-  axios.get("http://localhost:5000/submition/all").then(res =>{
+  const gid = this.props.match.params.id ;
+  axios.get(`http://localhost:5000/submition/group/${gid}`).then(res =>{
     if(res.data.success){
       this.filterData(res.data.exsitingSubmitions, searchKey)
 
@@ -180,13 +181,46 @@ handleSearchArea=(e)=>{
           {this.state.submitions.map((submitions, index) => (
             <div class="row">
               <div class="col-sm-12">
-                <div class="card mt-4 mb-4">
+                <div class="card border-dark mt-4 mb-4">
                   <div class="card-body">
                     <div class="card-header">
                       <h5 class="card-title">
                     
                        <p>Group {submitions.groupId} </p> 
                       </h5>
+
+
+
+                      
+                    <div className="row mt-4 mb-4">
+                      <div className="col-lg-4">
+                      
+                      <a className='btn btn-outline-dark' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
+                      
+                      </div>
+
+                      <div className="col-lg-3">
+                      <a className="btn btn-outline-dark" href={`/submition/student/edit/${submitions._id}`}>
+                  <i className="fas fa-edit"><br/>Edit</i>
+                </a>
+                      </div>
+
+                      <div className="col-lg-4">
+
+                      <a className="btn btn-outline-dark" href="#" onClick={()=>{
+                  this.onDelete(submitions._id)
+                }}>
+                  <i className="fas fa-trash-alt"><br/>Delete</i>
+                </a>
+
+                      </div>
+                    </div>
+
+
+
+
+
+
                     </div>
 
                     <p class="card-text"></p>
@@ -207,30 +241,30 @@ handleSearchArea=(e)=>{
                    
                    
                    
-
+{/* 
                     <div className="row mt-4 mb-4">
                       <div className="col-lg-4">
                       
-                      <a className='btn btn-outline-success' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"></i>Download Submition</a>
+                      <a className='btn btn-outline-dark' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
                       
                       </div>
 
                       <div className="col-lg-4">
-                      <a className="btn btn-outline-warning" href={`/submition/student/edit/${submitions._id}`}>
-                  <i className="fas fa-edit"></i>Edit Submition
+                      <a className="btn bg-info btn-outline-dark" href={`/submition/student/edit/${submitions._id}`}>
+                  <i className="fas fa-edit"><br/>Edit</i>
                 </a>
                       </div>
 
                       <div className="col-lg-4">
 
-                      <a className="btn btn-outline-danger" href="#" onClick={()=>{
+                      <a className="btn btn-outline-dark" href="#" onClick={()=>{
                   this.onDelete(submitions._id)
                 }}>
-                  <i className="fas fa-trash-alt"></i>Delete Submition
+                  <i className="fas fa-trash-alt"><br/>Delete</i>
                 </a>
 
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

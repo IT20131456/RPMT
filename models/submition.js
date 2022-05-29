@@ -5,6 +5,7 @@ const submitionSchema = new mongoose.Schema({
   type: { type: String, required: true },
   description: { type: String, required: true },
   files: { type: String, required: true },
+  status:{type: String },
   postDate: { type: Date, default: Date.now },
 });
 

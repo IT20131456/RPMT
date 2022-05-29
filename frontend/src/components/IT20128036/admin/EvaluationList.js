@@ -128,7 +128,7 @@ export default class EvaluationList extends Component {
                     <strong>{evaluations.date}</strong> from{" "}
                     <strong>{evaluations.from}</strong> to{" "}
                     <strong>{evaluations.to}</strong> with the{" "}
-                    {evaluations.dressCode}. Your participation is mandatory.
+                    {evaluations.panel}. Your participation is mandatory.
                     You can connect via the link below.{" "}
                   </p>
 

@@ -154,7 +154,9 @@ export default class App extends Component {
                 <Route path='/student/topic/registration' exact component={RegisterTopic}></Route>
                 <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
+
                 {/*IT20128036*/}
+
 
                 <Route path="/evaluation/student/view" component={SviewEvaluation}/>
                 <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>

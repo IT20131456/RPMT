@@ -14,7 +14,7 @@ export default class EditEvaluation extends Component{
     this.state={
         groupId:"",
         evaluationTopic:"",
-        dressCode:"",
+        panel:"",
         date:"",
         from:"",
         to:"",
@@ -37,13 +37,13 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{groupId,evaluationTopic,dressCode,date,from,to,link}=this.state;
+  const{groupId,evaluationTopic,panel,date,from,to,link}=this.state;
 
 
   const data={
     groupId:groupId,
     evaluationTopic:evaluationTopic,
-    dressCode:dressCode,
+    panel:panel,
     date:date,
     from:from,
     to:to,
@@ -63,7 +63,7 @@ onSubmit=(e)=>{
       this.setState({
         groupId:"",
         evaluationTopic:"",
-        dressCode:"",
+        panel:"",
         date:"",
         from:"",
         to:"",
@@ -89,7 +89,7 @@ onSubmit=(e)=>{
            this.setState({
              groupId:res.data.evaluation.groupId,
              evaluationTopic:res.data.evaluation.evaluationTopic,
-             dressCode:res.data.evaluation.dressCode,
+             panel:res.data.evaluation.panel,
              date:res.data.evaluation.date,
              from:res.data.evaluation.from,
              to:res.data.evaluation.to,
@@ -167,9 +167,9 @@ onSubmit=(e)=>{
            <label style={{marginBottom:'5px'}}>Panel</label>
            <input type="text" 
            className='form-control'
-           name='dressCode'
+           name='panel'
            placeholder='Edit Panel'
-           value={this.state.dressCode}
+           value={this.state.panel}
            onChange={this.handleInputChange}/>
            
          </div>

@@ -14,10 +14,10 @@ export default class EditSubmitonType extends Component{
     this.state={
         submitionType:"",
         description:"",
-        startDate:"",
+        almarks:"",
         deadLine:"",
         checkPanel:"",
-        submition:"",
+        guidelines:"",
     }
 
   }
@@ -36,16 +36,16 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{submitionType, description, startDate, deadLine, checkPanel, submition}=this.state;
+  const{submitionType, description, almarks, deadLine, checkPanel, guidelines}=this.state;
 
 
   const data={
     submitionType:submitionType,
     description:description,
-    startDate:startDate,
+    almarks:almarks,
     deadLine:deadLine,
     checkPanel:checkPanel,
-    submition:submition,
+    guidelines:guidelines,
   }
   console.log(data);
 
@@ -66,10 +66,10 @@ onSubmit=(e)=>{
       this.setState({
         submitionType:"",
         description:"",
-        startDate:"",
+        almarks:"",
         deadLine:"",
         checkPanel:"",
-        submition:"",
+        guidelines:"",
 
       })  
       
@@ -91,10 +91,10 @@ onSubmit=(e)=>{
            this.setState({
              submitionType:res.data.submitiontype.submitionType,
              description:res.data.submitiontype.description,
-             startDate:res.data.submitiontype.startDate,
+             almarks:res.data.submitiontype.almarks,
              deadLine:res.data.submitiontype.deadLine,
              checkPanel:res.data.submitiontype.checkPanel,
-             submition:res.data.submitiontype.submition,
+             guidelines:res.data.submitiontype.guidelines,
              
 
            });
@@ -140,9 +140,9 @@ onSubmit=(e)=>{
            <label style={{marginBottom:'5px'}}>Allocated Marks</label>
            <input type="text" 
            className='form-control'
-           name='startDate'
+           name='almarks'
            placeholder='Edit Allocated Marks'
-           value={this.state.startDate}
+           value={this.state.almarks}
            onChange={this.handleInputChange}/>
            
          </div>
@@ -215,8 +215,8 @@ onSubmit=(e)=>{
            <label style={{marginBottom:'5px'}}>Guidelines</label>
            <textarea 
            className='form-control'
-           name='submition'
-           value={this.state.submition}
+           name='guidelines'
+           value={this.state.guidelines}
            onChange={this.handleInputChange}/>
            
          </div>
