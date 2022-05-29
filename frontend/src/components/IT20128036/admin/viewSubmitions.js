@@ -165,8 +165,8 @@ onDelete=(id)=>{
                     <th scope='col'>Group ID</th>
                     <th scope='col'>Type</th>
                     <th scope='col'>Description</th>
-                    <th scope='col'>File</th>
                     <th scope='col'>Submitted Date</th>
+                    <th scope='col'>Status</th>
 
                     <th scope='col'>Preview</th>
                     <th scope='col'>Delete</th>
@@ -180,8 +180,8 @@ onDelete=(id)=>{
                         <td>{submitions.groupId}</td>
                         <td>{submitions.type}</td>
                         <td>{submitions.description}</td>
-                        <td>{submitions.files}</td>
                         <td>{submitions.postDate}</td>
+                        <td>{submitions.status}</td>
                         <td>
                             
                         

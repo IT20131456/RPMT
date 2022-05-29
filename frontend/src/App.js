@@ -139,7 +139,7 @@ export default class App extends Component {
                 <Route path="/view/:id" component={ViewStudentGroup}></Route>
 
 
-                {/*IT20128036*/}
+                {/*IT20128036*/} 
                 <Route path="/evaluation/student/view" component={SviewEvaluation}/>
                 <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
                 <Route path="/submition/student/add" component={Submitions}/>

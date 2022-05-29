@@ -10,7 +10,7 @@ export default class AddEvaluation extends Component {
     this.state = {
       groupId: "",
       evaluationTopic: "",
-      dressCode: "",
+      panel: "",
       date: "",
       from: "",
       to: "",
@@ -31,13 +31,13 @@ export default class AddEvaluation extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { groupId, evaluationTopic, dressCode, date, from, to, link,subject,text } =
+    const { groupId, evaluationTopic, panel, date, from, to, link,subject,text } =
       this.state;
 
     const data = {
       groupId: groupId,
       evaluationTopic: evaluationTopic,
-      dressCode: dressCode,
+      panel: panel,
       date: date,
       from: from,
       to: to,
@@ -51,7 +51,7 @@ export default class AddEvaluation extends Component {
         this.setState({
           groupId: "",
           evaluationTopic: "",
-          dressCode: "",
+          panel: "",
           date: "",
           from: "",
           to: "",
@@ -73,7 +73,7 @@ export default class AddEvaluation extends Component {
         subject: subject,
         text: text,
         type: evaluationTopic,
-        panel: dressCode,
+        panel: panel,
         date: date,
         from: from,
         to: to,
@@ -120,14 +120,18 @@ export default class AddEvaluation extends Component {
                       style={{ marginBottom: "15px" }}
                     >
                       
-                      <label style={{ marginBottom: "5px" }}>Group ID</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Group ID</strong></label>
                       <input
                         type="text"
                         className="form-control"
                         name="groupId"
-                        placeholder="Enter Group ID -RExxx"
+                        placeholder="Enter Group ID -Gxxx"
+                        pattern="G[0-9]{3}"
+                        title="Group ID is Invalid"
                         value={this.state.groupId}
                         onChange={this.handleInputChange}
+
+                        
                       />
                     </div>
 
@@ -144,7 +148,7 @@ export default class AddEvaluation extends Component {
                      style={{ marginBottom: "15px" }}
                    >
                      <label style={{ marginBottom: "5px" }}>
-                       Evaluation Type
+                      <strong>Evaluation Type</strong> 
                      </label>
 
                      <select
@@ -190,23 +194,23 @@ export default class AddEvaluation extends Component {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Panel</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Panel</strong></label>
 
                       <select
                         className="form-select"
-                        name="dressCode"
-                        value={this.state.dressCode}
+                        name="panel"
+                        value={this.state.panel}
                         onChange={this.handleInputChange}
                       >
                         <option dressCode="not selected yet" selected>
                           Select Panel
                         </option>
-                        <option dressCode="Panel 01">Panel 01</option>
-                        <option dressCode="Panel 02">Panel 02</option>
-                        <option dressCode="Panel 03">Panel 03</option>
-                        <option dressCode="Panel 04">Panel 04</option>
-                        <option dressCode="Panel 05">Panel 05</option>
-                        <option dressCode="Panel 06">Panel 06</option>
+                        <option panel="Panel 01">Panel 01</option>
+                        <option panel="Panel 02">Panel 02</option>
+                        <option panel="Panel 03">Panel 03</option>
+                        <option panel="Panel 04">Panel 04</option>
+                        <option panel="Panel 05">Panel 05</option>
+                        <option panel="Panel 06">Panel 06</option>
                       </select>
                     </div>
 
@@ -214,7 +218,7 @@ export default class AddEvaluation extends Component {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Date</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Date</strong></label>
                       <input
                         type="date"
                         className="form-control"
@@ -229,7 +233,7 @@ export default class AddEvaluation extends Component {
                         className="form-group col-6"
                         style={{ marginBottom: "15px" }}
                       >
-                        <label style={{ marginBottom: "5px" }}>From</label>
+                        <label style={{ marginBottom: "5px" }}><strong>From</strong></label>
                         <input
                           type="time"
                           className="form-control"
@@ -243,7 +247,7 @@ export default class AddEvaluation extends Component {
                         className="form-group col-6"
                         style={{ marginBottom: "15px" }}
                       >
-                        <label style={{ marginBottom: "5px" }}>To</label>
+                        <label style={{ marginBottom: "5px" }}><strong>To</strong></label>
                         <input
                           type="time"
                           className="form-control"
@@ -258,7 +262,7 @@ export default class AddEvaluation extends Component {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Link</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Link</strong></label>
                       <input
                         type="text"
                         className="form-control"
