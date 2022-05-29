@@ -118,11 +118,13 @@ export default class UserRoles_Students extends Component {
             </div>
             <hr /><br />
           </div>
-          <div className="btn-group">
-            <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
-            <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
-            <a href="/admin/students" className="btn btn-outline-dark">Students</a>
-            <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
+          <div className='row'>
+            <div className="btn-group">
+              <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
+              <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
+              <a href="/admin/students" className="btn btn-outline-dark">Students</a>
+              <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
+            </div>
           </div>
           <br />
           <table className="table">
