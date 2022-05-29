@@ -79,6 +79,8 @@ import ViewMarkingSchem_Admin from "./components/IT20127046/admin/ViewMarkingSch
 import ViewMarkingScheme from "./components/IT20127046/user/ViewMarkingScheme";
 import ViewDocumentTemplate from "./components/IT20127046/user/ViewDocumentTemplate";
 import DisplayMarkingScheme from "./components/IT20127046/user/DisplayMarkingScheme";
+import ContactUs from "./components/IT20127046/user/ContactUs";
+import AboutUs from "./components/IT20127046/user/AboutUs";
 
 
 
@@ -133,6 +135,8 @@ export default class App extends Component {
                 <Route path="/user/view/marking" exact component={ViewMarkingScheme}></Route>
                 <Route path="/user/view/documentTemplate" exact component={ViewDocumentTemplate}></Route>
                 <Route path="/user/display/marking/:id" exact component={DisplayMarkingScheme}></Route>
+                <Route path="/user/contactus" exact component={ContactUs}></Route>
+                <Route path="/user/aboutus" exact component={AboutUs}></Route>
 
 
                 {/* ---------------Student--------------- */}
