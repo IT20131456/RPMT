@@ -18,7 +18,6 @@ export default class ViewTopic extends Component {
         this.setState({
           topic: res.data.topic
         })
-
         // console.log(this.state.topic);
       }
     })
@@ -28,11 +27,13 @@ export default class ViewTopic extends Component {
 
     const { groupId, topicR, description, status, comments } = this.state.topic;
     return (
-      <div>
-        <div style={{ margin: '20px' }}>
-          <h3>Topic Details</h3>
-          <hr />
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
+        <div className='col-lg-9 mt-2 mb-2'>
+          <h1>Topic Request Details</h1>
+        </div>
+        <hr /><br />
 
+        <div>
           <dl className='row'>
             <dt className='col-sm-3'>Group ID</dt>
             <dd className='col-sm-9'>{groupId}</dd>
@@ -49,10 +50,10 @@ export default class ViewTopic extends Component {
             <dt className='col-sm-3'>Comments</dt>
             <dd className='col-sm-9'>{comments}</dd>
           </dl>
-          
+
           <a
             href="/panel/topic/list"
-            class="btn btn-outline-success"
+            class="btn btn-outline-dark"
             tabindex="-1"
             role="button"
             aria-disabled="true">

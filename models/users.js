@@ -14,7 +14,17 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    mobile: {
+        type: String,
+        required: true
+    },
     groupId: {
+        type: String
+    },
+    researchfield: {
+        type: String
+    },
+    panel: {
         type: String
     },
     type: {

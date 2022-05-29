@@ -2,9 +2,28 @@ import React, { Component } from 'react'
 
 export default class AdminNavBar extends Component {
   onlogout = (e) => {
+    swal({
+      title: "Are you sure you want to log out?",
+      text: "",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willLogout) => {
+        if (willLogout) {
+          swal("Logout successfully!", "", "success")
+            .then((value) => {
+              if (value) {
+                window.history.forward();
+                window.location = "http://localhost:3000/admin/login";
+              }
+            });
+        } else {
+          swal("Redirecting...");
+        }
+      });
     e.preventDefault();
-    window.history.forward();
-    window.location = "http://localhost:3000/admin/login";
+    
 
   }
   render() {
@@ -50,7 +69,7 @@ export default class AdminNavBar extends Component {
                 <button className="btn btn-outline-success" type="submit">Search</button>
             </form> */}
 
-              <div class="btn-group dropstart">
+              <div className="btn-group dropstart">
                 <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                   <li className="nav-item">
                     <a className="btn btn-outline-dark btn-sm" aria-current="page" onClick={this.onlogout}>Logout</a>

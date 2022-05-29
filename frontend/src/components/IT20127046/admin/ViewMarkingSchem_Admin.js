@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 import UpdateMarkingTitle from "./MarkingSchemUpdate";
 import swal from 'sweetalert';
 

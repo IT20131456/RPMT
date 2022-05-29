@@ -1,3 +1,4 @@
+//for registration
 import axios from "axios";
 
 export const userRegister = newUser => {
@@ -5,29 +6,16 @@ export const userRegister = newUser => {
             idNumber: newUser.idNumber,
             name: newUser.name,
             email: newUser.email,
+            mobile: newUser.mobile,
             type: newUser.type,
             password: newUser.password,
         })
         .then(res => {
             if (res.data.success) {
-                window.alert('Registered successfully!');
+                // window.alert('Registered successfully!');
             }
         })
         .catch(err => {
             return err
         })
 } 
-
-export const userLogin = user => {
-    return axios.post('http://localhost:5000/user/login', {
-        idNumber: user.idNumber,
-        password: user.password
-    })
-    .then(res => {
-        localStorage.setItem('userToken', res.data)
-        return res.data
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}

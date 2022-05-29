@@ -32,11 +32,17 @@ export default class UserProfile extends Component {
 
         const { idNumber, name, email, groupId, type, dateRegistered } = this.state.user;
         return (
-            <div>
+            <div className='container'>
+                <br />
                 <AdminNavBar />
-                <div style={{ margin: '20px' }}>
-                    <h3>User Details</h3>
-                    <hr />
+                <br />
+                <div className="container">
+                    <div className='row'>
+                        <div className='col-lg-9 mt-2 mb-2'>
+                            <h1>User Details</h1>
+                        </div>
+                        <hr /><br />
+                    </div>
 
                     <dl className='row'>
                         <dt className='col-sm-3'>ID Number</dt>
@@ -47,7 +53,7 @@ export default class UserProfile extends Component {
 
                         <dt className='col-sm-3'>Email</dt>
                         <dd className='col-sm-9'>{email}</dd>
-                        
+
                         <dt className='col-sm-3'>Group ID</dt>
                         <dd className='col-sm-9'>{groupId}</dd>
 
@@ -58,10 +64,10 @@ export default class UserProfile extends Component {
                         <dd className='col-sm-9'>{dateRegistered}</dd>
                     </dl>
 
-                    
+
                     <a
                         href="/admin/users"
-                        class="btn btn-outline-success"
+                        class="btn btn-outline-dark"
                         tabindex="-1"
                         role="button"
                         aria-disabled="true">
