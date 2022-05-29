@@ -23,7 +23,7 @@ export default function GroupChat({ socket, username, room }) {
         console.log(messageData);
         axios.post("http://localhost:5000/save/chatMsg", messageData)
         .then(() => {
-            alert('Message Save Successful');
+            //alert('Message Save Successful');
         })
         .catch((err) => {
             alert(err);
@@ -43,7 +43,7 @@ export default function GroupChat({ socket, username, room }) {
     }, [socket]);
   
     const getPreMsg = () => {
-      axios.get("http://localhost:5000/chatMsg/all")
+      axios.get(`http://localhost:5000/chatMsg/get/${room}`)
         .then(res => {setSavedMsg(res.data)});
   
         console.log(savedMsg);

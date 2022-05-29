@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import swal from 'sweetalert';
+import image from '../../../images/cover.jpg';
 
 function AdminLogin() {
     const [username, setUsername] = useState('')
@@ -49,10 +50,12 @@ function AdminLogin() {
     }
 
     return (
-        <div className="jumbotron" style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundSize: 'cover', height: '700px' }}>
+        // <div className="jumbotron" style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundSize: 'cover', height: '100vh', backgroundImage: 'linear-gradient(to right, gray, #2B3856, white, #2B3856, gray, #2B3856, white, #2B3856, gray)' }}>
+        // <div className="jumbotron" style={{ paddingLeft: '50px', paddingRight: '50px', paddingTop: '10px', backgroundSize: 'cover', height: '100vh', background: '#36454F' }}>
+        <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh' }}>
 
-            <div className="container" style={{ marginTop: '50px', marginBottom: '50px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px' }}>
-                <h1 style={{ textAlign: 'center', paddingBottom: '100px' }}>RPMS - Admin</h1>
+            <div className="container" style={{ marginTop: '50px', marginBottom: '50px', backgroundColor: 'white', paddingBottom: '200px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px' }}>
+                <h1 style={{ textAlign: 'center', paddingBottom: '50px' }}>Research Project Management Tool</h1>
                 <div className="col-md-8 mt-4 mx-auto">
                     <br />
                     <h3 className="h3 mb-3 font-weight-normal" style={{ textAlign: 'center' }}>Admin Login</h3>
@@ -85,7 +88,7 @@ function AdminLogin() {
 
 
                         <div class="d-grid gap-2">
-                            <button className="btn btn-outline-success" type="submit" style={{ marginTop: '15px', width: 'cover' }} onClick={loginAdmin}>
+                            <button className="btn btn-outline-dark" type="submit" style={{ marginTop: '15px', width: 'cover' }} onClick={loginAdmin}>
                                 Login
                             </button>
                         </div>
@@ -93,7 +96,6 @@ function AdminLogin() {
                 </div>
             </div>
         </div>
-
     )
 }
 
