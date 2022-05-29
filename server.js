@@ -14,6 +14,7 @@ const app = express();
 //const controller = require("./controllers/controllers");
 const sgrouter = require("./routes/studentGroupRoute");
 const sdrouter = require("./routes/supervisorDetailsRoute");
+const rerouter = require("./routes/requestRoute");
 const evrouter = require("./routes/evaluation");
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/users');
@@ -29,6 +30,7 @@ app.use(cors());
 
 app.use(sgrouter);
 app.use(sdrouter);
+app.use(rerouter);
 app.use(evrouter);
 app.use(adminRouter);
 app.use(userRouter);
