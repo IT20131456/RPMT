@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+
 export default class CreateStudentGroup extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +35,6 @@ export default class CreateStudentGroup extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    alert("Group Created Successfully");
 
     const {
       groupid,
@@ -47,7 +47,6 @@ export default class CreateStudentGroup extends Component {
       studentname3,
       studentid4,
       studentname4,
-      topic,
       supervisorname,
       cosupervisorname,
       panelmembername,
@@ -65,7 +64,6 @@ export default class CreateStudentGroup extends Component {
       studentname3: studentname3,
       studentid4: studentid4,
       studentname4: studentname4,
-      topic: topic,
       supervisorname: supervisorname,
       cosupervisorname: cosupervisorname,
       panelmembername: panelmembername,
@@ -76,28 +74,27 @@ export default class CreateStudentGroup extends Component {
 
     axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
       if (res.data.success) {
-        this.props.history.push({
-          pathname: "/student/groups/view",
-          state: this.groupid,
+        swal("Group Registerd Successfully")
+        .then((value)=>{
+          window.location = "/student/groups/view"
         });
-
-        this.setState({
-          groupid: "",
-          groupname: "",
-          studentid1: "",
-          studentname1: "",
-          studentid2: "",
-          studentname2: "",
-          studentid3: "",
-          studentname3: "",
-          studentid4: "",
-          studentname4: "",
-          topic: "Not Updated",
-          supervisorname: "Not Updated",
-          cosupervisorname: "Not Updated",
-          panelmembername: "Not Updated",
-          status: "Not Reviewed",
-        });
+       
+          this.setState({
+            groupid: "",
+            groupname: "",
+            studentid1: "",
+            studentname1: "",
+            studentid2: "",
+            studentname2: "",
+            studentid3: "",
+            studentname3: "",
+            studentid4: "",
+            studentname4: "",
+            supervisorname: "Not Updated",
+            cosupervisorname: "Not Updated",
+            panelmembername: "Not Updated",
+            status: "Not Reviewed",
+          });
       }
     });
   };
@@ -124,9 +121,9 @@ export default class CreateStudentGroup extends Component {
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter Group id -RExxx"
+                    placeholder="Enter Group id -Gxxx"
                     name="groupid"
-                    pattern="RE[0-9]{3}"
+                    pattern="G[0-9]{3}"
                     title="Group ID is Invalid"
                     value={this.state.groupid}
                     onChange={this.handleInputChange}
@@ -153,13 +150,13 @@ export default class CreateStudentGroup extends Component {
             <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
-                  <strong>Student_1 ID :</strong>
+                  <strong>Student_1 ID (group leader) :</strong>
                   <input
                     type="text"
                     className="form-control"
-                    placeholder="Enter id -ITxxxxxxxx"
+                    placeholder="Enter id -ITxxxx"
                     name="studentid1"
-                    pattern="IT[0-9]{8}"
+                    pattern="IT[0-9]{4}"
                     title="Student ID is Invalid"
                     value={this.state.studentid1}
                     onChange={this.handleInputChange}
@@ -169,7 +166,7 @@ export default class CreateStudentGroup extends Component {
               </div>
               <div className="col-md-6">
                 <div className="form-group">
-                  <strong>Student_1 Name :</strong>
+                  <strong>Student_1 Name (group leader) :</strong>
                   <input
                     type="text"
                     className="form-control"
@@ -192,7 +189,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid2"
-                    pattern="IT[0-9]{8}"
+                    pattern="IT[0-9]{4}"
                     title="Student ID is Invalid"
                     value={this.state.studentid2}
                     onChange={this.handleInputChange}
@@ -225,7 +222,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid3"
-                    pattern="IT[0-9]{8}"
+                    pattern="IT[0-9]{4}"
                     title="Student ID is Invalid"
                     value={this.state.studentid3}
                     onChange={this.handleInputChange}
@@ -258,7 +255,7 @@ export default class CreateStudentGroup extends Component {
                     className="form-control"
                     placeholder="Enter id"
                     name="studentid4"
-                    pattern="IT[0-9]{8}"
+                    pattern="IT[0-9]{4}"
                     title="Student ID is Invalid"
                     value={this.state.studentid4}
                     onChange={this.handleInputChange}
@@ -288,24 +285,11 @@ export default class CreateStudentGroup extends Component {
                   <input
                     type="hidden"
                     className="form-control"
-                    name="topic"
-                    onChange={this.handleInputChange}
-                  />
-                </div>
-              </div>
-              <div className="col-md-6">
-                <div className="form-group">
-                  <input
-                    type="hidden"
-                    className="form-control"
                     name="supervisorname"
                     onChange={this.handleInputChange}
                   />
                 </div>
               </div>
-            </div>
-            &nbsp;
-            <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
                   <input
@@ -316,6 +300,9 @@ export default class CreateStudentGroup extends Component {
                   />
                 </div>
               </div>
+            </div>
+            &nbsp;
+            <div className="row">
               <div className="col-md-6">
                 <div className="form-group">
                   <input
@@ -339,10 +326,7 @@ export default class CreateStudentGroup extends Component {
             </div>
             <div className="col-md-12">
               <div className="form-group">
-                <button
-                  className="btn btn-outline-primary col-md-12"
-                  type="submit"
-                >
+                <button className="btn btn-outline-primary" type="submit">
                   <i className="fa fa-save"> Save </i>
                 </button>
               </div>

@@ -34,7 +34,6 @@ export default class ViewStudentGroup extends Component {
       studentname3,
       studentid4,
       studentname4,
-      topic,
       supervisorname,
       cosupervisorname,
       panelmembername,
@@ -42,73 +41,65 @@ export default class ViewStudentGroup extends Component {
     } = this.state.studentgroup;
 
     return (
-      <div className="container">
-        <div className="float-left">
+
+      <div className="container px-5 my-5">
+
+        <div className="float-left my-3">
           &nbsp;
           <h2>View Student Group</h2>
           &nbsp;
         </div>
+     <div style={{margin:"auto", width:"60%"}}>
+        <div className="card border-dark my-3" >
+          <div className="card-header text-center"><h3>{groupname} - {groupid}</h3></div>
+            <div className="card-body ">
+            <h4>
+              <span style={{fontSize:"24px"}}>Student_1 : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {studentid1} - {studentname1} </span>
+            </h4>
 
-        <table className="table table-striped table-bordered">
-          <thead>
-            <tr className="bg-primary text-light ">
-              <th scope="col">Group ID</th>
-              <th scope="col">Group Name</th>
-              <th scope="col">Student ID</th>
-              <th scope="col">Student Name</th>
-              <th scope="col">Topic</th>
-              <th scope="col">Supervisor</th>
-              <th scope="col">Co-Supervisor</th>
-              <th scope="col">Panel Member</th>
-              <th scope="col">Status</th>
-            </tr>
-          </thead>
+            <h4>
+              <span style={{fontSize:"24px"}}>Student_2 : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {studentid2} - {studentname2} </span>
+            </h4>
 
-          <tbody>
-            <tr>
-              <th>{groupid} </th>
-              <td>{groupname} </td>
-              <td>
-                <tr>{studentid1}</tr>
+            <h4>
+              <span style={{fontSize:"24px"}}>Student_3 : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {studentid3} - {studentname3} </span>
+            </h4>
 
-                <tr>
-                  <td>{studentid2} </td>
-                </tr>
+            <h4>
+              <span style={{fontSize:"24px"}}>Student_4 : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {studentid4} - {studentname4} </span>
+            </h4>
+            <br/>
+            <h4>
+              <span style={{fontSize:"24px"}}>Supervisor :  </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {supervisorname} </span>
+            </h4>
 
-                <tr>
-                  <td>{studentid3} </td>
-                </tr>
+            <h4>
+              <span style={{fontSize:"24px"}}>Cosupervisor : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {cosupervisorname} </span>
+            </h4>
 
-                <tr>
-                  <td>{studentid4}</td>
-                </tr>
-              </td>
-
-              <td>
-                <tr>{studentname1}</tr>
-
-                <tr>
-                  <td>{studentname2}</td>
-                </tr>
-
-                <tr>
-                  <td>{studentname3}</td>
-                </tr>
-
-                <tr>
-                  <td>{studentname4} </td>
-                </tr>
-              </td>
-
-              <td>{topic} </td>
-              <td>{supervisorname} </td>
-              <td>{cosupervisorname} </td>
-              <td>{panelmembername} </td>
-              <td>{status} </td>
-            </tr>
-          </tbody>
-        </table>
+            <h4>
+              <span style={{fontSize:"24px"}}>Panelmember : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {panelmembername} </span>
+            </h4>
+            <br/>
+            <h4>
+              <span style={{fontSize:"24px"}}>Status : </span>
+              <span className = "text-primary" style={{fontSize:"19px"}}> {status} </span>
+            </h4>       
+            
+            </div>
+        </div>
+        </div>   
+  
       </div>
+
+      
     );
   }
 }
