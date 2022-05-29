@@ -12,7 +12,7 @@ export default class AboutUs extends Component {
       }
     
       componentDidMount() {
-        document.title = "User Profile";
+        document.title = "About Us";
         if (localStorage.userToken) {
           const usertoken = localStorage.userToken;
           const decoded = jwt_decode(usertoken);

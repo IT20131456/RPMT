@@ -13,7 +13,7 @@ export default class ViewDocumentTemplate extends Component {
   }
 
   componentDidMount() {
-    document.title = "User Profile";
+    document.title = "Document Template";
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
