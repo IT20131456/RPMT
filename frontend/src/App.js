@@ -127,8 +127,8 @@ export default class App extends Component {
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh' }}>
-              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', overflowY: 'scroll', msOverflowStyle: 'none' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflowY: 'scroll', height: '100vh' }}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px'}}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
