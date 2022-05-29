@@ -27,7 +27,7 @@ export default class ViewTopic extends Component {
 
     const { groupId, topicR, description, status, comments } = this.state.topic;
     return (
-      <div>
+      <div className="container" style={{padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh'}}>
         <div className='col-lg-9 mt-2 mb-2'>
           <h1>Topic Request Details</h1>
         </div>

@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import jwt_decode from 'jwt-decode';
+import swal from 'sweetalert';
 
 export default class RegisterTopic extends Component {
 
@@ -52,25 +53,53 @@ export default class RegisterTopic extends Component {
         }
         // console.log(data)
 
-        axios.post('http://localhost:5000/topic/save', data).then((res) => {
-            if (res.data.success) {
-                alert('Registered successfully!');
-                this.setState(
-                    {
-                        groupId: "",
-                        topicR: "",
-                        description: "",
-                        status: "Pending",
-                        comments: ""
-                    }
-                )
-            }
-        })
+        let validated = true;
+
+        if (groupId === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "You still do not have a group",
+                icon: "warning",
+            });
+        }
+        else if (topicR === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter the topic",
+                icon: "warning",
+            });
+        }
+        else if (description === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a description about your project",
+                icon: "warning",
+            });
+        }
+
+        if(validated){
+            axios.post('http://localhost:5000/topic/save', data).then((res) => {
+                if (res.data.success) {
+                    swal("Registered successfully!", "", "success")
+                        .then((value) => {
+                            if (value) {
+                                this.props.history.push(`/student/topics`)
+                                window.location.reload();
+                            }
+    
+                        });
+                }
+            })
+        }
+        
     }
 
     render() {
         return (
-            <div>
+            <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Research Topic Registration</h1>
                 </div>
@@ -80,7 +109,7 @@ export default class RegisterTopic extends Component {
                     <br />
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Group ID</label>
+                            <label style={{ marginBottom: '5px' }}><b>Group ID</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -94,7 +123,7 @@ export default class RegisterTopic extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Topic</label>
+                            <label style={{ marginBottom: '5px' }}><b>Topic</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -107,7 +136,7 @@ export default class RegisterTopic extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Description</label>
+                            <label style={{ marginBottom: '5px' }}><b>Description</b></label>
                             <textarea
                                 type="text"
                                 className='form-control'
@@ -129,9 +158,9 @@ export default class RegisterTopic extends Component {
                         </div>
 
 
-                        <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
-                            <i className='far fa-check-square'></i>
-                            &nbsp; Register
+                        <button className='btn btn-outline-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
+                            <b><i className='far fa-check-square'></i>
+                            &nbsp; Register</b>
                         </button>
 
                     </form>

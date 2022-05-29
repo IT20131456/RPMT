@@ -20,9 +20,13 @@ export default class ViewSubmissions extends Component {
 
     const id = decoded.groupId
     this.setState({
-      groupId: id
+      groupId: id,
     })
 
+    this.retrieveTopics(id);
+  }
+
+  retrieveTopics(id){
     axios.get(`http://localhost:5000/topic/submissions/${id}`).then(res => {
 
       if (res.data.success) {
@@ -36,9 +40,47 @@ export default class ViewSubmissions extends Component {
     });
   }
 
+  onDelete = (id, grpID, status) => {
+    //with a confirmation 
+
+    if (status === 'Pending') {
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover the details",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+        .then((willDelete) => {
+          if (willDelete) {
+            axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
+              swal("Topic details deleted permanently!", "", "success")
+                .then((value) => {
+                  if (value) {
+                    this.retrieveTopics(grpID);
+                  }
+
+                });
+            })
+
+          } else {
+            swal("Cancelled. Topic details are safe!");
+          }
+        });
+    }
+    else{
+      swal({
+        title: "",
+        text: "You cannot delete this anymore",
+        icon: "warning",
+    });
+    }
+
+  }
+
   render() {
     return (
-      <div>
+      <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
         <div className='row'>
           <div className='col-lg-9 mt-2 mb-2'>
             <h1>Topics</h1>
@@ -56,7 +98,7 @@ export default class ViewSubmissions extends Component {
               <th scope='col'> Description </th>
               <th scope='col'> Status </th>
               <th scope='col'> Comments </th>
-              {/* <th>Action</th> */}
+              <th scope='col'></th>
             </tr>
           </thead>
 
@@ -69,15 +111,15 @@ export default class ViewSubmissions extends Component {
                 <td>{topics.description}</td>
                 <td>{topics.status}</td>
                 <td>{topics.comments}</td>
-                {/* <td>
-                    <a className='btn btn-outline-success' href={`/panel/topic/update/${topics._id}`}>
-                      <i className='fas fa-edit'></i> &nbsp;Update
-                    </a> */}
-                {/* &nbsp;
-                  <a className='btn btn-outline-danger' href="#" onClick={() => this.onDelete(users._id)}>
+                <td>
+                  <a className='btn btn-outline-success' href={`/panel/topic/update/${topics._id}`}>
+                    <i className='fas fa-edit'></i> &nbsp;Update
+                  </a>
+                  &nbsp;
+                  <a className='btn btn-outline-danger' href="#" onClick={() => this.onDelete(topics._id, topics.groupId, topics.status)}>
                     <i className='fas fa-trash'></i> &nbsp;Delete
-                  </a> */}
-                {/* </td> */}
+                  </a>
+                </td>
               </tr>
 
             ))}

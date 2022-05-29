@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class EditMarks extends Component{
 
@@ -44,8 +45,17 @@ onSubmit=(e)=>{
 
   axios.put(`http://localhost:5000/mark/update/${id}`,data).then((res)=>{
     if(res.data.success){
-      alert(" Updated Successfully")
-      window.location = "/marks/view"
+     
+
+      swal(" Updated Successfully !")
+      .then((value)=>{
+        window.location = "/marks/view"
+
+      })
+
+
+
+
       this.setState({
     
         marks:"",

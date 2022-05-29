@@ -145,13 +145,19 @@ export default class App extends Component {
 
 
                 {/*IT20128036*/}
-                <Route path="/evaluation/student/view" component={SviewEvaluation} />
-                <Route path="/submitiontype/student/view" component={SviewSubmitionType} />
-                <Route path="/ssubmition/add" component={Submitions} />
-                <Route path="/submitionsp/view/:id" component={ViewSubmitionssp} />
-                <Route path="/marks/student/view" component={sviewMarks} />
-                <Route path="/ssubmition/edit/:id" component={EditSubmition} />
-                <Route path="/student/pdf/export" component={exportPDF} />
+
+                <Route path="/evaluation/student/view" component={SviewEvaluation}/>
+                <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
+                <Route path="/submition/student/add" component={Submitions}/>
+                <Route path="/submitionsp/student/view/:id" component={ViewSubmitionssp}/>
+                <Route path="/marks/student/view" component={sviewMarks}/>
+                <Route path="/submition/student/edit/:id" component={EditSubmition}/>
+                <Route path="/student/pdf/export" component={exportPDF}/>
+          
+             
+
+               
+
 
 
 

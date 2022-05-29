@@ -118,6 +118,7 @@ export default class ViewListAdmin extends Component {
                 onChange={this.handleSearchArea}>
               </input>
             </div>
+            <hr/><br/>
           </div>
 
           <table className="table">

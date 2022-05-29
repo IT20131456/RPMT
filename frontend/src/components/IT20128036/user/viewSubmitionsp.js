@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from "axios";
 import fileDownload from 'js-file-download';
 import AddSubmition from './Submitions';
+import swal from 'sweetalert';
 
 export default class ViewSubmitionssp extends Component {
     constructor(props){
@@ -39,11 +40,57 @@ export default class ViewSubmitionssp extends Component {
 
     
 onDelete=(id)=>{
-    axios.delete(`http://localhost:5000/submition/delete/${id}`).then((res)=>{
-      alert("Deleted Successfully");
+   
+
+
+
+
+
+
+    
+
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this file!",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+
+
+
+      axios.delete(`http://localhost:5000/submition/delete/${id}`).then((res)=>{
       this.retrieveSubmitions();
   
     })
+
+
+
+
+
+        swal("Poof! Your file has been deleted!", {
+          icon: "success",
+        });
+      } else {
+        swal("Your file is safe!");
+      }
+    });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 
 
@@ -169,7 +216,7 @@ handleSearchArea=(e)=>{
                       </div>
 
                       <div className="col-lg-4">
-                      <a className="btn btn-outline-warning" href={`/ssubmition/edit/${submitions._id}`}>
+                      <a className="btn btn-outline-warning" href={`/submition/student/edit/${submitions._id}`}>
                   <i className="fas fa-edit"></i>Edit Submition
                 </a>
                       </div>

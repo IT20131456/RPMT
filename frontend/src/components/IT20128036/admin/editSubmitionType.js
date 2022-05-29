@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class EditSubmitonType extends Component{
 
@@ -50,8 +51,17 @@ onSubmit=(e)=>{
 
   axios.put(`http://localhost:5000/submitiontype/update/${id}`,data).then((res)=>{
     if(res.data.success){
-      alert(" Updated Successfully")
-      window.location = "/submitiontype/add"
+
+      swal(" Updated Successfully !")
+      .then((value)=>{
+        window.location = "/submitiontype/add"
+
+      })
+
+
+
+     
+     
       
       this.setState({
         submitionType:"",

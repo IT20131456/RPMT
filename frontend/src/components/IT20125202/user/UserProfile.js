@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class UserProfile extends Component {
 
@@ -19,6 +20,9 @@ export default class UserProfile extends Component {
             dateRegistered: '',
             type: '',
             password: '',
+            enteredPassword: '',
+            newPassword: '',
+            confirmNewPassword: ''
         }
     }
 
@@ -74,7 +78,7 @@ export default class UserProfile extends Component {
 
         const { _id, idNumber, name, email, mobile, groupId, researchfield, panel, type, password } = this.state;
 
-        const data = {
+        let data = {
             idNumber: idNumber,
             name: name,
             email: email,
@@ -83,22 +87,123 @@ export default class UserProfile extends Component {
             researchfield: researchfield,
             panel: panel,
             type: type,
-            password: password
+            password: password,
         }
         // console.log(data)
+        let validated = true;
+        if (data.name === '' || data.name.length < 5) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Name cannot be empty",
+                icon: "warning",
+            });
+        }
+        else if (!data.email.match(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i)) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a valid email",
+                icon: "warning",
+            });
+        }
+        else if (!data.mobile.match(/^(\+\d{1,3}[- ]?)?\d{10}$/)) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a valid mobile number",
+                icon: "warning",
+            });
+        }
+        else if (this.state.type === 'Supervisor' && data.researchfield === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please add your research field",
+                icon: "warning",
+            });
+        }
+        else if(this.state.confirmNewPassword != this.state.newPassword){
+            validated = false;
+            swal({
+                title: "",
+                text: "Please check the new password and repeated new password",
+                icon: "warning",
+            });
+        }
+        else if (this.state.enteredPassword != '' && this.state.newPassword === '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter a new password",
+                icon: "warning",
+            });
+        }
+        else if (this.state.enteredPassword === '' && this.state.newPassword != '') {
+            validated = false;
+            swal({
+                title: "",
+                text: "Please enter your existing password",
+                icon: "warning",
+            });
+        }
 
-        axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
-            if (res.data.success) {
-                alert("Profile updated successfully");
-                this.props.history.push(`/user/profile`)
-                window.location.reload();
+        // console.log(data)
+
+        if (validated) {
+            if (this.state.enteredPassword == '' || this.state.newPassword === '') {
+                axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
+                    if (res.data.success) {
+                        swal("Profile updated successfully!", "", "success")
+                            .then((value) => {
+                                if (value) {
+                                    this.props.history.push(`/user/profile`)
+                                    window.location.reload();
+                                }
+
+                            });
+                    }
+                })
+                    .catch(err => {
+                        console.log(err);
+                        swal({
+                            title: "",
+                            text: "Something went wrong! Please check the entered passwords",
+                            icon: "warning",
+                        });
+                    })
             }
-        })
+            else {
+                data.enteredPassword = this.state.enteredPassword;
+                data.newPassword = this.state.newPassword;
+
+                axios.put(`http://localhost:5000/user/updateprofile/${_id}`, data).then((res) => {
+                    if (res.data.success) {
+                        swal("Profile updated successfully!", "", "success")
+                            .then((value) => {
+                                if (value) {
+                                    this.props.history.push(`/user/profile`)
+                                    window.location.reload();
+                                }
+
+                            });
+                    }
+                })
+                    .catch(err => {
+                        console.log(err);
+                        swal({
+                            title: "",
+                            text: "Something went wrong! Please check the entered passwords",
+                            icon: "warning",
+                        });
+                    })
+            }
+        }
     }
 
     render() {
         return (
-            <div>
+            <div className="container" style={{ padding: '50px 50px 50px 50px', background: 'white', minHeight: '100vh' }}>
                 <div className='col-lg-9 mt-2 mb-2'>
                     <h1>Profile</h1>
                 </div>
@@ -108,7 +213,7 @@ export default class UserProfile extends Component {
                     <br />
                     <form className='needs-validation' noValidate>
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Registration Number</label>
+                            <label style={{ marginBottom: '5px' }}><b>Registration Number</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -120,7 +225,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Name</label>
+                            <label style={{ marginBottom: '5px' }}><b>Name</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -132,7 +237,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Email</label>
+                            <label style={{ marginBottom: '5px' }}><b>Email</b></label>
                             <input
                                 type="email"
                                 className='form-control'
@@ -144,7 +249,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Mobile Number</label>
+                            <label style={{ marginBottom: '5px' }}><b>Mobile Number</b></label>
                             <input
                                 type="phone"
                                 className='form-control'
@@ -156,7 +261,7 @@ export default class UserProfile extends Component {
                         </div>
 
                         <div className='form-group' style={{ marginBottom: '15px' }}>
-                            <label style={{ marginBottom: '5px' }}>Registered Date</label>
+                            <label style={{ marginBottom: '5px' }}><b>Registered Date</b></label>
                             <input
                                 type="text"
                                 className='form-control'
@@ -169,7 +274,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Student' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Group ID</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Group ID</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -184,7 +289,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Supervisor' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Research Field</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Research Field</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -199,7 +304,7 @@ export default class UserProfile extends Component {
                         {this.state.type === 'Panel Member' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
-                                    <label style={{ marginBottom: '5px' }}>Panel</label>
+                                    <label style={{ marginBottom: '5px' }}><b>Panel</b></label>
                                     <input
                                         type="text"
                                         className='form-control'
@@ -211,10 +316,48 @@ export default class UserProfile extends Component {
                                 </div>
                             </span>}
 
+                        <br /><br />
+                        <h5><b>Change Password</b></h5>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}><b>Existing password</b></label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="enteredPassword"
+                                value={this.state.enteredPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}><b>New password</b></label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="newPassword"
+                                value={this.state.newPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
+                        <div className='form-group' style={{ marginBottom: '15px' }}>
+                            <label style={{ marginBottom: '5px' }}><b>Confirm New password</b></label>
+                            <input
+                                type="password"
+                                className='form-control'
+                                name="confirmNewPassword"
+                                value={this.state.confirmNewPassword}
+                                placeholder="Fill only if you need to change the password"
+                                onChange={this.handleInputChange}
+
+                            />
+                        </div>
 
                         <button className='btn btn-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
                             <i className='far fa-check-square'></i>
-                            &nbsp; Update
+                            &nbsp; <b>Update</b>
                         </button>
 
                     </form>

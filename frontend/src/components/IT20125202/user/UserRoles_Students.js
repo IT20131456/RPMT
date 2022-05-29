@@ -2,8 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
-import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import swal from 'sweetalert';
 
 
 export default class UserRoles_Students extends Component {
@@ -36,26 +35,30 @@ export default class UserRoles_Students extends Component {
   }
 
   onDelete = (id) => {
-    //with a confirmation msg
-    confirmAlert({
-      title: 'Delete User',
-      message: 'Are you sure you want to delete the user?',
-      buttons: [
-        {
-          label: 'Yes',
-          onClick: () =>
-            axios.delete(`http://localhost:5000/user/delete/${id}`).then((res) => {
-              alert("Deleted Successfully!");
-              this.retrieveUsers();
-            })
-        },
-        {
-          label: 'No',
-          onClick: () => alert('Cancelled. The user is not deleted')
-        }
-      ]
-    });
+    //with a confirmation 
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this user details",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios.delete(`http://localhost:5000/user/delete/${id}`).then((res) => {
+            swal("User Deleted Permanently!", "", "success")
+              .then((value) => {
+                if (value) {
+                  this.retrieveUsers();
+                }
 
+              });
+          })
+
+        } else {
+          swal("Cancelled. The user details are safe!");
+        }
+      });
   }
 
   handleSearchArea = (e) => {
@@ -84,7 +87,7 @@ export default class UserRoles_Students extends Component {
 
       user.idNumber.includes(searchKey) ||
       user.name.includes(searchKey) ||
-      user.groupId.includes(searchKey) 
+      user.groupId.includes(searchKey)
     )
 
     this.setState({
@@ -95,9 +98,9 @@ export default class UserRoles_Students extends Component {
   render() {
     return (
       <div className='container'>
-        <br/>
+        <br />
         <AdminNavBar />
-        <br/>
+        <br />
 
         <div className="container">
           <div className='row'>
@@ -106,21 +109,22 @@ export default class UserRoles_Students extends Component {
             </div>
             <div className='col-lg-3 mt-2 mb-2'>
               <input
-              className='form-control'
-              type="search"
-              placeholder = "Search User"
-              name = "searchQuery"
-              onChange={this.handleSearchArea}>
+                className='form-control'
+                type="search"
+                placeholder="Search User"
+                name="searchQuery"
+                onChange={this.handleSearchArea}>
               </input>
             </div>
+            <hr /><br />
           </div>
-          <br/>
           <div className="btn-group">
             <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
             <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
             <a href="/admin/students" className="btn btn-outline-dark">Students</a>
             <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
           </div>
+          <br />
           <table className="table">
             <thead>
               <tr>

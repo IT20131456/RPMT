@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 import EvaluationList from "./EvaluationList";
 
 export default class AddEvaluation extends Component {
@@ -14,7 +15,6 @@ export default class AddEvaluation extends Component {
       from: "",
       to: "",
       link: "",
-      lemail:"",
       subject:"About Your Evaluation Session.",
       text:"Your session has been added to the website. Please see the details and let your team members know. --Auto Generated Email--",
     };
@@ -31,7 +31,7 @@ export default class AddEvaluation extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { groupId, evaluationTopic, dressCode, date, from, to, link,lemail,subject,text } =
+    const { groupId, evaluationTopic, dressCode, date, from, to, link,subject,text } =
       this.state;
 
     const data = {
@@ -47,7 +47,7 @@ export default class AddEvaluation extends Component {
 
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
-        alert("Added Successfully !")
+        swal("Good job!", "Added Evaluation Successfully !", "success");
         this.setState({
           groupId: "",
           evaluationTopic: "",
@@ -56,7 +56,8 @@ export default class AddEvaluation extends Component {
           from: "",
           to: "",
           link: "",
-          lemail:"",
+         
+          
 
         });
       }
@@ -68,10 +69,15 @@ export default class AddEvaluation extends Component {
 
        // Send data to Email Service
        const emailData = {
-          
-        to:lemail,
+        groupId:groupId,  
         subject: subject,
         text: text,
+        type: evaluationTopic,
+        panel: dressCode,
+        date: date,
+        from: from,
+        to: to,
+        link: link, 
 
 
 
@@ -80,6 +86,7 @@ export default class AddEvaluation extends Component {
     axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
     if (res.data.success) {
       console.log("Sent Email Successfully");
+      
       
       
     }
@@ -127,58 +134,57 @@ export default class AddEvaluation extends Component {
                      </div>
                      <div className="col-sm-8">
 
+
+
+
+
+
                      <div
-                      className="form-group"
-                      style={{ marginBottom: "15px" }}
-                    >
-                      
-                      <label style={{ marginBottom: "5px" }}>Leader Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="lemail"
-                        placeholder="Leader Email -exmple@mail.com"
-                        value={this.state.lemail}
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
+                     className="form-group"
+                     style={{ marginBottom: "15px" }}
+                   >
+                     <label style={{ marginBottom: "5px" }}>
+                       Evaluation Type
+                     </label>
+
+                     <select
+                       className="form-select"
+                       name="evaluationTopic"
+                       value={this.state.evaluationTopic}
+                       onChange={this.handleInputChange}
+                     >
+                       <option evaluationTopic="not selected yet" selected>
+                         Select Type
+                       </option>
+                       <option evaluationTopic="Topic Assessment Document">
+                         Topic Assessment Document
+                       </option>
+                       <option evaluationTopic="Proposal Document">
+                         Proposal Document
+                       </option>
+                       <option evaluationTopic="Presentation Slides">
+                         Presentation Slides
+                       </option>
+                       <option evaluationTopic="Final Thesis">
+                         Final Thesis
+                       </option>
+                     </select>
+                   </div>
+
+
+
+
+
+
+
+                   
 
                      </div>
                    </div>
                    
                  
 
-                    <div
-                      className="form-group"
-                      style={{ marginBottom: "15px" }}
-                    >
-                      <label style={{ marginBottom: "5px" }}>
-                        Evaluation Type
-                      </label>
-
-                      <select
-                        className="form-select"
-                        name="evaluationTopic"
-                        value={this.state.evaluationTopic}
-                        onChange={this.handleInputChange}
-                      >
-                        <option evaluationTopic="not selected yet" selected>
-                          Select Type
-                        </option>
-                        <option evaluationTopic="Topic Assessment Document">
-                          Topic Assessment Document
-                        </option>
-                        <option evaluationTopic="Proposal Document">
-                          Proposal Document
-                        </option>
-                        <option evaluationTopic="Presentation Slides">
-                          Presentation Slides
-                        </option>
-                        <option evaluationTopic="Final Thesis">
-                          Final Thesis
-                        </option>
-                      </select>
-                    </div>
+                 
 
                     <div
                       className="form-group"

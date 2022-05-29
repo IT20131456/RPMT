@@ -1,3 +1,4 @@
+//for registration
 import axios from "axios";
 
 export const userRegister = newUser => {
@@ -5,6 +6,7 @@ export const userRegister = newUser => {
             idNumber: newUser.idNumber,
             name: newUser.name,
             email: newUser.email,
+            mobile: newUser.mobile,
             type: newUser.type,
             password: newUser.password,
         })
@@ -17,18 +19,3 @@ export const userRegister = newUser => {
             return err
         })
 } 
-
-export const userLogin = user => {
-    return axios.post('http://localhost:5000/user/login', {
-        idNumber: user.idNumber,
-        password: user.password
-    })
-    .then(res => {
-            localStorage.setItem('userToken', res.data)
-            // window.alert('Login successful!');
-            return res.data
-    })
-    .catch(err => {
-        console.log(err);
-    })
-}
