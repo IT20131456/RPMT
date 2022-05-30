@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class AddMarks extends Component{
 
@@ -17,6 +18,7 @@ export default class AddMarks extends Component{
       pmarks:"",
       marks:"",
       gradingStatus:"",
+      status:"Marked",
     
     }
 
@@ -36,9 +38,9 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{groupId,type,smarks,pmarks,marks,gradingStatus}=this.state;
+  const{groupId,type,smarks,pmarks,marks,gradingStatus,status}=this.state;
 
-
+//calculate marks
  console.log(marks); //20
  console.log(smarks); //2
  console.log(pmarks); //6
@@ -51,9 +53,10 @@ onSubmit=(e)=>{
 
   let totmarks = (marks - (rmarks));
   console.log(totmarks);
+  let orgmarks = totmarks.toFixed(2);
 
-  if (totmarks<0){
-    totmarks = 0;
+  if (orgmarks<0){
+    orgmarks = 0;
   }
   
 
@@ -70,19 +73,25 @@ onSubmit=(e)=>{
   const data={
     groupId:groupId,
     type:type,
-    marks:totmarks,
+    marks:orgmarks,
     gradingStatus:gradingStatus,
   }
   console.log(data);
-
+//save marks
   axios.post(`http://localhost:5000/mark/save`,data).then((res)=>{
     if(res.data.success){
-      alert("Marks Added Successfully")
+
+      swal("Good job!", "Marks Added Successfully !", "success")
+      .then((value)=>{
+        window.location = "/submitions/view"
+
+      })
+      
 
 
 
 
-      window.location = "/submitions/view"
+   
       this.setState({
         groupId:"",
         type:"",
@@ -93,6 +102,34 @@ onSubmit=(e)=>{
       
     }
   })
+
+
+
+
+
+  
+  const statusdata={
+    status:status,
+    
+  }
+
+
+  const ids = this.props.match.params.id ;
+  axios.put(`http://localhost:5000/submition/update/${ids}`, statusdata).then((res) => {
+    if (res.data.success) {
+      console.log("Updated Successfully")
+      
+      
+    }
+    });
+
+
+
+
+
+
+
+
 }
 
 
@@ -136,7 +173,7 @@ onSubmit=(e)=>{
       
      <div className='col-md-12 mt-4 mx-auto'>
        <h1 className='h3 mb-3 font-weight-normal'>Add Marks</h1>
-       <form className='needs-validation' noValidate>
+       <form className='needs-validation' onSubmit={this.onSubmit}>
          <div className='form-group' style={{marginBottom:'15px'}}>
            <label style={{marginBottom:'5px'}}>Group ID</label>
            <input type="text" 
@@ -177,6 +214,7 @@ onSubmit=(e)=>{
                         name="smarks"
                         value={this.state.smarks}
                         onChange={this.handleInputChange}
+                        required
                       >
                         <option smarks="Select Minus Marks" selected>
                         Select Minus Percentage
@@ -213,6 +251,7 @@ onSubmit=(e)=>{
                         name="pmarks"
                         value={this.state.pmarks}
                         onChange={this.handleInputChange}
+                        required
                       >
                         <option pmarks="Select Minus Marks" selected>
                         Select Minus Percentage
@@ -244,7 +283,10 @@ onSubmit=(e)=>{
            name='marks'
            placeholder='Enter Marks  ?/100'
            value={this.state.marks}
-           onChange={this.handleInputChange}/>
+           onChange={this.handleInputChange}
+           required
+           />
+           
            
          </div>
 
@@ -270,6 +312,7 @@ onSubmit=(e)=>{
                         name="gradingStatus"
                         value={this.state.gradingStatus}
                         onChange={this.handleInputChange}
+                        required
                       >
                         <option gradingStatus="not selected yet" selected>
                           Select Status
@@ -290,7 +333,7 @@ onSubmit=(e)=>{
          </div>
 
 
-         <button className="btn btn-success" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
+         <button className="btn btn-success" type="submit" style={{margintop:'15px'}} >
            <i className='far fa-check-square'></i>
            &nbsp; Add Marks
          </button>

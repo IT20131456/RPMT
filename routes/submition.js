@@ -125,5 +125,34 @@ router.put('/submition/update/:id',(req,res)=>{
 
 
 
+//update status
+router.put('/submition/update/status/:id',(req,res)=>{
+    Submitions.updateOne(
+        { _id: req.params.id },
+        { $set:
+           {
+             status: req.body.status,
+             
+           }
+        }
+     
+    
+    
+    ,
+        (err,submition)=>{
+            if(err){
+                return res.status(400).json({error:err});
+            }
+            return res.status(200).json({
+                success:"Update Successfully"
+            });
+        }
+    );
+});
+
+
+
+
+
 
 module.exports = router;

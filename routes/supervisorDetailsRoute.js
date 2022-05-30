@@ -20,6 +20,7 @@ router.post("/supervisor/save", (req, res) => {
   });
 });
 
+
 //get Supervisor Details
 
 router.get("/supervisors", (req, res) => {

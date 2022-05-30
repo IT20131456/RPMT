@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import swal from 'sweetalert';
 import fileDownload from 'js-file-download';
 
 export default class ViewSubmitions extends Component {
@@ -78,35 +79,83 @@ fileDownload(res.data, fileName);
 
          
 onDelete=(id)=>{
+
+
+
+
+  
+
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+
+
+
+
+      
+
     axios.delete(`http://localhost:5000/submition/delete/${id}`).then((res)=>{
-      alert("Deleted Successfully");
+      
       this.retrieveSubmitions();
   
     })
+
+
+
+
+
+      swal("Poof! Your file has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your file is safe!");
+    }
+  });
+
+
+
+
+
+
+
+
+
+
   }
 
 
   render() {
     return (
       <div className='container'>
-
+<div className='ms-4 me-4 mt-2 mb-2'>
 <div className='row'>
       <div className='col-lg-4 mt-2 mb-2'>
       <a className="btn btn-outline-dark" href="/marks/view">
                  <i className="fas fa-eye"></i>&nbsp;View Marks
                </a>
       </div>
-      <div className='col-lg-5 mt-2 mb-2'>
+      <div className='col-lg-4 mt-2 mb-2'>
         <h4>All Submitions</h4>
       </div>
-      <div className='col-lg-3 mt-2 mb-2'>
-
-        <input className='form-control'
+      <div className='col-lg-4 mt-2 mb-2'>
+<div className='row'>
+  <div className='col-1'> <i class="fa fa-search" aria-hidden="true"></i></div>
+  <div className='col-11'>   <input className='form-control'
         type="search"
-        placeholder='Search'
+        placeholder='Search . . . . . .'
         name='searchQuery'
         onChange={this.handleSearchArea}>
-        </input>
+        </input></div>
+</div>
+     
+
+     
 
       </div>
 
@@ -121,8 +170,8 @@ onDelete=(id)=>{
                     <th scope='col'>Group ID</th>
                     <th scope='col'>Type</th>
                     <th scope='col'>Description</th>
-                    <th scope='col'>File</th>
                     <th scope='col'>Submitted Date</th>
+                    <th scope='col'>Status</th>
 
                     <th scope='col'>Preview</th>
                     <th scope='col'>Delete</th>
@@ -136,12 +185,12 @@ onDelete=(id)=>{
                         <td>{submitions.groupId}</td>
                         <td>{submitions.type}</td>
                         <td>{submitions.description}</td>
-                        <td>{submitions.files}</td>
                         <td>{submitions.postDate}</td>
+                        <td>{submitions.status}</td>
                         <td>
                             
                         
-                      <a className='btn btn-outline-success' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"></i>Download Submition</a>
+                      <a className='btn btn-outline-success' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
                       
                         
                         </td>
@@ -151,7 +200,7 @@ onDelete=(id)=>{
                         <a className="btn btn-outline-danger" href="#" onClick={()=>{
                   this.onDelete(submitions._id)
                 }}>
-                  <i className="fas fa-trash-alt"></i>Delete Submition
+                  <i className="fas fa-trash-alt"><br/>Delete </i>
                 </a>
                         </td>
 
@@ -159,8 +208,8 @@ onDelete=(id)=>{
 
 
                         <td>
-                        <a className="btn btn-outline-info" href={`/marks/add/${submitions._id}`}>
-                 <i className="fas fa-plus"></i>&nbsp;Add Marks
+                        <a className="btn btn-outline-primary" href={`/marks/add/${submitions._id}`}>
+                 <i className="fas fa-plus"><br/>Marks</i>
                </a>
                         </td>
                     </tr>
@@ -171,7 +220,7 @@ onDelete=(id)=>{
        
 
          
-
+          </div>
       </div>
     )
   }

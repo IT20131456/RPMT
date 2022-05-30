@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
 export default class SubmitionTypeList extends Component {
   constructor(props) {
@@ -27,23 +28,68 @@ export default class SubmitionTypeList extends Component {
   }
 
   onDelete = (id) => {
-    axios
-      .delete(`http://localhost:5000/submitiontype/delete/${id}`)
-      .then((res) => {
-        alert("Deleted Successfully");
-        this.retrivesubmitionTypes();
+ 
+
+
+
+
+
+      
+
+      swal({
+        title: "Are you sure?",
+        text: "Once deleted, you will not be able to recover this file!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+
+
+
+          axios
+          .delete(`http://localhost:5000/submitiontype/delete/${id}`)
+          .then((res) => {
+            this.retrivesubmitionTypes();
+          });
+
+
+
+       
+
+
+
+
+
+          swal("Poof! Your file has been deleted!", {
+            icon: "success",
+          });
+        } else {
+          swal("Your file is safe!");
+        }
       });
+
+
+
+
+
+
+
+
+
+
   };
 
-  filterData(submitiomtypes, searchKey) {
-    const result = submitiomtypes.filter(
+  filterData(submitiontypes, searchKey) {
+    const result = submitiontypes.filter(
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
         submitiontype.checkPanel.toLowerCase().includes(searchKey)
     );
 
-    this.setState({ submitiomtypes: result });
+    this.setState({ submitiontypes: result });
   }
 
   handleSearchArea = (e) => {
@@ -51,7 +97,7 @@ export default class SubmitionTypeList extends Component {
 
     axios.get("http://localhost:5000/submitiontypes").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.existingsubmitionTypes, searchKey);
+        this.filterData(res.data.existingsubmitonTypes, searchKey);
       }
     });
   };
@@ -95,14 +141,14 @@ export default class SubmitionTypeList extends Component {
                     <p>
                       <strong>Guidelines</strong>
                     </p>
-                    <p>{submitiontypes.submition}</p>
+                    <p>{submitiontypes.guidelines}</p>
                   
 
                     <p>
                       {" "}
                       <strong>Allocated Marks</strong>
                     </p>
-                    <p>{submitiontypes.startDate}%</p>
+                    <p>{submitiontypes.almarks}%</p>
                     <p>
                       <strong>Deadline</strong>
                     </p>
@@ -114,7 +160,7 @@ export default class SubmitionTypeList extends Component {
 
                     <div className="row">
                       <div className="col-lg-4">
-                        <a href="/addSubmition" class="btn btn-outline-primary">
+                        <a href="/submition/student/add" class="btn btn-outline-primary">
                           <i class="fa fa-plus" aria-hidden="true"></i>Submit
                         </a>
                       </div>
