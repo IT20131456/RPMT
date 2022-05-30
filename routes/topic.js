@@ -1,10 +1,9 @@
 const express = require("express");
-const { mongoose } = require("mongoose");
 const Topics = require("../models/topic");
 
 const router = express.Router();
 
-//save Topic to get the confirmation or rejection
+// save Topic to get the confirmation or rejection
 router.post("/topic/save", (req, res) => {
   let newTopic = new Topics(req.body);
   newTopic.save((err) => {
@@ -19,7 +18,7 @@ router.post("/topic/save", (req, res) => {
   });
 });
 
-//get saved topics
+// get saved topics
 router.get("/topics", (req, res) => {
   Topics.find().exec((err, topics) => {
     if (err) {
@@ -34,7 +33,7 @@ router.get("/topics", (req, res) => {
   });
 });
 
-//get a specific topic
+// get the specific topic details
 router.get("/topic/:id", (req, res) => {
   let topicId = req.params.id;
 
@@ -53,7 +52,7 @@ router.get("/topic/:id", (req, res) => {
   });
 });
 
-//get topics acccording to the Group ID
+// get topics acccording to the Group ID
 router.get("/topic/submissions/:id", (req, res) => {
   let id = req.params.id;
 
@@ -70,7 +69,7 @@ router.get("/topic/submissions/:id", (req, res) => {
   });
 });
 
-//update topic
+// update topic
 router.put("/topic/update/:id", (req, res) => {
   Topics.findByIdAndUpdate(
     req.params.id,

@@ -51,6 +51,7 @@ export default class EditUser extends Component {
       password: password
     }
 
+    // validations-------------------------------------------------------------
     let validated = true;
     if (data.idNumber === '') {
       validated = false;
@@ -106,6 +107,19 @@ export default class EditUser extends Component {
   componentDidMount() {
 
     document.title = "Edit user details"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.adminToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/admin/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
 
     const id = this.props.match.params.id;
 

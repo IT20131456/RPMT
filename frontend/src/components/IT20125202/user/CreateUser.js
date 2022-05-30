@@ -53,6 +53,7 @@ export default class CreateUser extends Component {
       password: this.state.password
     }
 
+    // validations----------------------------------------------------
     let validated = true;
     if (user.idNumber === '') {
       validated = false;
@@ -123,8 +124,6 @@ export default class CreateUser extends Component {
   render() {
     return (
       <div>
-        {/* <NavBar /> */}
-
         <div className="container" style={{ marginTop: '10px', marginBottom: '10px', backgroundColor: 'white', paddingBottom: '100px', paddingTop: '50px', paddingLeft: '100px', paddingRight: '100px', height: '800px' }}>
           <h1 style={{ textAlign: 'center', paddingBottom: '10px' }}>Research Project Management System</h1>
           <hr />

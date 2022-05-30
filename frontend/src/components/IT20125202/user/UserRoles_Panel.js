@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
-import swal from 'sweetalert';;
+import swal from 'sweetalert';
 
 
 export default class UserRoles_Panel extends Component {
@@ -17,6 +17,19 @@ export default class UserRoles_Panel extends Component {
 
   componentDidMount() {
     document.title = "User Roles"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.adminToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/admin/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
     this.retrieveUsers();
   }
 

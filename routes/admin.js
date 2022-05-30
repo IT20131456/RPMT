@@ -1,24 +1,32 @@
 const express = require("express");
-const Admin = require("../models/admin");
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
+const Admin = require("../models/admin");   // model
+const bcrypt = require("bcryptjs");         // for password hashing
+const jwt = require("jsonwebtoken");        // for creating user tokens
 
 const router = express.Router();
 
+// admin login
 router.post("/admin", async (req, res) => {
-  const admin = await Admin.findOne({
+
+  // find the admin by username
+  const admin = await Admin.findOne({ 	
     username: req.body.username,
   });
 
+  // for non-existing username
   if (!admin) {
     return { status: "error", error: "Invalid login" };
   }
 
+  // for an existing username
+  // compare the entered password with the hashed password in the database
   const isPasswordValid = await bcrypt.compare(
     req.body.password,
     admin.password
   );
 
+  // for a valid password
+  // create a user token using json web tokens
   if (isPasswordValid) {
     const token = jwt.sign(
       {
@@ -26,6 +34,8 @@ router.post("/admin", async (req, res) => {
       },
       "secret2022"
     );
+
+    localStorage.setItem(adminToken, token);
 
     return res.json({ status: "ok", admin: token });
   } else {

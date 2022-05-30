@@ -1,9 +1,8 @@
-//panel members view the topic list  
+// view the topic list - admin  
 import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
-// import { confirmAlert } from 'react-confirm-alert';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+import swal from 'sweetalert';
 
 
 export default class ViewListAdmin extends Component {
@@ -18,6 +17,20 @@ export default class ViewListAdmin extends Component {
 
   componentDidMount() {
     document.title = "Research Topic Requests"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.adminToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/admin/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
+    
     this.retrieveTopics();
   }
 
@@ -34,34 +47,32 @@ export default class ViewListAdmin extends Component {
     });
   }
 
-  // onDelete = (id) => {
-  //   //with a confirmation msg
-  //   confirmAlert({
-  //     title: 'Delete Topic',
-  //     message: 'Are you sure you want to delete this topic?',
-  //     buttons: [
-  //       {
-  //         label: 'Yes',
-  //         onClick: () =>
-  //           axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
-  //             alert("Deleted Successfully!");
-  //             this.retrieveTopics();
-  //           })
-  //       },
-  //       {
-  //         label: 'No',
-  //         onClick: () => alert('Cancelled. The user is not deleted')
-  //       }
-  //     ]
-  //   });
+  onDelete = (id) => {
+    //with a confirmation 
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, you will not be able to recover this topic request",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
+            swal("Deleted Permanently!", "", "success")
+              .then((value) => {
+                if (value) {
+                  this.retrieveTopics();
+                }
 
-  //   //without confirmation
-  //   // axios.delete(`http://localhost:5000/topic/delete/${id}`).then((res) => {
-  //   //   alert('Deleted successfully!');
+              });
+          })
 
-  //   //   this.retrieveTopics();
-  //   // })
-  // }
+        } else {
+          swal("Cancelled.");
+        }
+      });
+  }
 
   handleSearchArea = (e) => {
     // console.log(e.currentTarget.value)
