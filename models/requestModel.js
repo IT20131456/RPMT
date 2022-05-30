@@ -1,25 +1,26 @@
 const mongoose = require("mongoose");
 
-const supervisormodelSchema = new mongoose.Schema({
-  supervisorid: {
+const requestmodelSchema = new mongoose.Schema({
+
+  name: {
     type: String,
     required: true,
   },
 
-  supervisorname: {
+  position:{
     type: String,
     required: true,
   },
 
-  researchfield: {
+  feedback: {
     type: String,
     required: true,
   },
 
-  email: {
+  status: {
     type: String,
     required: true,
   },
 });
 
-module.exports = mongoose.model("supervisordetails", supervisormodelSchema);
+module.exports = mongoose.model("supervisorrequest", requestmodelSchema);

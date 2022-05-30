@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
-
-
-
-
 //user
 import CreateUser from './components/IT20125202/user/CreateUser';
 import UserProfile from './components/IT20125202/user/UserProfile';
@@ -16,11 +12,7 @@ import LandingPage from './components/IT20125202/LandingPage';
 //student
 import RegisterTopic from './components/IT20125202/topic/RegisterTopic';
 import ViewSubmissions from './components/IT20125202/topic/ViewSubmissions';
-import StudentGroup from "./components/IT20131456/StudentGroup";
-import SupervisorDetails from "./components/It20131456/SupervisorDetails";
 import GroupChatStudent from './components/IT20127046/user/GroupChat_Student';
-import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
-
 import SviewEvaluation from "./components/IT20128036/user/SviewEvaluation";
 import SviewSubmitionType from "./components/IT20128036/user/SviewSubmitionType";
 import Submitions from './components/IT20128036/user/Submitions';
@@ -28,6 +20,12 @@ import ViewSubmitionssp from './components/IT20128036/user/viewSubmitionsp';
 import sviewMarks from './components/IT20128036/user/sviewMarks';
 import EditSubmition from './components/IT20128036/user/editSubmition';
 import { exportPDF } from './components/IT20128036/user/exportPDF';
+
+import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
+import StudentGroup from "./components/IT20131456/StudentGroup";
+import RequestSupervisor from "./components/IT20131456/RequestSupervisor";
+import CreateRequest from "./components/IT20131456/CreateRequest";
+import RequestSummary from "./components/IT20131456/RequestSummary";
 
 
 //admin
@@ -43,14 +41,16 @@ import DocumentTempUpdate from './components/IT20127046/admin/DocumentTempUpdate
 import UserRoles_Panel from "./components/IT20125202/user/UserRoles_Panel";
 import UserRoles_Students from "./components/IT20125202/user/UserRoles_Students";
 import UserRoles_Supervisors from "./components/IT20125202/user/UserRoles_Supervisor";
-
-import StudentGroup from "../src/components/IT20131456/StudentGroup";
-import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
-
 import AddSubmitionType from "./components/IT20128036/admin/addSubmitionType";
 import SubmitionTypeList from "./components/IT20128036/admin/SubmitionTypeList";
 import EditSubmitonType from './components/IT20128036/admin/editSubmitionType';
 
+import StudentGroup from "../src/components/IT20131456/StudentGroup";
+import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
+import EditStudentGroup from "./components/IT20131456/EditStudentGroup";
+import CreateSupervisorDetails from "./components/IT20131456/CreateSupervisorDetails";
+import EditSupervisorDetails from "./components/IT20131456/EditSupervisorDetails";
+import SupervisorDetails from "./components/IT20131456/SupervisorDetails";
 
 
 //panel
@@ -82,6 +82,8 @@ import DisplayMarkingScheme from "./components/IT20127046/user/DisplayMarkingSch
 import ContactUs from "./components/IT20127046/user/ContactUs";
 import AboutUs from "./components/IT20127046/user/AboutUs";
 
+import CreateResponse from "./components/IT20131456/CreateResponse";
+
 
 
 export default class App extends Component {
@@ -112,13 +114,21 @@ export default class App extends Component {
             <Route path="/add/documentTemp" exact component={DocumentTempCreate}></Route>
             <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
 
+            <Route path="/student/groups/view" exact  component={StudentGroup}></Route>
+            <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+            <Route path="/student/group/update/:id" component={EditStudentGroup}></Route>
+                
+            <Route path="/supervisor/add" component={CreateSupervisorDetails}></Route>
+            <Route path="/supervisor/view" component={SupervisorDetails}></Route>
+            <Route path="/supervisor/update/:id" component={EditSupervisorDetails}></Route>
+
 
 
             {/* </div> */}
             {/* </div> */}
 
-            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflow: 'hidden', minHeight: '100vh' }}>
-              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px', overflowY: 'scroll', msOverflowStyle: 'none' }}>
+            <div className='jumbotron' style={{ paddingLeft: '50px', paddingRight: '50px', paddingBottom: '50px', paddingTop: '10px', backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover', margin: '0px 0px 0px 0px', overflowY: 'scroll', height: '100vh' }}>
+              <div className='container' style={{ background: 'white', minHeight: '100vh', padding: '0px 0px 10px 0px'}}>
                 <NavBar />
                 {/* ---------------User--------------- */}
                 {/* IT20125202 */}
@@ -145,13 +155,8 @@ export default class App extends Component {
                 <Route path='/student/topics' exact component={ViewSubmissions}></Route>
 
 
-                {/* IT20131456 */}
-                <Route path="/sgroup/view" exact component={StudentGroup}></Route>
-                <Route path="/sgroup/add" component={CreateStudentGroup}></Route>
-                <Route path="/view/:id" component={ViewStudentGroup}></Route>
-
-
                 {/*IT20128036*/}
+
 
                 <Route path="/evaluation/student/view" component={SviewEvaluation}/>
                 <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
@@ -160,14 +165,13 @@ export default class App extends Component {
                 <Route path="/marks/student/view" component={sviewMarks}/>
                 <Route path="/submition/student/edit/:id" component={EditSubmition}/>
                 <Route path="/student/pdf/export" component={exportPDF}/>
+
+                  {/* IT20131456 */}
+                <Route path="/student/group/add" component={CreateStudentGroup}></Route>                
+                <Route path="/supervisor/request" component={RequestSupervisor}></Route>
+                <Route path="/create/request" component={CreateRequest}></Route>
+                <Route path="/request/summary" component={RequestSummary}></Route>
           
-             
-
-               
-
-
-
-
                 {/* ---------------Supervisor--------------- */}
 
                 {/*IT20128036*/}
@@ -175,6 +179,9 @@ export default class App extends Component {
                 <Route path="/marks/add/:id" component={AddMarks} />
                 <Route path="/marks/view" component={viewMarks} />
                 <Route path="/marks/edit/:id" component={EditMarks} />
+
+                 {/* IT20131456 */}
+                <Route path="/create/feedback" component={CreateResponse}></Route>
 
 
                 {/* ---------------Panel member--------------- */}
@@ -186,24 +193,22 @@ export default class App extends Component {
                 {/*IT20128036*/}
                 <Route path="/evaluation/add" component={AddEvaluation} />
                 <Route path="/evaluation/view" component={EvaluationList} />
-                <Route path="/evaluation/edit/:id" component={EditEvaluation} />
-
-
-                {/* IT20131456 */}
+                <Route path="/evaluation/edit/:id" component={EditEvaluation} />             
 
                 {/* ---------------Student--------------- */}
-                <Route path="/student/group/add" component={CreateStudentGroup}></Route>
+                
 
                 {/* ---------------Admin--------------- */}
-                <Route path="/student/groups/view" exact component={StudentGroup}></Route>
-                <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+                
+                
 
 
                 {/*IT20128036*/}
                 <Route path="/submitiontype/add" component={AddSubmitionType} />
                 <Route path="/submitiontypelist" component={SubmitionTypeList} />
-                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />
-
+                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />     
+              
+              
               </div>
             </div>
           </Switch>

@@ -170,12 +170,13 @@ notify.post('/submitiontype/email',(req,res)=>{
         smtpTransport.sendMail(mailOptions, function(err) {
             if(err){
                 console.log(err);
-                res.json({status: true, respMesg: 'Email Sent is not Successful'});
+                res.json({success: false, respMesg: 'Email Sent is not Successful'});
                 
                 
-            }
+            }else{
             console.log('mail sent to ' + mailList);
-            res.json({status: true, respMesg: 'Email Sent Successfully'});
+            res.json({success: true, respMesg: 'Email Sent Successfully'});
+            } 
 
         });
 });

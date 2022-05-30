@@ -18,6 +18,7 @@ export default class AddMarks extends Component{
       pmarks:"",
       marks:"",
       gradingStatus:"",
+      status:"Marked",
     
     }
 
@@ -37,7 +38,7 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{groupId,type,smarks,pmarks,marks,gradingStatus}=this.state;
+  const{groupId,type,smarks,pmarks,marks,gradingStatus,status}=this.state;
 
 
  console.log(marks); //20
@@ -101,6 +102,34 @@ onSubmit=(e)=>{
       
     }
   })
+
+
+
+
+
+  
+  const statusdata={
+    status:status,
+    
+  }
+
+
+  const ids = this.props.match.params.id ;
+  axios.put(`http://localhost:5000/submition/update/${ids}`, statusdata).then((res) => {
+    if (res.data.success) {
+      console.log("Updated Successfully")
+      
+      
+    }
+    });
+
+
+
+
+
+
+
+
 }
 
 

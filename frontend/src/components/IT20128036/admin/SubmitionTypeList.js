@@ -141,14 +141,14 @@ export default class SubmitionTypeList extends Component {
                     <p>
                       <strong>Guidelines</strong>
                     </p>
-                    <p>{submitiontypes.submition}</p>
+                    <p>{submitiontypes.guidelines}</p>
                   
 
                     <p>
                       {" "}
                       <strong>Allocated Marks</strong>
                     </p>
-                    <p>{submitiontypes.startDate}%</p>
+                    <p>{submitiontypes.almarks}%</p>
                     <p>
                       <strong>Deadline</strong>
                     </p>
