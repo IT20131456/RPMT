@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class ViewTopic extends Component {
   constructor(props) {
@@ -12,6 +13,20 @@ export default class ViewTopic extends Component {
 
   componentDidMount() {
     document.title = "Topic Registration Details"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/user/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
+    
     const id = this.props.match.params.id;
     axios.get(`http://localhost:5000/topic/${id}`).then((res) => {
       if (res.data.success) {

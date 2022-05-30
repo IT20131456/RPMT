@@ -1,6 +1,7 @@
 //panel members view the topic list  
 import React, { Component } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class viewTopicList extends Component {
 
@@ -14,6 +15,20 @@ export default class viewTopicList extends Component {
 
   componentDidMount() {
     document.title = "Research Topic Requests"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/user/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
+    
     this.retrieveTopics();
   }
 

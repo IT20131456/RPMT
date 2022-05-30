@@ -20,6 +20,21 @@ export default class RegisterTopic extends Component {
 
     componentDidMount() {
         document.title = "Topic Registration"
+
+        // redirect to the login page if the user is not logged in
+        if (!localStorage.userToken) {
+            swal("Please login first", "", "warning")
+                .then((value) => {
+                    if (value) {
+                        this.props.history.push(`/user/login`)
+                        window.location.reload();
+                    }
+
+                });
+
+        }
+
+        //get group id using the user token
         const usertoken = localStorage.userToken;
         const decoded = jwt_decode(usertoken);
 
@@ -53,6 +68,7 @@ export default class RegisterTopic extends Component {
         }
         // console.log(data)
 
+        // Validations-----------------------------------------------------------------
         let validated = true;
 
         if (groupId === '') {
@@ -80,7 +96,8 @@ export default class RegisterTopic extends Component {
             });
         }
 
-        if(validated){
+        // save the validated data
+        if (validated) {
             axios.post('http://localhost:5000/topic/save', data).then((res) => {
                 if (res.data.success) {
                     swal("Registered successfully!", "", "success")
@@ -89,12 +106,12 @@ export default class RegisterTopic extends Component {
                                 this.props.history.push(`/student/topics`)
                                 window.location.reload();
                             }
-    
+
                         });
                 }
             })
         }
-        
+
     }
 
     render() {
@@ -160,7 +177,7 @@ export default class RegisterTopic extends Component {
 
                         <button className='btn btn-outline-success' type="submit" style={{ maeginTop: '15px' }} onClick={this.onSubmit}>
                             <b><i className='far fa-check-square'></i>
-                            &nbsp; Register</b>
+                                &nbsp; Register</b>
                         </button>
 
                     </form>

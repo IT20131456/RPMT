@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
+import swal from 'sweetalert';
 
 export default class UserProfile extends Component {
     constructor(props) {
@@ -15,6 +16,20 @@ export default class UserProfile extends Component {
 
     componentDidMount() {
         document.title = "User Details"
+
+        // redirect to the login page if the user is not logged in
+        if (!localStorage.adminToken) {
+            swal("Please login first", "", "warning")
+                .then((value) => {
+                    if (value) {
+                        this.props.history.push(`/admin/login`)
+                        window.location.reload();
+                    }
+
+                });
+
+        }
+
         const id = this.props.match.params.id;
 
         axios.get(`http://localhost:5000/user/${id}`).then((res) => {

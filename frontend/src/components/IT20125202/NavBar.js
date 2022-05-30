@@ -67,6 +67,7 @@ class NavBar extends Component {
 
     let userLink;
 
+    // NavBar Links for students
     if (this.state.type === 'Student') {
       userLink = (
         <ul className='nav nav-tabs'>
@@ -79,7 +80,17 @@ class NavBar extends Component {
           <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
-
+          {/* <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style={{ textDecoration: 'none', color: 'white' }}>
+              Dropdown
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a className="dropdown-item" href="#">Action</a></li>
+              <li><a className="dropdown-item" href="#">Another action</a></li>
+              <li><hr className="dropdown-divider" /></li>
+              <li><a className="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </li> */}
           <li className='nav-item'>
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>
               Log out
@@ -88,6 +99,8 @@ class NavBar extends Component {
         </ul>
       )
     }
+
+    // NavBar Links for Supervisor
     else if (this.state.type === 'Supervisor') {
       userLink = (
         <ul className='nav nav-tabs'>
@@ -105,6 +118,8 @@ class NavBar extends Component {
         </ul>
       )
     }
+
+    // NavBar Links for Panel Member
     else if (this.state.type === 'Panel Member') {
       userLink = (
         <ul className='nav nav-tabs'>

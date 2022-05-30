@@ -29,6 +29,19 @@ export default class UserProfile extends Component {
     componentDidMount() {
         document.title = "User Profile"
 
+        // redirect to the login page if the user is not logged in
+        if (!localStorage.userToken) {
+            swal("Please login first", "", "warning")
+                .then((value) => {
+                    if (value) {
+                        this.props.history.push(`/user/login`)
+                        window.location.reload();
+                    }
+
+                });
+
+        }
+
         const usertoken = localStorage.userToken;
         const decoded = jwt_decode(usertoken);
 
@@ -90,6 +103,8 @@ export default class UserProfile extends Component {
             password: password,
         }
         // console.log(data)
+
+        // validations----------------------------------------------------------
         let validated = true;
         if (data.name === '' || data.name.length < 5) {
             validated = false;
@@ -123,7 +138,7 @@ export default class UserProfile extends Component {
                 icon: "warning",
             });
         }
-        else if(this.state.confirmNewPassword != this.state.newPassword){
+        else if (this.state.confirmNewPassword != this.state.newPassword) {
             validated = false;
             swal({
                 title: "",
@@ -279,6 +294,8 @@ export default class UserProfile extends Component {
                                 readOnly
                             />
                         </div>
+
+                        {/* Visible to students */}
                         {this.state.type === 'Student' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
@@ -294,6 +311,7 @@ export default class UserProfile extends Component {
                                 </div>
                             </span>}
 
+                        {/* Visible to Supervisors */}
                         {this.state.type === 'Supervisor' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
@@ -309,6 +327,7 @@ export default class UserProfile extends Component {
                                 </div>
                             </span>}
 
+                        {/* Visible to panel members */}
                         {this.state.type === 'Panel Member' &&
                             <span>
                                 <div className='form-group' style={{ marginBottom: '15px' }}>
@@ -323,7 +342,7 @@ export default class UserProfile extends Component {
                                     />
                                 </div>
                             </span>}
-
+                        {/* Optional fields */}
                         <br /><br />
                         <h5><b>Change Password</b></h5>
                         <div className='form-group' style={{ marginBottom: '15px' }}>

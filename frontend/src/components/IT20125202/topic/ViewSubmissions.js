@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import jwt_decode from 'jwt-decode';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 export default class ViewSubmissions extends Component {
   constructor() {
@@ -15,6 +16,19 @@ export default class ViewSubmissions extends Component {
   componentDidMount() {
     document.title = "Topic Submissions"
 
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/user/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
+
     const usertoken = localStorage.userToken;
     const decoded = jwt_decode(usertoken);
 
@@ -26,7 +40,7 @@ export default class ViewSubmissions extends Component {
     this.retrieveTopics(id);
   }
 
-  retrieveTopics(id){
+  retrieveTopics(id) {
     axios.get(`http://localhost:5000/topic/submissions/${id}`).then(res => {
 
       if (res.data.success) {
@@ -41,8 +55,9 @@ export default class ViewSubmissions extends Component {
   }
 
   onDelete = (id, grpID, status) => {
-    //with a confirmation 
+    // with a confirmation 
 
+    // allow a group member(student) to delete their topic only if the status is pending
     if (status === 'Pending') {
       swal({
         title: "Are you sure?",
@@ -68,12 +83,12 @@ export default class ViewSubmissions extends Component {
           }
         });
     }
-    else{
+    else {
       swal({
         title: "",
         text: "You cannot delete this anymore",
         icon: "warning",
-    });
+      });
     }
 
   }
