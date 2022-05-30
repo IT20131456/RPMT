@@ -112,7 +112,7 @@ export default class AddSubmitionType extends Component {
                   Add New Submition Type
                 </h1>
                 <hr/>
-                <form className="needs-validation" noValidate>
+                <form className="needs-validation" onSubmit={this.onSubmit}>
                   <div className="row">
                     <div className="col-sm-7">
                       <div
@@ -128,6 +128,7 @@ export default class AddSubmitionType extends Component {
                           name="submitionType"
                           value={this.state.submitionType}
                           onChange={this.handleInputChange}
+                          required
                         >
                           <option submitionType="not selected yet" selected>
                             Select Type
@@ -163,6 +164,7 @@ export default class AddSubmitionType extends Component {
                           name="almarks"
                           value={this.state.almarks}
                           onChange={this.handleInputChange}
+                          required
                           
                         >
                           <option almarks="Select Marks">Select Marks</option>
@@ -189,6 +191,7 @@ export default class AddSubmitionType extends Component {
                       placeholder="Enter Description...."
                       value={this.state.description}
                       onChange={this.handleInputChange}
+                      required
                     />
                   </div>
 
@@ -203,6 +206,7 @@ export default class AddSubmitionType extends Component {
                       placeholder="Enter Guidelines....."
                       value={this.state.guidelines}
                       onChange={this.handleInputChange}
+                      required
                     />
                   </div>
 
@@ -224,6 +228,7 @@ export default class AddSubmitionType extends Component {
                           name="deadLine"
                           value={this.state.deadLine}
                           onChange={this.handleInputChange}
+                          required
                         />
                       </div>
                     </div>
@@ -241,6 +246,7 @@ export default class AddSubmitionType extends Component {
                           name="checkPanel"
                           value={this.state.checkPanel}
                           onChange={this.handleInputChange}
+                          required
                         >
                           <option checkPanel="not selected yet" selected>
                             Select Panel
@@ -262,7 +268,7 @@ export default class AddSubmitionType extends Component {
                     className="btn btn-success"
                     type="submit"
                     style={{ margintop: "15px" }}
-                    onClick={this.onSubmit}
+                    // onClick={this.onSubmit}
                   >
                     <i className="far fa-check-square"></i>
                     &nbsp; Save

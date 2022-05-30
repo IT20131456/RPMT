@@ -10,7 +10,7 @@ description:{
     required:true
 },
 almarks:{
-    type: String,
+    type: Number,
     required:true
 },
 deadLine: {

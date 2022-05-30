@@ -125,7 +125,7 @@ router.put('/submition/update/:id',(req,res)=>{
 
 
 
-//update one
+//update status
 router.put('/submition/update/status/:id',(req,res)=>{
     Submitions.updateOne(
         { _id: req.params.id },
