@@ -147,11 +147,19 @@ export default class UserProfile extends Component {
                 icon: "warning",
             });
         }
+        else if (this.state.enteredPassword != '' && this.state.newPassword.length < 8) {
+            validated = false;
+            swal({
+                title: "",
+                text: "Password should have at least 8 characters",
+                icon: "warning",
+            });
+        }
 
         // console.log(data)
 
         if (validated) {
-            if (this.state.enteredPassword == '' || this.state.newPassword === '') {
+            if (this.state.enteredPassword === '' || this.state.newPassword === '') {
                 axios.put(`http://localhost:5000/user/update/${_id}`, data).then((res) => {
                     if (res.data.success) {
                         swal("Profile updated successfully!", "", "success")

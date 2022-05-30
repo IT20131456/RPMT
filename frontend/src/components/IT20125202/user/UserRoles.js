@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import AdminNavBar from '../admin/AdminNavBar';
 import swal from 'sweetalert';
+import { PieChart } from 'react-minimal-pie-chart';
 
 export default class UserRoles extends Component {
 
@@ -10,6 +11,10 @@ export default class UserRoles extends Component {
     super(props);
 
     this.state = {
+      all: 0,
+      students: 0,
+      supervisors: 0,
+      panelmembers: 0,
       users: []
     };
   }
@@ -20,11 +25,36 @@ export default class UserRoles extends Component {
   }
 
   retrieveUsers() {
+    let all = 0;
+    let students = 0;
+    let panel = 0;
+    let supervisors = 0;
+
     axios.get('http://localhost:5000/users').then(res => {
       if (res.data.success) {
         this.setState({
           users: res.data.existingUsers
         });
+
+        this.state.users.forEach(user => {
+          if (user.type === "Student") {
+            students = students + 1;
+          }
+          else if (user.type === "Supervisor") {
+            supervisors = supervisors + 1;
+          }
+          else if (user.type === "Panel Member") {
+            panel = panel + 1;
+          }
+          all = all + 1;
+        });
+
+        this.setState({
+          all: all,
+          students: students,
+          supervisors: supervisors,
+          panelmembers: panel
+        })
 
         // console.log(this.state.users);
       }
@@ -92,6 +122,10 @@ export default class UserRoles extends Component {
     })
   }
 
+  getStat = () => {
+
+  }
+
   render() {
     return (
       <div className='container'>
@@ -115,11 +149,14 @@ export default class UserRoles extends Component {
             </div>
             <hr /><br />
           </div>
-          <div className="btn-group">
-            <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
-            <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
-            <a href="/admin/students" className="btn btn-outline-dark">Students</a>
-            <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
+
+          <div className='row'>
+            <div className="btn-group">
+              <a href="/admin/users" className="btn btn-outline-dark active" aria-current="page">All Users</a>
+              <a href="/admin/panelmembers" className="btn btn-outline-dark">Panel Members</a>
+              <a href="/admin/students" className="btn btn-outline-dark">Students</a>
+              <a href="/admin/supervisors" className="btn btn-outline-dark">Supervisors</a>
+            </div>
           </div>
           <br />
           <table className="table">
@@ -166,7 +203,53 @@ export default class UserRoles extends Component {
               ))}
             </tbody>
           </table>
-          {/* <button className='btn btn-success'> <a href='/add' style={{ textDecoration: 'none', color: 'white' }}> Create New Post  </a></button> */}
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal" onClick={() => this.getStat()}>
+            Show Statistics
+          </button>
+          <br /><br /><br />
+
+          <div class="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Registered user counts</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <dl className='row' style={{ width: '100vh', margin: '0px 0px 0px 0px' }} >
+                    <dt className='col-sm-3'>All users</dt>
+                    <dd className='col-sm-9'>{this.state.all}</dd>
+
+                    <dt className='col-sm-3'>Panel Members</dt>
+                    <dd className='col-sm-9'>{this.state.panelmembers}</dd>
+
+                    <dt className='col-sm-3'>Students</dt>
+                    <dd className='col-sm-9'>{this.state.students}</dd>
+
+                    <dt className='col-sm-3'>Supervisors</dt>
+                    <dd className='col-sm-9'>{this.state.supervisors}</dd>
+                  </dl>
+                </div>
+                <PieChart radius={40}
+                  label={(data) => data.dataEntry.title}
+                  labelStyle={{
+                    fontSize: "5px",
+                    fontColor: "FFFFFA",
+                    fontWeight: "100",
+                  }}
+                  reveal
+                  data={[
+                    { title: 'Panel Members', value: this.state.panelmembers, color: '#E38627'},
+                    { title: 'Students', value: this.state.students, color: '#C13C37' },
+                    { title: 'Supervisors', value: this.state.supervisors, color: '#6A2135' },
+                  ]}
+                />
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     )

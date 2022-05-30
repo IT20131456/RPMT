@@ -51,11 +51,6 @@ const studentmodelSchema = new mongoose.Schema({
     required: true,
   },
 
-  topic: {
-    type: String,
-    required: true,
-  },
-
   supervisorname: {
     type: String,
     required: true,

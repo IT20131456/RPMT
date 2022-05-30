@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import AdminNavBar from "../IT20125202/admin/AdminNavBar";
 
 export default class StudentGroup extends Component {
   constructor(props) {
@@ -26,17 +27,70 @@ export default class StudentGroup extends Component {
     });
   }
 
+  onDelete = (id) => {
+    axios.delete(`http://localhost:5000/sgroup/delete/${id}`).then((res) => {
+      swal("Delete successful");
+      this.retrieveStudentGropus();
+    });
+  };
+
+  filterData(studentgroups,searchKey) {
+    const result = studentgroups.filter((studentgroup) =>
+      studentgroup.groupid.toLowerCase().includes(searchKey)||
+      studentgroup.groupname.toLowerCase().includes(searchKey)||
+      studentgroup.status.toLowerCase().includes(searchKey)||
+
+      studentgroup.groupid.toUpperCase().includes(searchKey)||
+      studentgroup.groupname.toUpperCase().includes(searchKey)||
+      studentgroup.status.toUpperCase().includes(searchKey)||
+
+      studentgroup.groupid.includes(searchKey)||
+      studentgroup.groupname.includes(searchKey)||
+      studentgroup.status.includes(searchKey)
+    );
+    this.setState({ studentgroups: result });
+  }
+ 
+
+  handleSearchArea = (e) => {
+    const searchKey = e.currentTarget.value;
+    axios.get("http://localhost:5000/sgroups").then((res) => {
+      if (res.data.success) {
+        this.filterData(res.data.existingstudentgroups, searchKey);
+      }      
+    });
+  };
+
   render() {
     return (
-      <div className="container">
-        <div className="float-left">
-          &nbsp;
-          <h2>Student Groups</h2>
-          &nbsp;
+      <div className="container px-5 my-3">
+         <br />
+        <AdminNavBar />
+        <br />  
+     
+        <div className="row">
+          <div className="float-left col-lg-9 mt-2 mb-2">
+            &nbsp;
+            <h2>Student Groups</h2>       
+          </div>
+
+          <div className="col-lg-3 mt-2 mb-2">
+            &nbsp;
+            <input
+              className="form-control border border-dark"
+              type="search"
+              placeholder="Search"
+              name="searchQuery"
+              onChange={this.handleSearchArea}
+            ></input>
+            &nbsp;
+          </div>
+          <hr />
         </div>
+     
         <table className="table table-striped table-bordered">
-          <thead>
-            <tr className="color:$yellow-300 text-light ">
+          <thead className=" text-light" style={{ background: "#000080" }}>
+            <tr>
               <th scope="col">#</th>
               <th scope="col">Group ID</th>
               <th scope="col">Group Name</th>
@@ -51,10 +105,11 @@ export default class StudentGroup extends Component {
             {this.state.studentgroups.map((studentgroups, index) => (
               <tr>
                 <th>{index + 1}</th>
-                <td>
-                  {studentgroups.groupid} - {studentgroups.groupname}{" "}
-                </td>
-                <td>{studentgroups.groupname} </td>
+
+                <td>{studentgroups.groupid}</td>
+
+                <td>{studentgroups.groupname}</td>
+
                 <td>
                   <tr>{studentgroups.studentid1}</tr>
 
@@ -87,21 +142,28 @@ export default class StudentGroup extends Component {
                   </tr>
                 </td>
 
-                <td>{studentgroups.status} </td>
+                <td>{studentgroups.status}</td>
 
                 <td>
                   <a
                     className="btn btn-outline-primary"
                     href={`/student/group/view/${studentgroups._id}`}
                   >
-                    <i className="fa fa-edit"></i>&nbsp;View
-                  </a>{" "}
+                    <i className="fa fa-eye"></i>&nbsp;View
+                  </a>
                   &nbsp;
-                  <a className="btn btn-outline-success" href="#">
+                  <a
+                    className="btn btn-outline-success"
+                    href={`/student/group/update/${studentgroups._id}`}
+                  >
                     <i className="fa fa-edit"></i>&nbsp;Edit
                   </a>
                   &nbsp;
-                  <a className="btn btn-outline-danger" href="#">
+                  <a
+                    className="btn btn-outline-danger"
+                    href="#"
+                    onClick={() => this.onDelete(studentgroups._id)}
+                  >
                     <i className="fa fa-trash"></i>&nbsp;Delete
                   </a>
                 </td>

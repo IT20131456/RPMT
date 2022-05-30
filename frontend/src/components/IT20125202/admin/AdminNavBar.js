@@ -46,6 +46,9 @@ export default class AdminNavBar extends Component {
                 <li className="nav-item">
                   <a className="nav-link" href="/admin/topiclist">Topics</a>
                 </li>
+                <li className="nav-item">
+                  <a className="nav-link" href="/student/groups/view">Student Group</a>
+                </li>
                 {/* <li className="nav-item">
                 <a className="nav-link" href="#">Link</a>
                 </li>

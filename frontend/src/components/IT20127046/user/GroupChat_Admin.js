@@ -3,6 +3,7 @@ import io from "socket.io-client";
 import { useEffect, useState } from "react";
 import Chat from "./GroupChat";
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 import ScrollToBottom from "react-scroll-to-bottom";
 
 const socket = io.connect("http://localhost:3001");
@@ -21,6 +22,12 @@ export default function GroupChatAdmin() {
   };
 
   useEffect(()=>{
+
+    const usertoken = localStorage.userToken;
+    const decoded = jwt_decode(usertoken);
+
+    setUsername(decoded.name);
+
     axios.get("http://localhost:5000/sgroups")
     .then(res => {setStudentGroups(res.data.existingstudentgroups)});
     console.log(studentGroups);
@@ -34,13 +41,11 @@ export default function GroupChatAdmin() {
 
   return (
     <div className="container">
-      <br />
-      <br />
-      <div className="groupChatBoxHeader">
-        <div className="row">
-          <i className="fa fa-comments-o fa-2x chatIocn" aria-hidden="true">&nbsp;&nbsp;Group Chat</i>
-        </div>
+      <br/>
+      <div className="col-lg-9 mt-0 mb-2">
+        <h2>Group Chat</h2>
       </div>
+      <hr />
 
       <div className="container chatBox">
         <div className="row text-center groupSeletePanal">
@@ -53,11 +58,20 @@ export default function GroupChatAdmin() {
                 placeholder="Search"
             /><br/><br/>
 
+            {!showChat ? (
+              <button className="btn btn-danger" onClick={() => {setShowChat(false)}} disabled>Leave Chat</button>
+            ) : (
+              <button className="btn btn-danger" onClick={() => {setShowChat(false)}}>Leave Chat</button>
+            )}
+            
+
             <ScrollToBottom className="message-container-groupList">
                 {studentGroups.map((data, index) => {
                     return(  
-                        <div className="getGroupList">
-                            <p key={index}>{data.groupid}</p>
+                        <div className="getGroupList" key={index}>
+                            <button onClick={() => {setRoom(data.groupid)}} style={{ background: "none", border: "none", margin: "0px 5px 5px 5px", color: "white" }}>
+                              {data.groupid}
+                            </button>
                         </div>
                     )
                 })}
@@ -73,6 +87,7 @@ export default function GroupChatAdmin() {
                     type="text"
                     placeholder="Name"
                     className="form-control"
+                    value={username}
                     onChange={(event) => {
                       setUsername(event.target.value);
                     }}
@@ -81,6 +96,7 @@ export default function GroupChatAdmin() {
                     type="text"
                     placeholder="Group ID"
                     className="form-control"
+                    value={room}
                     onChange={(event) => {
                       setRoom(event.target.value);
                     }}
@@ -94,8 +110,6 @@ export default function GroupChatAdmin() {
           </div>
         </div>
       </div>
-
-      <div className="groupChatBoxFooter"></div>
       
     </div>
   );
