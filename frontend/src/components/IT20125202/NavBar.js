@@ -79,6 +79,17 @@ class NavBar extends Component {
           <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
+               
+           <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" aria-current="page" href="/supervisor/request" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
+                Requests
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a className="dropdown-item" href="/supervisor/add">Add Supervisor Details</a></li>
+            </ul>
+          </li> 
+
+
 
           <li className='nav-item'>
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>

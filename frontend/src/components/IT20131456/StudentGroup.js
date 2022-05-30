@@ -34,44 +34,42 @@ export default class StudentGroup extends Component {
     });
   };
 
-  filterData(studentgroups,searchKey) {
-    const result = studentgroups.filter((studentgroup) =>
-      studentgroup.groupid.toLowerCase().includes(searchKey)||
-      studentgroup.groupname.toLowerCase().includes(searchKey)||
-      studentgroup.status.toLowerCase().includes(searchKey)||
-
-      studentgroup.groupid.toUpperCase().includes(searchKey)||
-      studentgroup.groupname.toUpperCase().includes(searchKey)||
-      studentgroup.status.toUpperCase().includes(searchKey)||
-
-      studentgroup.groupid.includes(searchKey)||
-      studentgroup.groupname.includes(searchKey)||
-      studentgroup.status.includes(searchKey)
+  filterData(studentgroups, searchKey) {
+    const result = studentgroups.filter(
+      (studentgroup) =>
+        studentgroup.groupid.toLowerCase().includes(searchKey) ||
+        studentgroup.groupname.toLowerCase().includes(searchKey) ||
+        studentgroup.status.toLowerCase().includes(searchKey) ||
+        studentgroup.groupid.toUpperCase().includes(searchKey) ||
+        studentgroup.groupname.toUpperCase().includes(searchKey) ||
+        studentgroup.status.toUpperCase().includes(searchKey) ||
+        studentgroup.groupid.includes(searchKey) ||
+        studentgroup.groupname.includes(searchKey) ||
+        studentgroup.status.includes(searchKey)
     );
     this.setState({ studentgroups: result });
   }
- 
 
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
     axios.get("http://localhost:5000/sgroups").then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingstudentgroups, searchKey);
-      }      
+      }
     });
   };
 
   render() {
     return (
       <div className="container px-5 my-3">
-         <br />
+        <br />
         <AdminNavBar />
-        <br />  
-     
+        <br />
+
         <div className="row">
           <div className="float-left col-lg-9 mt-2 mb-2">
             &nbsp;
-            <h2>Student Groups</h2>       
+            <h2>Student Groups</h2>
           </div>
 
           <div className="col-lg-3 mt-2 mb-2">
@@ -83,11 +81,10 @@ export default class StudentGroup extends Component {
               name="searchQuery"
               onChange={this.handleSearchArea}
             ></input>
-            &nbsp;
           </div>
           <hr />
         </div>
-     
+
         <table className="table table-striped table-bordered">
           <thead className=" text-light" style={{ background: "#000080" }}>
             <tr>

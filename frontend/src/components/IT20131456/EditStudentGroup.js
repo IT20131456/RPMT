@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import AdminNavBar from "../IT20125202/admin/AdminNavBar";
 export default class EditStudentGroup extends Component {
   constructor(props) {
     super(props);
@@ -135,7 +136,13 @@ export default class EditStudentGroup extends Component {
   }
   render() {
     return (
-      <div className="container px-5 my-5">
+      <div className="container px-5 my-3">
+        <br />
+        <AdminNavBar />
+        <br />
+        &nbsp;
+        <h2> Edit Student Group Details</h2>
+        <hr />
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button
@@ -164,7 +171,6 @@ export default class EditStudentGroup extends Component {
             </button>
           </div>
         </nav>
-
         <div class="tab-content" id="nav-tabContent">
           <div
             class="tab-pane fade show active"
@@ -176,9 +182,7 @@ export default class EditStudentGroup extends Component {
               <div className="form-group row">
                 <div className="col-lg-12 margin-tb">
                   <div className="float-left">
-                    &nbsp;
-                    <h2> Edit Student Group Details</h2>
-                    &nbsp;
+                    <br />
                   </div>
                 </div>
               </div>
@@ -360,7 +364,7 @@ export default class EditStudentGroup extends Component {
                     </a>
                     &nbsp;
                     <button className="btn btn-outline-success" type="submit">
-                    <i class="fa fa-check-circle"> Update </i>
+                      <i class="fa fa-check-circle"> Update </i>
                     </button>
                   </div>
                 </div>
@@ -457,7 +461,7 @@ export default class EditStudentGroup extends Component {
                     </a>
                     &nbsp;
                     <button className="btn btn-outline-success" type="submit">
-                    <i class="fa fa-check-circle"> Update </i>
+                      <i class="fa fa-check-circle"> Update </i>
                     </button>
                   </div>
                 </div>

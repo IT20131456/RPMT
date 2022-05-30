@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import AdminNavBar from "../IT20125202/admin/AdminNavBar";
 
 export default class SupervisorDetails extends Component {
 
@@ -68,11 +69,14 @@ export default class SupervisorDetails extends Component {
   render() {
     return (
       <div className="container px-5 my-3">
+         <br />
+        <AdminNavBar />
+        <br />
+
         <div className="row">
           <div className="float-left col-lg-9 mt-2 mb-2">
             &nbsp;
-            <h2>Supervisor Details</h2>
-            &nbsp;            
+            <h2>Supervisor Details</h2>                    
           </div>         
         
           <div className="col-lg-3 mt-2 mb-2">
@@ -83,9 +87,9 @@ export default class SupervisorDetails extends Component {
               placeholder="Search"
               name="searchQuery"
               onChange={this.handleSearchArea}
-            ></input>
-            &nbsp;
+            ></input>        
           </div>
+          <hr />
         </div>
 
         <div>  

@@ -1,16 +1,31 @@
 import React, { Component } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export default class ViewStudentGroup extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       studentgroup: [],
+      userType:"",
     };
   }
   componentDidMount() {
-    const id = this.props.match.params.id;
+
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        userType: decoded.type,
+      });
+      
+    }
+
+    console.log(this.state.userType);
+    console.log("hello");
+
+    const id = this.props.match.params.id;    
 
     axios.get(`http://localhost:5000/sgroup/${id}`).then((res) => {
       if (res.data.success) {
