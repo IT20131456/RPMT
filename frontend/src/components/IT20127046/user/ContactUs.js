@@ -7,7 +7,8 @@ export default class ContactUs extends Component {
     super();
     this.state = {
       userType: "",
-      groupChatLink: ""
+      users: [],
+      groupChatLink: "",
     };
   }
 
@@ -20,6 +21,19 @@ export default class ContactUs extends Component {
         userType: decoded.type,
       });
     }
+
+    this.getUserEmails();
+  }
+
+  getUserEmails() {
+    axios.get("http://localhost:5000/users").then((res) => {
+      if (res.data.success) {
+        this.setState({
+          users: res.data.existingUsers,
+        });
+      }
+      //console.log(this.state.users);
+    });
   }
 
   render() {
@@ -58,19 +72,25 @@ export default class ContactUs extends Component {
     // Group Chat Link
     let groupChatLink;
 
-    if (this.state.userType === 'Student') {
-        groupChatLink = (
-            <a className="btn btn-outline-success mb-4 p-4" href="/chatAppStudent">
-                <i class="fa fa-comments fa-2xl" aria-hidden="true">&nbsp;Join Group Chat</i>
-            </a>
-        )
-    }
-    else if(this.state.userType === 'Supervisor' || this.state.userType === 'Panel Member') {
-        groupChatLink = (
-            <a className="btn btn-outline-success mb-4 p-4" href="/chatAppAdmin">
-                <i class="fa fa-comments fa-2xl" aria-hidden="true">&nbsp;Join Group Chat</i>
-            </a>
-        )
+    if (this.state.userType === "Student") {
+      groupChatLink = (
+        <a className="btn btn-outline-success mb-4 p-4" href="/chatAppStudent">
+          <i class="fa fa-comments fa-2xl" aria-hidden="true">
+            &nbsp;Join Group Chat
+          </i>
+        </a>
+      );
+    } else if (
+      this.state.userType === "Supervisor" ||
+      this.state.userType === "Panel Member"
+    ) {
+      groupChatLink = (
+        <a className="btn btn-outline-success mb-4 p-4" href="/chatAppAdmin">
+          <i class="fa fa-comments fa-2xl" aria-hidden="true">
+            &nbsp;Join Group Chat
+          </i>
+        </a>
+      );
     }
 
     return (
@@ -88,9 +108,7 @@ export default class ContactUs extends Component {
                   </div>
                   <div className="container">
                     <p>Chat with your group</p>
-                    <div className="">
-                      {groupChatLink}
-                    </div>
+                    <div className="">{groupChatLink}</div>
                   </div>
 
                   <div style={headlineBar}>
@@ -102,6 +120,24 @@ export default class ContactUs extends Component {
 
                   <div style={headlineBar}>
                     <h6>Contact Info</h6>
+                  </div>
+                  <br/>
+                  <div className="container">
+                    {this.state.users.map((user, index) => {
+                      if (
+                        user.type === "Supervisor" ||
+                        user.type === "Panel Member"
+                      ) {
+                        return (
+                          <div key={index} className="p-3 mb-2 bg-light text-dark" style={{ "max-width": "400px"}}>
+                            <p>
+                                <i className="fa fa-user" aria-hidden="true"></i>&nbsp;{user.type} - {user.name}
+                            </p>
+                            <p> <i className="fa fa-envelope" aria-hidden="true"></i>&nbsp;Email - {user.email}</p>
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
                   <br />
                 </div>
