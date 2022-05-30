@@ -10,10 +10,10 @@ export default class AddSubmitionType extends Component {
     this.state = {
       submitionType: "",
       description: "",
-      startDate: "",
+      almarks: "",
       deadLine: "",
       checkPanel: "",
-      submition: "",
+      guidelines: "",
       subject:"About New Submission",
       text:"Added a new submition. Please visit the website and do it before the due date.  --Auto-Generated Email--",
 
@@ -37,10 +37,10 @@ export default class AddSubmitionType extends Component {
     const {
       submitionType,
       description,
-      startDate,
+      almarks,
       deadLine,
       checkPanel,
-      submition,
+      guidelines,
       subject,
       text
     } = this.state;
@@ -48,10 +48,10 @@ export default class AddSubmitionType extends Component {
     const data = {
       submitionType: submitionType,
       description: description,
-      startDate: startDate,
+      almarks: almarks,
       deadLine: deadLine,
       checkPanel: checkPanel,
-      submition: submition,
+      guidelines: guidelines,
     };
     console.log(data);
 
@@ -61,10 +61,10 @@ export default class AddSubmitionType extends Component {
         this.setState({
           submitionType: "",
           description: "",
-          startDate: "",
+          almarks: "",
           deadLine: "",
           checkPanel: "",
-          submition: "",
+          guidelines: "",
         });
       }
     });
@@ -120,7 +120,7 @@ export default class AddSubmitionType extends Component {
                         style={{ marginBottom: "15px" }}
                       >
                         <label style={{ marginBottom: "5px" }}>
-                          Submition Type
+                         <strong>Submition Type</strong> 
                         </label>
 
                         <select
@@ -153,22 +153,22 @@ export default class AddSubmitionType extends Component {
                         style={{ marginBottom: "15px" }}
                       >
                         <label style={{ marginBottom: "5px" }}>
-                          Allocated Marks{" "}
+                         <strong> Allocated Marks</strong>{" "}
                         </label>
                       
 
 
                        <select
                           className="form-select"
-                          name="startDate"
-                          value={this.state.startDate}
+                          name="almarks"
+                          value={this.state.almarks}
                           onChange={this.handleInputChange}
                           
                         >
-                          <option startDate="Select Marks">Select Marks</option>
-                          <option startDate="50">20</option>
-                          <option startDate="30">30</option>
-                          <option startDate="50">50</option>
+                          <option almarks="Select Marks">Select Marks</option>
+                          <option almarks="50">20</option>
+                          <option almarks="30">30</option>
+                          <option almarks="50">50</option>
                       
                         </select>
 
@@ -181,7 +181,7 @@ export default class AddSubmitionType extends Component {
                   </div>
 
                   <div className="form-group" style={{ marginBottom: "15px" }}>
-                    <label style={{ marginBottom: "5px" }}>Description</label>
+                    <label style={{ marginBottom: "5px" }}><strong>Description</strong></label>
                     <textarea
                       rows = "4" cols = "60"
                       className="form-control"
@@ -195,13 +195,13 @@ export default class AddSubmitionType extends Component {
 
 
                   <div className="form-group" style={{ marginBottom: "15px" }}>
-                    <label style={{ marginBottom: "5px" }}>Guidelines</label>
+                    <label style={{ marginBottom: "5px" }}><strong>Guidelines</strong></label>
                     <textarea
                       rows = "3" cols = "60"
                       className="form-control"
-                      name="submition"
+                      name="guidelines"
                       placeholder="Enter Guidelines....."
-                      value={this.state.submition}
+                      value={this.state.guidelines}
                       onChange={this.handleInputChange}
                     />
                   </div>
@@ -217,7 +217,7 @@ export default class AddSubmitionType extends Component {
                         className="form-group"
                         style={{ marginBottom: "15px" }}
                       >
-                        <label style={{ marginBottom: "5px" }}>Deadline</label>
+                        <label style={{ marginBottom: "5px" }}><strong>Deadline</strong></label>
                         <input
                           type="date"
                           className="form-control"
@@ -233,7 +233,7 @@ export default class AddSubmitionType extends Component {
                         style={{ marginBottom: "15px" }}
                       >
                         <label style={{ marginBottom: "5px" }}>
-                          Checking Panel
+                        <strong>Checking Panel</strong>  
                         </label>
 
                         <select

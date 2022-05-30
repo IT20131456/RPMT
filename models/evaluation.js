@@ -9,7 +9,7 @@ evaluationTopic:{
     type: String,
     required:true
 },
-dressCode:{
+panel:{
     type: String,
     required:true
 },

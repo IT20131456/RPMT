@@ -9,7 +9,7 @@ description:{
     type: String,
     required:true
 },
-startDate:{
+almarks:{
     type: String,
     required:true
 },
@@ -22,7 +22,7 @@ checkPanel: {
     required:true
 
 },
-submition:{
+guidelines:{
     type: String,
     required:true
 }
