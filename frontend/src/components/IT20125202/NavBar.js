@@ -79,6 +79,7 @@ class NavBar extends Component {
           <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
+
                
            <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" aria-current="page" href="/supervisor/request" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
@@ -89,6 +90,14 @@ class NavBar extends Component {
             </ul>
           </li> 
 
+
+
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/contactus" style={{ textDecoration: 'none', color: 'white' }}>Contact Us</a>
+          </li>
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/aboutus" style={{ textDecoration: 'none', color: 'white' }}>About Us</a>
+          </li>
 
 
           <li className='nav-item'>
@@ -109,6 +118,12 @@ class NavBar extends Component {
             <a className="nav-link" aria-current="page" href="/user/profile" style={{ textDecoration: 'none', color: 'white' }}>Profile</a>
           </li>
           <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/contactus" style={{ textDecoration: 'none', color: 'white' }}>Contact Us</a>
+          </li>
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/aboutus" style={{ textDecoration: 'none', color: 'white' }}>About Us</a>
+          </li>
+          <li className='nav-item'>
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>
               Log out
             </a>
@@ -127,6 +142,12 @@ class NavBar extends Component {
           </li>
           <li className='nav-item'>
             <a className="nav-link" aria-current="page" href="/panel/topic/list" style={{ textDecoration: 'none', color: 'white' }}>Topics</a>
+          </li>
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/contactus" style={{ textDecoration: 'none', color: 'white' }}>Contact Us</a>
+          </li>
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/aboutus" style={{ textDecoration: 'none', color: 'white' }}>About Us</a>
           </li>
           <li className='nav-item'>
             <a href='/user/login' onClick={this.logOut.bind(this)} className="nav-link" style={{ textDecoration: 'none', color: 'white' }}>

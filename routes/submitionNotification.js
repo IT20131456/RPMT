@@ -5,6 +5,8 @@ const User = require("../models/users");
 
 const notify = express.Router();
 
+
+//send email to group students
 notify.post('/submitiont/email',(req,res)=>{
 
 
@@ -78,9 +80,10 @@ notify.post('/submitiont/email',(req,res)=>{
                   res.json({success: false, respMesg: 'Email Sent is not Successful'});
                   
                   
-              }
+              }else{
               console.log('mail sent to ' + mailList);
               res.json({status: true, respMesg: 'Email Sent Successfully'});
+              }
 
           });
   });
@@ -103,7 +106,7 @@ notify.post('/submitiont/email',(req,res)=>{
 
 
 
-
+//send email to all students
 notify.post('/submitiontype/email',(req,res)=>{
 
 
