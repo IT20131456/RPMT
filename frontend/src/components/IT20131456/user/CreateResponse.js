@@ -46,7 +46,7 @@ export default class CreateResponse extends Component {
 
     axios.post("http://localhost:5000/request/save", data).then((res) => {
       if (res.data.success) {
-        swal("Response Successful");
+        swal("Response Successful", "", "success");
           this.setState({
             name: "",
             position: "",

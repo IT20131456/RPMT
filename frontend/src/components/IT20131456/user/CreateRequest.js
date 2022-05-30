@@ -16,7 +16,7 @@ const CreateRequest = () => {
       )
       .then((res) => {
         console.log(res);
-        swal("Request Send Successfull")
+        swal("Request Send Successfull", "", "success")
         .then((value)=>{        
         window.location = "/request/summary"
       });
@@ -31,7 +31,7 @@ const CreateRequest = () => {
           <div className="col-lg-12 margin-tb">
             <div className="float-left">
               &nbsp;
-              <h2>Send Request</h2>
+              <h2>New Request</h2>
               &nbsp;
             </div>
           </div>

@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 
 export default class CreateStudentGroup extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      userType:"",
       groupid: "",
       groupname: "",
       studentid1: "",
@@ -22,6 +24,22 @@ export default class CreateStudentGroup extends Component {
       panelmembername: "Not Updated",
       status: "Not Reviewed",
     };
+  }
+
+  componentDidMount() {
+
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        userType: decoded.idNumber,
+      });
+      
+    }
+
+  
+    
+
   }
 
   handleInputChange = (e) => {
@@ -72,9 +90,9 @@ export default class CreateStudentGroup extends Component {
 
     console.log(data);
 
-    axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
+        axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
       if (res.data.success) {
-        swal("Group Registerd Successfully","success")
+        swal("Group Registerd Successfully", "", "success")
 
           this.setState({
             groupid: "",
@@ -97,6 +115,7 @@ export default class CreateStudentGroup extends Component {
   };
 
   render() {
+    console.log(this.state.userType);
     return (
       <div className="container px-5 my-5">
         <div className="container border border-dark bg-light mt-5 ">

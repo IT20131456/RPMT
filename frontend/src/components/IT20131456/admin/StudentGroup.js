@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 
 export default class StudentGroup extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ export default class StudentGroup extends Component {
 
   onDelete = (id) => {
     axios.delete(`http://localhost:5000/sgroup/delete/${id}`).then((res) => {
-      swal("Delete successful");
+      swal("Are you sure to delete the Group Details?", "", "warning");
       this.retrieveStudentGropus();
     });
   };
@@ -144,7 +144,7 @@ export default class StudentGroup extends Component {
                 <td>
                   <a
                     className="btn btn-outline-primary"
-                    href={`/student/group/view/${studentgroups._id}`}
+                    href={`/student/group/view/admin/${studentgroups._id}`}
                   >
                     <i className="fa fa-eye"></i>&nbsp;View
                   </a>

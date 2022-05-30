@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 
-export default class CreateSupervisorDetails extends Component {
-  
+export default class EditSupervisorDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,11 +10,8 @@ export default class CreateSupervisorDetails extends Component {
       supervisorname: "",
       researchfield: "",
       email: "", 
-           
     };
   }
-
-
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -37,6 +33,7 @@ export default class CreateSupervisorDetails extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
+    const id = this.props.match.params.id;
 
     const {
       supervisorid,
@@ -53,37 +50,51 @@ export default class CreateSupervisorDetails extends Component {
     };
 
     console.log(data);
+    
+    axios.put(`http://localhost:5000/supervisor/update/${id}`, data).then((res) => {
+      if (res.data.success) {   
 
-    axios.post("http://localhost:5000/supervisor/save", data).then((res) => {
-      if (res.data.success) {
-        swal("Supervisor Details Added Successfully")
+        swal("Details Updated Successfully", "", "success")
         .then((value)=>{
         window.location = "/supervisor/view"
       });
 
-          this.setState({
-            supervisorid: "",
-            supervisorname: "",
-            researchfield: "",
-            email: "",  
-          });
+        this.setState({
+          supervisorid: "",
+          supervisorname: "",
+          researchfield: "",
+          email: "", 
+        });
       }
     });
   };
-  
-  
-  
-  
+
+  componentDidMount() {
+    const id = this.props.match.params.id;
+
+    axios.get(`http://localhost:5000/supervisor/${id}`).then((res) => {
+      if (res.data.success) {
+        this.setState({      
+          supervisorid:res.data.sdetail. supervisorid,
+          supervisorname:res.data.sdetail.supervisorname,
+          researchfield:res.data.sdetail.researchfield,
+          email:res.data.sdetail.email, 
+          
+        });
+
+        console.log(this.state.sdetail);
+      }
+    });
+  }
   render() {
-    
     return (
       
       <div className="container px-5 my-3">
-         <br />
+        <br />
         <AdminNavBar />
         <br />
         &nbsp;
-        <h2>Add Supervisor Details</h2>
+        <h2>Edit Supervisor Details</h2>
         <hr />
       <div className="container border border-dark bg-light mt-5 ">
         <div className="form-group row">
@@ -108,7 +119,7 @@ export default class CreateSupervisorDetails extends Component {
                     title="Supervisor ID is Invalid"
                     value={this.state.supervisorid}
                     onChange={this.handleInputChange}
-                    required
+                    readOnly
                   />
                 </div>
               </div>
@@ -122,7 +133,7 @@ export default class CreateSupervisorDetails extends Component {
                     name="supervisorname"
                     value={this.state.supervisorname}
                     onChange={this.handleInputChange}
-                    required
+                    readOnly
                   />
                 </div>
               </div>
@@ -168,10 +179,10 @@ export default class CreateSupervisorDetails extends Component {
             <div className="col-md-12">
               <div className="form-group">
                 <button
-                  className="btn btn-outline-primary"
+                  className="btn btn-outline-success"
                   type="submit"                 
                 >
-                  &nbsp;<i className="fa fa-save"> Save </i>
+                 &nbsp;  <i class="fa fa-check-circle"> Update </i>
                 </button>
               </div>
             </div>
@@ -182,3 +193,4 @@ export default class CreateSupervisorDetails extends Component {
     );
   }
 }
+

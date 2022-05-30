@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
 
-export default class SupervisorDetails extends Component {
+export default class RequestSupervisor extends Component {
 
   constructor(props) {
     super(props);
@@ -28,12 +27,6 @@ export default class SupervisorDetails extends Component {
     });
   }
 
-  onDelete = (id) => {
-    axios.delete(`http://localhost:5000/supervisor/delete/${id}`).then((res) => {
-      swal("Delete sucessfull");
-      this.retrieveSupervisorDetails();
-    });
-  };
 
   filterData(supervisordetails,searchKey) {
     const result = supervisordetails.filter((supervisordetail) =>
@@ -69,14 +62,10 @@ export default class SupervisorDetails extends Component {
   render() {
     return (
       <div className="container px-5 my-3">
-         <br />
-        <AdminNavBar />
-        <br />
-
         <div className="row">
           <div className="float-left col-lg-9 mt-2 mb-2">
             &nbsp;
-            <h2>Supervisor Details</h2>                    
+            <h2>Send Request</h2>                    
           </div>         
         
           <div className="col-lg-3 mt-2 mb-2">
@@ -87,61 +76,25 @@ export default class SupervisorDetails extends Component {
               placeholder="Search"
               name="searchQuery"
               onChange={this.handleSearchArea}
-            ></input>        
+            ></input>         
           </div>
-          <hr />
         </div>
+          <hr/> 
+          <br/>
+        {this.state.supervisordetails.map((supervisordetails, index) => (
 
-        <div>  
-          <a className="btn btn-outline-success"  href={`/supervisor/add`}>
-              <i className="fa fa-edit"></i>&nbsp;Add New Supervisor
-          </a>
-        </div>
-        &nbsp;
-
-        <table className="table table-striped table-bordered">
-          <thead className=" text-light" style={{ background: "#000080" }}>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Supervisor ID</th>
-              <th scope="col">Supervisor Name</th>
-              <th scope="col">Research Field</th>
-              <th scope="col">Email</th>       
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-
-          <tbody>
-            {this.state.supervisordetails.map((supervisordetails, index) => (
-              <tr>
-                <th>{index + 1}</th>
-                <td>{supervisordetails.supervisorid}</td>
-                <td>{supervisordetails.supervisorname}</td>
-                <td>{supervisordetails.researchfield}</td>
-                <td>{supervisordetails.email}</td>
-
-               
-
-                <td>                  
-                  <a
-                    className="btn btn-outline-success"
-                    href={`/supervisor/update/${supervisordetails._id}`}
-                  >
-                    <i className="fa fa-edit"></i>&nbsp;Edit
-                  </a>
-                  &nbsp;
-                  <a
-                    className="btn btn-outline-danger"
-                    href="#"
-                    onClick={() => this.onDelete(supervisordetails._id)}
-                  >
-                    <i className="fa fa-trash"></i>&nbsp;Delete
-                  </a>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div class="card border border-dark my-3">
+          <h5 class="card-header">{index + 1} - {supervisordetails.researchfield}</h5>
+            <div class="card-body">
+              <h5 class="card-title">{supervisordetails.supervisorname}</h5>           
+              <p class="card-text">{supervisordetails.email}</p>
+              <a href={`/create/request/${supervisordetails._id}`} class="btn btn-outline-primary">
+              <i class="fa fa-paper-plane"></i>&nbsp;Send Request
+              </a>
+            </div>
+        </div>        
+        ))}
+        
       </div>
     );
   }

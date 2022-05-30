@@ -21,11 +21,11 @@ import sviewMarks from './components/IT20128036/user/sviewMarks';
 import EditSubmition from './components/IT20128036/user/editSubmition';
 import { exportPDF } from './components/IT20128036/user/exportPDF';
 
-import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
-import StudentGroup from "./components/IT20131456/StudentGroup";
-import RequestSupervisor from "./components/IT20131456/RequestSupervisor";
-import CreateRequest from "./components/IT20131456/CreateRequest";
-import RequestSummary from "./components/IT20131456/RequestSummary";
+import CreateStudentGroup from "../src/components/IT20131456/user/CreateStudentGroup";
+import ViewStudentGroup from "../src/components/IT20131456/user/ViewStudentGroup";
+import RequestSupervisor from "./components/IT20131456/user/RequestSupervisor";
+import CreateRequest from "./components/IT20131456/user/CreateRequest";
+import RequestSummary from "./components/IT20131456/user/RequestSummary";
 
 
 //admin
@@ -45,12 +45,12 @@ import AddSubmitionType from "./components/IT20128036/admin/addSubmitionType";
 import SubmitionTypeList from "./components/IT20128036/admin/SubmitionTypeList";
 import EditSubmitonType from './components/IT20128036/admin/editSubmitionType';
 
-import StudentGroup from "../src/components/IT20131456/StudentGroup";
-import ViewStudentGroup from "../src/components/IT20131456/ViewStudentGroup";
-import EditStudentGroup from "./components/IT20131456/EditStudentGroup";
-import CreateSupervisorDetails from "./components/IT20131456/CreateSupervisorDetails";
-import EditSupervisorDetails from "./components/IT20131456/EditSupervisorDetails";
-import SupervisorDetails from "./components/IT20131456/SupervisorDetails";
+import StudentGroup from "../src/components/IT20131456/admin/StudentGroup";
+import ViewStudentGroupAdmin from "../src/components/IT20131456/admin/ViewStudentGroupAdmin";
+import EditStudentGroup from "./components/IT20131456/admin/EditStudentGroup";
+import CreateSupervisorDetails from "./components/IT20131456/admin/CreateSupervisorDetails";
+import EditSupervisorDetails from "./components/IT20131456/admin/EditSupervisorDetails";
+import SupervisorDetails from "./components/IT20131456/admin/SupervisorDetails";
 
 
 //panel
@@ -82,7 +82,7 @@ import DisplayMarkingScheme from "./components/IT20127046/user/DisplayMarkingSch
 import ContactUs from "./components/IT20127046/user/ContactUs";
 import AboutUs from "./components/IT20127046/user/AboutUs";
 
-import CreateResponse from "./components/IT20131456/CreateResponse";
+import CreateResponse from "./components/IT20131456/user/CreateResponse";
 
 
 
@@ -115,7 +115,7 @@ export default class App extends Component {
             <Route path="/edit/documentTemp/:id" exact component={DocumentTempUpdate}></Route>
 
             <Route path="/student/groups/view" exact  component={StudentGroup}></Route>
-            
+            <Route path="/student/group/view/admin/:id" component={ViewStudentGroupAdmin}></Route>
             <Route path="/student/group/update/:id" component={EditStudentGroup}></Route>
                 
             <Route path="/supervisor/add" component={CreateSupervisorDetails}></Route>

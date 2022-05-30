@@ -1,31 +1,17 @@
 import React, { Component } from "react";
 import axios from "axios";
-import jwt_decode from "jwt-decode";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 
-export default class ViewStudentGroup extends Component {
+export default class ViewStudentGroupAdmin extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       studentgroup: [],
-      userType:"",
     };
   }
   componentDidMount() {
-
-    if (localStorage.userToken) {
-      const usertoken = localStorage.userToken;
-      const decoded = jwt_decode(usertoken);
-      this.setState({
-        userType: decoded.type,
-      });
-      
-    }
-
-    console.log(this.state.userType);
-    console.log("hello");
-
-    const id = this.props.match.params.id;    
+    const id = this.props.match.params.id;
 
     axios.get(`http://localhost:5000/sgroup/${id}`).then((res) => {
       if (res.data.success) {
@@ -57,13 +43,16 @@ export default class ViewStudentGroup extends Component {
 
     return (
 
-      <div className="container px-5 my-5">
+      <div className="container px-5 my-3">
+         <br />
+        <AdminNavBar />
+        <br />
 
         <div className="float-left my-3">
           &nbsp;
-          <h2>View Student Group</h2>
-          &nbsp;
+          <h2>View Student Group (Admin)</h2>         
         </div>
+        <hr />
      <div style={{margin:"auto", width:"60%"}}>
         <div className="card border-dark my-3" >
           <div className="card-header text-center"><h3>{groupname} - {groupid}</h3></div>
@@ -109,6 +98,17 @@ export default class ViewStudentGroup extends Component {
             </h4>       
             
             </div>
+
+            <div className="col-md-3 px-2">                 
+              <a
+                className="btn btn-outline-primary"
+                type="submit"
+                href={`/student/groups/view`}
+              >
+              <i className="fa fa-arrow-circle-left"> Back </i>
+              </a>
+              </div>    
+              &nbsp;
         </div>
         </div>   
   

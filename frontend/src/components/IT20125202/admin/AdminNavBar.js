@@ -47,18 +47,20 @@ export default class AdminNavBar extends Component {
                   <a className="nav-link" href="/admin/topiclist">Topics</a>
                 </li>
 
-                <li className="nav-item">
+                 <li className="nav-item">
                   <a className="nav-link" href="/student/groups/view">Student Groups</a>
                 </li>
                                 
                 <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Manage Supervisors
-                </a>
+                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      Manage Supervisors
+                  </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li><a className="dropdown-item" href="/supervisor/add">Add Supervisor Details</a></li>
-                </ul>
-                </li>             
+                    <li><a className="dropdown-item" href="/supervisor/view">View Supervisor Details</a></li>
+                </ul>     
+                    
+                </li>            
 
               </ul>
               {/* <form className="d-flex">

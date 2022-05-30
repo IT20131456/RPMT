@@ -93,12 +93,19 @@ class NavBar extends Component {
             </ul>
           </li> */}
                
+           
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/student/group/add" style={{ textDecoration: 'none', color: 'white' }}>Groups</a>
+          </li>
+
            <li className="nav-item dropdown">
-            <a className="nav-link dropdown-toggle" aria-current="page" href="/supervisor/request" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
+            <a className="nav-link dropdown-toggle" aria-current="page" href="#" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
                 Requests
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><a className="dropdown-item" href="/supervisor/add">Add Supervisor Details</a></li>
+                <li><a className="dropdown-item" href="/supervisor/request">Send Request</a></li>
+                <li><a className="dropdown-item" href="/create/request">New Request</a></li>
+                <li><a className="dropdown-item" href="/request/summary">Request Summary</a></li>
             </ul>
           </li> 
 

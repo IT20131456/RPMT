@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
+
 export default class EditStudentGroup extends Component {
   constructor(props) {
     super(props);
@@ -85,7 +86,7 @@ export default class EditStudentGroup extends Component {
 
     axios.put(`http://localhost:5000/sgroup/update/${id}`, data).then((res) => {
       if (res.data.success) {
-        swal("Details Updated Successfully");
+        swal("Details Updated Successfully", "", "success");
         this.setState({
           groupid: "",
           groupname: "",
