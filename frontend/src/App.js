@@ -124,6 +124,13 @@ export default class App extends Component {
 
 
 
+                 {/*IT20128036*/}
+                 <Route path="/submitiontype/add" component={AddSubmitionType} />
+                <Route path="/submitiontypelist" component={SubmitionTypeList} />
+                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />
+
+
+
             {/* </div> */}
             {/* </div> */}
 
@@ -203,12 +210,7 @@ export default class App extends Component {
                 
 
 
-                {/*IT20128036*/}
-                <Route path="/submitiontype/add" component={AddSubmitionType} />
-                <Route path="/submitiontypelist" component={SubmitionTypeList} />
-                <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />     
-              
-              
+
               </div>
             </div>
           </Switch>

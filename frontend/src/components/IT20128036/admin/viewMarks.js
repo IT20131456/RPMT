@@ -106,7 +106,7 @@ handleSearchArea=(e)=>{
 render() {
   return(
     <div className='container'>
-
+<div className='ms-4 me-4 mt-2 mb-2'>
 
       <div className='row'>
       <div className='col-lg-9 mt-2 mb-2'>
@@ -184,6 +184,7 @@ render() {
 
      <button className='btn btn-outline-success'><a href="/submitions/view" style={{textDecoration:'none',color:'black'}}>Add Marks</a></button>
 
+    </div>
     </div>
    )
   }

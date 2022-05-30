@@ -44,7 +44,7 @@ export default class AddEvaluation extends Component {
       link: link,
     };
     console.log(data);
-
+//save evaluations
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
         swal("Good job!", "Added Evaluation Successfully !", "success");
@@ -82,13 +82,12 @@ export default class AddEvaluation extends Component {
 
 
     };
-
+//send email to group members
     axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
     if (res.data.success) {
-      console.log("Sent Email Successfully");
-      
-      
-      
+      console.log("Sent Email Successfully");  
+    }else{
+      console.log("Not Sent Email ")
     }
     });
 
@@ -110,7 +109,7 @@ export default class AddEvaluation extends Component {
                     Add New Evaluation Session
                   </h1>
                   <hr/>
-                  <form className="needs-validation" noValidate>
+                  <form className="needs-validation" onSubmit={this.onSubmit} >
                    
                    <div className="row">
                      <div className="col-sm-4">
@@ -130,6 +129,7 @@ export default class AddEvaluation extends Component {
                         title="Group ID is Invalid"
                         value={this.state.groupId}
                         onChange={this.handleInputChange}
+                        required
 
                         
                       />
@@ -156,6 +156,7 @@ export default class AddEvaluation extends Component {
                        name="evaluationTopic"
                        value={this.state.evaluationTopic}
                        onChange={this.handleInputChange}
+                       required
                      >
                        <option evaluationTopic="not selected yet" selected>
                          Select Type
@@ -201,6 +202,7 @@ export default class AddEvaluation extends Component {
                         name="panel"
                         value={this.state.panel}
                         onChange={this.handleInputChange}
+                        required
                       >
                         <option dressCode="not selected yet" selected>
                           Select Panel
@@ -225,6 +227,7 @@ export default class AddEvaluation extends Component {
                         name="date"
                         value={this.state.date}
                         onChange={this.handleInputChange}
+                        required
                       />
                     </div>
 
@@ -240,6 +243,7 @@ export default class AddEvaluation extends Component {
                           name="from"
                           value={this.state.from}
                           onChange={this.handleInputChange}
+                          required
                         />
                       </div>
 
@@ -254,6 +258,7 @@ export default class AddEvaluation extends Component {
                           name="to"
                           value={this.state.to}
                           onChange={this.handleInputChange}
+                          required
                         />
                       </div>
                     </div>
@@ -270,6 +275,7 @@ export default class AddEvaluation extends Component {
                         placeholder="Enter Session Link"
                         value={this.state.link}
                         onChange={this.handleInputChange}
+                        required
                       />
                     </div>
 
@@ -277,7 +283,7 @@ export default class AddEvaluation extends Component {
                       className="btn btn-success"
                       type="submit"
                       style={{ margintop: "15px" }}
-                      onClick={this.onSubmit}
+                      // onClick={this.onSubmit}
                     >
                       <i className="far fa-check-square"></i>
                       &nbsp; Save

@@ -36,15 +36,15 @@ export default class SviewSubmitionType extends Component {
       });
   };
 
-  filterData(submitiomtypes, searchKey) {
-    const result = submitiomtypes.filter(
+  filterData(submitiontypes, searchKey) {
+    const result = submitiontypes.filter(
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
         submitiontype.checkPanel.toLowerCase().includes(searchKey)
     );
 
-    this.setState({ submitiomtypes: result });
+    this.setState({ submitiontypes: result });
   }
 
   handleSearchArea = (e) => {
@@ -52,7 +52,7 @@ export default class SviewSubmitionType extends Component {
 
     axios.get("http://localhost:5000/submitiontypes").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.existingsubmitionTypes, searchKey);
+        this.filterData(res.data.existingsubmitonTypes, searchKey);
       }
     });
   };
@@ -121,7 +121,7 @@ export default class SviewSubmitionType extends Component {
                           <div className="col-lg-4">
                             <a href="/submition/student/add" class="btn btn-warning">
                               <i class="fa fa-plus" aria-hidden="true">
-                                <strong>Submit Here</strong>
+                                <strong>&nbsp;Submit Here</strong>
                               </i>
                             </a>
                           </div>

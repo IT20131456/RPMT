@@ -72,6 +72,7 @@ render() {
   return(
     <div className='container'>
 
+<div className='ms-4 me-4 mt-2 mb-2'>
 
       <div className='row mt-2 mb-2'>
       <div className='col-lg-4 mt-2 mb-2'>
@@ -116,7 +117,7 @@ render() {
       </div>
 
 
-     <table className='table table-info table-striped table-hover mt-4 mb-4'>
+     <table className='table table-light table-striped table-hover mt-4 mb-4'>
        <thead>
          <tr>
            <th scope="col">#</th>
@@ -160,6 +161,7 @@ render() {
      
 
     </div>
+    </div>
    )
   }
 }
@@ -168,21 +170,3 @@ render() {
 
 
 
-
-export class Print extends Component {
-  render() {
-    return (
-      <div>
-        <ReactToPrint
-          trigger={() => {
-            // NOTE: could just as easily return <SomeComponent />. Do NOT pass an `onClick` prop
-            // to the root node of the returned component as it will be overwritten.
-            return <a href="#">Print this out!</a>;
-          }}
-          content={() => this.componentRef}
-        />
-        <sviewMarks ref={el => (this.componentRef = el)} />
-      </div>
-    );
-  }
-}
