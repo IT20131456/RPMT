@@ -5,7 +5,7 @@ const router = express.Router();
 
 
 
-//save posts
+//save marks
 
 router.post('/mark/save',(req,res)=>{
     let newMark = new Marks(req.body);

@@ -15,7 +15,7 @@ router.post("/evaluation/save", (req, res) => {
       });
     }
     return res.status(200).json({
-      success: "Post saved Succefully",
+      success: "Evaluation saved Successfully",
     });
   });
 });
