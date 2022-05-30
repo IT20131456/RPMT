@@ -170,13 +170,6 @@ export default class App extends Component {
                 <Route path="/create/request" component={CreateRequest}></Route>
                 <Route path="/request/summary" component={RequestSummary}></Route>
           
-             
-
-               
-
-
-
-
                 {/* ---------------Supervisor--------------- */}
 
                 {/*IT20128036*/}
