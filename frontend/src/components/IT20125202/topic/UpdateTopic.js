@@ -44,6 +44,9 @@ export default class UpdateTopic extends Component {
       comments: comments
     }
     // console.log(data)
+
+
+    // validations--------------------------------------------------------
     let validated = true;
     if (this.state.userType === 'Student') {
       if (this.state.status === 'Rejected') {
@@ -74,6 +77,7 @@ export default class UpdateTopic extends Component {
       }
     }
 
+    // update validated data
     if (validated) {
       axios.put(`http://localhost:5000/topic/update/${id}`, data).then((res) => {
         if (res.data.success) {
@@ -100,6 +104,19 @@ export default class UpdateTopic extends Component {
 
     document.title = "Update Topic"
 
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/user/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
+
     const usertoken = localStorage.userToken;
     const decoded = jwt_decode(usertoken);
     this.setState({
@@ -108,6 +125,7 @@ export default class UpdateTopic extends Component {
 
     const id = this.props.match.params.id;
 
+    // get the selected topic details
     axios.get(`http://localhost:5000/topic/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
@@ -144,6 +162,8 @@ export default class UpdateTopic extends Component {
                 readOnly
               />
             </div>
+
+            {/* Display only if the user is a student  */}
             {this.state.userType === 'Student' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
@@ -196,6 +216,7 @@ export default class UpdateTopic extends Component {
                 </div>
               </span>}
 
+            {/* Display only if the user is a panel member */}
             {this.state.userType === 'Panel Member' &&
               <span>
                 <div className='form-group' style={{ marginBottom: '15px' }}>
@@ -253,6 +274,8 @@ export default class UpdateTopic extends Component {
             </button>
 
             &nbsp;&nbsp;
+
+            {/* Back button for students */}
             {this.state.userType === 'Student' &&
               <span>
                 <a
@@ -261,9 +284,11 @@ export default class UpdateTopic extends Component {
                   tabindex="-1"
                   role="button"
                   aria-disabled="true">
-                    <b>Back</b>
+                  <b>Back</b>
                 </a>
               </span>}
+
+            {/* Back button for panel members */}
             {this.state.userType === 'Panel Member' &&
               <span>
                 <a

@@ -1,10 +1,25 @@
 import React, { Component } from 'react'
 import AdminNavBar from './AdminNavBar';
 import image from '../../../images/home.jpg';
+import swal from 'sweetalert';
 
 export default class AdminHome extends Component {
   componentDidMount() {
+
     document.title = "Admin Home"
+
+    // redirect to the login page if the user is not logged in
+    if (!localStorage.adminToken) {
+      swal("Please login first", "", "warning")
+        .then((value) => {
+          if (value) {
+            this.props.history.push(`/admin/login`)
+            window.location.reload();
+          }
+
+        });
+
+    }
   }
 
   render() {
@@ -13,6 +28,8 @@ export default class AdminHome extends Component {
         <br />
         <AdminNavBar />
         <br />
+
+        {/* Image */}
         <div className='container' style={{ position: 'relative', textAlign: 'center', color: 'white' }}>
           <img src={image} class="img-fluid" alt="Research Project Management Tool"></img>
           <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
@@ -20,6 +37,8 @@ export default class AdminHome extends Component {
           </div>
         </div>
         <br />
+
+        {/* Functions */}
         <div>
           <div className='row' style={{ height: "150px" }}>
             <div className='col p-3 mb-2 m-2 bg-light text-dark rounded'>

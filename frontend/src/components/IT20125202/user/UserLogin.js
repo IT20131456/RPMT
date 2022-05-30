@@ -33,6 +33,7 @@ export default class UserLogin extends Component {
             password: this.state.password
         }
 
+        // validations----------------------------------------------------
         let validated = true;
         if (user.idNumber === '') {
             validated = false;
