@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import HomeImage from "../../../public/images/HomeImage.jpg";
+import RightSidePanel from "./RightSidePanel";
 
 export default class Home extends Component {
   componentDidMount() {
@@ -7,15 +9,25 @@ export default class Home extends Component {
   render() {
     return (
       <div className="container">
-        <div className="jumbotron mt-5">
-          <div align="center" className="col-sm-8 mx-auto">
-            <h1>Research Project Management System</h1>
-            <hr />
-            <br />
-          </div>
+        <br />
+        <div className="container">
+          <h4>Home</h4>
+          <hr />
+        </div>
+        <div className="container">
           <div className="row">
             <div className="col-9">
-              <div className="container">
+              <div>
+                <img
+                  src={HomeImage}
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    marginBottom: "20px",
+                  }}
+                />
+              </div>
+              <div>
                 <p className="mb-2 bg-light text-dark border border-secondary d-flex p-2">
                   Notice
                 </p>
@@ -34,15 +46,7 @@ export default class Home extends Component {
               </div>
             </div>
             <div className="col-3">
-              <div className='mb-2 bg-light text-dark border border-light" d-flex p-2'>
-                <div>
-                  <p className="h6">Suport Links</p>
-                  <br />
-                  <p>How to register topic</p>
-                  <p>How download templates</p>
-                  <p>More.....</p>
-                </div>
-              </div>
+              <RightSidePanel/>
             </div>
           </div>
         </div>
