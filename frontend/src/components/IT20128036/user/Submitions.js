@@ -97,12 +97,15 @@ import swal from 'sweetalert';
                       class="form-control"
                       id="groupId"
                       name="groupId"
-                      placeholder="Enter Group ID   G - -"
+                      pattern="G[0-9]{3}"
+                      title="Group ID is Invalid"
+                      placeholder="Enter Group ID -Gxxx"
                       aria-describedby="emailHelp"
                       value={groupId}
                       onChange={(e) => {
                         setgroupId(e.target.value);
                       }}
+                      required
                     />
                   </div>
 
@@ -124,6 +127,7 @@ import swal from 'sweetalert';
                     onChange={(e) => {
                       settype(e.target.value);
                     }}
+                    required
                   >
                     <option selected> Select Type</option>
                     <option value="Topic Assessment Document">Topic Assessment Document</option>
@@ -162,6 +166,7 @@ import swal from 'sweetalert';
                       onChange={(e) => {
                         setdescription(e.target.value);
                       }}
+                      required
                     />
                   </div>
 
@@ -176,6 +181,7 @@ import swal from 'sweetalert';
                       id="file"
                       filename="file"
                       onChange={onChangeFile}
+                      required
                     />
                   </div>
                   <center>
