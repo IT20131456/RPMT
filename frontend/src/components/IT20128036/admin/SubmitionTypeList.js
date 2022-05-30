@@ -81,15 +81,15 @@ export default class SubmitionTypeList extends Component {
 
   };
 
-  filterData(submitiomtypes, searchKey) {
-    const result = submitiomtypes.filter(
+  filterData(submitiontypes, searchKey) {
+    const result = submitiontypes.filter(
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
         submitiontype.checkPanel.toLowerCase().includes(searchKey)
     );
 
-    this.setState({ submitiomtypes: result });
+    this.setState({ submitiontypes: result });
   }
 
   handleSearchArea = (e) => {
@@ -97,7 +97,7 @@ export default class SubmitionTypeList extends Component {
 
     axios.get("http://localhost:5000/submitiontypes").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.existingsubmitionTypes, searchKey);
+        this.filterData(res.data.existingsubmitonTypes, searchKey);
       }
     });
   };
