@@ -57,9 +57,7 @@ export default class EvaluationList extends Component {
 
 
 
-            swal("Poof! Your file has been deleted!", {
-              icon: "success",
-            });
+            swal("Evaluation Session  has been deleted!","","success");
           } else {
             swal("Your file is safe!");
           }
@@ -79,7 +77,10 @@ export default class EvaluationList extends Component {
       (evaluation) =>
         evaluation.groupId.toLowerCase().includes(searchKey) ||
         evaluation.evaluationTopic.toLowerCase().includes(searchKey) ||
-        evaluation.date.toLowerCase().includes(searchKey)
+        evaluation.date.toLowerCase().includes(searchKey) ||
+        evaluation.groupId.includes(searchKey) ||
+        evaluation.evaluationTopic.includes(searchKey) ||
+        evaluation.date.includes(searchKey)
     );
 
     this.setState({ evaluations: result });
