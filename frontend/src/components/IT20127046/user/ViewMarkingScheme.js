@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import fileDownload from "js-file-download";
+import RightSidePanel from "../RightSidePanel";
 
 export default class ViewMarkingScheme extends Component {
   constructor() {
@@ -124,7 +125,9 @@ export default class ViewMarkingScheme extends Component {
                     ))}
                   </div>
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3">
+                  <RightSidePanel/>
+                </div>
               </div>
             </div>
           </div>

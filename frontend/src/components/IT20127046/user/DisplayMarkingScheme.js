@@ -17,15 +17,25 @@ export default class DisplayMarkingScheme extends Component {
 
   componentDidMount() {
     document.title = "Marking Scheme";
-    if (localStorage.userToken) {
+
+    // Check user login
+    if (!localStorage.userToken) {
+      swal({
+        title: "Please login first",
+        icon: "warning",
+      }).then((value) => {
+        if (value) {
+          this.props.history.push("/user/login");
+          window.location.reload();
+        }
+      });
+    } else {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
       this.setState({
         userType: decoded.type,
       });
     }
-
-    console.log("Hello");
 
     this.getMarkingCriteria();
   }
@@ -112,7 +122,7 @@ export default class DisplayMarkingScheme extends Component {
                   <div style={headlineBar}>
                     <h6>Marking Schemes</h6>
                   </div>
-                  <br/>
+                  <br />
 
                   <div className="container">
                     <div className="container border border-secondary">
