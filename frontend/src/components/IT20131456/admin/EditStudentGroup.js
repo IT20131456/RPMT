@@ -141,9 +141,7 @@ export default class EditStudentGroup extends Component {
         <br />
         <AdminNavBar />
         <br />
-        &nbsp;
-        <h2> Edit Student Group Details</h2>
-        <hr />
+        
         <nav>
           <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <button
@@ -182,8 +180,10 @@ export default class EditStudentGroup extends Component {
             <div className="container border border-dark bg-light mt-5 ">
               <div className="form-group row">
                 <div className="col-lg-12 margin-tb">
-                  <div className="float-left">
-                    <br />
+                <div className="float-left">
+                    &nbsp;
+                    <h2>Edit Student Group Details</h2>
+                    &nbsp;
                   </div>
                 </div>
               </div>

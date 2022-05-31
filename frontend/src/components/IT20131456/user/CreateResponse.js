@@ -60,7 +60,7 @@ export default class CreateResponse extends Component {
   render() {
     return (
       <div className="container px-5 my-5">
-        <div className="container border border-dark bg-light mt-5 ">
+        <div className="container border border-dark bg-light mt-5 col-lg-10">
           <div className="form-group row">
             <div className="col-lg-12 margin-tb">
               <div className="float-left">
@@ -72,8 +72,8 @@ export default class CreateResponse extends Component {
           </div>
 
           <form onSubmit={this.onSubmit}>
-            <div className="row ">
-              <div className="col-md-6">
+            
+              <div className="col-md-12">
                 <div className="form-group">
                   <strong>Name :</strong>
                   <input
@@ -87,7 +87,8 @@ export default class CreateResponse extends Component {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
+              &nbsp;
+              <div className="col-md-12">
                 <div className="form-group">
                   <strong>Position :</strong>
                   <select
@@ -102,10 +103,10 @@ export default class CreateResponse extends Component {
                   </select>
                 </div>
               </div>
-            </div>
+          
             &nbsp;
-            <div className="row">
-              <div className="col-md-6">
+       
+              <div className="col-md-12">
                 <div className="form-group">
                   <strong>Feedback (word count-75) :</strong>
                   <textarea
@@ -121,7 +122,8 @@ export default class CreateResponse extends Component {
                   />
                 </div>
               </div>
-              <div className="col-md-6">
+              &nbsp;
+              <div className="col-md-12">
                 <div className="form-group">
                   <strong>Status :</strong>
                   <select                  
@@ -136,7 +138,7 @@ export default class CreateResponse extends Component {
                   </select>
                 </div>
               </div>
-            </div>
+         
             &nbsp;
             <div className="col-md-12">
               <div className="form-group">

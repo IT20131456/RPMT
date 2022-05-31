@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 
 export default class ViewStudentGroup extends Component {
     constructor(props) {
@@ -12,6 +13,15 @@ export default class ViewStudentGroup extends Component {
       componentDidMount() {
         const id = this.props.match.params.id;
     
+        if (localStorage.userToken) {
+          const usertoken = localStorage.userToken;
+          const decoded = jwt_decode(usertoken);
+          this.setState({
+            userType: decoded.idNumber,
+          });
+          
+        }
+
         axios.get(`http://localhost:5000/sgroup/${id}`).then((res) => {
           if (res.data.success) {
             this.setState({
@@ -23,6 +33,7 @@ export default class ViewStudentGroup extends Component {
         });
       }
       render() {
+        console.log(this.state.userType);
         const {
           groupid,
           groupname,
@@ -42,13 +53,13 @@ export default class ViewStudentGroup extends Component {
     
         return (
     
-          <div className="container px-5 my-5">
+          <div className="container px-5 my-5">            
     
             <div className="float-left my-3">
               &nbsp;
-              <h2>View Student Group</h2>
-              &nbsp;
+              <h2>View Student Group (Student)</h2>          
             </div>
+            <hr/>
          <div style={{margin:"auto", width:"60%"}}>
             <div className="card border-dark my-3" >
               <div className="card-header text-center"><h3>{groupname} - {groupid}</h3></div>
@@ -94,6 +105,20 @@ export default class ViewStudentGroup extends Component {
                 </h4>       
                 
                 </div>
+
+                <div className="col-md-3 px-2">                 
+              <a
+                className="btn btn-outline-primary"
+                type="submit"
+                href={`/`}
+              >
+              <i className="fa fa-arrow-circle-left"> Back </i>
+              </a>
+              </div>    
+              &nbsp;
+
+
+
             </div>
             </div>   
       

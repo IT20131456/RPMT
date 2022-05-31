@@ -38,8 +38,8 @@ export default class RequestSummary extends Component {
           </div>         
         </div>
 
-        <table className="table table-striped table-bordered">
-          <thead className=" text-light" style={{ background: "#000080" }}>
+        <table className="table ">
+          <thead >
             <tr>
               <th scope="col">#</th>
               <th scope="col">Name</th>
@@ -56,9 +56,14 @@ export default class RequestSummary extends Component {
                 <td>{requestsummary.name}</td>
                 <td>{requestsummary.position}</td>
                 <td>{requestsummary.feedback}</td>
-                <td className="text-center"><b><h5>{requestsummary.status}</h5></b></td>            
-
-              
+                <td >           
+                <a
+                    className="btn btn-secondary disabled"
+                    href=""
+                  >
+                  {requestsummary.status}
+                  </a>
+              </td>
               </tr>
             ))}
           </tbody>

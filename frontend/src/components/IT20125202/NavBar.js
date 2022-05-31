@@ -91,12 +91,17 @@ class NavBar extends Component {
               <li><hr className="dropdown-divider" /></li>
               <li><a className="dropdown-item" href="#">Something else here</a></li>
             </ul>
-          </li> */}
-               
-           
-          <li className='nav-item'>
-            <a className="nav-link" aria-current="page" href="/student/group/add" style={{ textDecoration: 'none', color: 'white' }}>Groups</a>
-          </li>
+          </li> */}         
+
+          <li className="nav-item dropdown">
+            <a className="nav-link dropdown-toggle" aria-current="page" href="#" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
+            Student Groups
+            </a>
+            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a className="dropdown-item" href="/student/group/add">Create Group</a></li>
+                <li><a className="dropdown-item" href="/student/group/view/628fbc53d0e861327c41cdd3">View Group</a></li>
+            </ul>
+          </li> 
 
            <li className="nav-item dropdown">
             <a className="nav-link dropdown-toggle" aria-current="page" href="#" style={{ textDecoration: 'none', color: 'white' }} id="navbarDropdown" role="button" data-bs-toggle="dropdown" >
