@@ -81,7 +81,7 @@ onSubmit=(e)=>{
   axios.post(`http://localhost:5000/mark/save`,data).then((res)=>{
     if(res.data.success){
 
-      swal("Good job!", "Marks Added Successfully !", "success")
+      swal( "Marks Added Successfully !","", "success")
       .then((value)=>{
         window.location = "/submitions/view"
 
