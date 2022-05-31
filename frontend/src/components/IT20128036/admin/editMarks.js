@@ -42,7 +42,7 @@ onSubmit=(e)=>{
     gradingStatus:gradingStatus,
   }
   console.log(data);
-
+//update marks
   axios.put(`http://localhost:5000/mark/update/${id}`,data).then((res)=>{
     if(res.data.success){
      
@@ -75,7 +75,7 @@ onSubmit=(e)=>{
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    
-     
+   //retrive marks to update  
        axios.get(`http://localhost:5000/mark/${id}`).then((res) =>{
          if(res.data.success){
            this.setState({
@@ -131,7 +131,7 @@ onSubmit=(e)=>{
          
 
 
-         <button className="btn btn-success" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
+         <button className="btn btn-outline-success" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
            <i className='far fa-check-square'></i>
            &nbsp; Update
          </button>

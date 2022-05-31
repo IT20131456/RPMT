@@ -1,23 +1,51 @@
 import React, { Component } from "react";
 import axios from "axios";
+import { StudentMarksSp } from "./StudentMarksSp";
+import jwt_decode from 'jwt-decode';
 
 
-export default class SviewEvaluation extends Component {
+export default class StudentViewSpData extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+        groupId: "",
       evaluations: [],
     };
   }
 
-  componentDidMount() {
-    this.retriveEvaluations();
-    
-  }
+
+  componentDidMount(){
+
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        groupId: decoded.groupId,
+      });
+    }
+
+    setTimeout(()=>{
+          this.retriveEvaluations();
+
+    },1000);
+       
+       
+    }
+
+
+
+
+
+
+  
 //retrive evaluations
   retriveEvaluations() {
-    axios.get("http://localhost:5000/evaluations").then((res) => {
+      const gid = this.state.groupId;
+      console.log(gid);
+    axios.get(`http://localhost:5000/evaluation/group/${gid}`).then((res) => {
       if (res.data.success) {
         this.setState({
           evaluations: res.data.existingEvaluations,
@@ -27,15 +55,7 @@ export default class SviewEvaluation extends Component {
       }
     });
   }
-//delete evaluation
-  onDelete = (id) => {
-    axios
-      .delete(`http://localhost:5000/evaluation/delete/${id}`)
-      .then((res) => {
-        alert("Deleted Successfully");
-        this.retriveEvaluations();
-      });
-  };
+
 //filter evaluation
   filterData(evaluations, searchKey) {
     const result = evaluations.filter(
@@ -50,8 +70,8 @@ export default class SviewEvaluation extends Component {
 //search evaluation
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
-
-    axios.get("http://localhost:5000/evaluations").then((res) => {
+    id = this.state.groupId;
+    axios.get(`http://localhost:5000/evaluation/group/${id}`).then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingEvaluations, searchKey);
       }
@@ -60,19 +80,26 @@ export default class SviewEvaluation extends Component {
 
   render() {
     return (
-      <div className="me-4 mt-4 mb-2">
+        <div className="container">
+            <div className="row">
+                <center><h5 className="mt-4 ">Your Group ID : <span className = "text-primary" style={{fontSize:"19px"}}>{this.state.groupId}</span></h5></center>
+           
+                <div className="col-sm-4">
+                
+      <div className="mt-2  mb-2 ms-2">
         <div className="row">
-          <div className="col-lg-6 mt-2 mb-2">
-            <h4>All Evaluation Sessions</h4> 
+          <div className="col-lg-10 mt-2 mb-2">
+            <h4>Your Evaluation Session</h4>
           </div>
-          <div className="col-lg-6 mt-2 mb-2">
-            <input
+          <div className="col-lg-2 mt-2 mb-2">
+            {/* <input
               className="form-control"
               type="search"
               placeholder="Search"
               name="searchQuery"
               onChange={this.handleSearchArea}
-            ></input>
+            ></input> */}
+           
           </div>
         </div>
 
@@ -114,6 +141,18 @@ export default class SviewEvaluation extends Component {
             </div>
           </div>
         ))}
+      </div>
+      </div>
+
+      <div className="col-sm-8">
+          <StudentMarksSp></StudentMarksSp>
+
+      </div>
+
+
+
+
+      </div>
       </div>
     );
   }

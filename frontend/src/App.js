@@ -20,6 +20,7 @@ import ViewSubmitionssp from './components/IT20128036/user/viewSubmitionsp';
 import sviewMarks from './components/IT20128036/user/sviewMarks';
 import EditSubmition from './components/IT20128036/user/editSubmition';
 import { exportPDF } from './components/IT20128036/user/exportPDF';
+import StudentViewSpData from "./components/IT20128036/user/StudentViewSpData";
 
 import CreateStudentGroup from "../src/components/IT20131456/user/CreateStudentGroup";
 import ViewStudentGroup from "../src/components/IT20131456/user/ViewStudentGroup";
@@ -165,13 +166,14 @@ export default class App extends Component {
                 {/*IT20128036*/}
 
 
-                <Route path="/evaluation/student/view" component={SviewEvaluation}/>
-                <Route path="/submitiontype/student/view" component={SviewSubmitionType}/>
-                <Route path="/submition/student/add" component={Submitions}/>
-                <Route path="/submitionsp/student/view/:id" component={ViewSubmitionssp}/>
-                <Route path="/marks/student/view" component={sviewMarks}/>
-                <Route path="/submition/student/edit/:id" component={EditSubmition}/>
+                <Route path="/student/evaluation/view" component={SviewEvaluation}/>
+                <Route path="/student/submitiontype/view" component={SviewSubmitionType}/>
+                <Route path="/student/submition/add" component={Submitions}/>
+                <Route path="/student/submitionsp/view" component={ViewSubmitionssp}/>
+                <Route path="/student/marks/view" component={sviewMarks}/>
+                <Route path="/student/submition/edit/:id" component={EditSubmition}/>
                 <Route path="/student/pdf/export" component={exportPDF}/>
+                <Route path="/student/group/evaluation/view" component={StudentViewSpData}/>
 
                   {/* IT20131456 */}
                 <Route path="/student/group/add" component={CreateStudentGroup}></Route>                

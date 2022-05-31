@@ -73,7 +73,7 @@ export default class AdminHome extends Component {
                 <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 <h6>Submission Management</h6>
                 <br />
-                <a type="button" className="btn btn-outline-dark" href={''}><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
+                <a type="button" className="btn btn-outline-dark" href={'/submitiontype/add'}><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
               </center>
             </div>
             <div className='col p-3 mb-2 m-2 bg-light text-dark rounded'>

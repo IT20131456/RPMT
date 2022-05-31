@@ -34,13 +34,13 @@ export default class EditSubmition extends Component {
       files: files,
     };
     console.log(data);
-
+//update submition
     axios
       .put(`http://localhost:5000/submition/update/${id}`, data)
       .then((res) => {
         if (res.data.success) {
           swal("Updated Successfully !").then((value) => {
-            window.location = `/submitionsp/student/view/${groupId}`;
+            window.location = `/student/submitionsp/view/${groupId}`;
           });
 
           this.setState({
@@ -56,7 +56,7 @@ export default class EditSubmition extends Component {
   componentDidMount() {
     // if(this.props.match && this.props.match.params.id){
     const id = this.props.match.params.id;
-
+//retrive submition to update
     axios.get(`http://localhost:5000/submition/${id}`).then((res) => {
       if (res.data.success) {
         this.setState({
@@ -74,7 +74,9 @@ export default class EditSubmition extends Component {
 
   render() {
     return (
-      <div className="col-md-8 mt-4 mx-auto">
+      <div className="container">
+      <div className="col-md-12 mt-4 ">
+        <div className="mx-5">
         <h1 className="h3 mb-3 font-weight-normal">Edit Submition</h1>
         <form className="needs-validation" noValidate>
           <div className="form-group" style={{ marginBottom: "15px" }}>
@@ -126,7 +128,7 @@ export default class EditSubmition extends Component {
           </div>
 
           <button
-            className="btn btn-success"
+            className="btn btn-outline-success"
             type="submit"
             style={{ margintop: "15px" }}
             onClick={this.onSubmit}
@@ -135,6 +137,8 @@ export default class EditSubmition extends Component {
             &nbsp; Update
           </button>
         </form>
+      </div>
+      </div>
       </div>
     );
   }

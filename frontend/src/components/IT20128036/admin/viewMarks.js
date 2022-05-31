@@ -17,7 +17,7 @@ export default class viewMarks extends Component{
 componentDidMount(){
   this.retriveMarks();
 }
-
+//retrive marks
   retriveMarks(){
     axios.get("http://localhost:5000/marks").then(res =>{
       if(res.data.success){
@@ -31,7 +31,7 @@ componentDidMount(){
   }
 
 
-
+//delete marks
 onDelete=(id)=>{
  
 
@@ -76,7 +76,7 @@ onDelete=(id)=>{
 
 }
 
-
+//filter marks
 filterData(marks,searchKey){
   const result=marks.filter((mark)=>
   mark.groupId.toLowerCase().includes(searchKey)||
@@ -87,7 +87,7 @@ filterData(marks,searchKey){
   this.setState({marks:result})
 }
 
-
+//search marks
 handleSearchArea=(e)=>{
   const searchKey=e.currentTarget.value;
   
@@ -156,7 +156,7 @@ render() {
             
 
              <td>
-               <a className="btn btn-outline-warning" href={`/marks/edit/${marks._id}`}>
+               <a className="btn btn-outline-primary" href={`/marks/edit/${marks._id}`}>
                  <i className="fas fa-edit"></i>&nbsp;Edit
                </a>
 

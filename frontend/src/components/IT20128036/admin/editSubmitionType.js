@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import swal from 'sweetalert';
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 
 export default class EditSubmitonType extends Component{
 
@@ -48,7 +49,7 @@ onSubmit=(e)=>{
     guidelines:guidelines,
   }
   console.log(data);
-
+//update submitiontype
   axios.put(`http://localhost:5000/submitiontype/update/${id}`,data).then((res)=>{
     if(res.data.success){
 
@@ -85,7 +86,7 @@ onSubmit=(e)=>{
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    
-     
+  //retrive submitiontype to update   
        axios.get(`http://localhost:5000/submitiontype/${id}`).then((res) =>{
          if(res.data.success){
            this.setState({
@@ -115,7 +116,16 @@ onSubmit=(e)=>{
 
   render(){
     return(
-     <div className='col-md-8 mt-4 mx-auto'>
+      <div className="container">
+
+        
+
+<br />
+        <AdminNavBar />
+
+
+     <div className='col-12 mt-4'>
+       <div className="ms-4 me-4">
        <h1 className='h3 mb-3 font-weight-normal'>Edit Submition Type</h1>
        <form className='needs-validation' noValidate>
 
@@ -123,7 +133,7 @@ onSubmit=(e)=>{
   <div className="col-sm-7">
 
   <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Submition Type</label>
+           <label style={{marginBottom:'5px'}}><strong>Submition Type</strong></label>
            <input type="text" 
            className='form-control'
            name='submitionType'
@@ -137,7 +147,7 @@ onSubmit=(e)=>{
   </div>
   <div className="col-sm-5">
   <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Allocated Marks</label>
+           <label style={{marginBottom:'5px'}}><strong>Allocated Marks</strong></label>
            <input type="text" 
            className='form-control'
            name='almarks'
@@ -156,7 +166,7 @@ onSubmit=(e)=>{
 
 
          <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Description</label>
+           <label style={{marginBottom:'5px'}}><strong>Description</strong></label>
            <textarea 
            className='form-control'
            name='description'
@@ -174,7 +184,7 @@ onSubmit=(e)=>{
         <div className="row">
 <div className="col-6">
 <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Deadline</label>
+           <label style={{marginBottom:'5px'}}><strong>Deadline</strong></label>
            <input type="date" 
            className='form-control'
            name='deadLine'
@@ -189,7 +199,7 @@ onSubmit=(e)=>{
 
 <div className="col-6">
 <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Checking Panel</label>
+           <label style={{marginBottom:'5px'}}><strong>Checking Panel</strong></label>
            <input type="text" 
            className='form-control'
            name='checkPanel'
@@ -212,7 +222,7 @@ onSubmit=(e)=>{
 
 
          <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Guidelines</label>
+           <label style={{marginBottom:'5px'}}><strong>Guidelines</strong></label>
            <textarea 
            className='form-control'
            name='guidelines'
@@ -229,14 +239,14 @@ onSubmit=(e)=>{
 
 <div className="row">
 <div className="col-sm-6">
-<button className="btn btn-outline-dark" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
+<button className="btn btn-outline-success" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
            <i className='far fa-check-square'></i>
            &nbsp; Update
          </button>
 </div>
-<div className="col-sm-6">
+{/* <div className="col-sm-6">
   <a className="btn btn-outline-dark" href="/submitiontype/add">Back</a>
-</div>
+</div> */}
 
 
 
@@ -247,7 +257,8 @@ onSubmit=(e)=>{
 
 
        </form>
-
+       </div>
+     </div>
      </div>
    
     )

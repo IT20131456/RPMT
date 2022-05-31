@@ -20,7 +20,7 @@ export class exportPDF extends React.PureComponent {
               <div className='col-md-6'>
               <PrintContextConsumer>
             {({ handlePrint }) => (
-              <button className='btn btn-success' onClick={handlePrint}>Export Mark Sheet</button>
+              <button className='btn btn-outline-success' onClick={handlePrint}>Export Mark Sheet</button>
             )}
           </PrintContextConsumer>
 
@@ -35,7 +35,7 @@ export class exportPDF extends React.PureComponent {
         <ComponentToPrint ref={el => (this.componentRef = el)} />
         </div>
 
-        <a href="/marks/student/view" className='btn btn-outline-dark'>Back</a>
+        <a href="/student/marks/view" className='btn btn-outline-dark'>Back</a>   
 
       </div>
     );

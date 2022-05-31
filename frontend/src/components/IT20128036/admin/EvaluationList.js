@@ -15,7 +15,7 @@ export default class EvaluationList extends Component {
   componentDidMount() {
     this.retriveEvaluations();
   }
-
+//retrive evaluations
   retriveEvaluations() {
     axios.get("http://localhost:5000/evaluations").then((res) => {
       if (res.data.success) {
@@ -27,7 +27,7 @@ export default class EvaluationList extends Component {
       }
     });
   }
-
+//delete evaluation
   onDelete = (id) => {
   
 
@@ -73,7 +73,7 @@ export default class EvaluationList extends Component {
 
       
   };
-
+//search filter
   filterData(evaluations, searchKey) {
     const result = evaluations.filter(
       (evaluation) =>
@@ -84,7 +84,7 @@ export default class EvaluationList extends Component {
 
     this.setState({ evaluations: result });
   }
-
+//search evaluation
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
@@ -136,7 +136,8 @@ export default class EvaluationList extends Component {
                     <div className="col-lg-4">
                       <a
                         href={evaluations.link}
-                        class="btn btn-outline-primary"
+                       
+                        class="btn btn-outline-success"
                       >
                         <i class="fa fa-link" aria-hidden="true"></i>Join
                       </a>
@@ -145,7 +146,7 @@ export default class EvaluationList extends Component {
                     <div className="col-lg-4">
                       <a
                         href={`/evaluation/edit/${evaluations._id}`}
-                        class="btn btn-outline-warning"
+                        class="btn btn-outline-primary"
                       >
                         {" "}
                         <i class="fa fa-pencil-square-o" aria-hidden="true"></i>Update

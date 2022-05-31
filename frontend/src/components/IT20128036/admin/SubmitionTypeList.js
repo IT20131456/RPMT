@@ -14,7 +14,7 @@ export default class SubmitionTypeList extends Component {
   componentDidMount() {
     this.retrivesubmitionTypes();
   }
-
+//retrive submitiontype
   retrivesubmitionTypes() {
     axios.get("http://localhost:5000/submitiontypes").then((res) => {
       if (res.data.success) {
@@ -26,7 +26,7 @@ export default class SubmitionTypeList extends Component {
       }
     });
   }
-
+//delete submitiontype
   onDelete = (id) => {
  
 
@@ -80,7 +80,7 @@ export default class SubmitionTypeList extends Component {
 
 
   };
-
+//filter submitiontype
   filterData(submitiontypes, searchKey) {
     const result = submitiontypes.filter(
       (submitiontype) =>
@@ -91,7 +91,7 @@ export default class SubmitionTypeList extends Component {
 
     this.setState({ submitiontypes: result });
   }
-
+//search submitiontypes
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
@@ -104,17 +104,17 @@ export default class SubmitionTypeList extends Component {
 
   render() {
     return (
-      <div className="me-4">
+      <div className="me-2">
         <div className="mt-4 mb-4">
           <div className="row">
-            <div className="col-lg-5 mt-2 mb-2">
+            <div className="col-lg-7 mt-2 mb-2">
               <h4>Submitions List</h4>
             </div>
-            <div className="col-lg-7 mt-2 mb-2">
+            <div className="col-lg-5 mt-2 mb-2">
               <input
                 className="form-control"
                 type="search"
-                placeholder="Search"
+                placeholder="Search . . ."
                 name="searchQuery"
                 onChange={this.handleSearchArea}
               ></input>
@@ -124,13 +124,21 @@ export default class SubmitionTypeList extends Component {
           {this.state.submitiontypes.map((submitiontypes, index) => (
             <div class="row">
               <div class="col-sm-12">
-                <div class="card mt-2 mb-2">
+                <div class="card  mt-2 mb-4">
                   <div class="card-body">
                     <div class="card-header">
                       <h5 class="card-title">
                         {" "}
                         {submitiontypes.submitionType} Submition{" "}
                       </h5>
+
+
+
+
+
+
+
+
                     </div>
 
                     <p class="card-text"></p>
@@ -160,18 +168,18 @@ export default class SubmitionTypeList extends Component {
 
                     <div className="row">
                       <div className="col-lg-4">
-                        <a href="/submition/student/add" class="btn btn-outline-primary">
-                          <i class="fa fa-plus" aria-hidden="true"></i>Submit
+                        <a href="/submition/student/add" class="btn btn-outline-success">
+                          <i class="fa fa-plus" aria-hidden="true"><br/>Submit</i>
                         </a>
                       </div>
 
                       <div className="col-lg-4">
                         <a
                           href={`/submitiontype/edit/${submitiontypes._id}`}
-                          class="btn btn-outline-warning"
+                          class="btn btn-outline-primary"
                         >
                           {" "}
-                          <i  class="fa fa-pencil-square-o" aria-hidden="true"></i>Update
+                          <i  class="fa fa-pencil-square-o" aria-hidden="true"><br/>Update</i>
                         </a>
                       </div>
 
@@ -184,7 +192,7 @@ export default class SubmitionTypeList extends Component {
                           }}
                         >
                           {" "}
-                          <i class="fa fa-trash-o" aria-hidden="true"></i>Delete
+                          <i class="fa fa-trash-o" aria-hidden="true"><br/>Delete</i>
                         </a>
                       </div>
                     </div>
