@@ -3,20 +3,36 @@ import axios from "axios";
 import fileDownload from 'js-file-download';
 import AddSubmition from './Submitions';
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
 
 export default class ViewSubmitionssp extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            submitions:[]
+            groupId: "",
+            submitions:[],
+           
         };
     }
 
     componentDidMount(){
 
-        
-        this.retrieveSubmitions();
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        groupId: decoded.groupId,
+      });
+    }
+
+        setTimeout(()=>{
+          this.retrieveSubmitions();
+
+        },1000);
+       
        
     }
 
@@ -24,9 +40,12 @@ export default class ViewSubmitionssp extends Component {
      
    
 
-    
+    //retrive submition using group id
     retrieveSubmitions(){
-        const gid = this.props.match.params.id ;
+       // const gid = this.props.match.params.id ;
+       console.log(this.state.groupId)
+       //console.log("Hello")
+       const gid = this.state.groupId ;
         axios.get(`http://localhost:5000/submition/group/${gid}`).then(res => {
             if(res.data.success){
                 this.setState({
@@ -38,7 +57,7 @@ export default class ViewSubmitionssp extends Component {
     }
 
 
-    
+  //delete submition  
 onDelete=(id)=>{
    
 
@@ -114,7 +133,7 @@ fileDownload(res.data, fileName);
 
 
 
-  
+  //filter submition
 filterData(submitions,searchKey){
   const result=submitions.filter((submition)=>
   submition.type.toLowerCase().includes(searchKey)||
@@ -125,12 +144,12 @@ filterData(submitions,searchKey){
   this.setState({submitions:result})
 }
 
-
+//search submition
 handleSearchArea=(e)=>{
   
   const searchKey=e.currentTarget.value;
 
-  const gid = this.props.match.params.id ;
+  const gid = this.state.groupId ;
   axios.get(`http://localhost:5000/submition/group/${gid}`).then(res =>{
     if(res.data.success){
       this.filterData(res.data.exsitingSubmitions, searchKey)
@@ -181,7 +200,7 @@ handleSearchArea=(e)=>{
           {this.state.submitions.map((submitions, index) => (
             <div class="row">
               <div class="col-sm-12">
-                <div class="card border-dark mt-4 mb-4">
+                <div class="card border-secondary mt-3 mb-3">
                   <div class="card-body">
                     <div class="card-header">
                       <h5 class="card-title">
@@ -191,30 +210,35 @@ handleSearchArea=(e)=>{
 
 
 
-                      
-                    <div className="row mt-4 mb-4">
+                 
+
+                         
+                      <div className="row mt-4 mb-4">
                       <div className="col-lg-4">
                       
-                      <a className='btn btn-outline-dark' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
+                      <a className='btn btn-outline-success' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
                       
                       </div>
 
                       <div className="col-lg-3">
-                      <a className="btn btn-outline-dark" href={`/submition/student/edit/${submitions._id}`}>
+                      <a className="btn btn-outline-primary" href={`/student/submition/edit/${submitions._id}`}>
                   <i className="fas fa-edit"><br/>Edit</i>
                 </a>
                       </div>
 
                       <div className="col-lg-4">
 
-                      <a className="btn btn-outline-dark" href="#" onClick={()=>{
+                      <a className="btn btn-outline-danger" href="#" onClick={()=>{
                   this.onDelete(submitions._id)
                 }}>
-                  <i className="fas fa-trash-alt"><br/>Delete</i>
+                  <i className="fas fa-trash-alt"><br/>Delete</i>  
                 </a>
 
-                      </div>
+                      </div>  
                     </div>
+                   
+
+
 
 
 
@@ -238,6 +262,38 @@ handleSearchArea=(e)=>{
                       <strong>File Name</strong>
                     </p>
                     <p>{submitions.files}</p>
+
+
+
+
+
+
+
+
+{/*                          
+                    <div className="row mt-4 mb-4">
+                      <div className="col-lg-4">
+                      
+                      <a className='btn btn-outline-success' onClick={() => this.downloadFile(submitions.files)}><i class="fa fa-download" aria-hidden="true"><br/>Download</i></a>
+                      
+                      </div>
+
+                      <div className="col-lg-3">
+                      <a className="btn btn-outline-warning" href={`/submition/student/edit/${submitions._id}`}>
+                  <i className="fas fa-edit"><br/>Edit</i>
+                </a>
+                      </div>
+
+                      <div className="col-lg-4">
+
+                      <a className="btn btn-outline-danger" href="#" onClick={()=>{
+                  this.onDelete(submitions._id)
+                }}>
+                  <i className="fas fa-trash-alt"><br/>Delete</i>
+                </a>
+
+                      </div>
+                    </div> */} 
                    
                    
                    

@@ -47,7 +47,15 @@ export default class AddEvaluation extends Component {
 //save evaluations
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
-        swal("Good job!", "Added Evaluation Successfully !", "success");
+        swal("Good job!", "Added Evaluation Successfully !", "success")
+        .then((value)=>{
+          window.location = "/evaluation/add"
+  
+        })
+
+
+
+
         this.setState({
           groupId: "",
           evaluationTopic: "",
@@ -280,7 +288,7 @@ export default class AddEvaluation extends Component {
                     </div>
 
                     <button
-                      className="btn btn-success"
+                      className="btn btn-outline-success"
                       type="submit"
                       style={{ margintop: "15px" }}
                       // onClick={this.onSubmit}

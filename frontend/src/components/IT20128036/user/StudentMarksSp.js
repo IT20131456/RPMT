@@ -1,29 +1,57 @@
 
 import React, { Component } from 'react';
 import axios from 'axios';
+import jwt_decode from 'jwt-decode';
 
 
 
 
-export class ComponentToPrint extends React.PureComponent {
+export class StudentMarksSp extends Component {
 
 
     constructor(props){
         super(props);
     
         this.state={
-          marks:[]
+          groupId:"",
+          marks:[],
         };
       }
-    
-    
-    
-    componentDidMount(){
-      this.retriveMarks();
+
+
+
+
+
+      
+  componentDidMount(){
+
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        groupId: decoded.groupId,
+      });
     }
+
+    setTimeout(()=>{
+        this.retriveMarks();
+
+    },1000);
+       
+       
+    }
+
+
+    
+    
+    
+   
     //retrive marks
       retriveMarks(){
-        axios.get("http://localhost:5000/marks").then(res =>{
+          const id = this.state.groupId;
+        axios.get(`http://localhost:5000/marks/group/${id}`).then(res =>{
           if(res.data.success){
             this.setState({
               marks:res.data.existingMarks
@@ -42,13 +70,13 @@ export class ComponentToPrint extends React.PureComponent {
 
     render() {
       return (
-        <div className='container'>
+        <div className='me-2'>
             
      <table className='table table-light table-striped table-hover mt-4 mb-4'>
        <thead>
          <tr>
-           <th scope="col">#</th>
-           <th scope="col">Group ID</th>
+         
+          
            <th scope="col">Submition Type</th>
            <th scope="col">Marks (?/100)</th>
            <th scope="col">Grading Status</th>
@@ -57,15 +85,11 @@ export class ComponentToPrint extends React.PureComponent {
        </thead>
        <tbody>
          {this.state.marks.map((marks,index)=>(
-           <tr key={index}>
-             <th scope="row">{index+1}</th>
+           <tr>
+            
 
 
-             <td>
-                 
-                 {marks.groupId}
-                 
-                 </td>
+           
 
              <td>{marks.type}</td>
 

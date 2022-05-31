@@ -16,7 +16,7 @@ export default class ViewSubmitions extends Component {
         this.retrieveSubmitions();
     }
 
-    // To get all data
+    // To get all submition data
     retrieveSubmitions(){
         axios.get("http://localhost:5000/submition/all").then(res => {
             if(res.data.success){
@@ -31,7 +31,7 @@ export default class ViewSubmitions extends Component {
 
 
 
-
+//filter submitions
     filterData(submitions,searchKey){
         const result=submitions.filter((submition)=>
         submition.groupId.toLowerCase().includes(searchKey)||
@@ -42,7 +42,7 @@ export default class ViewSubmitions extends Component {
         this.setState({submitions:result})
       }
       
-      
+  //search submitions    
       handleSearchArea=(e)=>{
         const searchKey=e.currentTarget.value;
       
@@ -77,7 +77,7 @@ fileDownload(res.data, fileName);
 
 
 
-         
+ //delete submitions        
 onDelete=(id)=>{
 
 

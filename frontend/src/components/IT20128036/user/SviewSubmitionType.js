@@ -14,7 +14,7 @@ export default class SviewSubmitionType extends Component {
   componentDidMount() {
     this.retrivesubmitionTypes();
   }
-
+//retrive submitiontypes
   retrivesubmitionTypes() {
     axios.get("http://localhost:5000/submitiontypes").then((res) => {
       if (res.data.success) {
@@ -26,7 +26,7 @@ export default class SviewSubmitionType extends Component {
       }
     });
   }
-
+//delete submitiontype
   onDelete = (id) => {
     axios
       .delete(`http://localhost:5000/submitiontype/delete/${id}`)
@@ -35,7 +35,7 @@ export default class SviewSubmitionType extends Component {
         this.retrivesubmitionTypes();
       });
   };
-
+//filter submitiontype
   filterData(submitiontypes, searchKey) {
     const result = submitiontypes.filter(
       (submitiontype) =>
@@ -46,7 +46,7 @@ export default class SviewSubmitionType extends Component {
 
     this.setState({ submitiontypes: result });
   }
-
+//search submitiontype
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
@@ -82,7 +82,7 @@ export default class SviewSubmitionType extends Component {
               {this.state.submitiontypes.map((submitiontypes, index) => (
                 <div class="row">
                   <div class="col-sm-12">
-                    <div class="card mt-2 mb-2">
+                    <div class="card border-secondary mt-2 mb-4">
                       <div class="card-body">
                         <div class="card-header">
                           <h5 class="card-title">
@@ -119,7 +119,7 @@ export default class SviewSubmitionType extends Component {
                           <div className="col-lg-4"></div>
 
                           <div className="col-lg-4">
-                            <a href="/submition/student/add" class="btn btn-warning">
+                            <a href="/student/submitionsp/view" class="btn btn-outline-success">
                               <i class="fa fa-plus" aria-hidden="true">
                                 <strong>&nbsp;Submit Here</strong>
                               </i>

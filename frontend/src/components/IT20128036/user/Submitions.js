@@ -1,12 +1,64 @@
-import React, { useState, set } from "react";
+import React, { useState,useEffect, set } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
+
 
  function AddSubmition() {
   const [groupId, setgroupId] = useState("");
   const [type, settype] = useState("");
   const [file, setfile] = useState("");
   const [description, setdescription] = useState("");
+
+
+
+  
+  useEffect(() => {
+    const usertoken = localStorage.userToken;
+    const decoded = jwt_decode(usertoken);
+
+    
+    setgroupId(decoded.groupId);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+  },[]);
+
+
+  
+  // componentDidMount() {
+  //   document.title = "User Profile";
+  //   if (localStorage.userToken) {
+  //     const usertoken = localStorage.userToken;
+  //     const decoded = jwt_decode(usertoken);
+  //     this.setState({
+  //       userType: decoded.type,
+  //     });
+  //   }
+
+   
+  // }
+
+
+
+
+
+
+
 
   const onChangeFile = (e) => {
     setfile(e.target.files[0]);
@@ -26,7 +78,7 @@ import swal from 'sweetalert';
     setgroupId("");
     settype("");
     setdescription("");
-
+//save submition
     axios 
       .post("http://localhost:5000/submition", formdata)
       .then(() => {
@@ -34,7 +86,7 @@ import swal from 'sweetalert';
           swal("Good job!", "Submitted Successfully !", "success")
 
           .then((value)=>{
-            window.location = `/submitionsp/student/view/${groupId}`
+            window.location = `/student/submitionsp/view`
     
           })
 
@@ -66,7 +118,8 @@ import swal from 'sweetalert';
   };
 
   return (
-    <div className="container mt-4 mb-4">
+   
+    <div className="ms-4 mt-4 mb-4">
      
        
               <div
@@ -79,9 +132,9 @@ import swal from 'sweetalert';
                 // }}
               >
                 <center>
-                  <h1 style={set}>Add Submition</h1>
+                  <h3 style={set}>Add Submition</h3>
                 </center>
-                <hr/>
+                <br/>
                 <form onSubmit={onChangeClick} encType="multipart/form-data">
 
 
@@ -106,6 +159,7 @@ import swal from 'sweetalert';
                         setgroupId(e.target.value);
                       }}
                       required
+                      disabled
                     />
                   </div>
 
@@ -185,7 +239,7 @@ import swal from 'sweetalert';
                     />
                   </div>
                   <center>
-                    <button type="submit" class="btn btn-warning">
+                    <button type="submit" class="btn btn-outline-success">
                       {" "}
                       <i class="fa fa-plus" aria-hidden="true"> &nbsp;<strong>Submit</strong></i>
                     </button>

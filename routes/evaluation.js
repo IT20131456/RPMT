@@ -89,4 +89,30 @@ router.delete("/evaluation/delete/:id", (req, res) => {
   );
 });
 
+
+
+
+
+
+
+//get a specipic grp id evaluation
+router.get("/evaluation/group/:id",(req,res) =>{
+  let gId = req.params.id;
+
+  Evaluations.find({groupId:gId},(err,evaluation)=>{
+      if(err){
+          return res.status(400).json({success:false, err});
+      }
+      return res.status(200).json({
+          success:true,
+          existingEvaluations:evaluation
+      });
+  });
+});
+
+
+
+
+
+
 module.exports = router;

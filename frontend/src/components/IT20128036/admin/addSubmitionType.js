@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import SubmitionTypeList from "./SubmitionTypeList";
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 
 export default class AddSubmitionType extends Component {
   constructor(props) {
@@ -54,10 +55,17 @@ export default class AddSubmitionType extends Component {
       guidelines: guidelines,
     };
     console.log(data);
-
+//save submitiontypes
     axios.post("http://localhost:5000/submitiontype/save", data).then((res) => {
       if (res.data.success) {
-        swal("Good job!", "Added Successfully !", "success");
+        swal("Good job!", "Added Successfully !", "success")
+        .then((value)=>{
+          window.location = "/submitiontype/add"
+  
+        })
+
+
+
         this.setState({
           submitionType: "",
           description: "",
@@ -82,7 +90,7 @@ export default class AddSubmitionType extends Component {
 
 
         };
-
+//send email to all students
         axios.post("http://localhost:5000/submitiontype/email", emailData).then((res) => {
         if (res.data.success) {
           console.log("Sent Email Successfully")
@@ -103,15 +111,28 @@ export default class AddSubmitionType extends Component {
   render() {
     return (
       <div className="container">
+
+
+<br />
+        <AdminNavBar />
+        
+        
+     
+        
+
+
+
+
+
         <div className="row">
           <div className="col-sm-6">
-            <div className="ms-4">
+            <div className="ms-2">
             <div className="row">
               <div className="col-sm-12 mt-4 mx-auto">
-                <h1 className="h3 mb-3 font-weight-normal">
+                <h3 className="h3 mb-3 font-weight-normal">
                   Add New Submition Type
-                </h1>
-                <hr/>
+                </h3>
+                <br/>
                 <form className="needs-validation" onSubmit={this.onSubmit}>
                   <div className="row">
                     <div className="col-sm-7">
@@ -265,7 +286,7 @@ export default class AddSubmitionType extends Component {
             
 
                   <button
-                    className="btn btn-success"
+                    className="btn btn-outline-success"
                     type="submit"
                     style={{ margintop: "15px" }}
                     // onClick={this.onSubmit}

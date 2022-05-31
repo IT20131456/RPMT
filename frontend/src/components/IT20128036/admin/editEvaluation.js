@@ -50,7 +50,7 @@ onSubmit=(e)=>{
     link:link,
   }
   console.log(data);
-
+//update evaluation
   axios.put(`http://localhost:5000/evaluation/update/${id}`,data).then((res)=>{
     if(res.data.success){
       swal("Evaluation Updated Successfully !")
@@ -83,7 +83,7 @@ onSubmit=(e)=>{
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    
-     
+    //retrive evaluation to update 
        axios.get(`http://localhost:5000/evaluation/${id}`).then((res) =>{
          if(res.data.success){
            this.setState({
@@ -114,8 +114,9 @@ onSubmit=(e)=>{
   render(){
     return(
 
-
-     <div className='col-md-8 mt-4 mx-auto'>
+<div className="container">
+     <div className='col-md-12 mt-4'>
+       <div className="me-4 ms-4">
        <h1 className='h3 mb-3 font-weight-normal'>Edit Evaluation</h1>
        <form className='needs-validation' noValidate>
 
@@ -255,16 +256,16 @@ onSubmit=(e)=>{
 
 <div className="row mt-4">
   <div className="col-2">
-  <button className="btn btn-outline-dark" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
+  <button className="btn btn-outline-success" type="submit" style={{margintop:'15px'}} onClick={this.onSubmit}>
            <i className='far fa-check-square'></i>
            &nbsp; Update
          </button>
 
   </div>
-  <div className="col-2">
+  {/* <div className="col-2">
   <a href="/evaluation/add" className="btn btn-outline-dark">Back</a>
 
-  </div>
+  </div> */}
 </div>
          
 
@@ -274,6 +275,8 @@ onSubmit=(e)=>{
 
        </form>
 
+     </div>
+     </div>
      </div>
    
     )

@@ -113,7 +113,7 @@ onSubmit=(e)=>{
     
   }
 
-
+//update status 
   const ids = this.props.match.params.id ;
   axios.put(`http://localhost:5000/submition/update/${ids}`, statusdata).then((res) => {
     if (res.data.success) {
@@ -140,7 +140,7 @@ onSubmit=(e)=>{
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    
-     
+  //retrive submition data   
        axios.get(`http://localhost:5000/submition/${id}`).then((res) =>{
          if(res.data.success){
            this.setState({
@@ -167,6 +167,7 @@ onSubmit=(e)=>{
     return(
 
       <div className="container">
+        <div className="ms-4 me-4 mt-2 mb-2">
         <div className="row">
           <div className="col-sm-8">
 
@@ -333,7 +334,7 @@ onSubmit=(e)=>{
          </div>
 
 
-         <button className="btn btn-success" type="submit" style={{margintop:'15px'}} >
+         <button className="btn btn-outline-success" type="submit" style={{margintop:'15px'}} >
            <i className='far fa-check-square'></i>
            &nbsp; Add Marks
          </button>
@@ -368,6 +369,7 @@ More than 50% Plagiarism -- 100%</p>
 
      </div>
         </div>
+     </div>
      </div>
    
     )

@@ -18,7 +18,7 @@ export default class sviewMarks extends Component{
 componentDidMount(){
   this.retriveMarks();
 }
-
+//retrive marks
   retriveMarks(){
     axios.get("http://localhost:5000/marks").then(res =>{
       if(res.data.success){
@@ -32,7 +32,7 @@ componentDidMount(){
   }
 
 
-
+//delete marks
 onDelete=(id)=>{
   axios.delete(`http://localhost:5000/mark/delete/${id}`).then((res)=>{
     alert("Deleted Successfully");
@@ -41,7 +41,7 @@ onDelete=(id)=>{
   })
 }
 
-
+//filter marks
 filterData(marks,searchKey){
   const result=marks.filter((mark)=>
   mark.groupId.toLowerCase().includes(searchKey)||
@@ -52,7 +52,7 @@ filterData(marks,searchKey){
   this.setState({marks:result})
 }
 
-
+//search marks
 handleSearchArea=(e)=>{
   const searchKey=e.currentTarget.value;
   
