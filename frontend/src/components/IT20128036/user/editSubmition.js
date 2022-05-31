@@ -39,7 +39,7 @@ export default class EditSubmition extends Component {
       .put(`http://localhost:5000/submition/update/${id}`, data)
       .then((res) => {
         if (res.data.success) {
-          swal("Updated Successfully !").then((value) => {
+          swal("Updated Successfully","","success").then((value) => {
             window.location = `/student/submitionsp/view/${groupId}`;
           });
 
@@ -79,8 +79,13 @@ export default class EditSubmition extends Component {
         <div className="mx-5">
         <h1 className="h3 mb-3 font-weight-normal">Edit Submition</h1>
         <form className="needs-validation" noValidate>
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Group Id</label>
+
+
+          <div className="row">
+            <div className="col-4">
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}><strong>Group Id</strong></label>
             <input
               type="text"
               className="form-control"
@@ -91,19 +96,14 @@ export default class EditSubmition extends Component {
             />
           </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Description</label>
-            <textarea
-              className="form-control"
-              name="description"
-              placeholder="Edit Description"
-              value={this.state.description}
-              onChange={this.handleInputChange}
-            />
-          </div>
 
-          <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Type</label>
+            </div>
+
+
+            <div className="col-8">
+
+            <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}><strong>Type</strong></label>
             <input
               type="text"
               className="form-control"
@@ -114,8 +114,29 @@ export default class EditSubmition extends Component {
             />
           </div>
 
+            </div>
+
+          </div>
+
+
+
+      
+
           <div className="form-group" style={{ marginBottom: "15px" }}>
-            <label style={{ marginBottom: "5px" }}>Files</label>
+            <label style={{ marginBottom: "5px" }}><strong>Description</strong></label>
+            <textarea
+              className="form-control"
+              name="description"
+              placeholder="Edit Description"
+              value={this.state.description}
+              onChange={this.handleInputChange}
+            />
+          </div>
+
+        
+
+          <div className="form-group" style={{ marginBottom: "15px" }}>
+            <label style={{ marginBottom: "5px" }}><strong>Files</strong></label>
             <input
               type="text"
               className="form-control"
