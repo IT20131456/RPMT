@@ -20,6 +20,7 @@ import ViewSubmitionssp from './components/IT20128036/user/viewSubmitionsp';
 import sviewMarks from './components/IT20128036/user/sviewMarks';
 import EditSubmition from './components/IT20128036/user/editSubmition';
 import { exportPDF } from './components/IT20128036/user/exportPDF';
+import StudentViewSpData from "./components/IT20128036/user/StudentViewSpData";
 
 import CreateStudentGroup from "../src/components/IT20131456/CreateStudentGroup";
 import StudentGroup from "./components/IT20131456/StudentGroup";
@@ -172,6 +173,7 @@ export default class App extends Component {
                 <Route path="/marks/student/view" component={sviewMarks}/>
                 <Route path="/submition/student/edit/:id" component={EditSubmition}/>
                 <Route path="/student/pdf/export" component={exportPDF}/>
+                <Route path="/student/group/evaluation/view" component={StudentViewSpData}/>
 
                   {/* IT20131456 */}
                 <Route path="/student/group/add" component={CreateStudentGroup}></Route>                
