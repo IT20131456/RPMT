@@ -53,7 +53,7 @@ onSubmit=(e)=>{
   axios.put(`http://localhost:5000/submitiontype/update/${id}`,data).then((res)=>{
     if(res.data.success){
 
-      swal(" Updated Successfully !")
+      swal(" Updated Successfully !","","success")
       .then((value)=>{
         window.location = "/submitiontype/add"
 
