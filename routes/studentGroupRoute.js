@@ -52,6 +52,23 @@ router.get("/sgroup/:id", (req, res) => {
   });
 });
 
+//get specific student group detail using group id
+
+router.get("/stugroup/:id",(req,res) =>{
+  let gId = req.params.id;
+
+  studentgroups.findOne({groupid:gId},(err,stugroup)=>{
+      if(err){
+          return res.status(400).json({success:false, err});
+      }
+      return res.status(200).json({
+          success:true,
+         stugroup,
+      });
+  });
+});
+
+
 //update student group details
 
 router.put("/sgroup/update/:id", (req, res) => {

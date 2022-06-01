@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import AddEvaluation from "./AddEvaluation";
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
 
 export default class EvaluationList extends Component {
   constructor(props) {
@@ -9,15 +10,40 @@ export default class EvaluationList extends Component {
 
     this.state = {
       evaluations: [],
+      panel:"",
     };
   }
 
   componentDidMount() {
-    this.retriveEvaluations();
+
+
+  
+    
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        panel: decoded.panel,
+      });
+    }
+
+        setTimeout(()=>{
+          this.retriveEvaluations();
+
+        },1000);
+
+
+
+
+
+    
   }
 //retrive evaluations
   retriveEvaluations() {
-    axios.get("http://localhost:5000/evaluations").then((res) => {
+    const pnel = this.state.panel;
+    axios.get(`http://localhost:5000/evaluation/panel/${pnel}`).then((res) => {
       if (res.data.success) {
         this.setState({
           evaluations: res.data.existingEvaluations,
@@ -57,9 +83,7 @@ export default class EvaluationList extends Component {
 
 
 
-            swal("Poof! Your file has been deleted!", {
-              icon: "success",
-            });
+            swal("Evaluation Session  has been deleted!","","success");
           } else {
             swal("Your file is safe!");
           }
@@ -79,7 +103,10 @@ export default class EvaluationList extends Component {
       (evaluation) =>
         evaluation.groupId.toLowerCase().includes(searchKey) ||
         evaluation.evaluationTopic.toLowerCase().includes(searchKey) ||
-        evaluation.date.toLowerCase().includes(searchKey)
+        evaluation.date.toLowerCase().includes(searchKey) ||
+        evaluation.groupId.includes(searchKey) ||
+        evaluation.evaluationTopic.includes(searchKey) ||
+        evaluation.date.includes(searchKey)
     );
 
     this.setState({ evaluations: result });

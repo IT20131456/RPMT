@@ -53,7 +53,7 @@ export default class DisplayMarkingScheme extends Component {
             moduleName: res.data.schemeTitle.moduleName,
             assignment: res.data.schemeTitle.assignment,
           });
-          //console.log(this.state.markingSchemTitle);
+          console.log(this.state.markingSchemTitle);
         }
       });
 

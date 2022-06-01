@@ -177,7 +177,7 @@ export default class App extends Component {
 
                   {/* IT20131456 */}
                 <Route path="/student/group/add" component={CreateStudentGroup}></Route>                
-                <Route path="/student/group/view/:id" component={ViewStudentGroup}></Route>
+                <Route path="/student/group/view" component={ViewStudentGroup}></Route>
                 <Route path="/supervisor/request" component={RequestSupervisor}></Route>
                 <Route path="/create/request" component={CreateRequest}></Route>
                 <Route path="/request/summary" component={RequestSummary}></Route>

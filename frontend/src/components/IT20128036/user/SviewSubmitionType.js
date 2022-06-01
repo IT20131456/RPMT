@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import SviewEvaluation from "./SviewEvaluation";
+import jwt_decode from 'jwt-decode';
 
 export default class SviewSubmitionType extends Component {
   constructor(props) {
@@ -8,11 +9,33 @@ export default class SviewSubmitionType extends Component {
 
     this.state = {
       submitiontypes: [],
+      groupId:"",
     };
   }
 
   componentDidMount() {
-    this.retrivesubmitionTypes();
+
+
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        groupId: decoded.groupId,
+      });
+    }
+
+        setTimeout(()=>{
+          this.retrivesubmitionTypes();
+
+        },1000);
+
+
+
+
+
+ 
   }
 //retrive submitiontypes
   retrivesubmitionTypes() {
@@ -41,7 +64,10 @@ export default class SviewSubmitionType extends Component {
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
-        submitiontype.checkPanel.toLowerCase().includes(searchKey)
+        submitiontype.Status.toLowerCase().includes(searchKey) ||
+        submitiontype.submitionType.includes(searchKey) ||
+        submitiontype.deadLine.includes(searchKey) ||
+        submitiontype.Status.includes(searchKey)
     );
 
     this.setState({ submitiontypes: result });
@@ -66,7 +92,7 @@ export default class SviewSubmitionType extends Component {
             <div className="mt-4">
               <div className="row">
                 <div className="col-lg-7 mt-2 mb-2">
-                  <h4>Submitions List</h4>
+                  <h4>Submitions List - <a href="/student/group/evaluation/view" style={{ textDecoration: 'none' }}>{this.state.groupId}</a></h4>
                 </div>
                 <div className="col-lg-5 mt-2 mb-2">
                   <input
@@ -111,7 +137,7 @@ export default class SviewSubmitionType extends Component {
                         <p>
                           <strong>Deadline</strong>
                         </p>
-                        <p>{submitiontypes.deadLine} &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.checkPanel}-</p>
+                        <p>{submitiontypes.deadLine} &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.Status}-</p>
                        
                      
 

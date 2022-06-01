@@ -36,7 +36,10 @@ export default class ViewSubmitions extends Component {
         const result=submitions.filter((submition)=>
         submition.groupId.toLowerCase().includes(searchKey)||
         submition.type.toLowerCase().includes(searchKey)||
-        submition.files.toLowerCase().includes(searchKey)
+        submition.files.toLowerCase().includes(searchKey)||
+        submition.groupId.includes(searchKey)||
+        submition.type.includes(searchKey)||
+        submition.files.includes(searchKey)
         )
       
         this.setState({submitions:result})
@@ -110,9 +113,7 @@ onDelete=(id)=>{
 
 
 
-      swal("Poof! Your file has been deleted!", {
-        icon: "success",
-      });
+      swal("Deleted Successfully", "","success");
     } else {
       swal("Your file is safe!");
     }

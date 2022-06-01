@@ -62,9 +62,7 @@ export default class SubmitionTypeList extends Component {
 
 
 
-          swal("Poof! Your file has been deleted!", {
-            icon: "success",
-          });
+          swal("Submition Type has been deleted","","success");
         } else {
           swal("Your file is safe!");
         }
@@ -86,7 +84,10 @@ export default class SubmitionTypeList extends Component {
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
-        submitiontype.checkPanel.toLowerCase().includes(searchKey)
+        submitiontype.Status.toLowerCase().includes(searchKey) ||
+        submitiontype.submitionType.includes(searchKey) ||
+        submitiontype.deadLine.includes(searchKey) ||
+        submitiontype.Status.includes(searchKey)
     );
 
     this.setState({ submitiontypes: result });
@@ -124,7 +125,7 @@ export default class SubmitionTypeList extends Component {
           {this.state.submitiontypes.map((submitiontypes, index) => (
             <div class="row">
               <div class="col-sm-12">
-                <div class="card  mt-2 mb-4">
+                <div class="card mt-2 mb-4">
                   <div class="card-body">
                     <div class="card-header">
                       <h5 class="card-title">
@@ -160,7 +161,7 @@ export default class SubmitionTypeList extends Component {
                     <p>
                       <strong>Deadline</strong>
                     </p>
-                    <p>{submitiontypes.deadLine}  &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.checkPanel}-</p>
+                    <p>{submitiontypes.deadLine}  &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.Status}-</p>
                    
                     <p>
                       <strong></strong>
@@ -168,7 +169,7 @@ export default class SubmitionTypeList extends Component {
 
                     <div className="row">
                       <div className="col-lg-4">
-                        <a href="/submition/student/add" class="btn btn-outline-success">
+                        <a href="#" class="btn btn-outline-success">
                           <i class="fa fa-plus" aria-hidden="true"><br/>Submit</i>
                         </a>
                       </div>

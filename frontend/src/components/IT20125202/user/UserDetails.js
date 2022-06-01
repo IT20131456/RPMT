@@ -18,7 +18,7 @@ export default class UserProfile extends Component {
         document.title = "User Details"
 
         // redirect to the login page if the user is not logged in
-        if (!localStorage.adminToken) {
+        if (!localStorage.token) {
             swal("Please login first", "", "warning")
                 .then((value) => {
                     if (value) {
