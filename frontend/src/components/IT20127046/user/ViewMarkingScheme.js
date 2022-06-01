@@ -116,7 +116,7 @@ export default class ViewMarkingScheme extends Component {
                         </a>
                         <a
                           className="btn btn-outline-primary m-2"
-                          onClick={() => this.onDownload(data._id)}
+                          href={`/user/download/marking`}
                         >
                           Download
                         </a>

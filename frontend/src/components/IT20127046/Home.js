@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import HomeImage from "../../../public/images/HomeImage.jpg";
 import RightSidePanel from "./RightSidePanel";
 import jwt_decode from "jwt-decode";
+import SLIITResearchLogo from '../../../public/images/SLIITResearchLogo.png'
 
 export default class Home extends Component {
   constructor() {
@@ -64,23 +65,18 @@ export default class Home extends Component {
                     </p>
                     <hr />
 
-                    <div
-                      className="p-2 mb-2 text-white"
-                      style={{ background: "#212F3C" }}
-                    >
-                      <a
-                        className="btn text-white"
-                        href={""}
-                        style={{ textDecoration: "none" }}
-                      >
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        &nbsp;&nbsp;Users
-                      </a>
-                    </div>
                   </div>
                 </div>
               </div>
               <div className="col-3">
+                <div className="container">
+                <center>
+                    <img
+                      src={SLIITResearchLogo}
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  </center>
+                </div>
                 <RightSidePanel />
               </div>
             </div>

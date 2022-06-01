@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 import RightSidePanel from "../RightSidePanel";
 import SquadUnitLogo from "../../../../public/images/SquadUnit.jpeg";
 import BlankProfile from "../../../../public/images/BlankProfile.png";
+import SLIITResearchLogo from "../../../../public/images/SLIITResearchLogo.png";
 
 export default class AboutUs extends Component {
   constructor() {
@@ -55,6 +56,14 @@ export default class AboutUs extends Component {
               <div className="col-9">
                 <div style={headlineBar}>
                   <h6>About the System</h6>
+                </div>
+                <div className="container">
+                  <center>
+                    <img
+                      src={SLIITResearchLogo}
+                      style={{ width: "220px", height: "220px" }}
+                    />
+                  </center>
                 </div>
                 <div className="container">
                   <p>
