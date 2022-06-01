@@ -239,9 +239,9 @@ import jwt_decode from 'jwt-decode';
                     />
                   </div>
                   <center>
-                    <button type="submit" class="btn btn-outline-success">
+                    <button type="submit" class="btn btn-success">
                       {" "}
-                      <i class="fa fa-plus" aria-hidden="true"> &nbsp;<strong>Submit</strong></i>
+                      <i class="fa fa-plus-circle" aria-hidden="true"> &nbsp;<strong>Submit</strong></i>
                     </button>
                   </center>
                 </form>
