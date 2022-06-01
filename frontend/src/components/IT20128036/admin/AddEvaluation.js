@@ -6,7 +6,7 @@ import jwt_decode from 'jwt-decode';
 
 export default class AddEvaluation extends Component {
   constructor(props) {
-    super(props);
+    super(props); 
 
     this.state = {
       groupId: "",
@@ -28,7 +28,7 @@ export default class AddEvaluation extends Component {
 
       
     if (localStorage.userToken) {
-      const usertoken = localStorage.userToken;
+      const usertoken = localStorage.userToken;   
       const decoded = jwt_decode(usertoken);
       this.setState({
         panel: decoded.panel,
