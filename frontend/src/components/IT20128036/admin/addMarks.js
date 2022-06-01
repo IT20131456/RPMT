@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
 
 export default class AddMarks extends Component{
 
@@ -19,10 +20,42 @@ export default class AddMarks extends Component{
       marks:"",
       gradingStatus:"",
       status:"Marked",
+      markedby:"",
     
     }
 
   }
+
+
+
+
+  componentDidMount(){
+
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        markedby: decoded.name,
+      });
+    }
+
+        setTimeout(()=>{
+          this.retriveSubmitions();
+
+        },1000);
+       
+       
+    }
+
+
+
+
+
+
+
+
 
 handleInputChange=(e)=>{
   const{name,value}=e.target;
@@ -38,7 +71,7 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{groupId,type,smarks,pmarks,marks,gradingStatus,status}=this.state;
+  const{groupId,type,smarks,pmarks,marks,gradingStatus,status,markedby}=this.state;
 
 //calculate marks
  console.log(marks); //20
@@ -75,6 +108,7 @@ onSubmit=(e)=>{
     type:type,
     marks:orgmarks,
     gradingStatus:gradingStatus,
+    markedby:markedby,
   }
   console.log(data);
 //save marks
@@ -97,6 +131,7 @@ onSubmit=(e)=>{
         type:"",
         marks:"",
         gradingStatus:"",
+        markedby:"",
 
       })  
       
@@ -136,25 +171,33 @@ onSubmit=(e)=>{
 
 
 
-  componentDidMount(){
-    // if(this.props.match && this.props.match.params.id){
-       const id = this.props.match.params.id ;
+
+
+
+    retriveSubmitions(){
+
+
+        // if(this.props.match && this.props.match.params.id){
+          const id = this.props.match.params.id ;
    
-  //retrive submition data   
-       axios.get(`http://localhost:5000/submition/${id}`).then((res) =>{
-         if(res.data.success){
-           this.setState({
-             groupId:res.data.submition.groupId,
-             type:res.data.submition.type,
-            
-           });
-           console.log(this.state);
-         }
-       });
-      
-    // }
+          //retrive submition data   
+               axios.get(`http://localhost:5000/submition/${id}`).then((res) =>{
+                 if(res.data.success){
+                   this.setState({
+                     groupId:res.data.submition.groupId,
+                     type:res.data.submition.type,
+                    
+                   });
+                   console.log(this.state);
+                 }
+               });
+              
+            // }
+
+    }
+  
      
-   }
+
 
 
 
@@ -176,7 +219,7 @@ onSubmit=(e)=>{
        <h1 className='h3 mb-3 font-weight-normal'>Add Marks</h1>
        <form className='needs-validation' onSubmit={this.onSubmit}>
          <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Group ID</label>
+           <label style={{marginBottom:'5px'}}><strong>Group ID</strong></label>
            <input type="text" 
            className='form-control'
            name='groupId'
@@ -189,7 +232,7 @@ onSubmit=(e)=>{
 
 
          <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Type</label>
+           <label style={{marginBottom:'5px'}}><strong>Type</strong></label>
            <input type="text" 
            className='form-control'
            name='submitionType'
@@ -205,7 +248,7 @@ onSubmit=(e)=>{
   <div className="col-sm-4">
 
   <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Submission On Time (?/100)</label>
+           <label style={{marginBottom:'5px'}}><strong>Submission On Time (?/100)</strong></label>
          
 
 
@@ -241,7 +284,7 @@ onSubmit=(e)=>{
 
 
   <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Checking Plagiarism (?/100)</label>
+           <label style={{marginBottom:'5px'}}><strong>Checking Plagiarism (?/100)</strong></label>
          
 
 
@@ -278,7 +321,7 @@ onSubmit=(e)=>{
 
 
   <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Marks (?/100)</label>
+           <label style={{marginBottom:'5px'}}><strong>Marks (?/100)</strong></label>
            <input type="text" 
            className='form-control'
            name='marks'
@@ -300,11 +343,13 @@ onSubmit=(e)=>{
 
          
        
+<div className="row">
+<div className="col-8">
 
 
 
-         <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}>Grading Status</label>
+<div className='form-group' style={{marginBottom:'15px'}}>
+           <label style={{marginBottom:'5px'}}><strong>Grading Status</strong></label>
          
 
 
@@ -332,6 +377,45 @@ onSubmit=(e)=>{
 
            
          </div>
+
+
+
+
+
+
+
+</div>
+<div className="col-4">
+
+
+
+
+<div className='form-group' style={{marginBottom:'15px'}}>
+           <label style={{marginBottom:'5px'}}><strong>Marked By</strong></label>
+           <input type="text" 
+           className='form-control'
+           name='markedby'
+           placeholder='Marked By'
+           value={this.state.markedby}
+           onChange={this.handleInputChange}
+           disabled/>
+           
+         </div>
+
+
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+      
 
 
          <button className="btn btn-outline-success" type="submit" style={{margintop:'15px'}} >

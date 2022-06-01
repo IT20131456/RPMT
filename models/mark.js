@@ -16,6 +16,10 @@ marks:{
 gradingStatus:{
     type: String,
     required:true
+},
+markedby:{
+    type: String,
+    required:true
 }
 
 
