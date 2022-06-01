@@ -115,7 +115,8 @@ export default class EvaluationList extends Component {
   handleSearchArea = (e) => {
     const searchKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/evaluations").then((res) => {
+    const pnel = this.state.panel;
+    axios.get(`http://localhost:5000/evaluation/panel/${pnel}`).then((res) => {
       if (res.data.success) {
         this.filterData(res.data.existingEvaluations, searchKey);
       }
