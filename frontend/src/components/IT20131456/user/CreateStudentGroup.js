@@ -77,6 +77,9 @@ export default class CreateStudentGroup extends Component {
         axios.post("http://localhost:5000/sgroup/save", data).then((res) => {
       if (res.data.success) {
         swal("Group Registerd Successfully", "", "success")
+        .then((value)=>{
+          window.location = "/"
+        });
 
           this.setState({
             groupid: "",

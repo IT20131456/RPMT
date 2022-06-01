@@ -99,7 +99,7 @@ class NavBar extends Component {
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a className="dropdown-item" href="/student/group/add">Create Group</a></li>
-                <li><a className="dropdown-item" href="/student/group/view/628fbc53d0e861327c41cdd3">View Group</a></li>
+                <li><a className="dropdown-item" href="/student/group/view">View Group</a></li>
             </ul>
           </li> 
 
@@ -109,7 +109,6 @@ class NavBar extends Component {
             </a>
             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                 <li><a className="dropdown-item" href="/supervisor/request">Send Request</a></li>
-                <li><a className="dropdown-item" href="/create/request">New Request</a></li>
                 <li><a className="dropdown-item" href="/request/summary">Request Summary</a></li>
             </ul>
           </li> 
