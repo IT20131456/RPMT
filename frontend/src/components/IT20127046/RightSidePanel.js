@@ -22,11 +22,14 @@ export default class RightSidePanel extends Component {
   render() {
 
     let markingSchemeLink;
+    let documentTemplateLink;
 
     if (this.state.userType === "Student") {
       markingSchemeLink = "/user/view/marking";
+      documentTemplateLink = "/user/view/documentTemplate";
     } else if (this.state.userType === "Supervisor" || "Panel Member") {
-      markingSchemeLink = "#";
+      markingSchemeLink = "/user/view/marking";
+      documentTemplateLink = "/user/view/documentTemplate";
     }
 
     return (
@@ -70,6 +73,16 @@ export default class RightSidePanel extends Component {
               <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
                 <a className="btn text-white">
                   <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;Submissions
+                </a>
+              </div>
+            </a>
+          </div>
+
+          <div>
+            <a href={documentTemplateLink}>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;Document Template
                 </a>
               </div>
             </a>

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import fileDownload from "js-file-download";
+import RightSidePanel from "../RightSidePanel";
 
 export default class ViewDocumentTemplate extends Component {
   constructor() {
@@ -106,7 +107,7 @@ export default class ViewDocumentTemplate extends Component {
         {localStorage.userToken ? (
           <div>
             <br />
-            <h4>Document Template</h4>
+            <h4><i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;Document Template</h4>
             <hr />
             <div className="container">
               <div className="row">
@@ -213,7 +214,9 @@ export default class ViewDocumentTemplate extends Component {
                     })}
                   </div>
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3">
+                  <RightSidePanel />
+                </div>
               </div>
             </div>
           </div>

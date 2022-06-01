@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import fileDownload from "js-file-download";
+import RightSidePanel from "../RightSidePanel";
 
 export default class DisplayMarkingScheme extends Component {
   constructor() {
@@ -106,7 +107,7 @@ export default class DisplayMarkingScheme extends Component {
         {localStorage.userToken ? (
           <div>
             <br />
-            <h4>Marking Schemes</h4>
+            <h4><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Marking Schemes</h4>
             <hr />
             <div className="container">
               <div className="row">
@@ -158,7 +159,9 @@ export default class DisplayMarkingScheme extends Component {
                     </div>
                   </div>
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3">
+                  <RightSidePanel/>
+                </div>
               </div>
             </div>
           </div>

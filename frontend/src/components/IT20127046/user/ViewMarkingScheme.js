@@ -84,7 +84,7 @@ export default class ViewMarkingScheme extends Component {
         {localStorage.userToken ? (
           <div>
             <br />
-            <h4>Marking Schemes</h4>
+            <h4><i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Marking Schemes</h4>
             <hr />
             <div className="container">
               <div className="row">

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import RightSidePanel from "../RightSidePanel";
 import SquadUnitLogo from "../../../../public/images/SquadUnit.jpeg";
 import BlankProfile from "../../../../public/images/BlankProfile.png";
 
@@ -183,7 +184,9 @@ export default class AboutUs extends Component {
                   <p>Terms and Conditions</p>
                 </div>
               </div>
-              <div className="col-3"></div>
+              <div className="col-3">
+                <RightSidePanel />
+              </div>
             </div>
           </div>
         </div>

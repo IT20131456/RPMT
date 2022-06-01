@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import swal from "sweetalert";
+import RightSidePanel from "../RightSidePanel";
 
 export default class ContactUs extends Component {
   constructor() {
@@ -443,7 +444,9 @@ export default class ContactUs extends Component {
                   </div>
                   <br />
                 </div>
-                <div className="col-3"></div>
+                <div className="col-3">
+                  <RightSidePanel />
+                </div>
               </div>
             </div>
           </div>

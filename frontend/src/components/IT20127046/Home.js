@@ -40,7 +40,7 @@ export default class Home extends Component {
         <div>
           <br />
           <div className="container">
-            <h4>Home</h4>
+            <h4><i class="fa fa-home" aria-hidden="true"></i>&nbsp;&nbsp;Home</h4>
             <hr />
           </div>
           <div className="container">
