@@ -17,7 +17,7 @@ deadLine: {
     type: String,
     required:true
 },
-checkPanel: {
+Status: {
     type: String ,
     required:true
 

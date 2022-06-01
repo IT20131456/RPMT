@@ -13,7 +13,7 @@ export default class AddSubmitionType extends Component {
       description: "",
       almarks: "",
       deadLine: "",
-      checkPanel: "",
+      Status: "",
       guidelines: "",
       subject:"About New Submission",
       text:"Added a new submition. Please visit the website and do it before the due date.  --Auto-Generated Email--",
@@ -40,7 +40,7 @@ export default class AddSubmitionType extends Component {
       description,
       almarks,
       deadLine,
-      checkPanel,
+      Status,
       guidelines,
       subject,
       text
@@ -51,7 +51,7 @@ export default class AddSubmitionType extends Component {
       description: description,
       almarks: almarks,
       deadLine: deadLine,
-      checkPanel: checkPanel,
+      Status: Status,
       guidelines: guidelines,
     };
     console.log(data);
@@ -71,7 +71,7 @@ export default class AddSubmitionType extends Component {
           description: "",
           almarks: "",
           deadLine: "",
-          checkPanel: "",
+          Status: "",
           guidelines: "",
         });
       }
@@ -259,25 +259,22 @@ export default class AddSubmitionType extends Component {
                         style={{ marginBottom: "15px" }}
                       >
                         <label style={{ marginBottom: "5px" }}>
-                        <strong>Checking Panel</strong>  
+                        <strong>Submition Status</strong>  
                         </label>
 
                         <select
                           className="form-select"
-                          name="checkPanel"
-                          value={this.state.checkPanel}
+                          name="Status"
+                          value={this.state.Status}
                           onChange={this.handleInputChange}
                           required
                         >
                           <option checkPanel="not selected yet" selected>
-                            Select Panel
+                            Select Status
                           </option>
-                          <option checkPanel="Panel 01">Panel 01</option>
-                          <option checkPanel="Panel 02">Panel 02</option>
-                          <option checkPanel="Panel 03">Panel 03</option>
-                          <option checkPanel="Panel 04">Panel 04</option>
-                          <option checkPanel="Panel 05">Panel 05</option>
-                          <option checkPanel="Panel 06">Panel 06</option>
+                          <option Status="Mandatory">Mandatory</option>
+                          <option Status="Not Mandatory">Not Mandatory</option>
+                          
                         </select>
                       </div>
                     </div>

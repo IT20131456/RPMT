@@ -17,7 +17,7 @@ export default class EditSubmitonType extends Component{
         description:"",
         almarks:"",
         deadLine:"",
-        checkPanel:"",
+        Status:"",
         guidelines:"",
     }
 
@@ -37,7 +37,7 @@ handleInputChange=(e)=>{
 onSubmit=(e)=>{
   e.preventDefault();
   const id = this.props.match.params.id ;
-  const{submitionType, description, almarks, deadLine, checkPanel, guidelines}=this.state;
+  const{submitionType, description, almarks, deadLine, Status, guidelines}=this.state;
 
 
   const data={
@@ -45,7 +45,7 @@ onSubmit=(e)=>{
     description:description,
     almarks:almarks,
     deadLine:deadLine,
-    checkPanel:checkPanel,
+    Status:Status,
     guidelines:guidelines,
   }
   console.log(data);
@@ -69,7 +69,7 @@ onSubmit=(e)=>{
         description:"",
         almarks:"",
         deadLine:"",
-        checkPanel:"",
+        Status:"",
         guidelines:"",
 
       })  
@@ -94,7 +94,7 @@ onSubmit=(e)=>{
              description:res.data.submitiontype.description,
              almarks:res.data.submitiontype.almarks,
              deadLine:res.data.submitiontype.deadLine,
-             checkPanel:res.data.submitiontype.checkPanel,
+             Status:res.data.submitiontype.Status,
              guidelines:res.data.submitiontype.guidelines,
              
 
@@ -199,11 +199,11 @@ onSubmit=(e)=>{
 
 <div className="col-6">
 <div className='form-group' style={{marginBottom:'15px'}}>
-           <label style={{marginBottom:'5px'}}><strong>Checking Panel</strong></label>
+           <label style={{marginBottom:'5px'}}><strong>Submition Status</strong></label>
            <input type="text" 
            className='form-control'
-           name='checkPanel'
-           value={this.state.checkPanel}
+           name='Status'
+           value={this.state.Status}
            onChange={this.handleInputChange}/>
            
          </div>
