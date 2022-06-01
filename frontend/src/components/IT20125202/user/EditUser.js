@@ -109,7 +109,7 @@ export default class EditUser extends Component {
     document.title = "Edit user details"
 
     // redirect to the login page if the user is not logged in
-    if (!localStorage.adminToken) {
+    if (!localStorage.token) {
       swal("Please login first", "", "warning")
         .then((value) => {
           if (value) {
