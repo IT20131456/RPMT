@@ -54,6 +54,8 @@ export default class EditSubmition extends Component {
   };
 
   componentDidMount() {
+
+    document.title = "Edit Submition"
     // if(this.props.match && this.props.match.params.id){
     const id = this.props.match.params.id;
 //retrive submition to update

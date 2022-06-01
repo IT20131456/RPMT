@@ -18,6 +18,8 @@ export default class viewMarks extends Component{
 
 componentDidMount(){
 
+  document.title = "Edit Marks"
+
   if (localStorage.userToken) {
     const usertoken = localStorage.userToken;
     const decoded = jwt_decode(usertoken);

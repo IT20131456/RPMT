@@ -25,7 +25,7 @@ export default class AddEvaluation extends Component {
 
   componentDidMount(){
 
-
+    document.title = "Add Evaluation"
       
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;   

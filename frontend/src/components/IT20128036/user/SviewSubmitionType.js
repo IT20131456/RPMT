@@ -16,20 +16,58 @@ export default class SviewSubmitionType extends Component {
   componentDidMount() {
 
 
+    document.title = "Sub Type"
 
-      
-    if (localStorage.userToken) {
-      const usertoken = localStorage.userToken;
-      const decoded = jwt_decode(usertoken);
-      this.setState({
-        groupId: decoded.groupId,
-      });
-    }
 
-        setTimeout(()=>{
+
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+          .then((value) => {
+              if (value) {
+                  this.props.history.push(`/user/login`)
+                  window.location.reload();
+              }
+
+          });
+
+  }
+
+  //get group id using the user token
+  const usertoken = localStorage.userToken;
+  const decoded = jwt_decode(usertoken);
+
+  const id = decoded.groupId
+  this.setState({
+      groupId: id
+  })
+
+
+      setTimeout(()=>{
           this.retrivesubmitionTypes();
 
         },1000);
+
+
+
+
+
+
+
+
+
+      
+    // if (localStorage.userToken) {
+    //   const usertoken = localStorage.userToken;
+    //   const decoded = jwt_decode(usertoken);
+    //   this.setState({
+    //     groupId: decoded.groupId,
+    //   });
+    // }
+
+    //     setTimeout(()=>{
+    //       this.retrivesubmitionTypes();
+
+    //     },1000);
 
 
 

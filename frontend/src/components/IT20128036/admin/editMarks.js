@@ -72,6 +72,9 @@ onSubmit=(e)=>{
 
 
   componentDidMount(){
+
+
+    document.title = "Edit Marks"
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    

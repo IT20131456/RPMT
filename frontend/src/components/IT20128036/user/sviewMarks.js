@@ -16,6 +16,7 @@ export default class sviewMarks extends Component{
 
 
 componentDidMount(){
+  document.title = "Marks"
   this.retriveMarks();
 }
 //retrive marks

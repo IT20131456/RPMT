@@ -24,6 +24,16 @@ export default class AddSubmitionType extends Component {
     };
   }
 
+
+
+  componentDidMount() {
+    document.title = "Add Submition Type"
+  }
+
+
+
+
+
   handleInputChange = (e) => {
     const { name, value } = e.target;
 

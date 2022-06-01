@@ -31,7 +31,7 @@ export default class AddMarks extends Component{
 
   componentDidMount(){
 
-
+    document.title = "Add Marks"
       
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;

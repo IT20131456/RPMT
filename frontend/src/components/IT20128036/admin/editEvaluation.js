@@ -80,6 +80,12 @@ onSubmit=(e)=>{
 
 
   componentDidMount(){
+
+
+
+    
+      document.title = "Edit Evaluation"
+    
     // if(this.props.match && this.props.match.params.id){
        const id = this.props.match.params.id ;
    

@@ -17,20 +17,50 @@ export default class StudentViewSpData extends Component {
 
   componentDidMount(){
 
+    document.title = "Group Data"
 
-      
-    if (localStorage.userToken) {
-      const usertoken = localStorage.userToken;
-      const decoded = jwt_decode(usertoken);
-      this.setState({
-        groupId: decoded.groupId,
-      });
-    }
+    
+    if (!localStorage.userToken) {
+      swal("Please login first", "", "warning")
+          .then((value) => {
+              if (value) {
+                  this.props.history.push(`/user/login`)
+                  window.location.reload();
+              }
 
-    setTimeout(()=>{
+          });
+
+  }
+
+  //get group id using the user token
+  const usertoken = localStorage.userToken;
+  const decoded = jwt_decode(usertoken);
+
+  const id = decoded.groupId
+  this.setState({
+      groupId: id
+  })
+
+
+      setTimeout(()=>{
           this.retriveEvaluations();
 
-    },1000);
+        },1000);
+
+
+      
+    // if (localStorage.userToken) {
+    //   const usertoken = localStorage.userToken;
+    //   const decoded = jwt_decode(usertoken);
+    //   this.setState({
+    //     groupId: decoded.groupId,
+    //   });
+    // }
+
+    // setTimeout(()=>{
+    //       this.retriveEvaluations();
+
+    // },1000);
        
        
     }

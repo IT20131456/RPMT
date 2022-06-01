@@ -17,7 +17,7 @@ export default class EvaluationList extends Component {
   componentDidMount() {
 
 
-  
+    document.title = "Eval List"
     
 
       
