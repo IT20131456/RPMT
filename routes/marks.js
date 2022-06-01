@@ -114,6 +114,26 @@ router.get("/marks/group/:id",(req,res) =>{
         });
     });
   });
+
+
+
+
+  
+
+//get a specipic supervisor  marks
+router.get("/marks/supervisor/:id",(req,res) =>{
+    let sname = req.params.id;
+  
+    Marks.find({markedby:sname},(err,mark)=>{
+        if(err){
+            return res.status(400).json({success:false, err});
+        }
+        return res.status(200).json({
+            success:true,
+            existingMarks:mark
+        });
+    });
+  });
   
 
 

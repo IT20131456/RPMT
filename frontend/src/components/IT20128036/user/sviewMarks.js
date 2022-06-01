@@ -128,6 +128,7 @@ render() {
            <th scope="col">Submition Type</th>
            <th scope="col">Marks (?/100)</th>
            <th scope="col">Grading Status</th>
+           <th scope="col">Marked By</th>
           
          </tr>
        </thead>
@@ -147,13 +148,14 @@ render() {
 
              <td>{marks.marks}</td>
              <td>{marks.gradingStatus}</td>
+             <td>{marks.markedby}</td>
             
 
             
 
 
 
-           </tr>
+           </tr>  
          ))}
 
 

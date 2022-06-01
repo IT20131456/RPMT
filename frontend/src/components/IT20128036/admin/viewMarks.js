@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import jwt_decode from 'jwt-decode';
 
 
 export default class viewMarks extends Component{
@@ -8,18 +9,38 @@ export default class viewMarks extends Component{
     super(props);
 
     this.state={
-      marks:[]
+      marks:[],
+      markedby:"",
     };
   }
 
 
 
 componentDidMount(){
-  this.retriveMarks();
+
+  if (localStorage.userToken) {
+    const usertoken = localStorage.userToken;
+    const decoded = jwt_decode(usertoken);
+    this.setState({
+      markedby: decoded.name,
+    });
+  }
+
+      setTimeout(()=>{
+        this.retriveMarks();
+
+      },1000);
+
+
+
+
+
+  
 }
 //retrive marks
   retriveMarks(){
-    axios.get("http://localhost:5000/marks").then(res =>{
+    const name = this.state.markedby;
+    axios.get(`http://localhost:5000/marks/supervisor/${name}`).then(res =>{
       if(res.data.success){
         this.setState({
           marks:res.data.existingMarks
@@ -93,8 +114,8 @@ handleSearchArea=(e)=>{
   const searchKey=e.currentTarget.value;
   
 
-
-  axios.get("http://localhost:5000/marks").then(res =>{
+const name = this.state.markedby;
+  axios.get(`http://localhost:5000/marks/supervisor/${name}`).then(res =>{
     if(res.data.success){
       this.filterData(res.data.existingMarks, searchKey)
 
@@ -135,6 +156,7 @@ render() {
            <th scope="col">Submition Type</th>
            <th scope="col">Marks</th>
            <th scope="col">Grading Status</th>
+           <th scope="col">Marked By</th>
           
          </tr>
        </thead>
@@ -154,6 +176,7 @@ render() {
 
              <td>{marks.marks}</td>
              <td>{marks.gradingStatus}</td>
+             <td>{marks.markedby}</td>
             
 
              <td>
