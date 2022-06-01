@@ -58,7 +58,7 @@ export default class AddSubmitionType extends Component {
 //save submitiontypes
     axios.post("http://localhost:5000/submitiontype/save", data).then((res) => {
       if (res.data.success) {
-        swal("Good job!", "Added Successfully !", "success")
+        swal( "Added SubmitionType Successfully","", "success")
         .then((value)=>{
           window.location = "/submitiontype/add"
   

@@ -83,7 +83,7 @@ import jwt_decode from 'jwt-decode';
       .post("http://localhost:5000/submition", formdata)
       .then(() => {
           
-          swal("Good job!", "Submitted Successfully !", "success")
+          swal( "Submitted Successfully !","", "success")
 
           .then((value)=>{
             window.location = `/student/submitionsp/view`

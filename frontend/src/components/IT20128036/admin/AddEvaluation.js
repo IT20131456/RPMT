@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import swal from 'sweetalert';
 import EvaluationList from "./EvaluationList";
+import jwt_decode from 'jwt-decode';
 
 export default class AddEvaluation extends Component {
   constructor(props) {
@@ -19,6 +20,33 @@ export default class AddEvaluation extends Component {
       text:"Your session has been added to the website. Please see the details and let your team members know. --Auto Generated Email--",
     };
   }
+
+
+
+  componentDidMount(){
+
+
+      
+    if (localStorage.userToken) {
+      const usertoken = localStorage.userToken;
+      const decoded = jwt_decode(usertoken);
+      this.setState({
+        panel: decoded.panel,
+      });
+    }
+
+      
+       
+       
+    }
+
+
+
+
+
+
+
+
 
   handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -47,7 +75,7 @@ export default class AddEvaluation extends Component {
 //save evaluations
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
-        swal("Good job!", "Added Evaluation Successfully !", "success")
+        swal("Added Evaluation Successfully !", "", "success")
         .then((value)=>{
           window.location = "/evaluation/add"
   
@@ -114,7 +142,7 @@ export default class AddEvaluation extends Component {
               <div className="col-sm-12">
                 <div className="col-sm-12 mt-4">
                   <h1 className="h3 mb-3 font-weight-normal">
-                    Add New Evaluation Session
+                    Add New Evaluation Session 
                   </h1>
                   <hr/>
                   <form className="needs-validation" onSubmit={this.onSubmit} >
@@ -205,14 +233,17 @@ export default class AddEvaluation extends Component {
                     >
                       <label style={{ marginBottom: "5px" }}><strong>Panel</strong></label>
 
-                      <select
-                        className="form-select"
+                      <input
+                        type="text"
+                        className="form-control"
                         name="panel"
                         value={this.state.panel}
                         onChange={this.handleInputChange}
-                        required
-                      >
-                        <option dressCode="not selected yet" selected>
+                        disabled
+
+                        
+                      />
+                        {/* <option dressCode="not selected yet" selected>
                           Select Panel
                         </option>
                         <option panel="Panel 01">Panel 01</option>
@@ -221,7 +252,7 @@ export default class AddEvaluation extends Component {
                         <option panel="Panel 04">Panel 04</option>
                         <option panel="Panel 05">Panel 05</option>
                         <option panel="Panel 06">Panel 06</option>
-                      </select>
+                      </select> */}
                     </div>
 
                     <div
