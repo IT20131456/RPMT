@@ -42,8 +42,7 @@ export default class ViewStudentGroup extends Component {
   }
 
   retrivesgroup() {
-    const gId = this.state.groupId;
-    console.log("hello");
+    const gId = this.state.groupId; 
     console.log(gId);
 
     axios.get(`http://localhost:5000/stugroup/${gId}`).then((res) => {
@@ -161,7 +160,7 @@ export default class ViewStudentGroup extends Component {
                 </h4>
               </div>
               <div className="col-md-3 px-5">
-                <a className="btn btn-outline-primary" type="submit" href={`/`}>
+                <a className="btn btn-outline-primary" type="submit" href={`/home`}>
                   <i className="fa fa-arrow-circle-left"> Back </i>
                 </a>
               </div>

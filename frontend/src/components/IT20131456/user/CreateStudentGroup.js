@@ -78,7 +78,7 @@ export default class CreateStudentGroup extends Component {
       if (res.data.success) {
         swal("Group Registerd Successfully", "", "success")
         .then((value)=>{
-          window.location = "/"
+          window.location = "/home"
         });
 
           this.setState({
