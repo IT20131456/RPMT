@@ -14,7 +14,19 @@ export default class ViewDocumentTemplate extends Component {
 
   componentDidMount() {
     document.title = "Document Template";
-    if (localStorage.userToken) {
+    
+    // Check user login
+    if (!localStorage.userToken) {
+      swal({
+        title: "Please login first",
+        icon: "warning",
+      }).then((value) => {
+        if (value) {
+          this.props.history.push("/user/login");
+          window.location.reload();
+        }
+      });
+    } else {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
       this.setState({

@@ -42,7 +42,10 @@ export default class SviewEvaluation extends Component {
       (evaluation) =>
         evaluation.groupId.toLowerCase().includes(searchKey) ||
         evaluation.evaluationTopic.toLowerCase().includes(searchKey) ||
-        evaluation.date.toLowerCase().includes(searchKey)
+        evaluation.date.toLowerCase().includes(searchKey) ||
+        evaluation.groupId.includes(searchKey) ||
+        evaluation.evaluationTopic.includes(searchKey) ||
+        evaluation.date.includes(searchKey)
     );
 
     this.setState({ evaluations: result });

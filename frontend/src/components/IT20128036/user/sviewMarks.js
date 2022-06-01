@@ -46,7 +46,10 @@ filterData(marks,searchKey){
   const result=marks.filter((mark)=>
   mark.groupId.toLowerCase().includes(searchKey)||
   mark.type.toLowerCase().includes(searchKey)||
-  mark.gradingStatus.toLowerCase().includes(searchKey)
+  mark.gradingStatus.toLowerCase().includes(searchKey) ||
+  mark.groupId.includes(searchKey)||
+  mark.type.includes(searchKey)||
+  mark.gradingStatus.includes(searchKey)
   )
 
   this.setState({marks:result})

@@ -72,7 +72,7 @@ export class StudentMarksSp extends Component {
       return (
         <div className='me-2'>
             
-     <table className='table table-light table-striped table-hover mt-4 mb-4'>
+     <table className='table table-white  mt-4 mb-4'>
        <thead>
          <tr>
          

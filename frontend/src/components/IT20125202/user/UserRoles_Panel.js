@@ -19,7 +19,7 @@ export default class UserRoles_Panel extends Component {
     document.title = "User Roles"
 
     // redirect to the login page if the user is not logged in
-    if (!localStorage.adminToken) {
+    if (!localStorage.token) {
       swal("Please login first", "", "warning")
         .then((value) => {
           if (value) {

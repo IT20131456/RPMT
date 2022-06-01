@@ -53,7 +53,7 @@ onSubmit=(e)=>{
 //update evaluation
   axios.put(`http://localhost:5000/evaluation/update/${id}`,data).then((res)=>{
     if(res.data.success){
-      swal("Evaluation Updated Successfully !")
+      swal("Evaluation Updated Successfully !","","success")
       .then((value)=>{
         window.location = "/evaluation/add"
 

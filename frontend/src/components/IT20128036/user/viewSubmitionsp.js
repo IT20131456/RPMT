@@ -89,9 +89,7 @@ onDelete=(id)=>{
 
 
 
-        swal("Poof! Your file has been deleted!", {
-          icon: "success",
-        });
+        swal("Your Submition has been deleted","","success");
       } else {
         swal("Your file is safe!");
       }
@@ -136,8 +134,10 @@ fileDownload(res.data, fileName);
   //filter submition
 filterData(submitions,searchKey){
   const result=submitions.filter((submition)=>
-  submition.type.toLowerCase().includes(searchKey)||
-  submition.files.toLowerCase().includes(searchKey)
+  submition.type.toLowerCase().includes(searchKey) ||
+  submition.files.toLowerCase().includes(searchKey) ||
+  submition.type.includes(searchKey) ||
+  submition.files.includes(searchKey)
  
   )
 

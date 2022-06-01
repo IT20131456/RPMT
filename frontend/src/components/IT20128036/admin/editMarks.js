@@ -47,7 +47,7 @@ onSubmit=(e)=>{
     if(res.data.success){
      
 
-      swal(" Updated Successfully !")
+      swal(" Updated Successfully !","","success")
       .then((value)=>{
         window.location = "/marks/view"
 

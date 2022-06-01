@@ -62,7 +62,10 @@ export default class StudentViewSpData extends Component {
       (evaluation) =>
         evaluation.groupId.toLowerCase().includes(searchKey) ||
         evaluation.evaluationTopic.toLowerCase().includes(searchKey) ||
-        evaluation.date.toLowerCase().includes(searchKey)
+        evaluation.date.toLowerCase().includes(searchKey) ||
+        evaluation.groupId.includes(searchKey) ||
+        evaluation.evaluationTopic.includes(searchKey) ||
+        evaluation.date.includes(searchKey)
     );
 
     this.setState({ evaluations: result });
@@ -82,7 +85,7 @@ export default class StudentViewSpData extends Component {
     return (
         <div className="container">
             <div className="row">
-                <center><h5 className="mt-4 ">Your Group ID : <span className = "text-primary" style={{fontSize:"19px"}}>{this.state.groupId}</span></h5></center>
+                <center><h5 className="mt-4 ">Group ID : <span className = "text-primary" style={{fontSize:"19px"}}>{this.state.groupId}</span></h5></center>
            
                 <div className="col-sm-4">
                 
