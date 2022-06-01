@@ -53,6 +53,22 @@ router.get("/request/:id", (req, res) => {
   });
 });
 
+//get specific supervisor request using group id
+
+router.get("/request/summary/:id",(req,res) =>{
+  let gId = req.params.id;
+
+  supervisorrequests.find({groupid:gId},(err,supervisorrequest)=>{
+      if(err){
+          return res.status(400).json({success:false, err});
+      }
+      return res.status(200).json({
+          success:true,
+          supervisorrequest,
+      });
+  });
+});
+
 
 
 module.exports = router;

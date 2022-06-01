@@ -16,16 +16,14 @@ const CreateRequest = () => {
       )
       .then((res) => {
         console.log(res);
-        swal("Request Send Successfull", "", "success")
-        .then((value)=>{        
-        window.location = "/request/summary"
-      });
+        swal("Request Send Successfull", "", "success")        
         
       })
       .catch((err) => console.log(err));
   }
   return (
-    <div className="container px-5 my-5">
+    <div className="container px-5 my-3">
+      <br/>
       <div className="container border border-dark bg-light mt-5 ">
         <div className="form-group row">
           <div className="col-lg-12 margin-tb">

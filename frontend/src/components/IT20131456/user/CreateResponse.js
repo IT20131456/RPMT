@@ -5,6 +5,7 @@ export default class CreateResponse extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      groupid:"",
       name: "",
       position: "",
       feedback: "",
@@ -33,9 +34,10 @@ export default class CreateResponse extends Component {
   onSubmit = (e) => {
     e.preventDefault();
 
-    const { name, position, feedback, status } = this.state;
+    const { groupid ,name, position, feedback, status } = this.state;
 
     const data = {
+      groupid:groupid,
       name: name,
       position: position,
       feedback: feedback,
@@ -48,6 +50,7 @@ export default class CreateResponse extends Component {
       if (res.data.success) {
         swal("Response Successful", "", "success");
           this.setState({
+            groupid:"",
             name: "",
             position: "",
             feedback: "",
@@ -72,6 +75,24 @@ export default class CreateResponse extends Component {
           </div>
 
           <form onSubmit={this.onSubmit}>
+
+          <div className="col-md-12">
+                <div className="form-group">
+                  <strong>Group ID :</strong>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Enter group id"
+                    name="groupid"
+                    pattern="G[0-9]{3}"
+                    title="Group ID is Invalid"
+                    value={this.state.groupid}
+                    onChange={this.handleInputChange}
+                    required
+                  />
+                </div>
+              </div>
+              &nbsp;
             
               <div className="col-md-12">
                 <div className="form-group">
@@ -108,12 +129,12 @@ export default class CreateResponse extends Component {
        
               <div className="col-md-12">
                 <div className="form-group">
-                  <strong>Feedback (word count-75) :</strong>
+                  <strong>Feedback (word count-100) :</strong>
                   <textarea
                     type="text"
                     className="form-control"
                     rows="3"
-                    maxLength="75"
+                    maxLength="100"
                     name="feedback"
                     placeholder="Feedback "
                     value={this.state.feedback}

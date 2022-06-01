@@ -61,7 +61,7 @@ export default class RequestSupervisor extends Component {
 
   render() {
     return (
-      <div className="container px-5 my-3">
+      <div className="container px-5 my-3">   
         <div className="row">
           <div className="float-left col-lg-9 mt-2 mb-2">
             &nbsp;
@@ -94,6 +94,7 @@ export default class RequestSupervisor extends Component {
             </div>
         </div>        
         ))}
+        
         
       </div>
     );
