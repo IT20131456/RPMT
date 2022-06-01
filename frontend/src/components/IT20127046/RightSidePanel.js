@@ -35,29 +35,53 @@ export default class RightSidePanel extends Component {
           <p className="h6"><i class="fa fa-external-link" aria-hidden="true"></i>&nbsp;&nbsp;Quick Links</p>
           <hr />
 
-          <div className="p-2 mb-2 text-white" style={{ background: '#212F3C' }}>
-            <a className="btn text-white" href={""} style={{ textDecoration: 'none' }}>
-              <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Users
+          <div>
+            <a href=''>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;Users
+                </a>
+              </div>
             </a>
           </div>
-          <div className="p-2 mb-2 text-white" style={{ background: '#212F3C' }}>
-            <a className="btn text-white" href={""} style={{ textDecoration: 'none' }}>
-            <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Student Groups
+
+          <div>
+            <a href=''>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-users" aria-hidden="true"></i>&nbsp;&nbsp;Student Groups
+                </a>
+              </div>
             </a>
           </div>
-          <div className="p-2 mb-2 text-white" style={{ background: '#212F3C' }}>
-            <a className="btn text-white" href={""} style={{ textDecoration: 'none' }}>
-            <i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Topics
+
+          <div>
+            <a href=''>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;Topics
+                </a>
+              </div>
             </a>
           </div>
-          <div className="p-2 mb-2 text-white" style={{ background: '#212F3C' }}>
-            <a className="btn text-white" href={""} style={{ textDecoration: 'none' }}>
-            <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;Submissions
+
+          <div>
+            <a href=''>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;&nbsp;Submissions
+                </a>
+              </div>
             </a>
           </div>
-          <div className="p-2 mb-2 text-white" style={{ background: '#212F3C' }}>
-            <a className="btn text-white" href={markingSchemeLink} style={{ textDecoration: 'none' }}>
-            <i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Marking Schemes
+
+          <div>
+            <a href={markingSchemeLink}>
+              <div className="p-2 mb-2 text-white" style={{ background: '#212F3C', textDecoration: 'none' }}>
+                <a className="btn text-white">
+                  <i class="fa fa-table" aria-hidden="true"></i>&nbsp;&nbsp;Marking Schemes
+                </a>
+              </div>
             </a>
           </div>
 
