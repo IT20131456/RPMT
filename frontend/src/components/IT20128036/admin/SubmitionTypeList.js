@@ -84,10 +84,10 @@ export default class SubmitionTypeList extends Component {
       (submitiontype) =>
         submitiontype.submitionType.toLowerCase().includes(searchKey) ||
         submitiontype.deadLine.toLowerCase().includes(searchKey) ||
-        submitiontype.checkPanel.toLowerCase().includes(searchKey) ||
+        submitiontype.Status.toLowerCase().includes(searchKey) ||
         submitiontype.submitionType.includes(searchKey) ||
         submitiontype.deadLine.includes(searchKey) ||
-        submitiontype.checkPanel.includes(searchKey)
+        submitiontype.Status.includes(searchKey)
     );
 
     this.setState({ submitiontypes: result });
@@ -161,7 +161,7 @@ export default class SubmitionTypeList extends Component {
                     <p>
                       <strong>Deadline</strong>
                     </p>
-                    <p>{submitiontypes.deadLine}  &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.checkPanel}-</p>
+                    <p>{submitiontypes.deadLine}  &nbsp;&nbsp;&nbsp;&nbsp; -{submitiontypes.Status}-</p>
                    
                     <p>
                       <strong></strong>
