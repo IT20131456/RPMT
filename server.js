@@ -14,6 +14,7 @@ const app = express();
 //const controller = require("./controllers/controllers");
 const sgrouter = require("./routes/studentGroupRoute");
 const sdrouter = require("./routes/supervisorDetailsRoute");
+const rerouter = require("./routes/requestRoute");
 const adminRouter = require('./routes/admin');
 const userRouter = require('./routes/users');
 const topicRoutes = require('./routes/topic');
@@ -26,6 +27,7 @@ const adminDcoumentTempRoutes = require('./routes/adminDocumentTemp');
 const chatGroupRoutes = require('./routes/chatMsg');
 const markingSchemRoutes = require('./routes/markingSchem');
 const downloadFileRoutes = require('./routes/downloadFile');
+const supportMsgRoutes = require('./routes/supportMsg');
 
 //app middleware
 
@@ -34,6 +36,7 @@ app.use(cors());
 
 app.use(sgrouter);
 app.use(sdrouter);
+app.use(rerouter);
 app.use(adminRouter);
 app.use(userRouter);
 app.use(topicRoutes);
@@ -46,6 +49,7 @@ app.use(adminDcoumentTempRoutes);
 app.use(chatGroupRoutes);
 app.use(markingSchemRoutes);
 app.use(downloadFileRoutes);
+app.use(supportMsgRoutes);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;

@@ -1,5 +1,6 @@
 import React, { useState, set } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 
  function AddSubmition() {
   const [groupId, setgroupId] = useState("");
@@ -29,15 +30,30 @@ import axios from "axios";
     axios 
       .post("http://localhost:5000/submition", formdata)
       .then(() => {
-          alert('Document Upload Successful');
-          window.location = `/submitionsp/view/${groupId}`
+          
+          swal("Good job!", "Submitted Successfully !", "success")
+
+          .then((value)=>{
+            window.location = `/submitionsp/student/view/${groupId}`
+    
+          })
+
+
+          
+
+
+
+
+
+          
 
         
 
         
     })
     .catch((err) => {
-        alert(err);
+        
+        swal("Error","Something Wrong !","warning"); 
     });
 
     
@@ -81,12 +97,15 @@ import axios from "axios";
                       class="form-control"
                       id="groupId"
                       name="groupId"
-                      placeholder="Enter Group ID   G - -"
+                      pattern="G[0-9]{3}"
+                      title="Group ID is Invalid"
+                      placeholder="Enter Group ID -Gxxx"
                       aria-describedby="emailHelp"
                       value={groupId}
                       onChange={(e) => {
                         setgroupId(e.target.value);
                       }}
+                      required
                     />
                   </div>
 
@@ -108,6 +127,7 @@ import axios from "axios";
                     onChange={(e) => {
                       settype(e.target.value);
                     }}
+                    required
                   >
                     <option selected> Select Type</option>
                     <option value="Topic Assessment Document">Topic Assessment Document</option>
@@ -146,6 +166,7 @@ import axios from "axios";
                       onChange={(e) => {
                         setdescription(e.target.value);
                       }}
+                      required
                     />
                   </div>
 
@@ -160,12 +181,13 @@ import axios from "axios";
                       id="file"
                       filename="file"
                       onChange={onChangeFile}
+                      required
                     />
                   </div>
                   <center>
-                    <button type="submit" class="btn btn-warning ">
+                    <button type="submit" class="btn btn-warning">
                       {" "}
-                      <i class="fa fa-plus" aria-hidden="true">Submit</i>
+                      <i class="fa fa-plus" aria-hidden="true"> &nbsp;<strong>Submit</strong></i>
                     </button>
                   </center>
                 </form>

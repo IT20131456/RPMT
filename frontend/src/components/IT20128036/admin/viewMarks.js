@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 
 export default class viewMarks extends Component{
@@ -32,11 +33,47 @@ componentDidMount(){
 
 
 onDelete=(id)=>{
-  axios.delete(`http://localhost:5000/mark/delete/${id}`).then((res)=>{
-    alert("Deleted Successfully");
+ 
+
+
+
+
+
+  swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this file!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then((willDelete) => {
+    if (willDelete) {
+
+
+
+    axios.delete(`http://localhost:5000/mark/delete/${id}`).then((res)=>{
     this.retriveMarks();
 
   })
+
+
+
+
+
+      swal("Poof! Your file has been deleted!", {
+        icon: "success",
+      });
+    } else {
+      swal("Your file is safe!");
+    }
+  });
+
+
+
+
+
+
+
 }
 
 
@@ -69,7 +106,7 @@ handleSearchArea=(e)=>{
 render() {
   return(
     <div className='container'>
-
+<div className='ms-4 me-4 mt-2 mb-2'>
 
       <div className='row'>
       <div className='col-lg-9 mt-2 mb-2'>
@@ -147,6 +184,7 @@ render() {
 
      <button className='btn btn-outline-success'><a href="/submitions/view" style={{textDecoration:'none',color:'black'}}>Add Marks</a></button>
 
+    </div>
     </div>
    )
   }

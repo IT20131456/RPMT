@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import swal from 'sweetalert';
 import EvaluationList from "./EvaluationList";
 
 export default class AddEvaluation extends Component {
@@ -9,12 +10,11 @@ export default class AddEvaluation extends Component {
     this.state = {
       groupId: "",
       evaluationTopic: "",
-      dressCode: "",
+      panel: "",
       date: "",
       from: "",
       to: "",
       link: "",
-      lemail:"",
       subject:"About Your Evaluation Session.",
       text:"Your session has been added to the website. Please see the details and let your team members know. --Auto Generated Email--",
     };
@@ -31,32 +31,33 @@ export default class AddEvaluation extends Component {
 
   onSubmit = (e) => {
     e.preventDefault();
-    const { groupId, evaluationTopic, dressCode, date, from, to, link,lemail,subject,text } =
+    const { groupId, evaluationTopic, panel, date, from, to, link,subject,text } =
       this.state;
 
     const data = {
       groupId: groupId,
       evaluationTopic: evaluationTopic,
-      dressCode: dressCode,
+      panel: panel,
       date: date,
       from: from,
       to: to,
       link: link,
     };
     console.log(data);
-
+//save evaluations
     axios.post("http://localhost:5000/evaluation/save", data).then((res) => {
       if (res.data.success) {
-        alert("Added Successfully !")
+        swal("Good job!", "Added Evaluation Successfully !", "success");
         this.setState({
           groupId: "",
           evaluationTopic: "",
-          dressCode: "",
+          panel: "",
           date: "",
           from: "",
           to: "",
           link: "",
-          lemail:"",
+         
+          
 
         });
       }
@@ -68,20 +69,25 @@ export default class AddEvaluation extends Component {
 
        // Send data to Email Service
        const emailData = {
-          
-        to:lemail,
+        groupId:groupId,  
         subject: subject,
         text: text,
+        type: evaluationTopic,
+        panel: panel,
+        date: date,
+        from: from,
+        to: to,
+        link: link, 
 
 
 
     };
-
+//send email to group members
     axios.post("http://localhost:5000/submitiont/email", emailData).then((res) => {
     if (res.data.success) {
-      console.log("Sent Email Successfully");
-      
-      
+      console.log("Sent Email Successfully");  
+    }else{
+      console.log("Not Sent Email ")
     }
     });
 
@@ -103,7 +109,7 @@ export default class AddEvaluation extends Component {
                     Add New Evaluation Session
                   </h1>
                   <hr/>
-                  <form className="needs-validation" noValidate>
+                  <form className="needs-validation" onSubmit={this.onSubmit} >
                    
                    <div className="row">
                      <div className="col-sm-4">
@@ -113,94 +119,100 @@ export default class AddEvaluation extends Component {
                       style={{ marginBottom: "15px" }}
                     >
                       
-                      <label style={{ marginBottom: "5px" }}>Group ID</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Group ID</strong></label>
                       <input
                         type="text"
                         className="form-control"
                         name="groupId"
-                        placeholder="Enter Group ID -RExxx"
+                        placeholder="Enter Group ID -Gxxx"
+                        pattern="G[0-9]{3}"
+                        title="Group ID is Invalid"
                         value={this.state.groupId}
                         onChange={this.handleInputChange}
+                        required
+
+                        
                       />
                     </div>
 
                      </div>
                      <div className="col-sm-8">
 
+
+
+
+
+
                      <div
-                      className="form-group"
-                      style={{ marginBottom: "15px" }}
-                    >
-                      
-                      <label style={{ marginBottom: "5px" }}>Leader Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="lemail"
-                        placeholder="Leader Email -exmple@mail.com"
-                        value={this.state.lemail}
-                        onChange={this.handleInputChange}
-                      />
-                    </div>
+                     className="form-group"
+                     style={{ marginBottom: "15px" }}
+                   >
+                     <label style={{ marginBottom: "5px" }}>
+                      <strong>Evaluation Type</strong> 
+                     </label>
+
+                     <select
+                       className="form-select"
+                       name="evaluationTopic"
+                       value={this.state.evaluationTopic}
+                       onChange={this.handleInputChange}
+                       required
+                     >
+                       <option evaluationTopic="not selected yet" selected>
+                         Select Type
+                       </option>
+                       <option evaluationTopic="Topic Assessment Document">
+                         Topic Assessment Document
+                       </option>
+                       <option evaluationTopic="Proposal Document">
+                         Proposal Document
+                       </option>
+                       <option evaluationTopic="Presentation Slides">
+                         Presentation Slides
+                       </option>
+                       <option evaluationTopic="Final Thesis">
+                         Final Thesis
+                       </option>
+                     </select>
+                   </div>
+
+
+
+
+
+
+
+                   
 
                      </div>
                    </div>
                    
                  
 
-                    <div
-                      className="form-group"
-                      style={{ marginBottom: "15px" }}
-                    >
-                      <label style={{ marginBottom: "5px" }}>
-                        Evaluation Type
-                      </label>
-
-                      <select
-                        className="form-select"
-                        name="evaluationTopic"
-                        value={this.state.evaluationTopic}
-                        onChange={this.handleInputChange}
-                      >
-                        <option evaluationTopic="not selected yet" selected>
-                          Select Type
-                        </option>
-                        <option evaluationTopic="Topic Assessment Document">
-                          Topic Assessment Document
-                        </option>
-                        <option evaluationTopic="Proposal Document">
-                          Proposal Document
-                        </option>
-                        <option evaluationTopic="Presentation Slides">
-                          Presentation Slides
-                        </option>
-                        <option evaluationTopic="Final Thesis">
-                          Final Thesis
-                        </option>
-                      </select>
-                    </div>
+                 
 
                     <div
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Panel</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Panel</strong></label>
 
                       <select
                         className="form-select"
-                        name="dressCode"
-                        value={this.state.dressCode}
+                        name="panel"
+                        value={this.state.panel}
                         onChange={this.handleInputChange}
+                        required
                       >
                         <option dressCode="not selected yet" selected>
                           Select Panel
                         </option>
-                        <option dressCode="Panel 01">Panel 01</option>
-                        <option dressCode="Panel 02">Panel 02</option>
-                        <option dressCode="Panel 03">Panel 03</option>
-                        <option dressCode="Panel 04">Panel 04</option>
-                        <option dressCode="Panel 05">Panel 05</option>
-                        <option dressCode="Panel 06">Panel 06</option>
+                        <option panel="Panel 01">Panel 01</option>
+                        <option panel="Panel 02">Panel 02</option>
+                        <option panel="Panel 03">Panel 03</option>
+                        <option panel="Panel 04">Panel 04</option>
+                        <option panel="Panel 05">Panel 05</option>
+                        <option panel="Panel 06">Panel 06</option>
                       </select>
                     </div>
 
@@ -208,13 +220,14 @@ export default class AddEvaluation extends Component {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Date</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Date</strong></label>
                       <input
                         type="date"
                         className="form-control"
                         name="date"
                         value={this.state.date}
                         onChange={this.handleInputChange}
+                        required
                       />
                     </div>
 
@@ -223,13 +236,14 @@ export default class AddEvaluation extends Component {
                         className="form-group col-6"
                         style={{ marginBottom: "15px" }}
                       >
-                        <label style={{ marginBottom: "5px" }}>From</label>
+                        <label style={{ marginBottom: "5px" }}><strong>From</strong></label>
                         <input
                           type="time"
                           className="form-control"
                           name="from"
                           value={this.state.from}
                           onChange={this.handleInputChange}
+                          required
                         />
                       </div>
 
@@ -237,13 +251,14 @@ export default class AddEvaluation extends Component {
                         className="form-group col-6"
                         style={{ marginBottom: "15px" }}
                       >
-                        <label style={{ marginBottom: "5px" }}>To</label>
+                        <label style={{ marginBottom: "5px" }}><strong>To</strong></label>
                         <input
                           type="time"
                           className="form-control"
                           name="to"
                           value={this.state.to}
                           onChange={this.handleInputChange}
+                          required
                         />
                       </div>
                     </div>
@@ -252,7 +267,7 @@ export default class AddEvaluation extends Component {
                       className="form-group"
                       style={{ marginBottom: "15px" }}
                     >
-                      <label style={{ marginBottom: "5px" }}>Link</label>
+                      <label style={{ marginBottom: "5px" }}><strong>Link</strong></label>
                       <input
                         type="text"
                         className="form-control"
@@ -260,6 +275,7 @@ export default class AddEvaluation extends Component {
                         placeholder="Enter Session Link"
                         value={this.state.link}
                         onChange={this.handleInputChange}
+                        required
                       />
                     </div>
 
@@ -267,7 +283,7 @@ export default class AddEvaluation extends Component {
                       className="btn btn-success"
                       type="submit"
                       style={{ margintop: "15px" }}
-                      onClick={this.onSubmit}
+                      // onClick={this.onSubmit}
                     >
                       <i className="far fa-check-square"></i>
                       &nbsp; Save

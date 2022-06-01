@@ -9,8 +9,8 @@ description:{
     type: String,
     required:true
 },
-startDate:{
-    type: String,
+almarks:{
+    type: Number,
     required:true
 },
 deadLine: {
@@ -22,7 +22,7 @@ checkPanel: {
     required:true
 
 },
-submition:{
+guidelines:{
     type: String,
     required:true
 }

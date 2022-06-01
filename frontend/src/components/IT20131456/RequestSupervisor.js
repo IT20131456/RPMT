@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import AdminNavBar from "../IT20125202/admin/AdminNavBar";
 
-export default class SupervisorDetails extends Component {
+export default class RequestSupervisor extends Component {
 
   constructor(props) {
     super(props);
@@ -30,7 +29,7 @@ export default class SupervisorDetails extends Component {
 
   onDelete = (id) => {
     axios.delete(`http://localhost:5000/supervisor/delete/${id}`).then((res) => {
-      swal("Delete sucessfull");
+      alert("Delete sucessfull");
       this.retrieveSupervisorDetails();
     });
   };
@@ -69,14 +68,11 @@ export default class SupervisorDetails extends Component {
   render() {
     return (
       <div className="container px-5 my-3">
-         <br />
-        <AdminNavBar />
-        <br />
-
         <div className="row">
           <div className="float-left col-lg-9 mt-2 mb-2">
             &nbsp;
-            <h2>Supervisor Details</h2>                    
+            <h2>Supervisor Details</h2>
+            &nbsp;            
           </div>         
         
           <div className="col-lg-3 mt-2 mb-2">
@@ -87,15 +83,9 @@ export default class SupervisorDetails extends Component {
               placeholder="Search"
               name="searchQuery"
               onChange={this.handleSearchArea}
-            ></input>        
+            ></input>
+            &nbsp;
           </div>
-          <hr />
-        </div>
-
-        <div>  
-          <a className="btn btn-outline-success"  href={`/supervisor/add`}>
-              <i className="fa fa-edit"></i>&nbsp;Add New Supervisor
-          </a>
         </div>
         &nbsp;
 
@@ -122,21 +112,14 @@ export default class SupervisorDetails extends Component {
 
                
 
-                <td>                  
+                <td className=" text-center">                  
                   <a
-                    className="btn btn-outline-success"
-                    href={`/supervisor/update/${supervisordetails._id}`}
+                    className="btn btn-outline-primary"
+                    href={`/create/request/${supervisordetails._id}`}
                   >
-                    <i className="fa fa-edit"></i>&nbsp;Edit
+                   <i class="fa fa-paper-plane"></i>&nbsp;Send Request
                   </a>
-                  &nbsp;
-                  <a
-                    className="btn btn-outline-danger"
-                    href="#"
-                    onClick={() => this.onDelete(supervisordetails._id)}
-                  >
-                    <i className="fa fa-trash"></i>&nbsp;Delete
-                  </a>
+                  &nbsp;                 
                 </td>
               </tr>
             ))}

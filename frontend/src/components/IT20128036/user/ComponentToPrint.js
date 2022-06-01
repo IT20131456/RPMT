@@ -44,7 +44,7 @@ export class ComponentToPrint extends React.PureComponent {
       return (
         <div className='container'>
             
-     <table className='table table-info table-striped table-hover mt-4 mb-4'>
+     <table className='table table-light table-striped table-hover mt-4 mb-4'>
        <thead>
          <tr>
            <th scope="col">#</th>
