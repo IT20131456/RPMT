@@ -115,4 +115,26 @@ router.get("/evaluation/group/:id",(req,res) =>{
 
 
 
+
+//get a specipic panel evaluation
+router.get("/evaluation/panel/:id",(req,res) =>{
+  let pnl = req.params.id;
+
+  Evaluations.find({panel:pnl},(err,evaluation)=>{
+      if(err){
+          return res.status(400).json({success:false, err});
+      }
+      return res.status(200).json({
+          success:true,
+          existingEvaluations:evaluation
+      });
+  });
+});
+
+
+
+
+
+
+
 module.exports = router;
