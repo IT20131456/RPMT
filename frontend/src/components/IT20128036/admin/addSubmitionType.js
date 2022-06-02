@@ -102,7 +102,7 @@ export default class AddSubmitionType extends Component {
               <div className="row">
                 <div className="col-sm-12 mt-4 mx-auto">
                   <h3 className="h3 mb-3 font-weight-normal">
-                    Add New Submition Type
+                    Add New Submission Type
                   </h3>
                   <br />
                   <form className="needs-validation" onSubmit={this.onSubmit}>
