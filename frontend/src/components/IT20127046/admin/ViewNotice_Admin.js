@@ -71,7 +71,7 @@ export default class ViewNotice_Admin extends Component {
 
           <br/>
 
-          <div className="container">
+          <div className="container p-3 mb-2 bg-light text-dark">
             <table className="table">
               <thead>
                 <tr>
@@ -92,7 +92,7 @@ export default class ViewNotice_Admin extends Component {
                     <td>{notice.to}</td>
                     <td>
                       <a
-                        className="btn btn-outline-success m-2"
+                        className="btn btn-outline-success"
                         href={`#`}
                       >
                         Update
@@ -100,7 +100,7 @@ export default class ViewNotice_Admin extends Component {
                     </td>
                     <td>
                       <a
-                        className="btn btn-outline-danger m-2"
+                        className="btn btn-outline-danger"
                         onClick={() => this.onDelete(notice._id)}
                       >
                         Delete
