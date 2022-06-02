@@ -53,6 +53,29 @@ export default class ViewNotice_Admin extends Component {
     });
   };
 
+  // Search
+  handleSearchArea = (e) => {
+    
+    const serachKey = e.currentTarget.value;
+
+    axios.get("http://localhost:5000/notice/getAll").then((res) => {
+      if (res.data.success) {
+        this.filterData(res.data.exsitingNotices, serachKey)
+      }
+    });
+  }
+
+  filterData(posts, serachKey) {
+    const result = posts.filter((post) => 
+      post.noticeTitle.toLowerCase().includes(serachKey) ||
+      post.noticeMessage.toLowerCase().includes(serachKey)
+    )
+    
+    this.setState({
+      notices:result
+    })
+  }
+
   render() {
     return (
       <div className="container">
@@ -70,6 +93,18 @@ export default class ViewNotice_Admin extends Component {
           </div>
 
           <br/>
+
+          <div className="mb-4">
+            <input
+              style={{maxWidth:"400px"}} 
+              type="search" 
+              className="form-control border border-dark" 
+              name="searchQuery"
+              id="search" 
+              placeholder="Serach....."
+              onChange={this.handleSearchArea}
+            />
+          </div>
 
           <div className="container p-3 mb-2 bg-light text-dark">
             <table className="table">

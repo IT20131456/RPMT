@@ -104,6 +104,7 @@ export default function DocumentTempCreate() {
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
+                required
               />
             </div>
 
@@ -115,6 +116,7 @@ export default function DocumentTempCreate() {
                 id="file"
                 filename="file"
                 onChange={onChangeFile}
+                required
               />
             </div>
 
