@@ -58,7 +58,7 @@ export default class AddSubmitionType extends Component {
     //save submitiontypes
     axios.post("http://localhost:5000/submitiontype/save", data).then((res) => {
       if (res.data.success) {
-        swal("Added SubmitionType Successfully", "", "success").then(
+        swal("Added SubmissionType Successfully", "", "success").then(
           (value) => {
             window.location = "/submitiontype/add";
           }
@@ -113,7 +113,7 @@ export default class AddSubmitionType extends Component {
                           style={{ marginBottom: "15px" }}
                         >
                           <label style={{ marginBottom: "5px" }}>
-                            <strong>Submition Type</strong>
+                            <strong>Submission Type</strong>
                           </label>
 
                           <select
@@ -229,7 +229,7 @@ export default class AddSubmitionType extends Component {
                           style={{ marginBottom: "15px" }}
                         >
                           <label style={{ marginBottom: "5px" }}>
-                            <strong>Submition Status</strong>
+                            <strong>Submission Status</strong>
                           </label>
 
                           <select
