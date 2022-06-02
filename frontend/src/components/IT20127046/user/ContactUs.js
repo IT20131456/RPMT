@@ -395,14 +395,16 @@ export default class ContactUs extends Component {
                     <h6>Chat with Group</h6>
                   </div>
                   <div className="container">
-                    <p>Chat with your group</p>
+                    <p>Chat with your group members and allocate supervisor</p>
                     <div className="">{groupChatLink}</div>
                   </div>
 
                   <div style={headlineBar}>
                     <h6>Support Message</h6>
                   </div>
-                  <br />
+                  <div className="container">
+                    <p>Send problems to your Supervisor or Panael Member</p>
+                  </div>
 
                   <div className="container">{supportMsg}</div>
                   <div className="container">{myMsgStudent}</div>
@@ -412,7 +414,9 @@ export default class ContactUs extends Component {
                   <div style={headlineBar}>
                     <h6>Contact Info</h6>
                   </div>
-                  <br />
+                  <div className="container">
+                    <p>Supervisors and Panel Memebrs contact informations</p>
+                  </div>
                   <div className="container">
                     {this.state.users.map((user, index) => {
                       if (
