@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-import HomeImage from "../../../public/images/HomeImage.jpg";
+import HomeImage from "../../../public/images/Home.jpg";
 import RightSidePanel from "./RightSidePanel";
 import jwt_decode from "jwt-decode";
 import SLIITResearchLogo from "../../../public/images/SLIITResearchLogo.png";
@@ -50,7 +50,7 @@ export default class Home extends Component {
       }
     });
   }
-
+  
   render() {
     return (
       <div className="container">
