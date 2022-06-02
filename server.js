@@ -28,6 +28,7 @@ const chatGroupRoutes = require('./routes/chatMsg');
 const markingSchemRoutes = require('./routes/markingSchem');
 const downloadFileRoutes = require('./routes/downloadFile');
 const supportMsgRoutes = require('./routes/supportMsg');
+const noticeRoutes = require('./routes/notice');
 
 //app middleware
 
@@ -50,6 +51,7 @@ app.use(chatGroupRoutes);
 app.use(markingSchemRoutes);
 app.use(downloadFileRoutes);
 app.use(supportMsgRoutes);
+app.use(noticeRoutes);
 
 const port = process.env.PORT || 5000;
 const uri = process.env.MONGO_URI;
@@ -67,7 +69,7 @@ app.listen(port, () => {
 
 const server = http.createServer(app);
 
-server.listen(3001, () => {
+server.listen(process.env.PORT || 3001, () => {
   console.log("CHAT SERVER RUNNING");
 });
 
@@ -79,11 +81,11 @@ const io = new Server(server, {
 });
 
 io.on("connection", (socket) => {
-  console.log(`User Connected: ${socket.id}`);
+  //console.log(`User Connected: ${socket.id}`);
 
   socket.on("join_room", (data) => {
     socket.join(data);
-    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+    //console.log(`User with ID: ${socket.id} joined room: ${data}`);
   });
 
   socket.on("send_message", (data) => {
@@ -91,6 +93,6 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    console.log("User Disconnected", socket.id);
+    //console.log("User Disconnected", socket.id);
   });
 });

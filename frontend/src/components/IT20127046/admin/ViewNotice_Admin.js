@@ -1,30 +1,28 @@
 import React, { Component } from "react";
 import axios from "axios";
-import fileDownload from "js-file-download";
 import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 import swal from "sweetalert";
 
-export default class DocumentTemp_Admin extends Component {
+export default class ViewNotice_Admin extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      documentTemp: [],
+      notices: [],
     };
   }
 
   componentDidMount() {
-    this.retrieveDocumentTemp();
+    this.retrieveNotice();
   }
 
-  // To get all data
-  retrieveDocumentTemp() {
-    axios.get("http://localhost:5000/template/getAll").then((res) => {
+  retrieveNotice() {
+    axios.get("http://localhost:5000/notice/getAll").then((res) => {
       if (res.data.success) {
         this.setState({
-          documentTemp: res.data.exsitingDocumentTemp,
+          notices: res.data.exsitingNotices,
         });
-        console.log(this.state.documentTemp);
+        //console.log(this.state.documentTemp);
       }
     });
   }
@@ -33,47 +31,25 @@ export default class DocumentTemp_Admin extends Component {
   onDelete = (id) => {
     swal({
       title: "Are you sure?",
-      text: "Delete this Document",
+      text: "Delete this Notice",
       icon: "warning",
       buttons: true,
       dangerMode: true,
     }).then((willDelete) => {
       if (willDelete) {
         axios
-          .delete(`http://localhost:5000/document/delete/${id}`)
+          .delete(`http://localhost:5000/notice/delete/${id}`)
           .then((res) => {
             swal("Deleted Successfull!", {
               icon: "success",
             });
 
             setTimeout(() => {
-              this.retrieveDocumentTemp();
+              this.retrieveNotice();
             }, 1000);
           });
       } else {
       }
-    });
-
-    // axios.delete(`http://localhost:5000/document/delete/${id}`).then((res) => {
-    //   alert("Delete Successful");
-    //   this.retrieveDocumentTemp();
-    // });
-  };
-
-  // Download File
-  downloadFile = (fileName) => {
-    const data = {
-      fileName: fileName,
-    };
-
-    axios({
-      url: "http://localhost:5000/file/download",
-      data,
-      method: "POST",
-      responseType: "blob",
-    }).then((res) => {
-      console.log(res);
-      fileDownload(res.data, fileName);
     });
   };
 
@@ -82,23 +58,21 @@ export default class DocumentTemp_Admin extends Component {
     
     const serachKey = e.currentTarget.value;
 
-    axios.get("http://localhost:5000/template/getAll").then((res) => {
+    axios.get("http://localhost:5000/notice/getAll").then((res) => {
       if (res.data.success) {
-        this.filterData(res.data.exsitingDocumentTemp, serachKey)
+        this.filterData(res.data.exsitingNotices, serachKey)
       }
     });
   }
 
   filterData(posts, serachKey) {
     const result = posts.filter((post) => 
-      post.documentType.toLowerCase().includes(serachKey) ||
-      post.otherType.toLowerCase().includes(serachKey) ||
-      post.description.toLowerCase().includes(serachKey) ||
-      post.files.toLowerCase().includes(serachKey)
+      post.noticeTitle.toLowerCase().includes(serachKey) ||
+      post.noticeMessage.toLowerCase().includes(serachKey)
     )
     
     this.setState({
-      documentTemp:result
+      notices:result
     })
   }
 
@@ -108,16 +82,17 @@ export default class DocumentTemp_Admin extends Component {
         <br />
         <AdminNavBar />
         <br />
-        <h4>Document Template</h4>
+        <h4>Notice Management</h4>
         <hr />
 
         <div className="container">
-          <div>
-            <a className="btn btn-success m-2" href="/add/documentTemp">
-              Add Template
-            </a>
+          <div className="container">
+              <a className="btn btn-success m-2" href="/add/notice">
+                Add Notice
+              </a>
           </div>
-          <br />
+
+          <br/>
 
           <div className="mb-4">
             <input
@@ -136,35 +111,24 @@ export default class DocumentTemp_Admin extends Component {
               <thead>
                 <tr>
                   <th scope="col">No</th>
-                  <th scope="col">Document Type</th>
-                  <th scope="col">Other Type</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">File</th>
-                  <th scope="col">Preview</th>
+                  <th scope="col">Notice Title</th>
+                  <th scope="col">Notice Message</th>
+                  <th scope="col">To</th>
                   <th scope="col">Update</th>
                   <th scope="col">Delete</th>
                 </tr>
               </thead>
               <tbody>
-                {this.state.documentTemp.map((documentTemp, index) => (
+                {this.state.notices.map((notice, index) => (
                   <tr key={index}>
                     <th scope="row">{index + 1}</th>
-                    <td>{documentTemp.documentType}</td>
-                    <td>{documentTemp.otherType}</td>
-                    <td>{documentTemp.description}</td>
-                    <td>{documentTemp.files}</td>
-                    <td>
-                      <a
-                        className="btn btn-outline-primary"
-                        onClick={() => this.downloadFile(documentTemp.files)}
-                      >
-                        Download
-                      </a>
-                    </td>
+                    <td>{notice.noticeTitle}</td>
+                    <td>{notice.noticeMessage}</td>
+                    <td>{notice.to}</td>
                     <td>
                       <a
                         className="btn btn-outline-success"
-                        href={`/edit/documentTemp/${documentTemp._id}`}
+                        href={`#`}
                       >
                         Update
                       </a>
@@ -172,7 +136,7 @@ export default class DocumentTemp_Admin extends Component {
                     <td>
                       <a
                         className="btn btn-outline-danger"
-                        onClick={() => this.onDelete(documentTemp._id)}
+                        onClick={() => this.onDelete(notice._id)}
                       >
                         Delete
                       </a>

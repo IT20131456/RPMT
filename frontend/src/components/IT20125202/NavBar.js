@@ -123,6 +123,10 @@ class NavBar extends Component {
                 <li><a className="dropdown-item" href="/student/marks/view">View Marks</a></li>
                 <li><a className="dropdown-item" href="/student/group/evaluation/view">My Sessions And Marks</a></li>
             </ul>
+          </li>
+
+          <li className='nav-item'>
+            <a className="nav-link" aria-current="page" href="/user/view/documentTemplate" style={{ textDecoration: 'none', color: 'white' }}>Templates</a>
           </li> 
 
           <li className='nav-item'>
