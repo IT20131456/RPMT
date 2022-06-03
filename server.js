@@ -69,7 +69,7 @@ app.listen(port, () => {
 
 const server = http.createServer(app);
 
-server.listen(process.env.PORT || 3001, () => {
+server.listen(3001, () => {
   console.log("CHAT SERVER RUNNING");
 });
 
