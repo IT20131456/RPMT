@@ -14,6 +14,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
+// Save template
 router.post("/template/add", upload.single("file"), (req, res) => {
   const file = new DocumentTemplate({
     documentType: req.body.documentType,
@@ -28,7 +29,7 @@ router.post("/template/add", upload.single("file"), (req, res) => {
     .catch((err) => res.status(400).json(`Error: ${err}`));
 });
 
-// Get all articles
+// Get all templates
 router.get("/template/getAll", (req, res) => {
   DocumentTemplate.find().exec((err, documentTemp) => {
     if (err) {
@@ -43,6 +44,7 @@ router.get("/template/getAll", (req, res) => {
   });
 });
 
+// Get a template by ID
 router.get("/document/get/:id", (req, res) => {
   let documentID = req.params.id;
 
@@ -57,6 +59,7 @@ router.get("/document/get/:id", (req, res) => {
   });
 });
 
+// Update a template
 router.put("/document/update/:id", (req, res) => {
   DocumentTemplate.findByIdAndUpdate(
     req.params.id,
@@ -74,6 +77,7 @@ router.put("/document/update/:id", (req, res) => {
   );
 });
 
+// Delete a template
 router.delete("/document/delete/:id", (req, res) => {
   DocumentTemplate.findByIdAndRemove(req.params.id).exec(
     (err, deletedDocument) => {
