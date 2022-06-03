@@ -13,6 +13,8 @@ export default class ViewNotice_Admin extends Component {
   }
 
   componentDidMount() {
+    document.title = "Notice";
+
     this.retrieveNotice();
   }
 

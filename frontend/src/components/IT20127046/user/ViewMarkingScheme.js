@@ -14,7 +14,8 @@ export default class ViewMarkingScheme extends Component {
   }
 
   componentDidMount() {
-    document.title = "User Profile";
+    document.title = "Marking Scheme";
+    
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
