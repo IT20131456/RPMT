@@ -14,7 +14,8 @@ export default class ViewMarkingScheme extends Component {
   }
 
   componentDidMount() {
-    document.title = "User Profile";
+    document.title = "Marking Scheme";
+    
     if (localStorage.userToken) {
       const usertoken = localStorage.userToken;
       const decoded = jwt_decode(usertoken);
@@ -92,11 +93,12 @@ export default class ViewMarkingScheme extends Component {
                   <div style={headlineBar}>
                     <h6>Note</h6>
                   </div>
-                  <p>
-                    Document Template Document Template Document Template
-                    Document Template Document Template{" "}
-                  </p>
-
+                  <div className="container">
+                    <p>
+                      View and download marking schemes realted to assignment
+                    </p>
+                  </div>
+                  
                   <div style={headlineBar}>
                     <h6>Marking Schemes</h6>
                   </div>

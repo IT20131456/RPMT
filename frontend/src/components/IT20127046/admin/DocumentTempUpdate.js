@@ -48,6 +48,8 @@ export default class DocumentTempUpdate extends Component {
   };
 
   componentDidMount() {
+    document.title = "Update Template";
+
     const id = this.props.match.params.id;
 
     axios.get(`http://localhost:5000/document/get/${id}`).then((res) => {
