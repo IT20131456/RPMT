@@ -2,12 +2,10 @@ const mongoose = require("mongoose");
 
 const requestmodelSchema = new mongoose.Schema({
 
-
   groupid: {
     type: String,
     required: true,
   },
-
 
   name: {
     type: String,

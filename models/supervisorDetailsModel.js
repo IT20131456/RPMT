@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const supervisormodelSchema = new mongoose.Schema({
   supervisorid: {
     type: String,
