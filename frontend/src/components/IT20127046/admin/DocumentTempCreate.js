@@ -4,10 +4,7 @@ import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 import swal from "sweetalert";
 
 export default function DocumentTempCreate() {
-  state = {
-    disabled: true,
-  };
-
+ 
   const [documentType, setDocumentType] = useState("");
   const [otherType, setOtherType] = useState("-");
   const [description, setDescription] = useState("");
@@ -88,7 +85,6 @@ export default function DocumentTempCreate() {
                 onChange={(e) => {
                   setOtherType(e.target.value);
                 }}
-                disabled={this.state.disabled}
               />
             </div>
 
@@ -109,7 +105,7 @@ export default function DocumentTempCreate() {
             </div>
 
             <div className="mb-3">
-              <label className="form-label">Default file input example</label>
+              <label className="form-label">Upload Document</label>
               <input
                 className="form-control"
                 type="file"
