@@ -126,13 +126,14 @@ export default class App extends Component {
             <Route path="/supervisor/add" component={CreateSupervisorDetails}></Route>
             <Route path="/supervisor/view" component={SupervisorDetails}></Route>
             <Route path="/supervisor/update/:id" component={EditSupervisorDetails}></Route>
-
+            <Route path="/create/feedback" component={CreateResponse}></Route>
 
 
                  {/*IT20128036*/}
                  <Route path="/submitiontype/add" component={AddSubmitionType} />
                 <Route path="/submitiontypelist" component={SubmitionTypeList} />
                 <Route path="/submitiontype/edit/:id" component={EditSubmitonType} />
+
 
 
 
@@ -194,8 +195,7 @@ export default class App extends Component {
                 <Route path="/marks/view" component={viewMarks} />
                 <Route path="/marks/edit/:id" component={EditMarks} />
 
-                 {/* IT20131456 */}
-                <Route path="/create/feedback" component={CreateResponse}></Route>
+                 
 
 
                 {/* ---------------Panel member--------------- */}
@@ -218,8 +218,8 @@ export default class App extends Component {
 
 
 
-              </div>
-            </div>
+              </div>              
+            </div>            
           </Switch>
         </div >
       </BrowserRouter >

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import AdminNavBar from "../../IT20125202/admin/AdminNavBar";
 export default class CreateResponse extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +62,7 @@ export default class CreateResponse extends Component {
 
   render() {
     return (
-      <div className="container px-5 my-5">
+      <div className="container px-5 my-3">        
         <div className="container border border-dark bg-light mt-5 col-lg-10">
           <div className="form-group row">
             <div className="col-lg-12 margin-tb">
